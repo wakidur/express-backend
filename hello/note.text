@@ -1,1 +1,6 @@
 The Node.js and Express documentation does a great job explaining how to build rich applications using the platform and framework.
+
+
+/*** nodemon will watch the files in the directory in which nodemon was started, and if any files change, nodemon will automatically restart your node application. **/
+
+npm install -g nodemon
