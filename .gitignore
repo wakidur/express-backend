@@ -3,3 +3,5 @@
 
 # Ada Library Information
 *.ali
+apps/node_modules
+apps/package-lock.json
