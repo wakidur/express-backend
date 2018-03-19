@@ -5,3 +5,6 @@
 *.ali
 apps/node_modules
 apps/package-lock.json
+
+express-locallibrary/node_modules
+express-locallibrary/package-lock.json
