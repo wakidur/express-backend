@@ -6,6 +6,9 @@
  */
 
  var awesom_instance = new SomeModel({name: 'awesome'});
+
  /**
   * Save the new model instance, passsing a callback
   */
+
+  
