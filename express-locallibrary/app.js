@@ -19,7 +19,9 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
-
+// specifying an URL path of 'wiki'
+var wiki = require('./routes/route/wiki');
+app.use('/wiki', wiki);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
