@@ -6,7 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/users'); //Import routes for "users" area of site
+var catalog = require('./routes/catalog'); //Import routes for "catalog" area of site
 
 var app = express();
 
@@ -20,8 +21,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 // specifying an URL path of 'wiki'
-var wiki = require('./routes/route/wiki');
-app.use('/wiki', wiki);
+// var wiki = require('./routes/route/wiki');
+// app.use('/wiki', wiki);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -35,7 +36,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/users', users); // Add users routes to middleware chain.
+app.use('/catalog', catalog); // Add catalog routes to middleware chain.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
