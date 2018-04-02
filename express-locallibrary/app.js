@@ -23,6 +23,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // specifying an URL path of 'wiki'
 // var wiki = require('./routes/route/wiki');
 // app.use('/wiki', wiki);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -34,6 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.resolve('./public')));
 
 app.use('/', index);
 app.use('/users', users); // Add users routes to middleware chain.

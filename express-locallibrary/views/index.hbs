@@ -1,2 +1,23 @@
 <h1>Project name {{title}}</h1>
-<p>Welcome to  {{title}}</p>
+<p>Welcome to {{title}}</p>
+
+<h1>{{title}}</h1>
+<p>Welcome to
+    <em>LocalLibrary</em> , a very basic Express website developed as a tutorial example on the Mozilla Developer Network.</p>
+
+<h1>Dynamic content</h1>
+
+<div class="entry">
+    {{#if error}}
+    <h1>{{error}}</h1>
+    {{else}}
+    <p>  The library has the following record counts:</p>
+    <ul class="list-group">
+        <li class="list-group-item">Books: {{data.book_count}}</li>
+        <li class="list-group-item">Copies: {{data.book_instance_count}}</li>
+        <li class="list-group-item"> Copies available: {{data.book_instance_available_count}}</li>
+        <li class="list-group-item">Authors: {{data.author_count}}</li>
+        <li class="list-group-item">Genres: {{data.genre_count}}</li>
+    </ul>
+    {{/if}}
+</div>
