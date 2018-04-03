@@ -1,0 +1,12 @@
+<ul>
+    {{#if author_list}}
+
+    {{!-- {{book_list}} --}}
+     {{#each author_list}}
+        <li>
+            <a href="{{url}}" title="{{title}}">{{name}}  | {{date_of_birth}} - {{date_of_death}}</a></li>
+        {{/each}}
+    {{else}}
+        <li>There are no books.</li>
+    {{/if}}
+</ul>

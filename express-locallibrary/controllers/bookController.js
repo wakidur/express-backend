@@ -1,7 +1,7 @@
-var Book  = require('../models/bookModel');
-var Author  = require('../models/authorModel');
-var Genre  = require('../models/genreModel');
-var BookInstance  = require('../models/bookinstanceModel');
+var Book = require('../models/bookModel');
+var Author = require('../models/authorModel');
+var Genre = require('../models/genreModel');
+var BookInstance = require('../models/bookinstanceModel');
 
 var async = require('async');
 /*
@@ -14,7 +14,8 @@ exports.index = function (req, res) {
 
     async.parallel({
         book_count: function (callback) {
-            Book.count({}, callback); // Pass an empty object as match condition to find all documents of this collection
+            Book.count({}, callback); 
+            // Pass an empty object as match condition to find all documents of this collection
         },
         book_instance_count: function (callback) {
             BookInstance.count({}, callback);
@@ -38,11 +39,32 @@ exports.index = function (req, res) {
         });
     });
 };
+
+
+
+
 // Display list of all books.
+/* 
+* Previous
 exports.book_list = function (req, res) {
     res.send('NOT IMPLEMENTED: Book list');
 };
-
+*/
+// Display list of all Books.
+exports.book_list = function (req, res, next) {
+    Book.find({}, 'title author')
+        .populate('author')
+        .exec(function (err, list_books) {
+            if(err) {
+                return next(err);
+            }
+            // successfull, so render
+            res.render('./book/bookListView', {
+                title: 'Book List',
+                book_list: list_books
+            });
+          });
+};
 // Display detail page for a specific book.
 exports.book_detail = function (req, res) {
     res.send('NOT IMPLEMENTED: Book detail: ' + req.params.id);
