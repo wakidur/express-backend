@@ -1,0 +1,50 @@
+{{!-- {{book}}
+<hr>
+{{book_instance}} --}}
+
+<h2> {{subtitle}} : {{book.title}}</h2>
+<p> 
+    <strong>Author</strong> : 
+    <a href="{{book.author.url}}">
+        {{book.author.name}}
+    </a> 
+</p>
+
+<p> <strong>Summary</strong> : {{book.summary}}</p>
+<p> <strong>ISBN</strong> : {{book.isbn}}</p>
+<p> <strong>Genre</strong> : {{#each book.genre}}
+        <a href="{{url}}">{{name}} </a>
+    {{/each}}</p>
+
+
+    {{#if book.genre}} 
+
+    
+
+        <h4>  Copies</h4>
+      {{#each book_instance}}
+           {{#ifCond status '==' 'Available' }}
+            <p class="text-success">{{status}}</p>
+            <p> <strong>Imprint</strong> {{imprint}}</p>
+            <p><strong>Id </strong> <a href="{{url}}">{{_id}}</a></p>
+            {{/ifCond}} 
+            {{#ifCond status '==''Maintenance'}}
+            <p class="text-danger">{{status}}</p>
+            <p> <strong>Imprint</strong> {{imprint}}</p>
+            <p><strong>Id </strong> <a href="{{url}}">{{_id}}</a></p>
+            {{/ifCond}} 
+            {{#ifCond status '==' 'Loaned'}}
+            <p class="text-warning">{{status}}</p>
+            <p> <strong>Imprint</strong> {{imprint}}</p>
+            <p><strong> Id </strong> <a href="{{url}}">{{_id}}</a></p>
+            {{/ifCond}} 
+            {{#ifCond status '!==' 'Available' }} 
+            
+            <p><strong>Due back </strong> {{due_back}}</p>
+           
+            {{/ifCond}}
+    
+    {{/each}} 
+{{else}}
+    <p>There are no book copies in this library. </p>
+    {{/if}}

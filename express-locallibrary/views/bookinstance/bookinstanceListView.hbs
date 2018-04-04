@@ -1,5 +1,4 @@
-{{!-- {{bookinstance_list}} {{#each bookinstance_list}} {{#if }} {{/each}} --}}
-{{bookinstance_list}}
+{{!-- {{bookinstance_list}} {{#each bookinstance_list}} {{#if }} {{/each}} --}} {{!-- {{bookinstance_list}} --}}
 <ul>
     {{#if bookinstance_list}} {{#each bookinstance_list}}
     <li>
@@ -10,8 +9,8 @@
             <span class="text-danger">{{status}}</span>
             {{/ifCond}} {{#ifCond status '==' 'Loaned'}}
             <span class="text-warning">{{status}}</span>
-            {{/ifCond}} {{#ifCond status '!=' 'Available' }}
-            {{!-- <span>Due: {{due_back}}</span> --}}
+            {{/ifCond}} {{#ifCond status '!=' 'Available' }} {{!--
+            <span>Due: {{due_back}}</span> --}}
             <span>Due: {{due_back_formatted}}</span>
             {{/ifCond}}
         </a>
