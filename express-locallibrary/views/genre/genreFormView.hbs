@@ -1,0 +1,26 @@
+
+
+<form method="POST" action="">
+  <div class="form-group">
+    <label for="Genre">Email address</label>
+    <input 
+    type="text" 
+    class="form-control" 
+    id="Genre" 
+    aria-describedby="nameHelp" 
+    name="Genre"
+    placeholder="Fantasy, Poetry etc.">
+    <small id="emailHelp" class="form-text text-muted">{{}}</small>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+  <ul>
+	{{#if errors}} {{#each errors}}
+	<li>
+		{{msg}}
+	</li>
+	{{/each}} 
+	{{/if}}
+</ul>
+</form>
