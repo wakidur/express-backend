@@ -1,0 +1,58 @@
+<form method="POST" action="">
+  <div class="form-group">
+    <label for="{{first_name}}">First Name</label>
+    <input 
+	type="email" 
+	class="form-control" 
+	id="firstName" 
+	name="{{first_name}}"
+	aria-describedby="emailHelp" 
+	placeholder="First name (Christian) last"
+	required="">
+    <small id="emailHelp" class="form-text text-muted"></small>
+  </div>
+  <div class="form-group">
+    <label for="{{family_name}}">Family Name:</label>
+    <input 
+	type="text" 
+	class="form-control" 
+	id="familyName" 
+	name="{{family_name}}"
+	placeholder="Family name (surname)"
+	required=""
+	>
+  </div>
+  <div class="form-group">
+    <label for="{{date_of_birth}}">Date of birth:</label>
+    <input 
+	type="date" 
+	class="form-control" 
+	id="familyName" 
+	name="{{date_of_birth}}"
+	placeholder="dd/mm/yyyy"
+	>
+	
+  </div>
+  <div class="form-group">
+    <label for="{{date_of_death}}">Date of death:</label>
+    <input 
+	type="date" 
+	class="form-control" 
+	id="familyName" 
+	name="{{date_of_death}}"
+	placeholder="dd/mm/yyyy"
+	>
+  </div>
+  
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+  
+   <ul>
+	{{#if errors}} {{#each errors}}
+	<li>
+		{{msg}}
+	</li>
+	{{/each}} 
+	{{/if}}
+</ul>
+</form>

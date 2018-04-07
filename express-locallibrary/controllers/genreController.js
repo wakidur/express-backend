@@ -1,14 +1,16 @@
 /*import  genreModel*/
 var Genre = require('../models/genreModel');
+
 /* import  bookModel */
 var Book = require('../models/bookModel');
+
 /* Import validation and sanitisation methods */
 const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody  } = require('express-validator/filter');
 
-
 /* Import async */
 var async = require('async');
+
 /**
 * Display list of all Genre.
 	exports.genre_list = function(req, res) {
@@ -83,7 +85,8 @@ exports.genre_create_get = function (req, res) {
 };
 */
 exports.genre_create_get = function (req, res, next) {
-	res.render('./genre/genreFormView', { title: 'Create Genre'});
+	res.render('./genre/genreFormView', 
+	{ title: 'Create Genre'});
 };
 
 // Handle Genre create on POST.
@@ -92,7 +95,7 @@ exports.genre_create_post = function (req, res) {
 	res.send('NOT IMPLEMENTED: Genre create POST');
 };
 */
-
+// Handle Genre create on POST
 exports.genre_create_post = [
 	// validate that the name field is not empty
 	body('name', 'Genre name required').isLength({ min: 1 }).trim(),
@@ -113,7 +116,7 @@ exports.genre_create_post = [
 			}
 		);
 
-		if (!errors.isEmpty() ) {
+		if ( !errors.isEmpty() ) {
 			// There are errors. Render the form again with sanitize values/error message.
 			res.render('./genre/genreFormView', {
 				title: "Create Genre", 

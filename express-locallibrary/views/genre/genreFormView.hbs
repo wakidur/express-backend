@@ -2,14 +2,16 @@
 
 <form method="POST" action="">
   <div class="form-group">
-    <label for="Genre">Email address</label>
+    <label for="{{name}}">Genre</label>
     <input 
     type="text" 
     class="form-control" 
     id="Genre" 
     aria-describedby="nameHelp" 
-    name="Genre"
-    placeholder="Fantasy, Poetry etc.">
+    name="{{name}}"
+    placeholder="Fantasy, Poetry etc."
+	required
+	>
     <small id="emailHelp" class="form-text text-muted">{{}}</small>
   </div>
   
