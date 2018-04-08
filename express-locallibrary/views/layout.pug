@@ -1,0 +1,45 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/jquery.slim.min.js')
+    script(src='/javascripts/popper.min.js')
+    script(src='/javascripts/bootstrap.min.js')
+    script(src='/javascripts/feather.min.js')
+   
+  body
+    div(class='container-fluid')
+      div(class='row')
+      nav(class='col-md-2 d-none d-md-block bg-light sidebar')
+        div(class='sidebar-sticky')
+          block sidebar
+            ul(class='nav flex-column')
+              li(class='nav-item')
+                a(class='nav-link active' href='/catalog')  Home
+              li(class='nav-item') 
+                a(class='nav-link' href='/catalog/books') All books
+              li(class='nav-item') 
+                a( class='nav-link' href='/catalog/authors') All authors
+              li(class='nav-item') 
+                a(class='nav-link' href='/catalog/genres') All genres
+              li(class='nav-item')  
+                a(href='/catalog/bookinstances') All book-instances
+              li
+                hr
+              li(class='nav-item') 
+                a(class='nav-link' href='/catalog/author/create') Create new author
+              li(class='nav-item') 
+                a( class='nav-link' href='/catalog/genre/create') Create new genre
+              li(class='nav-item') 
+                a(class='nav-link' href='/catalog/book/create') Create new book
+              li(class='nav-item') 
+                a(class='nav-link' href='/catalog/bookinstance/create') Create new book instance (copy)
+
+
+          main(role='main' class='col-md-9 ml-sm-auto col-lg-10 pt-3 px-4')   
+            div(class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom')  
+              block content

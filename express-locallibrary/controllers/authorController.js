@@ -5,9 +5,9 @@ var Book  = require('../models/bookModel');
 /*async*/
 var async = require('async');
 /*body,validationResult */
-const {body, validationResult } = require('express-validator/check');
+// const {body, validationResult } = require('express-validator/check');
 /*sanitizeBody*/
-const { sanitizeBody } = require('express-validator/filter');
+// const { sanitizeBody } = require('express-validator/filter');
 
 
 
@@ -85,6 +85,7 @@ exports.author_create_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Author create POST');
 };
 */
+/*
 exports.author_create_post = [
 	// validate fields.
 	body('first_name')
@@ -146,7 +147,9 @@ exports.author_create_post = [
 		}
 	}
 	
-]
+];
+*/
+
 // Display Author delete form on GET.
 exports.author_delete_get = function(req, res) {
     res.send('NOT IMPLEMENTED: Author delete GET');

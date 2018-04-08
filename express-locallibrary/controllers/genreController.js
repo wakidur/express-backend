@@ -5,8 +5,8 @@ var Genre = require('../models/genreModel');
 var Book = require('../models/bookModel');
 
 /* Import validation and sanitisation methods */
-const { body, validationResult } = require('express-validator/check');
-const { sanitizeBody  } = require('express-validator/filter');
+// const { body, validationResult } = require('express-validator/check');
+// const { sanitizeBody  } = require('express-validator/filter');
 
 /* Import async */
 var async = require('async');
@@ -95,6 +95,7 @@ exports.genre_create_post = function (req, res) {
 	res.send('NOT IMPLEMENTED: Genre create POST');
 };
 */
+/*
 // Handle Genre create on POST
 exports.genre_create_post = [
 	// validate that the name field is not empty
@@ -150,7 +151,7 @@ exports.genre_create_post = [
 	}
 
 ];
-
+*/
 // Display Genre delete form on GET.
 exports.genre_delete_get = function (req, res) {
 	res.send('NOT IMPLEMENTED: Genre delete GET');

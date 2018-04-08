@@ -13,9 +13,9 @@ var mongoose = require('mongoose');
 /*async*/
 var async = require('async');
 /*body validationResult */
-const { body, validationResult } = require('express-validator/check');
+// const { body, validationResult } = require('express-validator/check');
 /* sanitizeBody */
-const { sanitizeBody } =require('express-validator/filter');
+// const { sanitizeBody } =require('express-validator/filter');
 
 
 
@@ -127,6 +127,7 @@ exports.book_create_get = function (req, res) {
     res.send('NOT IMPLEMENTED: Book create GET');
 };
 */
+/*
 exports.book_create_get = function(req, res, next) {
 	// Get all authors and genres, which we can use for adding to our book.
 	async.paralley({
@@ -147,12 +148,14 @@ exports.book_create_get = function(req, res, next) {
 
 	});
 }
+*/
 // Handle book create on POST.
 /*
 exports.book_create_post = function (req, res) {
     res.send('NOT IMPLEMENTED: Book create POST');
 };
 */
+/*
 exports.book_create_post = [
 	// Convert the genre to an array.
 	(req, res, next) => {
@@ -170,7 +173,7 @@ exports.book_create_post = [
 	body('title', 'Title must not be empty.').isLength({ min: 1 }).trim(),
 	body('author', 'Author must not be empty.').isLength({min: 1}).trim(),
 	body('summary', 'Summary must not be empty').isLength({min: 1}).trim(),
-	body('isbn': 'ISBN must not be empty').isLength({ min: 1}).trim(),
+	body('isbn', 'ISBN must not be empty').isLength({ min: 1}).trim(),
 	
 	// Sanitize fields (using wildcard).
 	sanitizeBody('*').trim().escape(),
@@ -231,6 +234,7 @@ exports.book_create_post = [
 		
 	}
 ];
+*/
 // Display book delete form on GET.
 exports.book_delete_get = function (req, res) {
     res.send('NOT IMPLEMENTED: Book delete GET');
