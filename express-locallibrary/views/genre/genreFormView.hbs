@@ -2,17 +2,20 @@
 
 <form method="POST" action="">
   <div class="form-group">
-    <label for="{{name}}">Genre</label>
-    <input 
-    type="text" 
-    class="form-control" 
-    id="Genre" 
-    aria-describedby="nameHelp" 
-    name="{{name}}"
+    <label for="name">Genre</label>
+    <input type="text" class="form-control"  id="Genre"  aria-describedby="nameHelp" name="name"
     placeholder="Fantasy, Poetry etc."
-	required
-	>
-    <small id="emailHelp" class="form-text text-muted">{{}}</small>
+
+
+    {{#if genre}}
+      value=""
+      {{else}}
+       value="{{genre.name}}"
+    {{/if}}
+
+
+    required="">
+    <small id="emailHelp" class="form-text text-muted">{{errors.msg}}</small>
   </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>
@@ -26,3 +29,5 @@
 	{{/if}}
 </ul>
 </form>
+
+
