@@ -25,7 +25,6 @@ exports.index = function(req, res) {
 */
 
 exports.index = function (req, res) {
-
     async.parallel({
         book_count: function (callback) {
             Book.count({}, callback); 
