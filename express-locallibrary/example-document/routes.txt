@@ -1,0 +1,7 @@
+catalog/
+catalog/books/
+catalog/genres/
+catalog/book/584493c1f4887f06c0e67d37
+catalog/book/create
+catalog/book/584493c1f4887f06c0e67d37/update
+catalog/book/584493c1f4887f06c0e67d37/delete
