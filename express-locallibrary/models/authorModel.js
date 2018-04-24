@@ -32,7 +32,7 @@ AuthorSchema
 AuthorSchema
     .virtual('url')
     .get(function () {
-        return '/catalog/author/' + this._id;
+        return '/author/' + this._id;
     });
 // virtual date format
 AuthorSchema

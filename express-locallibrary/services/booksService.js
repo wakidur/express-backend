@@ -33,20 +33,20 @@ module.exports = booksService;
 
 function getCount() {
     var deferred = Q.defer();
+    var resutls = {};
     Q.all([
         Book.count({}),
         BookInstance.count({}),
         BookInstance.count({status: 'Available'}),
         Author.count({}),
         Genre.count({})
-
     ]).then((value) => {
-        value.book_count = value[0];
-        value.book_instance_count = value[1];
-        value.book_instance_available_count = value[2];
-        value.Author = value[3];
-        value.Genre = value[4];
-        deferred.resolve(value);
+        resutls.book_count = value[0];
+        resutls.book_instance_count = value[1];
+        resutls.book_instance_available_count = value[2];
+        resutls.author_count = value[3];
+        resutls.genre_count = value[4];
+        deferred.resolve(resutls);
     }).catch((err) => {
         deferred.resolve(err);
     });

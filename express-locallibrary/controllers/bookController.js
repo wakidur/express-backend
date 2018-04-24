@@ -33,15 +33,6 @@ exports.book_create_post = bookCreatePost;
 
 // Site Home Page
 function index(req, res) {
-
-    // booksService.getCount(function (err, results) {
-    //     res.render('index', {
-    //         title: 'Local Library Home',
-    //         error: err,
-    //         data: results
-    //     });
-
-    // });
     booksService.getCount().then((value) => {
         res.render('index', {
             title: 'Local Library Home',
@@ -54,37 +45,6 @@ function index(req, res) {
 
         });
     });
-
-
-
-
-    // async.parallel({
-    //     book_count: function (callback) {
-    //         Book.count({}, callback);
-    //         // Pass an empty object as match condition to find all documents of this collection
-    //     },
-    //     book_instance_count: function (callback) {
-    //         BookInstance.count({}, callback);
-    //     },
-    //     book_instance_available_count: function (callback) {
-    //         BookInstance.count({
-    //             status: 'Available'
-    //         }, callback);
-    //     },
-    //     author_count: function (callback) {
-    //         Author.count({}, callback);
-    //     },
-    //     genre_count: function (callback) {
-    //         Genre.count({}, callback);
-    //     },
-    // }, function (err, results) {
-    //     res.render('index', {
-    //         title: 'Local Library Home',
-    //         error: err,
-    //         data: results
-    //     });
-    // });
-
 }
 
 // Display list of all Books.

@@ -31,19 +31,19 @@ html(lang='en')
             block sidebar
               ul(class='nav flex-column')
                 li(class='nav-item')
-                  a(class='nav-link active', href='/')
+                  a(class='nav-link active', href='/catalog')
                     span(data-feather='home') Home
                 li(class='nav-item')
-                  a(class='nav-link' href='/books')
+                  a(class='nav-link' href='/catalog/books')
                     span(data-feather='file') All books 
                 li(class='nav-item')
-                  a(class='nav-link', href='/authors')
+                  a(class='nav-link', href='/catalog/authors')
                     span(data-feather='layers') All authors 
                 li(class='nav-item')
-                  a(class='nav-link' href='/genres')
+                  a(class='nav-link' href='/catalog/genres')
                     span(data-feather='users') All genres  
                 li(class='nav-item')
-                  a(class='nav-link' href='/bookinstances')
+                  a(class='nav-link' href='/catalog/bookinstances')
                     span(data-feather='bar-chart-2') All book-instances
                      
                       
@@ -55,18 +55,18 @@ html(lang='en')
                       
               ul(class='nav flex-column mb-2')
                 li(class='nav-item')
-                  a(class='nav-link',href='/author/create')
+                  a(class='nav-link',href='/catalog/author/create')
                     span(data-feather='file-text') Create new author  
                 li(class='nav-item')
-                  a(class='nav-link', href='/genre/create')
+                  a(class='nav-link', href='/catalog/genre/create')
                     span(data-feather='file-text') Create new genre
                         
                 li(class='nav-item')
-                  a(class='nav-link' href='/book/create')
+                  a(class='nav-link' href='/catalog/book/create')
                     span(data-feather='file-text') Create new book
                           
                 li(class='nav-item')
-                  a(class='nav-link', href='/bookinstance/create')
+                  a(class='nav-link', href='/catalog/bookinstance/create')
                     span(data-feather='file-text') Create new book instance
                   
         main(role='main',class='col-md-9 ml-sm-auto col-lg-10 pt-3 px-4')
