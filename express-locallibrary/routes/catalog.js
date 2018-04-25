@@ -10,7 +10,7 @@ var book_instance_controller = require('../controllers/bookinstanceController');
 /// BOOK ROUTES ///
 
 // GET catalog home page.
-router.get('/', book_controller.index);
+router.get('/', book_controller.homePage);
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
 router.get('/book/create', book_controller.book_create_get);
@@ -112,6 +112,6 @@ router.post('/bookinstance/:id/update', book_instance_controller.bookinstance_up
 router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
 
 // GET request for list of all BookInstance.
-router.get('/bookinstances', book_instance_controller.bookinstance_list);
+router.get('/bookinstances', book_instance_controller.bookInstanceList);
 
 module.exports = router;

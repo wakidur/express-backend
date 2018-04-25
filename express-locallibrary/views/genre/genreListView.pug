@@ -4,11 +4,11 @@ extends ../layout
 block content
   h1= title
   
-  ul
-  each genre in genre_list
-    li 
-      a(href=genre.url) #{genre.name} 
-      | (#{genre.date_of_birth} - #{genre.date_of_death})
+  ul(class='list-unstyled')
+    each genre in genre_list
+      li 
+        a(href=genre.url) #{genre.name} 
+        
 
-  else
-    li There are no genres.
+    else
+      li There are no genres.

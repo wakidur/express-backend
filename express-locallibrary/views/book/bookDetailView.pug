@@ -7,11 +7,10 @@ block content
     a(href=book.author.url) #{book.author.name}
   p #[strong Summary:] #{book.summary}
   p #[strong ISBN:] #{book.isbn}
-  p #[strong Genre:]&nbsp;
-    each val, index in book.genre
+  p #[strong Genre:] 
+    each val in book.genre
       a(href=val.url) #{val.name}
-      if index < book.genre.length - 1
-        |, 
+      |, 
   
   div(style='margin-left:20px;margin-top:20px')
     h4 Copies
@@ -27,10 +26,14 @@ block content
       p #[strong Imprint:] #{val.imprint}
       if val.status!='Available'
         p #[strong Due back:] #{val.due_back}
-      p #[strong Id:]&nbsp;
+      p #[strong Id:] 
         a(href=val.url) #{val._id}
  
     else
       p There are no copies of this book in the library.
+      
+  hr
+  a(href=book.url+'/delete' , class='btn btn-danger mr-2') Delete Book
+  a(href=book.url+'/update' , class='btn btn-warning') Update Book
        
     

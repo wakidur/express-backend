@@ -27,6 +27,7 @@ const {
 var booksService = {};
 
 booksService.getCount = getCount;
+booksService.getBookList = getBookList;
 
 module.exports = booksService;
 
@@ -37,7 +38,9 @@ function getCount() {
     Q.all([
         Book.count({}),
         BookInstance.count({}),
-        BookInstance.count({status: 'Available'}),
+        BookInstance.count({
+            status: 'Available'
+        }),
         Author.count({}),
         Genre.count({})
     ]).then((value) => {
@@ -50,6 +53,21 @@ function getCount() {
     }).catch((err) => {
         deferred.resolve(err);
     });
+    return deferred.promise;
+}
+
+
+function getBookList() {
+    var deferred = Q.defer();
+    Book.find({}, 'title author')
+        .populate('author')
+        .exec(function (err, list_books) {
+            if (err) {
+                deferred.reject(err);
+            }
+            //sucessfull , 
+            deferred.resolve(list_books);
+        });
     return deferred.promise;
 }
 
