@@ -1,0 +1,10 @@
+extends layout
+
+block content
+
+    h1 #{title}
+    ul
+        each val, index in articles
+            li #[strong #{index} : ]  #{val.id} , #{val.title}, #{val.author}, #{val.body}
+            
+        

@@ -1,0 +1,8 @@
+c:\mongodb\bin\mongo
+> show dbs
+> use nodekb    [create database]
+> db.createcollection('articles');
+> show collections
+> db.articles.insert({
+    title: 
+})
