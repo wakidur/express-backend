@@ -6,8 +6,6 @@ var Author = require('../models/authorModel');
 var Genre = require('../models/genreModel');
 /*bookinstanceModel*/
 var BookInstance = require('../models/bookinstanceModel');
-/*ifconditionHelper*/
-var ifcond = require('../helper/ifconditionHelper');
 /*mongoose*/
 var mongoose = require('mongoose');
 /*async*/
@@ -61,7 +59,7 @@ function getBookList() {
     var deferred = Q.defer();
     Book.find({}, 'title author')
         .populate('author')
-        .exec(function (err, list_books) {
+        .exec(function(err, list_books) {
             if (err) {
                 deferred.reject(err);
             }
