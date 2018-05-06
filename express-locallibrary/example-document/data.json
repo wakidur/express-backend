@@ -1,0 +1,21 @@
+[{
+    "_id": "5 abcb92533b7392e3c8a2362",
+    "title": "The Name of the Wind (The Kingkiller Chronicle, #1)",
+    "author": {
+        "_id": "5 abcb92133b7392e3c8a235a",
+        "first_name": "Patrick",
+        "family_name": "Rothfuss",
+        "date_of_birth": "1973 - 06 - 06 T00: 00: 00.000 Z",
+        "__v": 0
+    }
+}, {
+    "_id": "5 abcb92533b7392e3c8a2363",
+    "title": "The Wise Man 's Fear (The Kingkiller Chronicle, #2)",
+    "author": {
+        "_id": "5 abcb92133b7392e3c8a235a",
+        "first_name": "Patrick",
+        "family_name": "Rothfuss",
+        "date_of_birth": "1973 - 06 - 06 T00: 00: 00.000 Z",
+        "__v": "0"
+    }
+}]

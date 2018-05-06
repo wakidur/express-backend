@@ -1,4 +1,4 @@
-/*
+
 // step -1
 exports.perimeter = function (width) {
     return 4 * width;
@@ -7,7 +7,7 @@ exports.perimeter = function (width) {
 exports.area = function (width) {
     return width * width
 };
-*/
+
 
 // step -2;
 

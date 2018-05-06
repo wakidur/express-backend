@@ -1,0 +1,75 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    
+    script(src='/javascripts/jquery.slim.min.js')
+    script(src='/javascripts/popper.min.js')
+    script(src='/javascripts/bootstrap.min.js')
+    script(src='/javascripts/feather.min.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    nav(class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0")
+      a(class="navbar-brand col-sm-3 col-md-2 mr-0" href="#") Company name
+      input#name.form-control.form-control-dark.w-100(type='text', placeholder="Search" aria-label="Search")
+      ul(class="navbar-nav px-3")
+        li(class="nav-item text-nowrap")
+          a(class="nav-link" href="/users") User
+
+    div(class='container-fluid')
+     div(class='row')
+        nav(class='col-md-2 d-none d-md-block bg-light sidebar')
+          div(class='sidebar-sticky')
+            block sidebar
+              ul(class='nav flex-column')
+                li(class='nav-item')
+                  a(class='nav-link active', href='/')
+                    span(data-feather='home') Home
+                li(class='nav-item')
+                  a(class='nav-link' href='/books')
+                    span(data-feather='file') All books 
+                li(class='nav-item')
+                  a(class='nav-link', href='/authors')
+                    span(data-feather='layers') All authors 
+                li(class='nav-item')
+                  a(class='nav-link' href='/genres')
+                    span(data-feather='users') All genres  
+                li(class='nav-item')
+                  a(class='nav-link' href='/bookinstances')
+                    span(data-feather='bar-chart-2') All book-instances
+                     
+                      
+
+                h6(class='sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted')
+                  span Saved reports
+                  a(class='d-flex align-items-center text-muted', href='#')
+                        span(data-feather='plus-circle')
+                      
+              ul(class='nav flex-column mb-2')
+                li(class='nav-item')
+                  a(class='nav-link',href='/author/create')
+                    span(data-feather='file-text') Create new author  
+                li(class='nav-item')
+                  a(class='nav-link', href='/genre/create')
+                    span(data-feather='file-text') Create new genre
+                        
+                li(class='nav-item')
+                  a(class='nav-link' href='/book/create')
+                    span(data-feather='file-text') Create new book
+                          
+                li(class='nav-item')
+                  a(class='nav-link', href='/bookinstance/create')
+                    span(data-feather='file-text') Create new book instance
+                  
+        main(role='main',class='col-md-9 ml-sm-auto col-lg-10 pt-3 px-4')
+            div(class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom')
+              h1(class='h2') Dashboard
+            block content

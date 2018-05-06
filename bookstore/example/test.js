@@ -61,8 +61,7 @@ MongoClient.connect('mongodb://localhost:27017/animals', function(err, client){
 		console.log(result);
 		client.close();
 	})
-	
-})
+
 
 
 

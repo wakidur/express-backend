@@ -3,3 +3,11 @@
 
 # Ada Library Information
 *.ali
+apps/node_modules
+apps/package-lock.json
+
+express-locallibrary/node_modules
+express-locallibrary/package-lock.json
+
+simple-knowledgebase-app/node_modules
+simple-knowledgebase-app/package-lock.json
