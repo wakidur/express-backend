@@ -22,13 +22,25 @@ const {
     sanitizeBody
 } = require('express-validator/filter');
 
+/*
 var booksService = {};
 
 booksService.getCount = getCount;
 booksService.getBookList = getBookList;
+booksService.getBookDetail = getBookDetail;
 
 module.exports = booksService;
+ */
+module.exports = {
+    getCount: getCount,
+    getBookList: getBookList,
+    getBookDetail: getBookDetail,
+    bookCreateGet: bookCreateGet,
+    bookCreatePost: bookCreatePost
 
+}
+
+// Get Count value 
 
 function getCount() {
     var deferred = Q.defer();
@@ -54,12 +66,13 @@ function getCount() {
     return deferred.promise;
 }
 
+// Get Book List
 
 function getBookList() {
     var deferred = Q.defer();
     Book.find({}, 'title author')
         .populate('author')
-        .exec(function(err, list_books) {
+        .exec(function (err, list_books) {
             if (err) {
                 deferred.reject(err);
             }
@@ -69,27 +82,60 @@ function getBookList() {
     return deferred.promise;
 }
 
-// function getCount(cb) {
-//     async.parallel({
-//         book_count: function (callback) {
-//             Book.count({}, callback);
-//             // Pass an empty object as match condition to find all documents of this collection
-//         },
-//         book_instance_count: function (callback) {
-//             BookInstance.count({}, callback);
-//         },
-//         book_instance_available_count: function (callback) {
-//             BookInstance.count({
-//                 status: 'Available'
-//             }, callback);
-//         },
-//         author_count: function (callback) {
-//             Author.count({}, callback);
-//         },
-//         genre_count: function (callback) {
-//             Genre.count({}, callback);
-//         },
-//     }, function (err, results) {
-//         return cb(err, results);
-//     });
-// }
+// Get Book Detail
+
+function getBookDetail(id) {
+    let deferred = Q.defer();
+    let resutls = {};
+    Q.all([Book.findById(id).populate('author').populate('genre'), BookInstance.find({ 'book': id })]).then((value) => {
+        resutls.book = value[0];
+        resutls.book_instance = value[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+    return deferred.promise;
+
+}
+
+
+// Book create form on GET
+
+function bookCreateGet() {
+    let deferred = Q.defer();
+    let resutls = {};
+    Q.all([
+        Author.find(),
+        Genre.find()
+        ]).then((value) => {
+        resutls.authors = value[0];
+        resutls.genres = value[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+    return deferred.promise;
+     
+}
+
+// book create on POST
+function bookCreatePost() {
+    let deferred = Q.defer();
+    let resutls = {};
+    Q.all([
+        Author.find(),
+        Genre.find()
+        ]).then((value) => {
+        resutls.authors = value[0];
+        resutls.genres = value[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+    return deferred.promise;
+     
+}
+
+
+
+
