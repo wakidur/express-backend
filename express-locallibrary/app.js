@@ -8,12 +8,18 @@ var bodyParser = require('body-parser');
 // var index = require('./routes/index');
 var users = require('./routes/users'); //Import routes for "users" area of site
 var catalog = require('./routes/catalog'); //Import routes for "catalog" area of site
+var compression = require('compression');
+var helmet = require('helmet');
 
+// Create the Express application object
 var app = express();
 
+app.use(helmet());
 // Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = "mongodb://localhost/local_library";
+//var dev_db_url = "mongodb://localhost/local_library";
+var dev_db_url = "mongodb://wakidur:Wakidur_234@ds117010.mlab.com:17010/local_library";
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
@@ -30,6 +36,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(compression()); //Compress all routes
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 
