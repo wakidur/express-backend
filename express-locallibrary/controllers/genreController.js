@@ -29,9 +29,7 @@ var async = require('async');
 // Display list of all Genre.
 exports.genre_list = function(req, res, next) {
     Genre.find()
-        .sort([
-            ['name', 'ascending']
-        ])
+        .sort([['name', 'ascending']])
         .exec(function(err, list_genres) {
             if (err) {
                 return next(err);
@@ -40,17 +38,10 @@ exports.genre_list = function(req, res, next) {
             res.render('./genre/genreListView', {
                 title: 'Genre List',
                 genre_list: list_genres
-            })
+            });
         });
 
-}
-
-// Display detail page for a specific Genre.
-/*
-exports.genre_detail = function (req, res) {
-	res.send('NOT IMPLEMENTED: Genre detail: ' + req.params.id);
 };
-*/
 
 // Display detail page for a specific Genre.
 exports.genre_detail = function(req, res, next) {
@@ -63,7 +54,6 @@ exports.genre_detail = function(req, res, next) {
                 'genre': req.params.id
             }).exec(callback);
         },
-
     }, function(err, results) {
         if (err) {
             return next(err);
