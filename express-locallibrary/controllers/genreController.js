@@ -4,8 +4,6 @@ var Genre = require('../models/genreModel');
 /* import  bookModel */
 var Book = require('../models/bookModel');
 
-
-
 /* Import validation and sanitisation methods */
 const {
     body,
@@ -14,17 +12,13 @@ const {
 const {
     sanitizeBody
 } = require('express-validator/filter');
-var ifcond = require('../helper/ifconditionHelper');
+
 /* Import async */
 var async = require('async');
 
-/**
-* Display list of all Genre.
-	exports.genre_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Genre list');
-	};
- 
- */
+let genreService = require('../services/genreService');
+
+
 
 // Display list of all Genre.
 exports.genre_list = function(req, res, next) {
@@ -46,13 +40,6 @@ exports.genre_list = function(req, res, next) {
 }
 
 // Display detail page for a specific Genre.
-/*
-exports.genre_detail = function (req, res) {
-	res.send('NOT IMPLEMENTED: Genre detail: ' + req.params.id);
-};
-*/
-
-// Display detail page for a specific Genre.
 exports.genre_detail = function(req, res, next) {
     async.parallel({
         genre: function(callback) {
@@ -63,7 +50,6 @@ exports.genre_detail = function(req, res, next) {
                 'genre': req.params.id
             }).exec(callback);
         },
-
     }, function(err, results) {
         if (err) {
             return next(err);
@@ -86,11 +72,7 @@ exports.genre_detail = function(req, res, next) {
 
 
 // Display Genre create form on GET.
-/*
-exports.genre_create_get = function (req, res) {
-	res.send('NOT IMPLEMENTED: Genre create GET');
-};
-*/
+
 exports.genre_create_get = function(req, res, next) {
     res.render('./genre/genreFormView', {
         title: 'Create Genre'
@@ -98,18 +80,10 @@ exports.genre_create_get = function(req, res, next) {
 };
 
 // Handle Genre create on POST.
-/*
-exports.genre_create_post = function (req, res) {
-	res.send('NOT IMPLEMENTED: Genre create POST');
-};
-*/
-// Handle Genre create on POST.
 exports.genre_create_post = [
 
     // Validate that the name field is not empty.
-    body('name', 'Genre name required').isLength({
-        min: 1
-    }).trim(),
+    body('name', 'Genre name required').isLength({ min: 1 }).trim(),
 
     // Sanitize (trim and escape) the name field.
     sanitizeBody('name').trim().escape(),
@@ -149,7 +123,6 @@ exports.genre_create_post = [
                         // Genre exists, redirect to its detail page.
                         res.redirect(found_genre.url);
                     } else {
-
                         genre.save(function(err) {
                             if (err) {
                                 return next(err);

@@ -15,10 +15,11 @@ var helmet = require('helmet');
 var app = express();
 
 app.use(helmet());
+
 // Set up mongoose connection
 var mongoose = require('mongoose');
-var dev_db_url = "mongodb://localhost/local_library";
-//var dev_db_url = "mongodb://wakidur:Wakidur_234@ds117010.mlab.com:17010/local_library";
+//var dev_db_url = "mongodb://localhost/local_library";
+var dev_db_url = "mongodb://wakidur:Wakidur_234@ds117010.mlab.com:17010/local_library";
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
 // production 
 // var mongoDB = process.env.MONGODB_URI || 'mongodb://wakidur:Wakidur_234@ds117010.mlab.com:17010/local_library';
