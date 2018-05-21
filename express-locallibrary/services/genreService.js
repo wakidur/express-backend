@@ -13,7 +13,7 @@ let async = require('async');
 
 /* Q */
 let Q = require('q');
-
+/*
 module.exports = {
     getGenreList: getGenreList,
     getGenreDetail: getGenreDetail,
@@ -83,3 +83,4 @@ function getGenreDetail(reqId) {
 
     return deferred.promise;
 }
+*/
