@@ -1,2 +1,37 @@
 // Windows
 SET DEBUG=express-locallibrary:* & npm run devstart
+
+SET DEBUG=expressnew:* & npm run devstart
+
+SET DEBUG=express-locallibrary:* & npm start
+
+
+Class room 
+
+https://classroom.google.com/c/MTQ0NTY4MzA0MzBa
+a717lh
+
+
+
+mLab 
+
+Wakidur Rahman
+wakidur@gmail.com
+Wakidur_234
+
+database 
+wakidur
+Wakidur_234
+
+mongodb://your_user_namer:your_password@ds119748.mlab.com:19748/local_library.
+mongodb://wakidur:wakidur@ds117010.mlab.com:17010/local_library
+mongodb://wakidur:Wakidur_234@ds117010.mlab.com:17010/local_library
+
+
+
+A boilerplate for Node.js web applications.
+https://github.com/sahat/hackathon-starter
+
+
+express-locallibrary-tutorial
+https://github.com/mdn/express-locallibrary-tutorial
