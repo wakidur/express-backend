@@ -35,3 +35,12 @@ https://github.com/sahat/hackathon-starter
 
 express-locallibrary-tutorial
 https://github.com/mdn/express-locallibrary-tutorial
+
+
+The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrys, or properites from objects, into distince variables
+
+C:\mongodb\bin>mongod --directorypardb --dbpath C:\mongodb\data\db --logpath C:\mongodb\log\mongo.log --logappend --rest --install
+
+C:\mongodb\bin>"C:\mongodb\bin\mongod.exe" --config "C:\mongodb\mongod.cfg" --install
+
+C:\mongodb\bin> net start MongoDB
