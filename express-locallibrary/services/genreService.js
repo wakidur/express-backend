@@ -13,9 +13,47 @@ let async = require('async');
 
 /* Q */
 let Q = require('q');
-/*
+
+
 module.exports = {
     getGenreList: getGenreList,
+    getGenreDetail: getGenreDetail
+};
+
+function getGenreList() {
+    let deferred = Q.defer();
+    Genre.find()
+        .sort([['name', 'ascending']])
+        .exec((err, genresList) => {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                // Successful
+                deferred.resolve(genresList);
+            }
+        });
+    return deferred.promise;
+}
+
+// getGenreDetail
+function getGenreDetail(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+    Q.all([
+        Genre.findById(reqId),
+        Book.find({ 'genre': reqId })
+    ]).then((value) => {
+        resutls.genre = value[0];
+        resutls.genre_books = value[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+
+    return deferred.promise;
+}
+
+/*
     getGenreDetail: getGenreDetail,
     GenreCreatePost: GenreCreatePost,
     genreDeleteGet: genreDeleteGet,
