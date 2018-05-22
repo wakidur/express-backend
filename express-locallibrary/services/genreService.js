@@ -5,25 +5,40 @@ let Genre = require('../models/genreModel');
 let Book = require('../models/bookModel');
 
 /* Import validation and sanitisation methods */
-const { body, validationResult } = require('express-validator/check');
-const { sanitizeBody } = require('express-validator/filter');
+const {
+    body,
+    validationResult
+} = require('express-validator/check');
+const {
+    sanitizeBody
+} = require('express-validator/filter');
 
 /* Import async */
 let async = require('async');
 
 /* Q */
 let Q = require('q');
-
-
+/*
+    getGenreDetail: getGenreDetail,
+    GenreCreatePost: GenreCreatePost,
+    genreDeleteGet: genreDeleteGet,
+    genreDeletePost: genreDeletePost,
+    genreUpdateGet: genreUpdateGet,
+    genreUpdatePost: genreUpdatePost,
+}
+*/
 module.exports = {
     getGenreList: getGenreList,
-    getGenreDetail: getGenreDetail
+    getGenreDetail: getGenreDetail,
+    genreCreatePost: genreCreatePost
 };
 
 function getGenreList() {
     let deferred = Q.defer();
     Genre.find()
-        .sort([['name', 'ascending']])
+        .sort([
+            ['name', 'ascending']
+        ])
         .exec((err, genresList) => {
             if (err) {
                 deferred.reject(err);
@@ -35,7 +50,7 @@ function getGenreList() {
     return deferred.promise;
 }
 
-// getGenreDetail
+
 function getGenreDetail(reqId) {
     let deferred = Q.defer();
     let resutls = {};
@@ -53,15 +68,22 @@ function getGenreDetail(reqId) {
     return deferred.promise;
 }
 
-/*
-    getGenreDetail: getGenreDetail,
-    GenreCreatePost: GenreCreatePost,
-    genreDeleteGet: genreDeleteGet,
-    genreDeletePost: genreDeletePost,
-    genreUpdateGet: genreUpdateGet,
-    genreUpdatePost: genreUpdatePost,
-}
+function genreCreatePost(name) {
+    Genre.findOne({
+            'name': name
+        })
+        .exec(function (err, found_genre) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                //sucessfull , 
+                deferred.resolve(list_books);
+            }
+        });
+    return deferred.promise;
 
+}
+/*
 function getCount() {
     var deferred = Q.defer();
     var resutls = {};

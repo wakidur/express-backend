@@ -72,7 +72,7 @@ function genreDetail(req, res, next) {
         });
     }).catch((err) => {
         return next(err);
-    })
+    });
 
 
 }
@@ -151,29 +151,47 @@ exports.genre_create_post = [
         } else {
             // Data from form is valid.
             // Check if Genre with same name already exists.
-            Genre.findOne({
-                    'name': req.body.name
-                })
-                .exec(function (err, found_genre) {
-                    if (err) {
-                        return next(err);
-                    }
+            genreService.genreCreatePost(req.body.name).then((resfound_genreults) => {
+                if (found_genre) {
+                    // Genre exists, redirect to its detail page.
+                    res.redirect(found_genre.url);
+                } else {
+                    genre.save(function (err) {
+                        if (err) {
+                            return next(err);
+                        }
+                        // Genre saved. Redirect to genre detail page.
+                        res.redirect(genre.url);
+                    });
+                }
+            }).catch((err) => {
+                return next(err);
+            });
+            /*
+                        Genre.findOne({
+                                'name': req.body.name
+                            })
+                            .exec(function (err, found_genre) {
+                                if (err) {
+                                    return next(err);
+                                }
 
-                    if (found_genre) {
-                        // Genre exists, redirect to its detail page.
-                        res.redirect(found_genre.url);
-                    } else {
-                        genre.save(function (err) {
-                            if (err) {
-                                return next(err);
-                            }
-                            // Genre saved. Redirect to genre detail page.
-                            res.redirect(genre.url);
-                        });
+                                if (found_genre) {
+                                    // Genre exists, redirect to its detail page.
+                                    res.redirect(found_genre.url);
+                                } else {
+                                    genre.save(function (err) {
+                                        if (err) {
+                                            return next(err);
+                                        }
+                                        // Genre saved. Redirect to genre detail page.
+                                        res.redirect(genre.url);
+                                    });
 
-                    }
+                                }
 
-                });
+                            });
+                            */
         }
     }
 ];
