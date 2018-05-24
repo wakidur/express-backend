@@ -1,16 +1,15 @@
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-/* Styles */
+
+
+@media (min-width : 320px) {
+
 }
-/* Smartphones (landscape) ----------- */
-@media only screen 
-and (min-width : 321px) {
-/* Styles */
+@media (min-width: 320px) and (max-width: 455px) {
+
 }
 @media (max-width: 456px) {
 
 }
-@media (max-width: 599px) {
+@media (min-width: 456px) and (max-width: 599px) {
 
 }
 @media (min-width: 600px) {
@@ -28,9 +27,40 @@ and (min-width : 321px) {
 @media (min-width: 1280px) {
 
 }
-@media (min-width: 1280px) and (max-width: 1919px) {
+@media (min-width: 1280px) and (max-width: 1365px) {
+
+}
+@media (min-width: 1366px) {
+
+}
+@media (min-width: 1366px) and (max-width: 1599px) {
+
+}
+@media (min-width: 1600px) {
+
+}
+@media (min-width: 1600px) and (max-width: 1919px) {
 
 }
 @media (min-width: 1920px) {
+
+}
+@media (min-width: 1920px) and (max-width: 2047px) {
+
+}
+@media (min-width: 2048px) {
+
+}
+@media (min-width: 2048px) and (max-width: 2559px) {
+
+}
+@media (min-width: 2560px) {
+
+}
+@media (min-width: 2560px) and (max-width: 3439px) {
+
+}
+
+@media (min-width: 3440px) {
 
 }
