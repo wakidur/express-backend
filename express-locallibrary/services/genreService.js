@@ -30,7 +30,11 @@ let Q = require('q');
 module.exports = {
     getGenreList: getGenreList,
     getGenreDetail: getGenreDetail,
-    genreCreatePost: genreCreatePost
+    genreCreatePost: genreCreatePost,
+    genreDeleteGet: genreDeleteGet,
+    genreDeletePost: genreDeletePost,
+    genreUpdateGet: genreUpdateGet,
+    genreUpdatePost: genreUpdatePost,
 };
 
 function getGenreList() {
@@ -49,7 +53,6 @@ function getGenreList() {
         });
     return deferred.promise;
 }
-
 
 function getGenreDetail(reqId) {
     let deferred = Q.defer();
@@ -72,62 +75,19 @@ function genreCreatePost(name) {
     Genre.findOne({
             'name': name
         })
-        .exec(function (err, found_genre) {
+        .exec(function(err, found_genre) {
             if (err) {
                 deferred.reject(err);
             } else {
                 //sucessfull , 
-                deferred.resolve(list_books);
+                deferred.resolve(found_genre);
             }
         });
     return deferred.promise;
 
 }
-/*
-function getCount() {
-    var deferred = Q.defer();
-    var resutls = {};
-    Q.all([]).then((value) => {
-        resutls.book_count = value[0];
 
-        deferred.resolve(resutls);
-    }).catch((err) => {
-        deferred.resolve(err);
-    });
-    return deferred.promise;
-}
-
-function getBookList() {
-    var deferred = Q.defer();
-    Book.find({}, 'title author')
-        .populate('author')
-        .exec(function(err, list_books) {
-            if (err) {
-                deferred.reject(err);
-            }
-            //sucessfull , 
-            deferred.resolve(list_books);
-        });
-    return deferred.promise;
-}
-
-function getGenreList(params) {
-    let deferred = Q.defer();
-    Genre.find()
-        .sort(['name', 'ascending'])
-        .exec((err, genresList) => {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                // Successful
-                deferred.resolve(genresList);
-            }
-        });
-    return deferred.promise;
-}
-
-// getGenreDetail
-function getGenreDetail(reqId) {
+function genreDeleteGet(reqId) {
     let deferred = Q.defer();
     let resutls = {};
     Q.all([
@@ -143,4 +103,51 @@ function getGenreDetail(reqId) {
 
     return deferred.promise;
 }
-*/
+
+function genreDeletePost(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+    Q.all([
+        Genre.findById(reqId),
+        Book.find({ 'genre': reqId })
+    ]).then((value) => {
+        resutls.genre = value[0];
+        resutls.genre_books = value[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+
+    return deferred.promise;
+}
+
+function genreUpdateGet(reqId) {
+
+    let deferred = Q.defer();
+    Genre.findById(reqId)
+        .exec((err, genre) => {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                // Successful
+                deferred.resolve(genresList);
+            }
+        });
+    return deferred.promise;
+
+}
+
+function genreUpdatePost(reqId) {
+    let deferred = Q.defer();
+    Genre.findByIdAndUpdate(reqId, genre, {})
+        .exec((err, genre) => {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                // Successful
+                deferred.resolve(genresList);
+            }
+        });
+    return deferred.promise;
+
+}

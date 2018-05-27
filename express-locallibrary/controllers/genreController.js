@@ -22,6 +22,9 @@ let genreService = require('../services/genreService');
 exports.genre_list = genreList;
 exports.genre_detail = genreDetail;
 exports.genre_create_get = genreCreateGet;
+exports.genre_delete_get = getGenreDelete;
+exports.genre_delete_post = postGenreDelete;
+exports.genre_update_get = getGenreUpdate
 
 // Display list of all Genre.
 function genreList(req, res, next) {
@@ -61,13 +64,6 @@ function genreDetail(req, res, next) {
 }
 
 // Display Genre create form on GET.
-
-// exports.genre_create_get = function(req, res, next) {
-//     res.render('./genre/genreFormView', {
-//         title: 'Create Genre'
-//     });
-// };
-
 function genreCreateGet(req, res, next) {
     res.render('./genre/genreFormView', {
         title: 'Create Genre'
@@ -106,7 +102,7 @@ exports.genre_create_post = [
         } else {
             // Data from form is valid.
             // Check if Genre with same name already exists.
-            genreService.genreCreatePost(req.body.name).then((resfound_genreults) => {
+            genreService.genreCreatePost(req.body.name).then((found_genre) => {
                 if (found_genre) {
                     // Genre exists, redirect to its detail page.
                     res.redirect(found_genre.url);
@@ -126,21 +122,8 @@ exports.genre_create_post = [
     }
 ];
 // Display Genre delete form on GET.
-exports.genre_delete_get = function(req, res, next) {
-
-    async.parallel({
-        genre: function(callback) {
-            Genre.findById(req.params.id).exec(callback);
-        },
-        genre_books: function(callback) {
-            Book.find({
-                'genre': req.params.id
-            }).exec(callback);
-        },
-    }, function(err, results) {
-        if (err) {
-            return next(err);
-        }
+function getGenreDelete(req, res, next) {
+    genreService.genreDeleteGet(req.params.id).then((results) => {
         if (results.genre == null) { // No results.
             res.redirect('/catalog/genres');
         }
@@ -150,26 +133,14 @@ exports.genre_delete_get = function(req, res, next) {
             genre: results.genre,
             genre_books: results.genre_books
         });
+    }).catch((err) => {
+        return next(err);
     });
-
 };
 
 // Handle Genre delete on POST.
-exports.genre_delete_post = function(req, res, next) {
-
-    async.parallel({
-        genre: function(callback) {
-            Genre.findById(req.params.id).exec(callback);
-        },
-        genre_books: function(callback) {
-            Book.find({
-                'genre': req.params.id
-            }).exec(callback);
-        },
-    }, function(err, results) {
-        if (err) {
-            return next(err);
-        }
+function postGenreDelete(req, res, next) {
+    genreService.genreDeletePost().then((results) => {
         // Success
         if (results.genre_books.length > 0) {
             // Genre has books. Render in same way as for GET route.
@@ -188,19 +159,15 @@ exports.genre_delete_post = function(req, res, next) {
                 // Success - go to genres list.
                 res.redirect('/genres');
             });
-
         }
+    }).catch((err) => {
+        return next(err);
     });
-
 };
 
 // Display Genre update form on GET.
-exports.genre_update_get = function(req, res, next) {
-
-    Genre.findById(req.params.id, function(err, genre) {
-        if (err) {
-            return next(err);
-        }
+function getGenreUpdate(req, res, next) {
+    genreService.genreUpdateGet(req.params.id).then((result) => {
         if (genre == null) { // No results.
             var err = new Error('Genre not found');
             err.status = 404;
@@ -209,10 +176,11 @@ exports.genre_update_get = function(req, res, next) {
         // Success.
         res.render('./genre/genreFormView', {
             title: 'Update Genre',
-            genre: genre
+            genre: result
         });
+    }).catch((err) => {
+        return next(err);
     });
-
 };
 
 // Handle Genre update on POST.
@@ -237,8 +205,6 @@ exports.genre_update_post = [
             name: req.body.name,
             _id: req.params.id
         });
-
-
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values and error messages.
             res.render('./genre/genreFormView', {
@@ -249,12 +215,11 @@ exports.genre_update_post = [
             return;
         } else {
             // Data from form is valid. Update the record.
-            Genre.findByIdAndUpdate(req.params.id, genre, {}, function(err, thegenre) {
-                if (err) {
-                    return next(err);
-                }
+            genreService.genreUpdatePost(req.params.id).then((results) => {
                 // Successful - redirect to genre detail page.
-                res.redirect(thegenre.url);
+                res.redirect(results.url);
+            }).catch((err) => {
+                return next(err);
             });
         }
     }
