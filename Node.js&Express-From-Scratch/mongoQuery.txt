@@ -1,0 +1,9 @@
+show dbs
+use nodekb
+show collections
+db.createCollection('articles);
+show collections
+db.articles.insert({title: 'Article one',author: 'Brad Traversy',body: 'This is article one'})
+db.articles.insert({title: 'Article Two',author: 'John Doe',body: 'This is article one'})
+db.articles.find()
+db.articles.find().pretty();

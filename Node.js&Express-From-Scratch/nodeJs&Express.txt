@@ -1,0 +1,9 @@
+28-05-2018
+[Part 1] - Intro & Environment
+[Part 2] - App Setup & Express Install
+[Part 3] - Pug Template Engine
+[Part 4] - Mongoose & Model Setup
+[Part 5] - Save Articles to MongoDB
+[Part 6] - Bower & Bootstrap
+[Part 7] - Update & Delete Articles
+[Part 8] - Messaging & Validation
