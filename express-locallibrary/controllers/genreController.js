@@ -49,7 +49,6 @@ function genreDetail(req, res, next) {
             err.status = 404;
             return next(err);
         }
-
         // successfull, so render 
         res.render('./genre/genreDetailView', {
             title: "Genre Detail",
@@ -59,8 +58,6 @@ function genreDetail(req, res, next) {
     }).catch((err) => {
         return next(err);
     });
-
-
 }
 
 // Display Genre create form on GET.
@@ -140,7 +137,7 @@ function getGenreDelete(req, res, next) {
 
 // Handle Genre delete on POST.
 function postGenreDelete(req, res, next) {
-    genreService.genreDeletePost().then((results) => {
+    genreService.genreDeletePost(req.params.id).then((results) => {
         // Success
         if (results.genre_books.length > 0) {
             // Genre has books. Render in same way as for GET route.
@@ -215,7 +212,7 @@ exports.genre_update_post = [
             return;
         } else {
             // Data from form is valid. Update the record.
-            genreService.genreUpdatePost(req.params.id).then((results) => {
+            genreService.genreUpdatePost(req.params.id, genre).then((results) => {
                 // Successful - redirect to genre detail page.
                 res.redirect(results.url);
             }).catch((err) => {
