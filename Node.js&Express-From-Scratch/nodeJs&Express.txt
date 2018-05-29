@@ -7,3 +7,27 @@
 [Part 6] - Bower & Bootstrap
 [Part 7] - Update & Delete Articles
 [Part 8] - Messaging & Validation
+[Part 9] - User Registration
+
+
+Librarys
+express-session
+https://github.com/expressjs/session
+
+express-validator
+https://express-validator.github.io/docs/
+
+express-messages
+https://github.com/expressjs/express-messages
+
+connect-flash
+https://github.com/jaredhanson/connect-flash
+
+Passport
+http://www.passportjs.org/
+
+passport-local
+https://github.com/jaredhanson/passport-local
+
+passport-jwt
+https://www.npmjs.com/package/passport-jwt

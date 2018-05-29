@@ -137,7 +137,7 @@ function genreUpdateGet(reqId) {
 
 }
 
-function genreUpdatePost(reqId) {
+function genreUpdatePost(reqId, genre) {
     let deferred = Q.defer();
     Genre.findByIdAndUpdate(reqId, genre, {})
         .exec((err, genre) => {
