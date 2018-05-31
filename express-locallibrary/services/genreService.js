@@ -18,15 +18,7 @@ let async = require('async');
 
 /* Q */
 let Q = require('q');
-/*
-    getGenreDetail: getGenreDetail,
-    GenreCreatePost: GenreCreatePost,
-    genreDeleteGet: genreDeleteGet,
-    genreDeletePost: genreDeletePost,
-    genreUpdateGet: genreUpdateGet,
-    genreUpdatePost: genreUpdatePost,
-}
-*/
+
 module.exports = {
     getGenreList: getGenreList,
     getGenreDetail: getGenreDetail,
@@ -37,29 +29,30 @@ module.exports = {
     genreUpdatePost: genreUpdatePost,
 };
 
+// Get Genre List
 function getGenreList() {
     let deferred = Q.defer();
     Genre.find()
         .sort([
             ['name', 'ascending']
         ])
-        .exec((err, genresList) => {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                // Successful
-                deferred.resolve(genresList);
-            }
+        .then((genresList) => {
+            deferred.resolve(genresList);
+        }).catch((err) => {
+            deferred.reject(err);
         });
     return deferred.promise;
 }
 
+// Get Genre Detail
 function getGenreDetail(reqId) {
     let deferred = Q.defer();
     let resutls = {};
     Q.all([
         Genre.findById(reqId),
-        Book.find({ 'genre': reqId })
+        Book.find({
+            'genre': reqId
+        })
     ]).then((value) => {
         resutls.genre = value[0];
         resutls.genre_books = value[1];
@@ -67,24 +60,20 @@ function getGenreDetail(reqId) {
     }).catch((err) => {
         deferred.resolve(err);
     });
-
     return deferred.promise;
 }
 
 function genreCreatePost(name) {
+    let deferred = Q.defer();
     Genre.findOne({
             'name': name
         })
-        .exec(function(err, found_genre) {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                //sucessfull , 
-                deferred.resolve(found_genre);
-            }
+        .then((result) => {
+            deferred.resolve(result);
+        }).catch((err) => {
+            deferred.reject(err);
         });
     return deferred.promise;
-
 }
 
 function genreDeleteGet(reqId) {
@@ -92,7 +81,9 @@ function genreDeleteGet(reqId) {
     let resutls = {};
     Q.all([
         Genre.findById(reqId),
-        Book.find({ 'genre': reqId })
+        Book.find({
+            'genre': reqId
+        })
     ]).then((value) => {
         resutls.genre = value[0];
         resutls.genre_books = value[1];
@@ -100,7 +91,6 @@ function genreDeleteGet(reqId) {
     }).catch((err) => {
         deferred.resolve(err);
     });
-
     return deferred.promise;
 }
 
@@ -109,7 +99,9 @@ function genreDeletePost(reqId) {
     let resutls = {};
     Q.all([
         Genre.findById(reqId),
-        Book.find({ 'genre': reqId })
+        Book.find({
+            'genre': reqId
+        })
     ]).then((value) => {
         resutls.genre = value[0];
         resutls.genre_books = value[1];
@@ -117,21 +109,16 @@ function genreDeletePost(reqId) {
     }).catch((err) => {
         deferred.resolve(err);
     });
-
     return deferred.promise;
 }
 
 function genreUpdateGet(reqId) {
-
     let deferred = Q.defer();
     Genre.findById(reqId)
-        .exec((err, genre) => {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                // Successful
-                deferred.resolve(genresList);
-            }
+        .then((result) => {
+            deferred.resolve(result);
+        }).catch((err) => {
+            deferred.reject(err);
         });
     return deferred.promise;
 
@@ -140,13 +127,10 @@ function genreUpdateGet(reqId) {
 function genreUpdatePost(reqId, genre) {
     let deferred = Q.defer();
     Genre.findByIdAndUpdate(reqId, genre, {})
-        .exec((err, genre) => {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                // Successful
-                deferred.resolve(genresList);
-            }
+        .then((genre) => {
+            deferred.reject(err);
+        }).catch((err) => {
+            deferred.resolve(genre);
         });
     return deferred.promise;
 

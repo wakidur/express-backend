@@ -29,7 +29,6 @@ exports.genre_update_get = getGenreUpdate
 // Display list of all Genre.
 function genreList(req, res, next) {
     genreService.getGenreList().then((value) => {
-        //Successful , so render
         res.render('./genre/genreListView', {
             title: 'Genre List',
             genre_list: value
@@ -44,12 +43,10 @@ function genreDetail(req, res, next) {
     let id = mongoose.Types.ObjectId(req.params.id);
     genreService.getGenreDetail(id).then((results) => {
         if (results.genre == null) {
-            // no results.
             var err = new Error('Genre not found');
             err.status = 404;
             return next(err);
         }
-        // successfull, so render 
         res.render('./genre/genreDetailView', {
             title: "Genre Detail",
             genre: results.genre,
@@ -65,7 +62,7 @@ function genreCreateGet(req, res, next) {
     res.render('./genre/genreFormView', {
         title: 'Create Genre'
     });
-};
+}
 
 // Handle Genre create on POST.
 exports.genre_create_post = [
@@ -78,7 +75,7 @@ exports.genre_create_post = [
 
     // Process request after validation and sanitization.
     (req, res, next) => {
-
+        // Finds the validation errors in this request and wraps them in an object with handy functions
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
@@ -86,7 +83,6 @@ exports.genre_create_post = [
         var genre = new Genre({
             name: req.body.name
         });
-
 
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values/error messages.
@@ -96,6 +92,7 @@ exports.genre_create_post = [
                 errors: errors.array()
             });
             return;
+            // return res.status(422).json({ errors: errors.array() });
         } else {
             // Data from form is valid.
             // Check if Genre with same name already exists.
@@ -164,7 +161,7 @@ function postGenreDelete(req, res, next) {
 
 // Display Genre update form on GET.
 function getGenreUpdate(req, res, next) {
-    genreService.genreUpdateGet(req.params.id).then((result) => {
+    genreService.genreUpdateGet(req.params.id).then((genre) => {
         if (genre == null) { // No results.
             var err = new Error('Genre not found');
             err.status = 404;
@@ -173,12 +170,12 @@ function getGenreUpdate(req, res, next) {
         // Success.
         res.render('./genre/genreFormView', {
             title: 'Update Genre',
-            genre: result
+            genre: genre
         });
     }).catch((err) => {
         return next(err);
     });
-};
+}
 
 // Handle Genre update on POST.
 exports.genre_update_post = [
