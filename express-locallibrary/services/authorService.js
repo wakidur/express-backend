@@ -15,6 +15,7 @@ const {
 
 module.exports = {
     getAuthorList: getAuthorList,
+    getAuthorDetail: getAuthorDetail,
     // getAuthorDetail: getAuthorDetail,
     // AuthorCreatePost: AuthorCreatePost,
     // AuthorDeleteGet: AuthorDeleteGet,
@@ -33,5 +34,25 @@ function getAuthorList(params) {
         }).catch((err) => {
             deferred.reject(err);
         });
+    return deferred.promise;
+}
+
+function getAuthorDetail(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+
+    Q.all([
+        Author.findById(reqId),
+        Book.find({
+            'author': reqId,
+        }, 'title summary')
+    ]).then((result) => {
+        resutls.author = result[0];
+        resutls.authors_books = result[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+
     return deferred.promise;
 }
