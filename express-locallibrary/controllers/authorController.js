@@ -18,6 +18,9 @@ let authorService = require('../services/authorService');
 exports.author_list = authorList;
 exports.author_detail = authorDetail;
 exports.author_create_get = authorCreateGet;
+exports.author_delete_get = authorDeleteGet;
+exports.author_delete_post = authorDeletePost;
+exports.author_update_get = authorUpdateGet;
 
 // Display list of all Authors.
 function authorList(req, res) {
@@ -132,32 +135,11 @@ exports.author_create_post = [
     }
 ];
 
-
-
-
-/*
 // Display Author delete form on GET.
-exports.author_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Author delete GET');
-};
-*/
-// Display Author delete form on GET.
-exports.author_delete_get = function (req, res, next) {
-
-    async.parallel({
-        author: function (callback) {
-            Author.findById(req.params.id).exec(callback)
-        },
-        authors_books: function (callback) {
-            Book.find({
-                'author': req.params.id
-            }).exec(callback)
-        },
-    }, function (err, results) {
-        if (err) {
-            return next(err);
-        }
-        if (results.author == null) { // No results.
+function authorDeleteGet(req, res, next) {
+    authorService.AuthorDeleteGet(req.params.id).then((results) => {
+        if (results.author == null) { 
+            // No results.
             res.redirect('/authors');
         }
         // Successful, so render.
@@ -166,33 +148,14 @@ exports.author_delete_get = function (req, res, next) {
             author: results.author,
             author_books: results.authors_books
         });
+    }).catch((err) => {
+        return next(err);
     });
-
-};
-
-/*
-// Handle Author delete on POST.
-exports.author_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Author delete POST');
-};
-*/
+}
 
 // Handle Author delete on POST.
-exports.author_delete_post = function (req, res, next) {
-
-    async.parallel({
-        author: function (callback) {
-            Author.findById(req.body.authorid).exec(callback)
-        },
-        authors_books: function (callback) {
-            Book.find({
-                'author': req.body.authorid
-            }).exec(callback)
-        },
-    }, function (err, results) {
-        if (err) {
-            return next(err);
-        }
+function authorDeletePost(req, res, next) {
+    authorService.AuthorDeletePost(req.body.authorid).then((result) => {
         // Success.
         if (results.authors_books.length > 0) {
             // Author has books. Render in same way as for GET route.
@@ -211,8 +174,9 @@ exports.author_delete_post = function (req, res, next) {
                 // Success - go to author list.
                 res.redirect('/authors')
             })
-
         }
+    }).catch((err) => {
+        return next(err);
     });
 
 };
@@ -223,12 +187,8 @@ exports.author_delete_post = function (req, res, next) {
 //     res.send('NOT IMPLEMENTED: Author update GET');
 // };
 
-exports.author_update_get = function (req, res, next) {
-
-    Author.findById(req.params.id, function (err, author) {
-        if (err) {
-            return next(err);
-        }
+function authorUpdateGet(req, res, next) {
+    authorService.AuthorUpdateGet(req.params.id).then((author) => {
         if (author == null) { // No results.
             var err = new Error('Author not found');
             err.status = 404;
@@ -239,9 +199,10 @@ exports.author_update_get = function (req, res, next) {
             title: 'Update Author',
             author: author
         });
-
+    }).catch((err) => {
+        return next(err);
     });
-};
+}
 // Handle Author update on POST.
 // exports.author_update_post = function(req, res) {
 //     res.send('NOT IMPLEMENTED: Author update POST');

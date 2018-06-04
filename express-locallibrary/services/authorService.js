@@ -16,6 +16,9 @@ const {
 module.exports = {
     getAuthorList: getAuthorList,
     getAuthorDetail: getAuthorDetail,
+    AuthorDeleteGet: AuthorDeleteGet,
+    AuthorDeletePost: AuthorDeletePost,
+    AuthorUpdateGet: AuthorUpdateGet,
     // getAuthorDetail: getAuthorDetail,
     // AuthorCreatePost: AuthorCreatePost,
     // AuthorDeleteGet: AuthorDeleteGet,
@@ -56,3 +59,54 @@ function getAuthorDetail(reqId) {
 
     return deferred.promise;
 }
+
+function AuthorDeleteGet(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+
+    Q.all([
+        Author.findById(reqId),
+        Book.find({
+            'author': reqId
+        })
+    ]).then((result) => {
+        resutls.author = result[0];
+        resutls.authors_books = result[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+    return deferred.promise;
+    
+}
+function AuthorDeletePost(reqAuthorId) {
+    let deferred = Q.defer();
+    let resutls = {};
+
+    Q.all([
+        Author.findById(reqAuthorId),
+        Book.find({
+            'author': reqAuthorId
+        })
+    ]).then((result) => {
+        resutls.author = result[0];
+        resutls.authors_books = result[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+    return deferred.promise;
+    
+}
+
+
+function AuthorUpdateGet(reqId) {
+    let deferred = Q.defer();
+    Author.findById(reqId).then((author) => {
+            deferred.resolve(author);
+        }).catch((err) => {
+            deferred.reject(err);
+        });
+    return deferred.promise;
+}
+
