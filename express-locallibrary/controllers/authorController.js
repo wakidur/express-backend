@@ -155,7 +155,7 @@ function authorDeleteGet(req, res, next) {
 
 // Handle Author delete on POST.
 function authorDeletePost(req, res, next) {
-    authorService.AuthorDeletePost(req.body.authorid).then((result) => {
+    authorService.AuthorDeletePost(req.body.authorid).then((results) => {
         // Success.
         if (results.authors_books.length > 0) {
             // Author has books. Render in same way as for GET route.
@@ -257,12 +257,11 @@ exports.author_update_post = [
             return;
         } else {
             // Data from form is valid. Update the record.
-            Author.findByIdAndUpdate(req.params.id, author, {}, function (err, theauthor) {
-                if (err) {
-                    return next(err);
-                }
-                // Successful - redirect to genre detail page.
+
+            authorService.AuthorUpdatePost(req.params.id, author).then((theauthor) => {
                 res.redirect(theauthor.url);
+            }).catch((err) => {
+                return next(err);
             });
         }
     }
