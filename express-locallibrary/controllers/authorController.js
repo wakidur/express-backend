@@ -53,7 +53,6 @@ function authorDetail(req, res, next) {
     });
 }
 
-
 // Display Author create form on GET.
 function authorCreateGet(req, res, next) {
     res.render('./author/authorFormView', {
@@ -179,14 +178,9 @@ function authorDeletePost(req, res, next) {
         return next(err);
     });
 
-};
-
+}
 
 // Display Author update form on GET.
-// exports.author_update_get = function(req, res) {
-//     res.send('NOT IMPLEMENTED: Author update GET');
-// };
-
 function authorUpdateGet(req, res, next) {
     authorService.AuthorUpdateGet(req.params.id).then((author) => {
         if (author == null) { // No results.
@@ -204,9 +198,6 @@ function authorUpdateGet(req, res, next) {
     });
 }
 // Handle Author update on POST.
-// exports.author_update_post = function(req, res) {
-//     res.send('NOT IMPLEMENTED: Author update POST');
-// };
 
 exports.author_update_post = [
 

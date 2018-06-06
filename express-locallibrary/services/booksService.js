@@ -36,8 +36,8 @@ module.exports = {
     getBookList: getBookList,
     getBookDetail: getBookDetail,
     bookCreateGet: bookCreateGet,
-    bookCreatePost: bookCreatePost
-
+    bookCreatePost: bookCreatePost,
+    bookDeleteGet : bookDeleteGet
 }
 
 // Get Count value 
@@ -128,6 +128,23 @@ function bookCreatePost() {
         ]).then((value) => {
         resutls.authors = value[0];
         resutls.genres = value[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+    return deferred.promise;
+     
+}
+// book delete get
+function bookDeleteGet(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+    Q.all([
+        Book.findById(reqId).populate('author').populate('genre'),
+        BookInstance.find({ 'book': reqId })
+        ]).then((value) => {
+        resutls.book = value[0];
+        resutls.book_bookinstances = value[1];
         deferred.resolve(resutls);
     }).catch((err) => {
         deferred.resolve(err);

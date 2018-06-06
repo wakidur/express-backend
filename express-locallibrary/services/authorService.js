@@ -20,14 +20,9 @@ module.exports = {
     AuthorDeletePost: AuthorDeletePost,
     AuthorUpdateGet: AuthorUpdateGet,
     AuthorUpdatePost: AuthorUpdatePost
-    // getAuthorDetail: getAuthorDetail,
-    // AuthorCreatePost: AuthorCreatePost,
-    // AuthorDeleteGet: AuthorDeleteGet,
-    // AuthorDeletePost: AuthorDeletePost,
-    // AuthorUpdateGet: AuthorUpdateGet,
-    // AuthorUpdatePost: AuthorUpdatePost,
 };
 
+// get author list
 function getAuthorList(params) {
     let deferred = Q.defer();
     Author.find()
@@ -41,6 +36,7 @@ function getAuthorList(params) {
     return deferred.promise;
 }
 
+// get author detail
 function getAuthorDetail(reqId) {
     let deferred = Q.defer();
     let resutls = {};
@@ -60,6 +56,8 @@ function getAuthorDetail(reqId) {
 
     return deferred.promise;
 }
+
+// get author delete id
 
 function AuthorDeleteGet(reqId) {
     let deferred = Q.defer();
@@ -81,6 +79,7 @@ function AuthorDeleteGet(reqId) {
     
 }
 
+// Post author delete
 function AuthorDeletePost(reqAuthorId) {
     let deferred = Q.defer();
     let resutls = {};
@@ -101,6 +100,8 @@ function AuthorDeletePost(reqAuthorId) {
     
 }
 
+// get author update
+
 function AuthorUpdateGet(reqId) {
     let deferred = Q.defer();
     Author.findById(reqId).then((author) => {
@@ -111,6 +112,7 @@ function AuthorUpdateGet(reqId) {
     return deferred.promise;
 }
 
+// post author update
 function AuthorUpdatePost(reqId, author) {
     let deferred = Q.defer();
     Author.findByIdAndUpdate(reqId, author, {}).then((result) => {
