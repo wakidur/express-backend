@@ -22,23 +22,17 @@ const {
     sanitizeBody
 } = require('express-validator/filter');
 
-/*
-var booksService = {};
-
-booksService.getCount = getCount;
-booksService.getBookList = getBookList;
-booksService.getBookDetail = getBookDetail;
-
-module.exports = booksService;
- */
 module.exports = {
     getCount: getCount,
     getBookList: getBookList,
     getBookDetail: getBookDetail,
     bookCreateGet: bookCreateGet,
     bookCreatePost: bookCreatePost,
-    bookDeleteGet : bookDeleteGet
-}
+    bookDeleteGet : bookDeleteGet,
+    bookDeletePost : bookDeletePost,
+    bookUpdateGet : bookUpdateGet,
+    bookUpdatePost: bookUpdatePost
+};
 
 // Get Count value 
 
@@ -67,7 +61,6 @@ function getCount() {
 }
 
 // Get Book List
-
 function getBookList() {
     var deferred = Q.defer();
     Book.find({}, 'title author')
@@ -83,7 +76,6 @@ function getBookList() {
 }
 
 // Get Book Detail
-
 function getBookDetail(id) {
     let deferred = Q.defer();
     let resutls = {};
@@ -100,7 +92,6 @@ function getBookDetail(id) {
 
 
 // Book create form on GET
-
 function bookCreateGet() {
     let deferred = Q.defer();
     let resutls = {};
@@ -153,6 +144,64 @@ function bookDeleteGet(reqId) {
      
 }
 
+//book Delete Post
+function bookDeletePost(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+
+    Q.all([
+        Book.findById(reqId).populate('author').populate('genre'),
+        BookInstance.find({'book': reqId})
+    ]).then((result) => {
+        resutls.book = result[0];
+        resutls.book_bookinstances = result[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.reject(err);
+    });
+
+    return deferred.promise;
+}
+
+
+function bookUpdateGet(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+
+    Q.all([
+        Book.findById(reqId).populate('author').populate('genre'),
+        Author.find(),
+        Genre.find()
+    ]).then((result) => {
+        resutls.book = result[0];
+        resutls.authors = result[1];
+        resutls.genres = result[2];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.reject(err);
+    });
+
+    return deferred.promise;
+}
+
+
+function bookUpdatePost() {
+    let deferred = Q.defer();
+    let resutls = {};
+
+    Q.all([
+        Author.find(),
+        Genre.find(),
+    ]).then((result) => {
+        resutls.authors = result[0];
+        resutls.genres = result[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.reject(err);
+    });
+    
+    return deferred.promise;
+}
 
 
 
