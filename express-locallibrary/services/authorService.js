@@ -1,18 +1,12 @@
+/*----------------- require Model -----------------*/
 /*authorModel*/
 var Author = require('../models/authorModel');
 /*bookModel*/
 var Book = require('../models/bookModel');
-/* Q */
+/*----------------- require q -----------------*/
 let Q = require('q');
-/*body,validationResult */
-const {
-    body,
-    validationResult
-} = require('express-validator/check');
-const {
-    sanitizeBody
-} = require('express-validator/filter');
 
+/*----------------- exports service-----------------*/
 module.exports = {
     getAuthorList: getAuthorList,
     getAuthorDetail: getAuthorDetail,

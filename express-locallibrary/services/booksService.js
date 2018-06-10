@@ -1,3 +1,4 @@
+/*----------------- require Model -----------------*/
 /*bookModel*/
 var Book = require('../models/bookModel');
 /*authorModel*/
@@ -6,22 +7,16 @@ var Author = require('../models/authorModel');
 var Genre = require('../models/genreModel');
 /*bookinstanceModel*/
 var BookInstance = require('../models/bookinstanceModel');
+
+/*-----------------require mongoose -----------------*/
 /*mongoose*/
 var mongoose = require('mongoose');
-/*async*/
-var async = require('async');
 
+/*----------------- require q -----------------*/
 var Q = require('q');
 
-/*body validationResult */
-const {
-    body,
-    validationResult
-} = require('express-validator/check');
-const {
-    sanitizeBody
-} = require('express-validator/filter');
 
+/*----------------- exports service-----------------*/
 module.exports = {
     getCount: getCount,
     getBookList: getBookList,

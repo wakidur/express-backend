@@ -1,24 +1,14 @@
+/*----------------- require Model -----------------*/
 /*import  genreModel*/
 let Genre = require('../models/genreModel');
 
 /* import  bookModel */
 let Book = require('../models/bookModel');
 
-/* Import validation and sanitisation methods */
-const {
-    body,
-    validationResult
-} = require('express-validator/check');
-const {
-    sanitizeBody
-} = require('express-validator/filter');
-
-/* Import async */
-let async = require('async');
-
-/* Q */
+/*----------------- require q -----------------*/
 let Q = require('q');
 
+/*----------------- exports service-----------------*/
 module.exports = {
     getGenreList: getGenreList,
     getGenreDetail: getGenreDetail,
@@ -63,6 +53,7 @@ function getGenreDetail(reqId) {
     return deferred.promise;
 }
 
+// genre Create Post
 function genreCreatePost(name) {
     let deferred = Q.defer();
     Genre.findOne({
@@ -76,6 +67,7 @@ function genreCreatePost(name) {
     return deferred.promise;
 }
 
+// genre Delete Get
 function genreDeleteGet(reqId) {
     let deferred = Q.defer();
     let resutls = {};
@@ -94,6 +86,7 @@ function genreDeleteGet(reqId) {
     return deferred.promise;
 }
 
+// genre Delete Post
 function genreDeletePost(reqId) {
     let deferred = Q.defer();
     let resutls = {};
@@ -112,6 +105,7 @@ function genreDeletePost(reqId) {
     return deferred.promise;
 }
 
+// genre Update Get
 function genreUpdateGet(reqId) {
     let deferred = Q.defer();
     Genre.findById(reqId)
@@ -124,6 +118,7 @@ function genreUpdateGet(reqId) {
 
 }
 
+// genre Update Post
 function genreUpdatePost(reqId, genre) {
     let deferred = Q.defer();
     Genre.findByIdAndUpdate(reqId, genre, {})
