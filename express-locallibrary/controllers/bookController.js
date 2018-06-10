@@ -1,3 +1,4 @@
+/*----------------- require Model -----------------*/
 /*bookModel*/
 var Book = require('../models/bookModel');
 /*authorModel*/
@@ -6,22 +7,19 @@ var Author = require('../models/authorModel');
 var Genre = require('../models/genreModel');
 /*bookinstanceModel*/
 var BookInstance = require('../models/bookinstanceModel');
-/*mongoose*/
-var mongoose = require('mongoose');
-/*async*/
-var async = require('async');
-/*body validationResult */
-const {
-    body,
-    validationResult
-} = require('express-validator/check');
-const {
-    sanitizeBody
-} = require('express-validator/filter');
 
+/*-----------------require mongoose -----------------*/
+var mongoose = require('mongoose');
+
+/*-----------------require express-validator -----------------*/
+/*body validationResult */
+const { body, validationResult} = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
+
+/*-----------------require Books Service -----------------*/
 var booksService = require('../services/booksService');
 
-
+/*----------------- exports controller-----------------*/
 exports.homePage = homePage;
 exports.book_list = bookList;
 exports.book_detail = bookDetail;
@@ -33,10 +31,10 @@ exports.book_update_get = bookUpdateGet;
 
 // Site Home Page
 function homePage(req, res, next) {
-    booksService.getCount().then((value) => {
+    booksService.getCount().then((values) => {
         res.render('index', {
             title: 'Local Library Home',
-            data: value
+            data: values
         });
     }).catch((err) => {
         return next(err);
@@ -45,10 +43,10 @@ function homePage(req, res, next) {
 
 // Display list of all Books.
 function bookList(req, res, next) {
-    booksService.getBookList().then((value) => {
+    booksService.getBookList().then((values) => {
         res.render('./book/bookListView', {
             title: 'Book List',
-            book_list: value
+            book_list: values
         });
     }).catch((err) => {
         return next(err);
@@ -187,12 +185,18 @@ function bookDeletePost(req, res, next) {
          // Success
          if (results.book_bookinstances.length > 0) {
             // Book has book_instances. Render in same way as for GET route.
-            res.render('./book/bookDeleteView', { title: 'Delete Book', book: results.book, book_instances: results.book_bookinstances });
+            res.render('./book/bookDeleteView', { 
+                title: 'Delete Book', 
+                book: results.book, 
+                book_instances: results.book_bookinstances 
+            });
             return;
         } else {
             // Book has no BookInstance objects. Delete object and redirect to the list of books.
             Book.findByIdAndRemove(reqId, function deleteBook(err) {
-                if (err) { return next(err); }
+                if (err) { 
+                    return next(err); 
+                }
                 // Success - got to books list.
                 res.redirect('/books');
             });

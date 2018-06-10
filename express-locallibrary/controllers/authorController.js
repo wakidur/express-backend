@@ -1,20 +1,18 @@
+/*----------------- require Model -----------------*/
 /*authorModel*/
 var Author = require('../models/authorModel');
 /*bookModel*/
 var Book = require('../models/bookModel');
-/*async*/
-var async = require('async');
-/*body,validationResult */
-const {
-    body,
-    validationResult
-} = require('express-validator/check');
-const {
-    sanitizeBody
-} = require('express-validator/filter');
 
+/*-----------------require express-validator -----------------*/
+/*body,validationResult */
+const { body,validationResult } = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
+
+/*-----------------require author Service -----------------*/
 let authorService = require('../services/authorService');
 
+/*----------------- exports controller-----------------*/
 exports.author_list = authorList;
 exports.author_detail = authorDetail;
 exports.author_create_get = authorCreateGet;
@@ -24,10 +22,10 @@ exports.author_update_get = authorUpdateGet;
 
 // Display list of all Authors.
 function authorList(req, res) {
-    authorService.getAuthorList().then((result) => {
+    authorService.getAuthorList().then((results) => {
         res.render('./author/authorListView', {
             title: 'Author List',
-            author_list: result
+            author_list: results
         });
     }).catch((err) => {
         return next(err);
@@ -172,7 +170,7 @@ function authorDeletePost(req, res, next) {
                 }
                 // Success - go to author list.
                 res.redirect('/authors')
-            })
+            });
         }
     }).catch((err) => {
         return next(err);
@@ -248,7 +246,6 @@ exports.author_update_post = [
             return;
         } else {
             // Data from form is valid. Update the record.
-
             authorService.AuthorUpdatePost(req.params.id, author).then((theauthor) => {
                 res.redirect(theauthor.url);
             }).catch((err) => {

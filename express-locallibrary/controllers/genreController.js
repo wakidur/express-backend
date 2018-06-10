@@ -1,37 +1,34 @@
+/*----------------- require Model -----------------*/
 /*import  genreModel*/
 var Genre = require('../models/genreModel');
-
 /* import  bookModel */
 var Book = require('../models/bookModel');
-/*mongoose*/
+
+/*-----------------require mongoose -----------------*/
 var mongoose = require('mongoose');
+
+/*-----------------require express-validator -----------------*/
 /* Import validation and sanitisation methods */
-const {
-    body,
-    validationResult
-} = require('express-validator/check');
-const {
-    sanitizeBody
-} = require('express-validator/filter');
+const { body, validationResult } = require('express-validator/check');
+const {  sanitizeBody } = require('express-validator/filter');
 
-/* Import async */
-var async = require('async');
-
+/*-----------------require genre Service -----------------*/
 let genreService = require('../services/genreService');
 
+/*----------------- exports controller-----------------*/
 exports.genre_list = genreList;
 exports.genre_detail = genreDetail;
 exports.genre_create_get = genreCreateGet;
 exports.genre_delete_get = getGenreDelete;
 exports.genre_delete_post = postGenreDelete;
-exports.genre_update_get = getGenreUpdate
+exports.genre_update_get = getGenreUpdate;
 
 // Display list of all Genre.
 function genreList(req, res, next) {
-    genreService.getGenreList().then((value) => {
+    genreService.getGenreList().then((values) => {
         res.render('./genre/genreListView', {
             title: 'Genre List',
-            genre_list: value
+            genre_list: values
         });
     }).catch((err) => {
         return next(err);
@@ -130,7 +127,7 @@ function getGenreDelete(req, res, next) {
     }).catch((err) => {
         return next(err);
     });
-};
+}
 
 // Handle Genre delete on POST.
 function postGenreDelete(req, res, next) {
@@ -157,7 +154,7 @@ function postGenreDelete(req, res, next) {
     }).catch((err) => {
         return next(err);
     });
-};
+}
 
 // Display Genre update form on GET.
 function getGenreUpdate(req, res, next) {
@@ -181,9 +178,7 @@ function getGenreUpdate(req, res, next) {
 exports.genre_update_post = [
 
     // Validate that the name field is not empty.
-    body('name', 'Genre name required').isLength({
-        min: 1
-    }).trim(),
+    body('name', 'Genre name required').isLength({ min: 1 }).trim(),
 
     // Sanitize (trim and escape) the name field.
     sanitizeBody('name').trim().escape(),
