@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 // var index = require('./routes/index');
 var users = require('./routes/users'); //Import routes for "users" area of site
 var catalog = require('./routes/catalog'); //Import routes for "catalog" area of site
+
 var compression = require('compression');
 var helmet = require('helmet');
 
