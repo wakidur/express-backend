@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationMessages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <A Range="1-100">
+    <ValidationMessage Value="ABSOResponsible"	Code ="1"	Description ="Buyer, Order and Style Assistant Responsible is required">	</ValidationMessage>
+    <ValidationMessage Value="AddressType"	Code ="2"	Description ="Address type is required">	</ValidationMessage>
+    <ValidationMessage Value="AccountNumber"	Code ="3"	Description ="Acct Number is required.">	</ValidationMessage>
+    <ValidationMessage Value="Action"	Code ="4"	Description ="Action is required.">	</ValidationMessage>
+    <ValidationMessage Value="accsItemType"	Code ="5"	Description ="Accessories item type is required">	</ValidationMessage>
+    <ValidationMessage Value="accsItemPlacement"	Code ="6"	Description ="Accessories item placement is required">	</ValidationMessage>
+    <ValidationMessage Value="ApprovalStaus"	Code ="7"	Description ="Approval status is required.">	</ValidationMessage>
+    <ValidationMessage Value="AddFnsDetailInfo" Code ="8" Description ="Additional Finishing is required.">	</ValidationMessage>
+    <ValidationMessage Value="Atleast2Digit" Code ="9" Description ="At least 2 digits is required.">	</ValidationMessage>
+    <ValidationMessage Value="Atleast3Digit" Code ="10" Description ="At least 3 digits is required.">	</ValidationMessage>
+  </A>
+  <B Range="101-200">
+    <ValidationMessage Value="Branch" Code ="101" Description ="Branch is required">	</ValidationMessage>
+    <ValidationMessage Value="Brand" Code ="102" Description ="Brand is required">	</ValidationMessage>
+    <ValidationMessage Value="BrandItem" Code ="103" Description ="Brand Item is required">	</ValidationMessage>
+    <ValidationMessage Value="BSOResponsible" Code ="104" Description ="Buyer, Order and Style Responsible is required">	</ValidationMessage>
+    <ValidationMessage Value="Buyer" Code ="105" Description ="Buyer is required">	</ValidationMessage>
+    <ValidationMessage Value="BuyerSeason" Code ="106" Description ="Buyer season is required">	</ValidationMessage>
+    <ValidationMessage Value="BuyerStyle"	Code ="107"	Description ="Buyer style is required">	</ValidationMessage>
+    <ValidationMessage Value="BuyerType"	Code ="108"	Description ="Buyer type is required">	</ValidationMessage>
+    <ValidationMessage Value="BookedQuantity" Code ="112" Description ="Booked Quantity is required.">	</ValidationMessage>
+    <ValidationMessage Value="BankName" Code ="113" Description ="Bank Name is required.">	</ValidationMessage>
+
+    <ValidationMessage Value="Break1From" Code ="114" Description ="Break 1 From is required">	</ValidationMessage>
+    <ValidationMessage Value="Break1To" Code ="115" Description ="Break 1 To is required"></ValidationMessage>
+    <ValidationMessage Value="Break1Check" Code ="116" Description ="Break 1 time must be within shift time">	</ValidationMessage>
+
+    <ValidationMessage Value="Break2From" Code ="117" Description ="Break 2 From is required">	</ValidationMessage>
+    <ValidationMessage Value="Break2To" Code ="118" Description ="Break 2 To is required">	</ValidationMessage>
+    <ValidationMessage Value="Break2Check" Code ="119" Description ="Break 2 must be within shift time and can't overlap with Break 1">	</ValidationMessage>
+
+    <ValidationMessage Value="BreakTo" Code ="120" Description ="Break End time must be within shift time and any later value of Start time">	</ValidationMessage>
+    <ValidationMessage Value="BreakFrom" Code ="121" Description ="Break from time must be less then break to time">	</ValidationMessage>
+    <ValidationMessage Value="BackGroundClrCode" Code ="122" Description ="Back ground color code is required.">	</ValidationMessage>
+    <ValidationMessage Value="BGClrCode" Code ="123" Description ="Back ground color code is required and should be minimum 3 digits.">	</ValidationMessage>
+    <ValidationMessage Value="BillingAddress" Code ="124" Description ="Billing address is required.">	</ValidationMessage>
+  </B>
+  <C Range="201-300">
+    <ValidationMessage Value="City"	Code ="201"	Description ="City is required">	</ValidationMessage>
+    <ValidationMessage Value="Color"	Code ="202"	Description ="Color is required">	</ValidationMessage>
+    <ValidationMessage Value="CommonType"	Code ="203"	Description ="Type is required">	</ValidationMessage>
+    <ValidationMessage Value="CompanyType"	Code ="204"	Description ="Company type is required">	</ValidationMessage>
+    <ValidationMessage Value="Country"	Code ="205"	Description ="Country is required">	</ValidationMessage>
+    <ValidationMessage Value="CrtnWght"	Code ="206"	Description ="Carton weight is required">	</ValidationMessage>
+    <ValidationMessage Value="Currency"	Code ="207"	Description ="Currency is required">	</ValidationMessage>
+    <ValidationMessage Value="ColorLotNo"	Code ="208"	Description ="Color lot no. is required">	</ValidationMessage>
+    <ValidationMessage Value="ChallanDate"	Code ="209"	Description ="Supplier Challan/Invoice Date is required">	</ValidationMessage>
+    <ValidationMessage Value="MinCartonQty"	Code ="210"	Description ="Carton Qty. must be greater than 0">	</ValidationMessage>
+    <ValidationMessage Value="ChallanNo"	Code ="211"	Description ="Supplier Challan/Invoice No is required">	</ValidationMessage>
+    <ValidationMessage Value="ComBusType"	Code ="212"	Description ="Company business type is required">	</ValidationMessage>
+    <ValidationMessage Value="CurrencyName"	Code ="213"	Description ="Currency name is required">	</ValidationMessage>
+    <ValidationMessage Value="CellCode"	Code ="214"	Description ="Cell code no is required">	</ValidationMessage>
+    <ValidationMessage Value="CurrencySign"	Code ="215"	Description ="Currency sign is required">	</ValidationMessage>
+    <ValidationMessage Value="ColumnName"	Code ="216"	Description ="Column Name is required">	</ValidationMessage>
+    <ValidationMessage Value="ColorWiseTotalStripe"	Code ="217"	Description ="ColorWiseTotalStripe must be greater than 0">	</ValidationMessage>
+    <ValidationMessage Value="CoursePerCm"	Code ="218"	Description ="CoursePerCm must be greater than 0">	</ValidationMessage>
+    <ValidationMessage Value="CU"	Code ="219"	Description ="CU must be greater than 0.001">	</ValidationMessage>
+    <ValidationMessage Value="Capacityhr"	Code ="220"	Description ="Capacity/hr must be greater than 1">	</ValidationMessage>
+    <ValidationMessage Value="CartonQty"	Code ="221"	Description ="Carton Qty. Is Required">	</ValidationMessage>
+    <ValidationMessage Value="CompanyName"	Code ="222"	Description ="Company name is required.">	</ValidationMessage>
+    <ValidationMessage Value="CompanyShortName"	Code ="223"	Description ="Company short name is required.">	</ValidationMessage>
+    <ValidationMessage Value="ContactPerson"	Code ="224"	Description ="Contact Person is required.">	</ValidationMessage>
+    <ValidationMessage Value="ContactType"	Code ="225"	Description ="Contact type is required.">	</ValidationMessage>
+    <ValidationMessage Value="CountryCode"	Code ="226"	Description ="Country Code is required.">	</ValidationMessage>
+    <ValidationMessage Value="ConsperPiece"	Code ="227"	Description ="Piece Wise Consumption Price is required.">	</ValidationMessage>
+    <ValidationMessage Value="ColorOption"	Code ="228"	Description ="Color option is required.">	</ValidationMessage>
+    <ValidationMessage Value="CareInfo"	Code ="229"	Description ="Care instruction is required.">	</ValidationMessage>
+    <ValidationMessage Value="CompositionName"	Code ="230"	Description ="Composition name is required.">	</ValidationMessage>
+    <ValidationMessage Value="Code"	Code ="231"	Description ="Code is required.">	</ValidationMessage>
+    <ValidationMessage Value="CommissionAmount"	Code ="232"	Description ="Commission value must be 0.01 to 20 percent.">	</ValidationMessage>
+    <ValidationMessage Value="CommissionUnit"	Code ="233"	Description ="Commission unit is required.">	</ValidationMessage>
+  </C>
+  <D Range="301-400">
+    <ValidationMessage Value="DeliveredBy"	Code ="301"	Description ="DeliveredBy is required">	</ValidationMessage>
+    <ValidationMessage Value="Department"	Code ="302"	Description ="Department is required">	</ValidationMessage>
+    <ValidationMessage Value="Dnr"	Code ="303"	Description ="Dnr is required">	</ValidationMessage>
+    <ValidationMessage Value="DistriDate"	Code ="304"	Description ="Distribution Date is required.">	</ValidationMessage>
+    <ValidationMessage Value="DepartmentName"	Code ="305"	Description ="Department name is required.">	</ValidationMessage>
+    <ValidationMessage Value="DUQty"	Code ="306"	Description ="DU Qty must be greater than 0.">	</ValidationMessage>
+    <ValidationMessage Value="DeliveryAdd"	Code ="307"	Description ="Delivery address is required">	</ValidationMessage>
+    <ValidationMessage Value="Designation"	Code ="308"	Description ="Designation is required.">	</ValidationMessage>
+    <ValidationMessage Value="DeliveryDate"	Code ="309"	Description ="Delivery date is required.">	</ValidationMessage>
+    <ValidationMessage Value="DiscountAmount"	Code ="310"	Description ="Discount value must be 0.01 to 20 percent.">	</ValidationMessage>
+    <ValidationMessage Value="DiscountUnit"	Code ="311"	Description ="Discount unit is required.">	</ValidationMessage>
+  </D>
+  <E Range="401-500">
+    <ValidationMessage Value="ElementName"	Code ="401"	Description ="Element Name is required.">	</ValidationMessage>
+    <ValidationMessage Value="Exists"	Code ="402"	Description ="Already Exists">	</ValidationMessage>
+    <ValidationMessage Value="Email"	Code ="403"	Description ="Email is required.">	</ValidationMessage>
+    <ValidationMessage Value="EmployeeID"	Code ="404"	Description ="Employee is required.">	</ValidationMessage>
+  </E>
+  <F Range="501-600">
+    <ValidationMessage Value="FabComp"	Code ="501"	Description ="Fabric composition is required">	</ValidationMessage>
+    <ValidationMessage Value="FabOption"	Code ="502"	Description ="Fabric option is required">	</ValidationMessage>
+    <ValidationMessage Value="Fabric"	Code ="503"	Description ="Fabric is required">	</ValidationMessage>
+    <ValidationMessage Value="FinishType"	Code ="504"	Description ="Finish type is required">	</ValidationMessage>
+    <ValidationMessage Value="Field"	Code ="505"	Description ="Field is required">	</ValidationMessage>
+    <ValidationMessage Value="FinDia"	Code ="506"	Description ="Fin Dia is required">	</ValidationMessage>
+    <ValidationMessage Value="Feeder"	Code ="507"	Description ="Feeder is required">	</ValidationMessage>
+    <ValidationMessage Value="FirstName"	Code ="508"	Description ="First Name is required.">	</ValidationMessage>
+    <ValidationMessage Value="FactoryOrderNo"	Code ="509"	Description ="Factory OrderNo is required.">	</ValidationMessage>
+    <ValidationMessage Value="FixedCost"	Code ="510"	Description ="Fixed cost is required.">	</ValidationMessage>
+    <ValidationMessage Value="FoldingOption"	Code ="511"	Description ="Folding option is required.">	</ValidationMessage>
+
+  </F>
+  <G Range="601-700">
+    <ValidationMessage Value="Gauge"	Code ="601"	Description ="Gauge is required">	</ValidationMessage>
+    <ValidationMessage Value="GMTFabric"	Code ="602"	Description ="GMT Fabric is required">	</ValidationMessage>
+    <ValidationMessage Value="GMTType"	Code ="603"	Description ="GMT Type is required">	</ValidationMessage>
+    <ValidationMessage Value="GMU"	Code ="604"	Description ="GMU is required">	</ValidationMessage>
+    <ValidationMessage Value="Group"	Code ="605"	Description ="Group is required">	</ValidationMessage>
+    <ValidationMessage Value="GSM"	Code ="606"	Description ="GSM is required">	</ValidationMessage>
+    <ValidationMessage Value="Gender"	Code ="607"	Description ="Gender is required">	</ValidationMessage>
+    <ValidationMessage Value="GMTQty"	Code ="608"	Description ="GMT Quantity is required">	</ValidationMessage>
+  </G>
+  <H Range="701-800">
+    <ValidationMessage Value="HouseNo"	Code ="701"	Description ="House No is required.">	</ValidationMessage>
+    <ValidationMessage Value="HolidayType"	Code ="702"	Description ="HolidayType is required.">	</ValidationMessage>
+    <!-- need to review 09/18/2014 use in setup Holiday-->
+    <ValidationMessage Value="Holiday"	Code ="703"	Description ="Holiday is required.">	</ValidationMessage>
+    <ValidationMessage Value="HeadOrSectionSize"	Code ="704"	Description ="Head or section size is required and must be greater than 0.">	</ValidationMessage>
+
+  </H>
+  <I Range="801-900">
+    <ValidationMessage Value="IssueBy"	Code ="801"	Description ="IssueBy is required">	</ValidationMessage>
+    <ValidationMessage Value="Item"	Code ="802"	Description ="Item is required">	</ValidationMessage>
+    <ValidationMessage Value="ItemType"	Code ="803"	Description ="Item type is required">	</ValidationMessage>
+    <!--ValidationMessage Value="ItemType"	Code ="804"	Description ="Item type is required">	</ValidationMessage>-->
+    <ValidationMessage Value="ItemName"	Code ="805"	Description ="Item name is required">	</ValidationMessage>
+    <ValidationMessage Value="IssueQty"	Code ="806"	Description ="Issue Quantity is required">	</ValidationMessage>
+    <ValidationMessage Value="Info"	Code ="807"	Description ="Information is required.">	</ValidationMessage>
+    <ValidationMessage Value="Instruction"	Code ="807"	Description ="Instruction is required.">	</ValidationMessage>
+    <ValidationMessage Value="ImageFileInfo"	Code ="808"	Description ="Image File is required.">	</ValidationMessage>
+  </I>
+  <J Range="901-1000"></J>
+  <K Range="1001-1100">
+    <ValidationMessage Value="KnitColor"	Code ="1001"	Description ="Knitting color is required">	</ValidationMessage>
+    <ValidationMessage Value="KnitResponsible"	Code ="1002"	Description ="knitting Order Responsible is required">	</ValidationMessage>
+
+  </K>
+  <L Range="1101-1200">
+    <ValidationMessage Value="LDOption"	Code ="1101"	Description ="LD Option is required">	</ValidationMessage>
+    <ValidationMessage Value="Lot"	Code ="1102"	Description ="Lot is required">	</ValidationMessage>
+    <ValidationMessage Value="LabelCategory"	Code ="1103"	Description ="Label category is required">	</ValidationMessage>
+    <ValidationMessage Value="LabelCodeOrRef"	Code ="1104"	Description ="Label code or ref is required">	</ValidationMessage>
+    <ValidationMessage Value="LabelType"	Code ="1105"	Description ="Label type is required">	</ValidationMessage>
+    <ValidationMessage Value="Length"	Code ="1106"	Description ="Length is required">	</ValidationMessage>
+    <ValidationMessage Value="LabelOrder"	Code ="1107"	Description ="Label order is required">	</ValidationMessage>
+    <ValidationMessage Value="LCNo"	Code ="1108"	Description ="LC no. is required">	</ValidationMessage>
+    <ValidationMessage Value="LCDate"	Code ="1109"	Description ="LC date is required">	</ValidationMessage>
+    <ValidationMessage Value="Language"	Code ="1110"	Description ="Language is required">	</ValidationMessage>
+    <ValidationMessage Value="LabelUnit"	Code ="1111"	Description ="Label unit is required">	</ValidationMessage>
+    <ValidationMessage Value="LUQty"	Code ="1112"	Description ="Label unit qty is required">	</ValidationMessage>
+    <ValidationMessage Value="LCNoValue"	Code ="1113"	Description ="Lc no. should be minimum 5 digits.">	</ValidationMessage>
+
+  </L>
+  <M Range="1201-1300">
+    <ValidationMessage Value="Machine"	Code ="1201"	Description ="Machine is required">	</ValidationMessage>
+    <ValidationMessage Value="McBrand"	Code ="1202"	Description ="Machine brand is required">	</ValidationMessage>
+    <ValidationMessage Value="McCategory"	Code ="1203"	Description ="Machine category is required">	</ValidationMessage>
+    <ValidationMessage Value="McDia"	Code ="1204"	Description ="Machine dia is required">	</ValidationMessage>
+    <ValidationMessage Value="McDiaType"	Code ="1205"	Description ="Machine dia type is required">	</ValidationMessage>
+    <ValidationMessage Value="McNo"	Code ="1206"	Description ="Machine No. is required">	</ValidationMessage>
+    <ValidationMessage Value="McStatus"	Code ="1207"	Description ="Machine current status is required">	</ValidationMessage>
+    <ValidationMessage Value="McType"	Code ="1208"	Description ="Machine type is required">	</ValidationMessage>
+    <ValidationMessage Value="Model"	Code ="1209"	Description ="Model is required">	</ValidationMessage>
+    <ValidationMessage Value="Module"	Code ="1210"	Description ="Module is required">	</ValidationMessage>
+    <ValidationMessage Value="Month"	Code ="1211"	Description ="Month is required">	</ValidationMessage>
+    <ValidationMessage Value="MUnit"	Code ="1212"	Description ="MUnit is required">	</ValidationMessage>
+    <ValidationMessage Value="Mobile"	Code ="1213"	Description ="Mobile is required.">	</ValidationMessage>
+    <ValidationMessage Value="MenuLabel"	Code ="1214"	Description ="Menu label is required.">	</ValidationMessage>
+    <ValidationMessage Value="MainBuyer"	Code ="1215"	Description ="Main buyer is required.">	</ValidationMessage>
+    <ValidationMessage Value="MaxLength"	Code ="1216"	Description ="Max length is required and must be greater than 0.">	</ValidationMessage>
+    <ValidationMessage Value="MinLength"	Code ="1217"	Description ="Min length is required and must be greater than 0.">	</ValidationMessage>
+    <ValidationMessage Value="MaxWidth"	Code ="1218"	Description ="Max width is required and must be greater than 0.">	</ValidationMessage>
+    <ValidationMessage Value="MinWidth"	Code ="1219"	Description ="Min width is required and must be greater than 0.">	</ValidationMessage>
+
+  </M>
+  <N Range="1301-1400">
+    <ValidationMessage Value="NoOfRecipe"	Code ="1301"	Description ="No of Recipe must be greater than 0">	</ValidationMessage>
+    <ValidationMessage Value="NoOfPiece"	Code ="1302"	Description ="No of piece must be greater than 0">	</ValidationMessage>
+    <ValidationMessage Value="NoOfHeadOrSection"	Code ="1303"	Description ="No of head or section must be greater than 0">	</ValidationMessage>
+    <ValidationMessage Value="NoOfHooks"	Code ="1304"	Description ="No of hooks must be greater than 0">	</ValidationMessage>
+
+  </N>
+  <O Range="1401-1500">
+
+    <ValidationMessage Value="Order"	Code ="1401"	Description ="Order is required">	</ValidationMessage>
+    <ValidationMessage Value="OrderType"	Code ="1402"	Description ="Order Type is required">	</ValidationMessage>
+    <ValidationMessage Value="Origin"	Code ="1403"	Description ="Place of origin is required">	</ValidationMessage>
+    <ValidationMessage Value="OPD"	Code ="1404"	Description ="Place of origin is required">	</ValidationMessage>
+    <ValidationMessage Value="OptionTitle"	Code ="1405"	Description ="Option title is required">	</ValidationMessage>
+    <ValidationMessage Value="OverHead"	Code ="1406"	Description ="Over head is required">	</ValidationMessage>
+    <ValidationMessage Value="OrderNo"	Code ="1407"	Description ="Order no. is required and should be minimum 3 digits.">	</ValidationMessage>
+  </O>
+  <P Range="1501-1600">
+
+    <ValidationMessage Value="Pantone"	Code ="1501"	Description ="Pantone is required">	</ValidationMessage>
+    <ValidationMessage Value="Parts"	Code ="1502"	Description ="Parts is required">	</ValidationMessage>
+    <ValidationMessage Value="PartsType"	Code ="1503"	Description ="PartsType is required">	</ValidationMessage>
+    <ValidationMessage Value="PricingUnit"	Code ="1504"	Description ="Pricing unit is required">	</ValidationMessage>
+    <ValidationMessage Value="Process"	Code ="1505"	Description ="Process is required">	</ValidationMessage>
+    <ValidationMessage Value="PC"	Code ="1506"	Description ="PC must be greater than 0">	</ValidationMessage>
+    <ValidationMessage Value="PlanQty"	Code ="1507"	Description ="Plan qty is required.">	</ValidationMessage>
+    <ValidationMessage Value="PackageType"	Code ="1508"	Description ="Package Type is required">	</ValidationMessage>
+    <ValidationMessage Value="PackQty"	Code ="1509"	Description ="Pack Qty. must be greater than 0">	</ValidationMessage>
+    <ValidationMessage Value="PhoneNo"	Code ="1510"	Description ="Phone is required.">	</ValidationMessage>
+    <ValidationMessage Value="PostCode"	Code ="1511"	Description ="Post Code is required.">	</ValidationMessage>
+    <ValidationMessage Value="Password"	Code ="1512"	Description ="Password is required">	</ValidationMessage>
+    <ValidationMessage Value="PriceperUOM"	Code ="1513"	Description ="UOM Wise Price is required">	</ValidationMessage>
+    <ValidationMessage Value="PriceperPiece"	Code ="1514"	Description ="Price per Piece is required">	</ValidationMessage>
+    <ValidationMessage Value="PriceperDzn"	Code ="1515"	Description ="Price per Dzn is required">	</ValidationMessage>
+    <ValidationMessage Value="PageName"	Code ="1516"	Description ="Page is required.">	</ValidationMessage>
+    <ValidationMessage Value="Price"	Code ="1517"	Description ="Price is required.">	</ValidationMessage>
+    <ValidationMessage Value="Priority"	Code ="1518"	Description ="Priority is required.">	</ValidationMessage>
+    <ValidationMessage Value="PricePerLU"	Code ="1519"	Description ="price per LU is required.">	</ValidationMessage>
+    <ValidationMessage Value="PO"	Code ="1520"	Description ="Purchase order no. should be minimum 3 digits.">	</ValidationMessage>
+    <ValidationMessage Value="PrintType"	Code ="1521"	Description ="Print type is required.">	</ValidationMessage>
+    <ValidationMessage Value="ProcessCost"	Code ="1521"	Description ="Process Cost Is Required.">	</ValidationMessage>
+    <ValidationMessage Value="PaymentMode"	Code ="1522"	Description ="Payment mode is required">	</ValidationMessage>
+  </P>
+  <Q Range="1601-1700">
+
+    <ValidationMessage Value="Quality"	Code ="1601"	Description ="Quality is required">	</ValidationMessage>
+    <ValidationMessage Value="AppropriateQuantity"	Code ="1602"	Description ="Appropriate Quantity is required">	</ValidationMessage>
+    <ValidationMessage Value="Quantity"	Code ="1603"	Description ="Quantity must be greater than 0">	</ValidationMessage>
+    <ValidationMessage Value="packQuantity"	Code ="1604"	Description ="Quantity per pack must be greater than 0">	</ValidationMessage>
+  </Q>
+  <R Range="1701-1800">
+    <ValidationMessage Value="RackZone"	Code ="1701"	Description ="Rack-zone is required">	</ValidationMessage>
+    <ValidationMessage Value="RefDefault"	Code ="1702"	Description ="Reference number is required">	</ValidationMessage>
+    <ValidationMessage Value="Remarks"	Code ="1703"	Description ="Remarks is required">	</ValidationMessage>
+    <ValidationMessage Value="RemarksType"	Code ="1704"	Description ="Remarks type is required">	</ValidationMessage>
+    <ValidationMessage Value="Responsible"	Code ="1705"	Description ="Responsible is required">	</ValidationMessage>
+    <ValidationMessage Value="RPM"	Code ="1706"	Description ="RPM is required">	</ValidationMessage>
+    <ValidationMessage Value="RcvQty"	Code ="1707"	Description ="Received Qty. must be greater than 0">	</ValidationMessage>
+    <!--<ValidationMessage Value="Remarks"	Code ="1708"	Description ="Remarks is required.">	</ValidationMessage>-->
+    <!--<ValidationMessage Value="RackZone"	Code ="1709"	Description ="Rack/Zone name is required.">	</ValidationMessage>-->
+    <ValidationMessage Value="Ratio"	Code ="1710"	Description ="Ratio must be within 1 to 100">	</ValidationMessage>
+    <ValidationMessage Value="Report"	Code ="1711"	Description ="Report is required">	</ValidationMessage>
+    <ValidationMessage Value="RepeatSize"	Code ="1712"	Description ="RepeatSize must be greater than 0.">	</ValidationMessage>
+    <ValidationMessage Value="PORcvQty"	Code ="1713"	Description ="Received Qty has to be less than or equal to PO Qty.">	</ValidationMessage>
+    <ValidationMessage Value="RollNo"	Code ="1714"	Description ="RollNo is required">	</ValidationMessage>
+    <ValidationMessage Value="ReceiveBy"	Code ="1715"	Description ="ReceivedBy is required">	</ValidationMessage>
+    <ValidationMessage Value="RegNo"	Code ="1716"	Description ="Reg No is required.">	</ValidationMessage>
+    <ValidationMessage Value="Rate"	Code ="1717"	Description ="Rate is required.">	</ValidationMessage>
+    <ValidationMessage Value="Region"	Code ="1718"	Description ="Region name is required.">	</ValidationMessage>
+    <ValidationMessage Value="Ribbon"	Code ="1719"	Description ="Ribbon name is required.">	</ValidationMessage>
+    <ValidationMessage Value="Range"	Code ="1720"	Description ="Range is required.">	</ValidationMessage>
+    <ValidationMessage Value="RibbonCategory"	Code ="1721"	Description ="Ribbon category is required.">	</ValidationMessage>
+    <ValidationMessage Value="RibbonDesign"	Code ="1722"	Description ="Ribbon design is required.">	</ValidationMessage>
+    <ValidationMessage Value="RibbonQuality"	Code ="1723"	Description ="Ribbon quality is required.">	</ValidationMessage>
+    <ValidationMessage Value="RibbonEdge"	Code ="1724"	Description ="Ribbon edge is required.">	</ValidationMessage>
+    <ValidationMessage Value="RibbonRefCode"	Code ="1725"	Description ="Ribbon code is required.">	</ValidationMessage>
+    <ValidationMessage Value="RibbonType"	Code ="1726"	Description ="Ribbon type is required.">	</ValidationMessage>
+
+  </R>
+  <S Range="1801-1900">
+
+    <ValidationMessage Value="SampleType"	Code ="1801"	Description ="Sample type is required">	</ValidationMessage>
+    <ValidationMessage Value="Season"	Code ="1802"	Description ="Season is required">	</ValidationMessage>
+    <ValidationMessage Value="Size"	Code ="1803"	Description ="Size is required">	</ValidationMessage>
+    <ValidationMessage Value="StdSize"	Code ="1804"	Description ="Standard size is required">	</ValidationMessage>
+    <ValidationMessage Value="StitchLength"	Code ="1805"	Description ="Stitch Length is required">	</ValidationMessage>
+    <ValidationMessage Value="Stock"	Code ="1806"	Description ="Stock is required">	</ValidationMessage>
+    <ValidationMessage Value="Supplier"	Code ="1807"	Description ="Supplier is required">	</ValidationMessage>
+    <ValidationMessage Value="SupplierType"	Code ="1808"	Description ="Supplier Type is required">	</ValidationMessage>
+    <ValidationMessage Value="StartNo"	Code ="1809"	Description ="Start No is required">	</ValidationMessage>
+    <ValidationMessage Value="StockName"	Code ="1810"	Description ="Stock name is required">	</ValidationMessage>
+    <ValidationMessage Value="SeasonName"	Code ="1811"	Description ="Season name is required">	</ValidationMessage>
+    <ValidationMessage Value="Shift"	Code ="1812"	Description ="Shift is required">	</ValidationMessage>
+    <ValidationMessage Value="ShiftFrom"	Code ="1813"	Description ="Shift From is required.">	</ValidationMessage>
+    <ValidationMessage Value="ShiftTo"	Code ="1814"	Description ="Shift To is required.">	</ValidationMessage>
+    <ValidationMessage Value="SMU"	Code ="1815"	Description ="SMU is required">	</ValidationMessage>
+    <ValidationMessage Value="StartTime"	Code ="1816"	Description ="Start time is required.">	</ValidationMessage>
+    <ValidationMessage Value="SurName"	Code ="1817"	Description ="Surname is required.">	</ValidationMessage>
+    <ValidationMessage Value="SectionName"	Code ="1818"	Description ="Section Name is required.">	</ValidationMessage>
+    <ValidationMessage Value="State"	Code ="1819"	Description ="State Name is required.">	</ValidationMessage>
+    <ValidationMessage Value="StockOf"	Code ="1820"	Description ="Main stock is required">	</ValidationMessage>
+    <ValidationMessage Value="SerialNo"	Code ="1821"	Description ="Serial No is required">	</ValidationMessage>
+    <ValidationMessage Value="ShiftType"	Code ="1822"	Description ="Shift Type is required">	</ValidationMessage>
+    <ValidationMessage Value="ShiftTime"	Code ="1823"	Description ="ShiftTo time must be any later value of from time">	</ValidationMessage>
+    <!--<ValidationMessage Value="ShiftFrom"	Code ="1824"	Description ="Shift from time must be less then Shift to time">	</ValidationMessage>
+    <ValidationMessage Value="ShiftFrom"	Code ="1825"	Description ="Check shift time, it's overlapping with ">	</ValidationMessage>-->
+    <ValidationMessage Value="ShiftFromShiftTo"	Code ="1824"	Description ="Shift-from time must be less then Shift to time">	</ValidationMessage>
+    <ValidationMessage Value="ShiftFromOverlaping"	Code ="1825"	Description ="Check shift time, it's overlapping with ">	</ValidationMessage>
+    <ValidationMessage Value="SequenceNo"	Code ="1826"	Description ="SequenceNo is required.">	</ValidationMessage>
+    <ValidationMessage Value="SpeedUom"	Code ="1827"	Description ="Speed measurement unit is required.">	</ValidationMessage>
+    <ValidationMessage Value="StandardSpeed"	Code ="1828"	Description ="Standard speed is required and must be greater than 0.">	</ValidationMessage>
+  </S>
+  <T Range="1901-2000">
+
+    <ValidationMessage Value="Temperature"	Code ="1901"	Description ="Temperature is required">	</ValidationMessage>
+    <ValidationMessage Value="TestGroup"	Code ="1902"	Description ="Test Group is required">	</ValidationMessage>
+    <ValidationMessage Value="TestName"	Code ="1903"	Description ="Test Name is required">	</ValidationMessage>
+    <ValidationMessage Value="TestType"	Code ="1904"	Description ="Test Type is required">	</ValidationMessage>
+    <ValidationMessage Value="TestMethod"	Code ="1905"	Description ="Method Title is required">	</ValidationMessage>
+    <ValidationMessage Value="TestRequirement"	Code ="1906"	Description ="Test Requirement is required.">	</ValidationMessage>
+    <ValidationMessage Value="TrgtQtyHr"	Code ="1907"	Description ="TrgtQtyHr is required">	</ValidationMessage>
+    <ValidationMessage Value="TimeDuration"	Code ="1908"	Description ="Time duration is required">	</ValidationMessage>
+    <ValidationMessage Value="TinNo"	Code ="1909"	Description ="TIN No is required.">	</ValidationMessage>
+    <ValidationMessage Value="Title"	Code ="1910"	Description ="Title is required">	</ValidationMessage>
+    <ValidationMessage Value="TextClrCode"	Code ="1911"	Description ="Text color code is required">	</ValidationMessage>
+    <ValidationMessage Value="TTNo"	Code ="1912"	Description ="TT no. should be minimum 5 digits.">	</ValidationMessage>
+    <ValidationMessage Value="TTDate"	Code ="1912"	Description ="TT date is required">	</ValidationMessage>
+    <ValidationMessage Value="TxtClrCode"	Code ="1913"	Description ="Text color code is required and should be minimum 3 digits.">	</ValidationMessage>
+  </T>
+  <U Range="2001-2100">
+
+    <ValidationMessage Value="Unit"	Code ="2001"	Description ="Unit is required">	</ValidationMessage>
+    <ValidationMessage Value="UOM"	Code ="2002"	Description ="Measurement Unit is required">	</ValidationMessage>
+    <ValidationMessage Value="UserType"	Code ="2003" Description ="UserTypeID is required">	</ValidationMessage>
+    <ValidationMessage Value="UnitName"	Code ="2004"	Description ="Unit name is required.">	</ValidationMessage>
+    <ValidationMessage Value="UserName"	Code ="2005"	Description ="User Name is required.">	</ValidationMessage>
+    <ValidationMessage Value="UserID"	Code ="2006"	Description ="User ID is required.">	</ValidationMessage>
+  </U>
+  <V Range="2101-2200">
+    <ValidationMessage Value="VATNo"	Code ="2101"	Description ="VAT No is required.">	</ValidationMessage>
+    <ValidationMessage Value="Value"	Code ="2102"	Description ="Value is required.">	</ValidationMessage>
+  </V>
+  <W Range="2201-2300">
+    <ValidationMessage Value="WebSite"	Code ="2201"	Description ="WebSite is required.">	</ValidationMessage>
+    <ValidationMessage Value="WorkPhone"	Code ="2202"	Description ="WorkPhone is required.">	</ValidationMessage>
+    <ValidationMessage Value="Width"	Code ="2203"	Description ="Width is required.">	</ValidationMessage>
+    <ValidationMessage Value="WeavingType"	Code ="2204"	Description ="Weaving type is required.">	</ValidationMessage>
+
+  </W>
+  <X Range="2301-2400"></X>
+  <Y Range="2401-2500">
+    <ValidationMessage Value="YarnComp"	Code ="2401"	Description ="Yarn Composition is required">	</ValidationMessage>
+    <ValidationMessage Value="YarnCount"	Code ="2402"	Description ="Yarn count is required">	</ValidationMessage>
+    <ValidationMessage Value="YarnType"	Code ="2403"	Description ="Yarn Type is required">	</ValidationMessage>
+    <ValidationMessage Value="Year"	Code ="2404"	Description ="Year is required">	</ValidationMessage>
+    <ValidationMessage Value="YarnLot"	Code ="2405"	Description ="Yarn Lot is required">	</ValidationMessage>
+    <ValidationMessage Value="YarnColor"	Code ="2406"	Description ="Yarn color is required">	</ValidationMessage>
+    <ValidationMessage Value="YearEstablished"	Code ="2407"	Description ="Year of establishment is required">	</ValidationMessage>
+  </Y>
+  <Z Range="2501-2600"></Z>
+</ValidationMessages>

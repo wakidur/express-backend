@@ -1,0 +1,78 @@
+﻿<div class="modal-content">
+    <form name="modalValidationForm" role="form" data-ng-submit="submitData(modalValidationForm.$valid)" novalidate>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"  data-ng-click="closeModal()">×</button>
+            <!--<h4 class="modal-title">Application - {{appObj.fromAppName}}'s fields copy to application - {{appObj.toAppName}}</h4>-->
+        </div>
+        <!-- START OF MODAL BODY-->
+        <div class="modal-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 2%"></th>
+                            <th style="width: 3%;">Range</th>
+                            <th style="width: 95%;" class="no-padder">
+                                <table style="width: 100%" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <td style="width: 2%;"></td>
+                                            <th style="width: 28%;">Name</th>
+                                            <th style="width: 70%;">Message</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="fields in fieldList | orderBy:'alphabet' ">
+                            <td style="width: 2%">
+                                <input type="checkbox" data-ng-model="fields.isActive" data-ng-change="checkUncheckIndex(fields.isActive,fields)"></td>
+                            <td style="width: 3%;">{{fields.alphabet }}</td>
+                            <td style="width: 95%;" class="no-padder">
+                                <table style="width: 100%;" class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr data-ng-repeat="item in fields.fieldDetails | orderBy:'name'">
+                                            <td style="width: 2%;">
+                                                <input type="checkbox" data-ng-model="item.isActive" data-ng-change="checkUncheckField(item.isActive,item,fields)"></td>
+                                            <td style="width: 28%;">{{ item.name }}</td>
+                                            <td style="width: 70%;">{{ item.message}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row" style="background-color: #2ba6cb;">
+                <div class="col-lg-4 ">
+                    Showing: {{paging.fromShowing}} - 
+                            {{paging.toShowing}} 
+                            of {{paging.total}} Records
+                </div>
+                <div class="col-lg-8">
+                    <div class="pull-right">
+                        <ul class="list-inline">
+                            <li>
+                                <select ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions" /></li>
+                            <li><a href="javascript:void(0)" data-ng-click="pageniToFirst()"><i class="fa fa-step-backward"></i></a></li>
+                            <li><a href="javascript:void(0)" data-ng-click="pageniBackward()"><i class="fa fa-backward"></i></a></li>
+                            <li>
+                                <input type='number' ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;' />
+                                of {{paging.totalpages}}</li>
+                            <li><a href="javascript:void(0)" data-ng-click="pageniForward()"><i class="fa fa-forward"></i></a></li>
+                            <li><a href="javascript:void(0)" data-ng-click="pageniToLast()"><i class="fa fa-step-forward"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END OF APPLICATION FORM MODAL BODY -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-ng-disabled="modalValidationForm.$invalid || !modalValidationForm.$dirty"><i class="fa fa-floppy-o"></i>Ok</button>
+        </div>
+    </form>
+</div>

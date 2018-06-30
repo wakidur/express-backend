@@ -1,0 +1,1107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fields xmlns:xs='http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance' xmlns:xsd='http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema'>
+  <A>
+    <Name Value='ABA' L='ABA Number' SH='ABA' FH='ABA Number' i18n='E'></Name>
+    <Name Value='Absent' L='Absent' SH='AB' FH='Absent' i18n='E'></Name>
+    <Name Value='AbsentAmount' L='Absent' SH='ABA' FH='Absent' i18n='E'></Name>
+    <Name Value='AbsentDays' L='Absent Days' SH='ABD' FH='Absent Days' i18n='E'></Name>
+    <Name Value='AbsentDeduction' L='Absent Deduction' SH='Absent Deduction' FH='Absent Deduction' i18n='E'></Name>
+    <Name Value='Acc' L='Acc' SH='Acc' FH='Acc' i18n='E'></Name>
+    <Name Value='AccessCode' L='AccessCode' SH='AccessCode' FH='AccessCode' i18n='E'></Name>
+    <Name Value='AccessItem' L='Accessory item' SH='AccItem' FH='Accessory item' i18n='E'></Name>
+    <Name Value='AccessTo' L='Access to' SH='AccessTo' FH='Access to' i18n='E'></Name>
+    <Name Value='AccessoryStock' L='AccessoryStock' SH='AccessoryStock' FH='Accessory Stock' i18n='E'></Name>
+    <Name Value='AccountName' L='Account Name' SH='AccountName' FH='Account Name' i18n='E'></Name>
+    <Name Value='AccountNumber' L='AccountNumber' SH='AccountNumber' FH='Account Number' i18n='E'></Name>
+    <Name Value='AccountType' L='Account Type' SH='Account Type' FH='Account Type' i18n='E'></Name>
+    <Name Value='Accrual' L='Accrual' SH='Accrual' FH='Accrual' i18n='E'></Name>
+    <Name Value='AccruedBy' L='Accrued by' SH='Accrued by' FH='Accrued by' i18n='E'></Name>
+    <Name Value='Action' L='Action' SH='Action' FH='Action' i18n='E'></Name>
+    <Name Value='Active' L='Active' SH='Active' FH='Active' i18n='E'></Name>
+    <Name Value='ActualOTHours' L='Aprvd OT' SH='AprvdOT' FH='AprvdOT' i18n='E'></Name>
+    <Name Value='AdFin' L='AdFin' SH='AdFin' FH='Additional Finishing' i18n='E'></Name>
+    <Name Value='Add' L='Add' SH='Add' FH='Add' i18n='E'></Name>
+    <Name Value='AddWastage' L='Additional Wastage' SH='AdWstg' FH='Additional Wastage' i18n='E'></Name>
+    <Name Value='AdditionalFinishing' L='Additional finishing' SH='AdFin' FH='Additional finishing' i18n='E'></Name>
+    <Name Value='Address' L='Address' SH='Address' FH='Address' i18n='E'></Name>
+    <Name Value='Addrline1' L='Addrline1' SH='Addrline1' FH='Addrline1' i18n='E'></Name>
+    <Name Value='Addrline2' L='Addrline2' SH='Addrline2' FH='Addrline2' i18n='E'></Name>
+    <Name Value='Adjustment' L='Adjustment' SH='Adjustment' FH='Adjustment' i18n='E'></Name>
+    <Name Value='AfteEmployeeJoin' L='After Employee Join' SH='AftEmpJoin' FH='After Employee Join' i18n='E'></Name>
+    <Name Value='AfterJoiningEmployeeWillGet' L='After joining employee will get' SH='AfterJoiningEmpWillGet' FH='After joining employee will get' i18n='E'></Name>
+    <Name Value='Age' L='Age' SH='Age' FH='Age' i18n='E'></Name>
+    <Name Value='AgreementType' L='Job&#x2F;AgrType' SH='Job&#x2F;AgrType' FH='Job&#x2F;Agreement Type' i18n='E'></Name>
+    <Name Value='All' L='All' SH='All' FH='All' i18n='E'></Name>
+    <Name Value='AllAccess' L='All Access' SH='All Access' FH='All Access' i18n='E'></Name>
+    <Name Value='AllAccessDeny' L='All Access Deny' SH='All Access Deny' FH='All Access Deny' i18n='E'></Name>
+    <Name Value='AllowAdvanceLeave' L='Allow Advance Leave' SH='AllowAdvaLv' FH='Allow Advance Leave' i18n='E'></Name>
+    <Name Value='AllowBonus' L='Allow Bonus' SH='AllowBonus' FH='Allow Bonus' i18n='E'></Name>
+    <Name Value='AllowInterveningHoliday' L='Allow intervening holidays&#x2F;weekends as leave' SH='AllowInterveningHoldy' FH='Allow intervening holidays&#x2F;weekends as leave' i18n='E'></Name>
+    <Name Value='AllowPreecedingHoliday' L='Allow preceding holidays&#x2F;weekends as leave' SH='AllowPreecedHoldy' FH='Allow preceding holidays&#x2F;weekends as leave' i18n='E'></Name>
+    <Name Value='AllowSuceedingHoliday' L='Allow succeeding holidays&#x2F;weekends as leave' SH='AllowSuceedHoldy' FH='Allow succeeding holidays&#x2F;weekends as leave' i18n='E'></Name>
+    <Name Value='AllowedOTIn' L='Allowed OT In' SH='AllwdOTIn' FH='AllowedOTIn' i18n='E'></Name>
+    <Name Value='AllowedOTOut' L='Allowed OT Out' SH='AllwdOTOut' FH='AllowedOTOut' i18n='E'></Name>
+    <Name Value='AllwdOtHr' L='Allowed OT Hours' SH='AllwdOtHrs' FH='AllowedOTHours' i18n='E'></Name>
+    <Name Value='Amount' L='Amount' SH='Amt' FH='Amount' i18n='E'></Name>
+    <Name Value='AppCancel' L='Appr&#x2F;Can' SH='Appr&#x2F;Canc' FH='Active' i18n='E'></Name>
+    <Name Value='AppDt' L='AppDt' SH='AppDt' FH='AppDt' i18n='E'></Name>
+    <Name Value='AppLevDays' L='Applied Days' SH='ApplDays' FH='Applied Days' i18n='E'></Name>
+    <Name Value='AppStatus' L='AppStatus' SH='AppStatus' FH='AppStatus' i18n='E'></Name>
+    <Name Value='ApplicationDate' L='ApplicationDate' SH='AppDate' FH='Application Date' i18n='E'></Name>
+    <Name Value='ApplicationDateFrom' L='Application Date From' SH='AppDateFrom' FH='Application Date From' i18n='E'></Name>
+    <Name Value='ApplicationDateTo' L='Application Date To' SH='AppDateTo' FH='Application Date To' i18n='E'></Name>
+    <Name Value='ApplyLeaveForStaff' L='Apply leave for Staff' SH='ApplyLeaveForStaff' FH='Apply leave for Staff' i18n='E'></Name>
+    <Name Value='ApplyTo' L='Apply To' SH='ApplyTo' FH='Apply To' i18n='E'></Name>
+    <Name Value='ApplyToGroup' L='Apply to group access' SH='ApplyGroupAccess' FH='Apply to group access' i18n='E'></Name>
+    <Name Value='Approval' L='Approval' SH='Approval' FH='Approval' i18n='E'></Name>
+    <Name Value='ApprovalDate' L='AppDt' SH='AppDt' FH='AppDt' i18n='E'></Name>
+    <Name Value='ApprovalLevel' L='Approval Level' SH='Approver' FH='Approval Level' i18n='E'></Name>
+    <Name Value='ApprovalStatus' L='ApprovalStatus' SH='ApprStus' FH='ApprovalStatus' i18n='E'></Name>
+    <Name Value='Approve' L='Approve' SH='Approve' FH='Approve' i18n='E'></Name>
+    <Name Value='Approved' L='Approved' SH='Approved' FH='Approved' i18n='E'></Name>
+    <Name Value='ApprovedBy' L='Approved By' SH='AppdBy' FH='Approved By' i18n='E'></Name>
+    <Name Value='ApprovedLevDays' L='Approved Days' SH='ApprvDays' FH='Approved Days' i18n='E'></Name>
+    <Name Value='April' L='April' SH='Apr' FH='April' i18n='E'></Name>
+    <Name Value='ArrAmount' L='Adjust' SH='ADJ' FH='Adjust' i18n='E'></Name>
+    <Name Value='ArticleNo' L='Article No' SH='ArticleNo' FH='Article No' i18n='E'></Name>
+    <Name Value='Ass Knit Resp' L='Knitting Asst Resp' SH='Knitting Asst Resp' FH='Ass Knt Responsible' i18n='E'></Name>
+    <Name Value='AssKnitRespContact' L='Asst Knit Resp Cont' SH='AsstKntRespCont' FH='Ass Knt Responsible Contact' i18n='E'></Name>
+    <Name Value='AssignedTo' L='Assigned To' SH='Ass.To' FH='Assigned To' i18n='E'></Name>
+    <Name Value='AstBSOContact' L='AstBSORespContact' SH='AstBSORespCont' FH='AstBSORespCont' i18n='E'></Name>
+    <Name Value='AstBSORespon' L='AstBSOResp' SH='AstBSOResp' FH='AstBSOResp' i18n='E'></Name>
+    <Name Value='AttBonus' L='Att. Bonus' SH='ATTB' FH='AttBonus' i18n='E'></Name>
+    <Name Value='Attachment' L='Attachment' SH='Attachment' FH='Attachment' i18n='E'></Name>
+    <Name Value='AttenProcessTime' L='enten Process Time' SH='Atten Process Time' FH='Atten Process Time' i18n='E'></Name>
+    <Name Value='AttendanceDate' L='AttendanceDate' SH='AttendanceDate' FH='AttendanceDate' i18n='E'></Name>
+    <Name Value='AttentStatus' L='AttentStatus' SH='Att.Status' FH='AttentStatus' i18n='E'></Name>
+    <Name Value='August' L='August' SH='Aug' FH='August' i18n='E'></Name>
+    <Name Value='AvailableLeave' L='Available Leave' SH='Avai.Leave' FH='Available Leave' i18n='E'></Name>
+    <Name Value='Awards' L='Awards' SH='Awards' FH='Awards' i18n='E'></Name>
+  </A>
+  <B>
+    <Name Value='BINNo' L='BIN No' SH='BIN No' FH='BIN No' i18n='E'></Name>
+    <Name Value='BSOResp' L='BSO Resp' SH='BSO Resp' FH='BSO Responsible' i18n='E'></Name>
+    <Name Value='BSORespContact' L='BSORespCont' SH='BSORespCont' FH='BSORespCont' i18n='E'></Name>
+    <Name Value='Balance' L='Balance' SH='Bal' FH='balance' i18n='E'></Name>
+    <Name Value='BalanceQty' L='Balance Quantity' SH='BalQty' FH='BalQty' i18n='E'></Name>
+    <Name Value='BankCharge' L='Bank Charge' SH='Bank Charge' FH='Bank Charge' i18n='E'></Name>
+    <Name Value='BankName' L='Bank Name' SH='BankName' FH='Bank Name' i18n='E'></Name>
+    <Name Value='BankSwift' L='Bank Swift Code' SH='BankSwift' FH='Bank Swift Code' i18n='E'></Name>
+    <Name Value='Barcode' L='Barcode' SH='Barcode' FH='Barcode' i18n='E'></Name>
+    <Name Value='BargainSpaceD' L='B S&#x2F;D' SH='B S&#x2F;D' FH='Bargain Space per Dozen' i18n='E'></Name>
+    <Name Value='BargainSpaceP' L='B S&#x2F;P' SH='B S&#x2F;P' FH='Bargain Space per piece' i18n='E'></Name>
+    <Name Value='BaseCurrency' L='Base Currency' SH='BaseCurr' FH='Base Currency' i18n='E'></Name>
+    <Name Value='Basic' L='Basic' SH='Basic' FH='Basic' i18n='E'></Name>
+    <Name Value='BasicFrom' L='Basic From' SH='Basic Frm' FH='Basic From' i18n='E'></Name>
+    <Name Value='BasicTo' L='Basic To' SH='Basic To' FH='Basic To' i18n='E'></Name>
+    <Name Value='BatchNo' L='Batch No' SH='Batch No' FH='Batch No' i18n='E'></Name>
+    <Name Value='Beneficiary' L='Beneficiary' SH='Beneficiary' FH='Beneficiary' i18n='E'></Name>
+    <Name Value='BeneficiaryBank' L='Beneficiary Bank' SH='Beneficiary Bank' FH='Beneficiary Bank' i18n='E'></Name>
+    <Name Value='BillAmount' L='Bill Amount' SH='Bill Amount' FH='Bill Amount' i18n='E'></Name>
+    <Name Value='BillDate' L='Bill Date' SH='Bill Date' FH='Bill Date' i18n='E'></Name>
+    <Name Value='BillNo' L='Bill No' SH='Bill No' FH='Bill No' i18n='E'></Name>
+    <Name Value='BillingAddress' L='BillingAddress' SH='BilAdd' FH='BilAdd' i18n='E'></Name>
+    <Name Value='BirthPlace' L='Birth Place' SH='BirthPlace' FH='Birth Place' i18n='E'></Name>
+    <Name Value='BloodGroup' L='Blood Group' SH='BloodGroup' FH='Blood Group' i18n='E'></Name>
+    <Name Value='Bonus' L='Bonus' SH='EB' FH='Bonus' i18n='E'></Name>
+    <Name Value='BookNo' L='BookNo' SH='BookNo' FH='BookNo' i18n='E'></Name>
+    <Name Value='BookedQty' L='Booked Qty' SH='BookedQty' FH='Booked Qty' i18n='E'></Name>
+    <Name Value='BookingBalanceQty' L='BookBalQty' SH='BookBalQty' FH='BookBalQty' i18n='E'></Name>
+    <Name Value='BookingDate' L='BookingDate' SH='BookDate' FH='BookDt' i18n='E'></Name>
+    <Name Value='BranchName' L='Branch Name' SH='Branch' FH='Branch Name' i18n='E'></Name>
+    <Name Value='Brand' L='Brand' SH='Brand' FH='Brand' i18n='E'></Name>
+    <Name Value='BrandItemCode' L='Brand Item Code' SH='Brand Item Code' FH='Brand Item Code' i18n='E'></Name>
+    <Name Value='BrandItemName' L='Brand Item Name' SH='Brand Item Name' FH='Brand Item Name' i18n='E'></Name>
+    <Name Value='Break1End' L='Break 1 End' SH='Brk 1 End' FH='Break 1 End' i18n='E'></Name>
+    <Name Value='Break1Start' L='Break 1 Start' SH='Brk 1 Start' FH='Break 1 Start' i18n='E'></Name>
+    <Name Value='Break2End' L='Break 2 End' SH='Brk 2 End' FH='Break 2 End' i18n='E'></Name>
+    <Name Value='Break2Start' L='Break 2 Start' SH='Brk 2 Start' FH='Break 2 Start' i18n='E'></Name>
+    <Name Value='BreakEnd' L='Break End' SH='Brk End' FH='Break End' i18n='E'></Name>
+    <Name Value='BreakStart' L='Break Start' SH='Brk Start' FH='Break Start' i18n='E'></Name>
+    <Name Value='BreakupTotals' L='Breakup Totals' SH='BreakupTotals' FH='Breakup Totals' i18n='E'></Name>
+    <Name Value='BusinessType' L='Business Type' SH='Business Type' FH='Business Type' i18n='E'></Name>
+    <Name Value='Buyer' L='Buyer' SH='Buyer' FH='Buyer' i18n='E'></Name>
+    <Name Value='BuyerComnts' L='BuyerComments' SH='BuyerCmnts' FH='BuyerComments' i18n='E'></Name>
+    <Name Value='BuyerDept' L='Buyer Dept' SH='BuyerDept' FH='Buyer Dept' i18n='E'></Name>
+    <Name Value='BuyerDetail' L='Buyer Detail' SH='BuyerDetl' FH='Buyer Detail' i18n='E'></Name>
+    <Name Value='BuyerProductCode' L='BuyerProductCode' SH='ByrProdCode' FH='BuyerProductCode' i18n='E'></Name>
+    <Name Value='BuyerRegNo' L='Buyer Reg. No' SH='Buyer RegNo' FH='Buyer Reg. No' i18n='E'></Name>
+    <Name Value='BuyerResponsible' L='Buyer responsible' SH='BuyerResp' FH='Buyer responsible' i18n='E'></Name>
+    <Name Value='BuyerShortName' L='Buyer Short Name' SH='BuyerShortName' FH='Buyer Short Name' i18n='E'></Name>
+    <Name Value='BuyerType' L='Buyer Type' SH='Buyer Type' FH='Buyer Type' i18n='E'></Name>
+    <Name Value='Buyercontact' L='Buyer Contact' SH='ByrCont' FH='ByrCont' i18n='E'></Name>
+    <Name Value='Buyering House Short Name' L='Buying House Short Name' SH='BuyingHouseShortName' FH='Buying House Short Name' i18n='E'></Name>
+    <Name Value='BuyersBank' L='Buyer&#x27;s Bank' SH='Buyer&#x27;s Bank' FH='Buyer&#x27;s Bank' i18n='E'></Name>
+    <Name Value='BuyersPurchaseOrder' L='Buyer&#x27;s PO' SH='ByrPO' FH='ByrPO' i18n='E'></Name>
+    <Name Value='Buying House' L='Buying House' SH='Buying House' FH='Buying House' i18n='E'></Name>
+    <Name Value='ByrAppSt' L='ByrAppSt' SH='ByrAppSt' FH='ByrAppSt' i18n='E'></Name>
+  </B>
+  <C>
+    <Name Value='CBINo' L='CBI No' SH='CBI No' FH='CBI No' i18n='E'></Name>
+    <Name Value='COV' L='COV' SH='COV' FH='Cumulative Order Value' i18n='E'></Name>
+    <Name Value='CalculationMethod' L='Calculation Method' SH='CalMethod' FH='Calculation Method' i18n='E'></Name>
+    <Name Value='CalculationType' L='Calculation Type(+&#x2F;-)' SH='CalTyp(+&#x2F;-)' FH='Calculation Type(+&#x2F;-)' i18n='E'></Name>
+    <Name Value='CalenderDay' L='Calender Day' SH='Calender Day' FH='Calender Day' i18n='E'></Name>
+    <Name Value='CanEmployeApplyNewLoan' L='Can an employee apply for new loan if past loan is unpaid' SH='Can an employee apply for new loan if past loan is unpaid' FH='Can an emp apply for new loan if past loan is unpaid' i18n='E'></Name>
+    <Name Value='Cancel' L='Cancel' SH='Cancel' FH='Cancel' i18n='E'></Name>
+    <Name Value='CancelLeaveDays' L='CancelLeaveDays' SH='CancelLvDays' FH='CancelLeaveDays' i18n='E'></Name>
+    <Name Value='CapacityPerHour' L='Cap&#x2F;Hr' SH='Cap&#x2F;Hr' FH='Capacity&#x2F;Hr' i18n='E'></Name>
+    <Name Value='CareDescr' L='Care Description' SH='CareDescr' FH='Care Description' i18n='E'></Name>
+    <Name Value='CareInfo' L='Care Info' SH='CareInfo' FH='CareInfo' i18n='E'></Name>
+    <Name Value='CareIns' L='Care Instruction' SH='CareIns' FH='Care Instruction' i18n='E'></Name>
+    <Name Value='CartonQty' L='Carton Qty' SH='CtnQty' FH='CartonQty' i18n='E'></Name>
+    <Name Value='CartonWeight' L='CartonWeight' SH='CtnWt' FH='CrtnWeight' i18n='E'></Name>
+    <Name Value='CasualLeave' L='Casual Leave' SH='CL' FH='Casual Leave' i18n='E'></Name>
+    <Name Value='Category' L='Category' SH='Cat' FH='Category' i18n='E'></Name>
+    <Name Value='Cause' L='Cause' SH='Cause' FH='Cause' i18n='E'></Name>
+    <Name Value='CellActive' L='Cell Active' SH='Cell Active' FH='Cell Active' i18n='E'></Name>
+    <Name Value='CellCode' L='CellCode' SH='CellCode' FH='CellCode' i18n='E'></Name>
+    <Name Value='Certificate' L='Certificate' SH='Certificate' FH='Certificate' i18n='E'></Name>
+    <Name Value='Certifications' L='Certifications' SH='Certifications' FH='Certifications' i18n='E'></Name>
+    <Name Value='ChallanInvoiceDT' L='Challan&#x2F;Invoice Date' SH='Cln&#x2F;Inv Dt' FH='Chl&#x2F;InvDate' i18n='E'></Name>
+    <Name Value='ChallanInvoiceNumber' L='Challan&#x2F;Invoice No' SH='Cln&#x2F;Inv No' FH='Challan Invoice No' i18n='E'></Name>
+    <Name Value='ChallanNo' L='Challan No' SH='ClnNo' FH='Challan No' i18n='E'></Name>
+    <Name Value='ChargeCoveredBy' L='Charge Covered By' SH='Charge Covered By' FH='Charge Covered By' i18n='E'></Name>
+    <Name Value='City' L='City&#x2F;District' SH='City&#x2F;District' FH='City&#x2F;District' i18n='E'></Name>
+    <Name Value='CityCode' L='City Code' SH='CityCode' FH='CityCode' i18n='E'></Name>
+    <Name Value='CityOrDistrict' L='City&#x2F;District' SH='City&#x2F;District' FH='City&#x2F;District' i18n='E'></Name>
+    <Name Value='Code' L='Code' SH='Code' FH='Code' i18n='E'></Name>
+    <Name Value='Color' L='Color' SH='Color' FH='Color' i18n='E'></Name>
+    <Name Value='ColorCode' L='Color Code' SH='Clr&#x2F;Code' FH='Color Code' i18n='E'></Name>
+    <Name Value='ColorImage' L='Color Image' SH='Clr&#x2F;Img' FH='Color Image' i18n='E'></Name>
+    <Name Value='ColorLotNo' L='Color Lot' SH='ClrLtNo' FH='Color Lot No' i18n='E'></Name>
+    <Name Value='ColorPantone' L='Color&#x2F;Pantone' SH='Clr&#x2F;Ptn' FH='Color&#x2F;Pantone' i18n='E'></Name>
+    <Name Value='ColorSizeQty' L='Color + Size + Qty' SH='Color+Size+Qty' FH='Color + Size + Qty' i18n='E'></Name>
+    <Name Value='Colorimage' L='Colorimage' SH='Colorimg' FH='colorimage' i18n='E'></Name>
+    <Name Value='ColrWiseTotStripe' L='Color Wise Total Stripe' SH='ClrWiseTS' FH='ClrWiseTotStripe' i18n='E'></Name>
+    <Name Value='ColrWiseYrnDyedQty' L='CwydQty' SH='CWYDQty' FH='CWYDQty' i18n='E'></Name>
+    <Name Value='Combination' L='Combo' SH='Combo' FH='Combo' i18n='E'></Name>
+    <Name Value='Comments' L='Comments' SH='Comments' FH='Comments' i18n='E'></Name>
+    <Name Value='Commission' L='Commission' SH='Commission' FH='Commission' i18n='E'></Name>
+    <Name Value='CommissionPercentage' L='Commission Percentage' SH='Commission Percentage' FH='Commission Percentage' i18n='E'></Name>
+    <Name Value='CommunityInvolvements' L='Community Involvements' SH='CommInvol' FH='Community Involvements' i18n='E'></Name>
+    <Name Value='Company' L='Company' SH='Company' FH='Company' i18n='E'></Name>
+    <Name Value='CompanyRegNo' L='Company Reg. No' SH='Company RegNo' FH='Company Reg. No' i18n='E'></Name>
+    <Name Value='CompanyShortName' L='Company Short Name' SH='CompanyShortName' FH='Company Short Name' i18n='E'></Name>
+    <Name Value='CompanyType' L='Company Type' SH='Company Type' FH='Company Type' i18n='E'></Name>
+    <Name Value='Completed' L='Completed[int%]' SH='Completed[int%]' FH='Completed[int%]' i18n='E'></Name>
+    <Name Value='CompulsoryMaternityLeave' L='Compulsory Maternity Leave' SH='CML' FH='Compulsory Maternity Leave' i18n='E'></Name>
+    <Name Value='ConPerD' L='Cnsm&#x2F;D' SH='Cnsm&#x2F;D' FH='Consumption per Dozen' i18n='E'></Name>
+    <Name Value='ConPerPc' L='Cnsm&#x2F;pc' SH='Cnsm&#x2F;pc' FH='Consumption per piece' i18n='E'></Name>
+    <Name Value='ConPerUnit' L='Cnsm&#x2F;U' SH='Cnsm&#x2F;U' FH='Consumption per Unit' i18n='E'></Name>
+    <Name Value='ConfirmPassword' L='ConfirmPassword' SH='ConfPass' FH='ConfirmPassword' i18n='E'></Name>
+    <Name Value='ConfirmStatus' L='Confirm Status' SH='CnfSts' FH='Confirm Status' i18n='E'></Name>
+    <Name Value='Contact' L='Contact' SH='Cont' FH='Contact' i18n='E'></Name>
+    <Name Value='ContactNo' L='Contact Number' SH='ContNo' FH='Contact No' i18n='E'></Name>
+    <Name Value='ContactPerson' L='Contact Person' SH='ContactPerson' FH='Contact Person' i18n='E'></Name>
+    <Name Value='ContactPersonDetails' L='Contact Details' SH='ContDetl' FH='Contact Person Details' i18n='E'></Name>
+    <Name Value='ContactType' L='Contact Type' SH='ContactType' FH='Contact Type' i18n='E'></Name>
+    <Name Value='Continue' L='Continue' SH='Continue' FH='Continue' i18n='E'></Name>
+    <Name Value='ContractValidity' L='Contract Validity' SH='Contract Validity' FH='Contract Validity' i18n='E'></Name>
+    <Name Value='ContractValue' L='Contract Value' SH='Contract Value' FH='Contract Value' i18n='E'></Name>
+    <Name Value='ConvertByGmtUnit' L='ConvByGU' SH='ConvByGU' FH='ConvertByGU' i18n='E'></Name>
+    <Name Value='ConvertionUnit' L='CU' SH='CU' FH='CU' i18n='E'></Name>
+    <Name Value='CostItem' L='cost Item' SH='cost Item' FH='cost Item' i18n='E'></Name>
+    <Name Value='CounWiseSize' L='C.wise Size' SH='C.wise Size' FH='C.wise Size' i18n='E'></Name>
+    <Name Value='Country' L='Country' SH='Country' FH='Country' i18n='E'></Name>
+    <Name Value='CountryCode' L='Country Code' SH='CountryCode' FH='Country Code' i18n='E'></Name>
+    <Name Value='CountryWiseSize' L='country Wise Size' SH='country Wise Size' FH='country Wise Size' i18n='E'></Name>
+    <Name Value='CoursePerCent' L='Course&#x2F;cm' SH='CPC' FH='Course&#x2F;cm' i18n='E'></Name>
+    <Name Value='CreateDate' L='Date of Creation' SH='DateofCreation' FH='Date of Creation' i18n='E'></Name>
+    <Name Value='CreatedBy' L='Created By' SH='Created By' FH='Created By' i18n='E'></Name>
+    <Name Value='CreatingUnit' L='Creating Unit' SH='CreatUnit' FH='CreatUnit' i18n='E'></Name>
+    <Name Value='CumilitiveProduction' L='CumProd' SH='CumProd' FH='Cum. Production' i18n='E'></Name>
+    <Name Value='CurrCode' L='Currency Code' SH='CurrCode' FH='Currency Code' i18n='E'></Name>
+    <Name Value='CurrRate' L='Currency Rate' SH='CurrRate' FH='Currency Rate' i18n='E'></Name>
+    <Name Value='Currency' L='Currency' SH='Crncy' FH='Currency' i18n='E'></Name>
+    <Name Value='CurrencySymbol' L='Curr.Symbol' SH='CurrSymbol' FH='Currency Symbol' i18n='E'></Name>
+    <Name Value='CurrentBasic' L='Current Basic' SH='CurrBasic' FH='Current Basic' i18n='E'></Name>
+    <Name Value='CurrentDesignation' L='Current Designation' SH='CurrDegi' FH='Current Designation' i18n='E'></Name>
+    <Name Value='CurrentGross' L='Current Gross' SH='CurrGross' FH='Current Gross' i18n='E'></Name>
+    <Name Value='CurrentJobGrade' L='Current Job Grade' SH='CurrJobGrade' FH='Current Job Grade' i18n='E'></Name>
+    <Name Value='CurrentWorkStatus' L='Current Work Status' SH='CurrntWorkSt' FH='Current Work Status' i18n='E'></Name>
+    <Name Value='Cut' L='Cut' SH='Cut' FH='Cut' i18n='E'></Name>
+  </C>
+  <D>
+    <Name Value='DLT' L='DLT' SH='DLT' FH='Dyeing Delivery Lead Time' i18n='E'></Name>
+    <Name Value='DU' L='DU' SH='DU' FH='DU' i18n='E'></Name>
+    <Name Value='DUBalQuantity' L='DU Bal Quantity' SH='DUBalQty' FH='DU Bal Quantity' i18n='E'></Name>
+    <Name Value='DUPlannedQty' L='DU Plnd Qty' SH='DUPlndQty' FH='DU Plnd Qty' i18n='E'></Name>
+    <Name Value='DaliveryTo' L='Dalivery To' SH='Dalivery To' FH='Dalivery To' i18n='E'></Name>
+    <Name Value='Dark' L='Dark' SH='Dark' FH='Dark' i18n='E'></Name>
+    <Name Value='Dashboard' L='Dashboard' SH='dashboard' FH='dashboard' i18n='E'></Name>
+    <Name Value='Date' L='Date' SH='Date' FH='Date' i18n='E'></Name>
+    <Name Value='DateFrom' L='Date From' SH='Dt.Frm' FH='Date From' i18n='E'></Name>
+    <Name Value='DateFromTo' L='Date From - To' SH='DtFrmTo' FH='DateFromTo' i18n='E'></Name>
+    <Name Value='DateNeeded.' L='Date Needed' SH='DtNd' FH='Date Needed' i18n='E'></Name>
+    <Name Value='DateOfAward' L='Date Awarded' SH='DtAwrd' FH='Date Awarded' i18n='E'></Name>
+    <Name Value='DateOfBirth' L='Date of Birth' SH='DOB' FH='Date of Birth' i18n='E'></Name>
+    <Name Value='DateTime' L='DateTime' SH='DateTime' FH='DateTime' i18n='E'></Name>
+    <Name Value='DateTo' L='To' SH='Date To' FH='Date To' i18n='E'></Name>
+    <Name Value='DateofRegistration' L='Date of Registration' SH='DOR' FH='Date of Registration' i18n='E'></Name>
+    <Name Value='Day' L='Day' SH='Day' FH='Day' i18n='E'></Name>
+    <Name Value='Days' L='day(s)' SH='days' FH='day(s)' i18n='E'></Name>
+    <Name Value='DaysLeft' L='Days Left' SH='DL' FH='Days Left' i18n='E'></Name>
+    <Name Value='Deadline' L='Deadline' SH='Deadline' FH='Deadline' i18n='E'></Name>
+    <Name Value='DeductFromSalary' L='Deduct from salary' SH='Deduct from salary' FH='Deduct from salary' i18n='E'></Name>
+    <Name Value='DeductPercentage' L='Deduct Percentage' SH='Deduct Percentage' FH='Deduct Percentage' i18n='E'></Name>
+    <Name Value='DeductedValue' L='Deducted Value' SH='Deducted Value' FH='Deducted Value' i18n='E'></Name>
+    <Name Value='Deduction' L='Deduction' SH='Deduction' FH='Deduction' i18n='E'></Name>
+    <Name Value='Delete' L='Delete' SH='Delete' FH='Delete' i18n='E'></Name>
+    <Name Value='DeliAddress' L='Deli Address' SH='DeliAdd' FH='DeliAdd' i18n='E'></Name>
+    <Name Value='DeliFinishDate' L='Delivery Finish Date' SH='DelFinDate' FH='Del Fin Date' i18n='E'></Name>
+    <Name Value='DeliQty' L='Delivered Qty' SH='DelQty' FH='Delivered Qty' i18n='E'></Name>
+    <Name Value='DeliStartDate' L='Delivery Start Date' SH='DelStDate' FH='Del St Date' i18n='E'></Name>
+    <Name Value='DeliveryAddress' L='DeliveryAddress' SH='DelAdd' FH='DelAdd' i18n='E'></Name>
+    <Name Value='DeliveryDate' L='Delivery Date' SH='DelDt' FH='Delivery Date' i18n='E'></Name>
+    <Name Value='DeliveryDateTime' L='DeliveryDate&amp;Time' SH='DelDt&amp;Tim' FH='DelDt&amp;Tim' i18n='E'></Name>
+    <Name Value='DeliveryFrom' L='DeliveryFrom' SH='Del From' FH='Delivery From' i18n='E'></Name>
+    <Name Value='DeliveryTo' L='DeliveryTo' SH='DeliTo' FH='Delivery To' i18n='E'></Name>
+    <Name Value='DelyRsn' L='DelyRsn' SH='DelyRsn' FH='DelyRsn' i18n='E'></Name>
+    <Name Value='DenialReason' L='Denial Reason' SH='DenialReason' FH='Denial Reason' i18n='E'></Name>
+    <Name Value='Denier' L='Denier' SH='Dnr' FH='Denier' i18n='E'></Name>
+    <Name Value='Department' L='Department' SH='Dept' FH='Department' i18n='E'></Name>
+    <Name Value='DepartmentBangla' L='Department(in Bangla)' SH='Dept(BN)' FH='Department(in Bangla)' i18n='E'></Name>
+    <Name Value='DepartmentHead' L='Department Head' SH='deptHead' FH='Department Head' i18n='E'></Name>
+    <Name Value='DeptLevelApproval' L='Dept Level Approval' SH='DeptLevelApproval' FH='Dept Level Approval' i18n='E'></Name>
+    <Name Value='Description' L='Description' SH='Description' FH='Description' i18n='E'></Name>
+    <Name Value='Descriptionofgoods' L='Description of goods' SH='Description of goods' FH='Description of goods' i18n='E'></Name>
+    <Name Value='Designation' L='Designation' SH='Desig' FH='Designation' i18n='E'></Name>
+    <Name Value='DesignationBangla' L='Designation(in Bangla)' SH='Desig(BN)' FH='Designation(in Bangla)' i18n='E'></Name>
+    <Name Value='DeviceID' L='Device ID' SH='DeviceID' FH='DeviceID' i18n='E'></Name>
+    <Name Value='DeviceName' L='Device Name' SH='DeviceName' FH='Device Name' i18n='E'></Name>
+    <Name Value='DfltOtIn' L='DfltOtIn' SH='DfltOtIn' FH='DefaultOTIn' i18n='E'></Name>
+    <Name Value='DfltOtOut' L='DfltOtIn' SH='DfltOtIn' FH='DefltOTOut' i18n='E'></Name>
+    <Name Value='DftlOtHr' L='Default OT Hour' SH='DfltOTHr' FH='DefaultOT' i18n='E'></Name>
+    <Name Value='DiaInch' L='Dia (Inch)' SH='Dia (Inch)' FH='Dia (Inch)' i18n='E'></Name>
+    <Name Value='Difference' L='Difference' SH='Diff' FH='Difference' i18n='E'></Name>
+    <Name Value='DiscountAmount' L='Discount Amount' SH='Discount Amount' FH='Discount Amount' i18n='E'></Name>
+    <Name Value='DiscountPercentage' L='Discount Percentage' SH='Discount Percentage' FH='Discount Percentage' i18n='E'></Name>
+    <Name Value='DistributeDate' L='Distribute Date' SH='DistriDate' FH='DistriDate' i18n='E'></Name>
+    <Name Value='District' L='District' SH='District' FH='District' i18n='E'></Name>
+    <Name Value='DoctorAgeApproval' L='Doctor&#x27;s Approval' SH='Doctor&#x27;s Approval' FH='Doctor&#x27;s Approval' i18n='E'></Name>
+    <Name Value='DoctorApprovalForConsecutive' L='Doctor&#x27;s approval needed for consecutive' SH='NeedDoctorAppForCons' FH='Doctor&#x27;s approval needed for consecutive' i18n='E'></Name>
+    <Name Value='Document' L='Document' SH='Document' FH='Document' i18n='E'></Name>
+    <Name Value='DrivingLicenseNo' L='Driving License No' SH='DrivingLicenseNo' FH='Driving License No' i18n='E'></Name>
+    <Name Value='DropdownGroup' L='DropdownGroup' SH='DropdownGroup' FH='Dropdown Group' i18n='E'></Name>
+    <Name Value='Dround' L='D&#x2F;Round' SH='D&#x2F;Round' FH='D&#x2F;Round' i18n='E'></Name>
+    <Name Value='DueDate' L='DueDt' SH='DueDt' FH='DueDate' i18n='E'></Name>
+    <Name Value='DueLoan' L='Due Loan' SH='DueLoan' FH='Due Loan' i18n='E'></Name>
+    <Name Value='DueQuantity' L='Due Quantity' SH='DueQty' FH='DueQty' i18n='E'></Name>
+    <Name Value='DueTime' L='DueTime' SH='DueTime' FH='DueTime' i18n='E'></Name>
+    <Name Value='Duration' L='Duration' SH='Durtn' FH='Duration' i18n='E'></Name>
+    <Name Value='DvCycl' L='DvCycl' SH='DvCycl' FH='DvCycl' i18n='E'></Name>
+    <Name Value='DyeDelDt' L='DyeDelDt' SH='DyeDelDt' FH='Dyeing Delivery Date' i18n='E'></Name>
+    <Name Value='DyeUnit' L='Dye Unit' SH='DU' FH='Dye Unit' i18n='E'></Name>
+    <Name Value='DyeUnitQty' L='DUQty' SH='DUQty' FH='Dye Quantity' i18n='E'></Name>
+  </D>
+  <E>
+    <Name Value='EarlyOut' L='EarlyOut' SH='EarlyOut' FH='EarlyOut' i18n='E'></Name>
+    <Name Value='EarnLeave' L='Earn Leave' SH='EL' FH='Earn Leave' i18n='E'></Name>
+    <Name Value='EarnedWages' L='Earned Wages' SH='Earned Wages' FH='Earned Wages' i18n='E'></Name>
+    <Name Value='Edit' L='Edit' SH='Edit' FH='Edit' i18n='E'></Name>
+    <Name Value='EducationLevel' L='Education Level' SH='EducLevel' FH='Education Level' i18n='E'></Name>
+    <Name Value='EffectDateTo' L='Effective Date to(If Periodic)' SH='Effective Date to(If Periodic)' FH='Effective Date to(If Periodic)' i18n='E'></Name>
+    <Name Value='EffectiveDate' L='Effective Date' SH='Effective Date' FH='Effective Date' i18n='E'></Name>
+    <Name Value='EffectiveDateFrom' L='Effective Date from' SH='EffDtfrom' FH='Effective Date from' i18n='E'></Name>
+    <Name Value='EffectiveMonth' L='Effective Month' SH='EffMon' FH='Effective Month' i18n='E'></Name>
+    <Name Value='EffectiveYear' L='Effective Year' SH='EffYear' FH='Effective Year' i18n='E'></Name>
+    <Name Value='ElementName' L='Element Name:' SH='EleName' FH='EleName' i18n='E'></Name>
+    <Name Value='ElementType' L='Element Type:' SH='ElementType' FH='ElementType' i18n='E'></Name>
+    <Name Value='EligibleDays' L='EligibleDays' SH='EligibleDays' FH='EligibleDays' i18n='E'></Name>
+    <Name Value='Email' L='Email:' SH='Email' FH='Email' i18n='E'></Name>
+    <Name Value='Emb' L='Emb' SH='Emb' FH='Emb' i18n='E'></Name>
+    <Name Value='Employee' L='Employee' SH='Emp' FH='Employee' i18n='E'></Name>
+    <Name Value='EmployeeID' L='Employee ID' SH='EmpID' FH='Employee ID' i18n='E'></Name>
+    <Name Value='EmployeeName' L='Employee Name' SH='EmpName' FH='Employee Name' i18n='E'></Name>
+    <Name Value='EmployeeNotAssigned' L='Employee not assigned' SH='Employee not assigned' FH='Employee not assigned' i18n='E'></Name>
+    <Name Value='EmployeeType' L='Employee Type' SH='EmpTyp' FH='Employee Type' i18n='E'></Name>
+    <Name Value='EncashableLeaveCompanyQuit' L='Encashable leave (Company Quit)' SH='EncashAmntCompQuit' FH='Encashable leave (Company Quit)' i18n='E'></Name>
+    <Name Value='EncashableLeaveDuringJob' L='Encashable leave (during job period)' SH='EncasAmntDurJob' FH='Encashable leave (during job period)' i18n='E'></Name>
+    <Name Value='EncashmentAndCarry Over' L='Encashment &amp; Carry Over' SH='Encashment &amp; Carry Over' FH='Encashment &amp; Carry Over' i18n='E'></Name>
+    <Name Value='End' L='End' SH='End' FH='End' i18n='E'></Name>
+    <Name Value='EndBonus' L='End Bonus' SH='End Bonus' FH='End Bonus' i18n='E'></Name>
+    <Name Value='EndDate' L='End Date:' SH='EndDt' FH='End Date' i18n='E'></Name>
+    <Name Value='EndTime' L='End Time:' SH='EndTime' FH='End Time' i18n='E'></Name>
+    <Name Value='EnjoyedLeave' L='Enjoyed Leave' SH='EnjoyedLv' FH='Enjoyed Leave' i18n='E'></Name>
+    <Name Value='EstFinishDate' L='Est Finish Date' SH='EFD' FH='EstFinDate' i18n='E'></Name>
+    <Name Value='EstiFinishDateDays' L='Est Finish Days' SH='EFD' FH='Est Finish Days' i18n='E'></Name>
+    <Name Value='EstimatedFinishHourTimeDurationHours' L='Est Finish Hours' SH='EFH' FH='Est Finish Hours' i18n='E'></Name>
+    <Name Value='ExactInTime' L='Exact InTime' SH='ExactInTime' FH='Exact InTime' i18n='E'></Name>
+    <Name Value='ExactOutTime' L='Exact OutTime' SH='ExactOutTime' FH='Exact OutTime' i18n='E'></Name>
+    <Name Value='ExpiryDate' L='Expiry Date' SH='Expiry Date' FH='Expiry Date' i18n='E'></Name>
+    <Name Value='ExtraItemName' L='Extra Item Name' SH='Ext Itm Name' FH='Extra Item Name' i18n='E'></Name>
+  </E>
+  <F>
+    <Name Value='FCRNo' L='FCR No' SH='FCR No' FH='FCR No' i18n='E'></Name>
+    <Name Value='Fabric' L='Fabric' SH='Fab' FH='Fabric' i18n='E'></Name>
+    <Name Value='Fabric Order No' L='FabricOrder No' SH='FabOrdNo' FH='FabOrderNo' i18n='E'></Name>
+    <Name Value='FabricColor' L='Fabric Color' SH='FabColor' FH='Fabric Color' i18n='E'></Name>
+    <Name Value='FabricComposition' L='Fabric Composition' SH='FabCmpo' FH='Fabric Composition' i18n='E'></Name>
+    <Name Value='FabricConst' L='FabricConst' SH='FabricConst' FH='FabricConst' i18n='E'></Name>
+    <Name Value='FabricGsm' L='Fabric GSM' SH='Fabric GSM' FH='Fabric GSM' i18n='E'></Name>
+    <Name Value='FabricOption' L='Fabric Option' SH='FabOptn' FH='Fabric Option' i18n='E'></Name>
+    <Name Value='FabricOrderDate' L='Fabric Order Date' SH='FODt' FH='FabOrdDate' i18n='E'></Name>
+    <Name Value='FabricPrice' L='FabPr' SH='FabPr' FH='Fabric Price' i18n='E'></Name>
+    <Name Value='FabricQuantity' L='FabQty' SH='FabQty' FH='Fabric Quantity' i18n='E'></Name>
+    <Name Value='FabricStock' L='Fabric Stock' SH='Fabric Stock' FH='Fabric Stock' i18n='E'></Name>
+    <Name Value='FabricSupplier' L='Fabric supplier' SH='Fabric supplier' FH='Fabric supplier' i18n='E'></Name>
+    <Name Value='FabricTreatment' L='Fabric Treatement' SH='FabTreat' FH='Fabric Treatment' i18n='E'></Name>
+    <Name Value='FacOrdNo' L='Factory Order No' SH='FacOrdNo' FH='Factory Order No' i18n='E'></Name>
+    <Name Value='FactoryOrderNo' L='Factory Order No' SH='FacOrNo' FH='FacOrNo' i18n='E'></Name>
+    <Name Value='FactoryProductCode' L='FactoryProductCode' SH='FacProdCode' FH='FacProdCode' i18n='E'></Name>
+    <Name Value='FathersName' L='Father&#x27;s Name' SH='Father&#x27;sName' FH='Father&#x27;s Name' i18n='E'></Name>
+    <Name Value='Fax' L='Fax:' SH='Fax' FH='Fax' i18n='E'></Name>
+    <Name Value='February' L='February' SH='Feb' FH='February' i18n='E'></Name>
+    <Name Value='Feeder' L='Feeder' SH='Fdr' FH='Feeder' i18n='E'></Name>
+    <Name Value='FestivalLeave' L='Festival Leave' SH='Festival Leave' FH='Festival Leave' i18n='E'></Name>
+    <Name Value='File' L='File' SH='File' FH='File' i18n='E'></Name>
+    <Name Value='Fin' L='Fin' SH='Fin' FH='Fin' i18n='E'></Name>
+    <Name Value='FinalTolAfter' L='Final Tolerance After' SH='FinalTolAfter' FH='Final Tolerance After' i18n='E'></Name>
+    <Name Value='FinishDate' L='Finish Date' SH='FinDt' FH='Finish Date' i18n='E'></Name>
+    <Name Value='FinishDateTime' L='Fin Date and Time' SH='FinDtTm' FH='FinishDateTime' i18n='E'></Name>
+    <Name Value='FinishDia' L='FinishDia' SH='FinDia' FH='FinishDia' i18n='E'></Name>
+    <Name Value='FinishDiaSize' L='FinishDia&#x2F;Size' SH='FinDia&#x2F;Sz' FH='FinishDia&#x2F;Size' i18n='E'></Name>
+    <Name Value='FinishForm' L='FinishForm' SH='FinisFrm' FH='FinisFrm' i18n='E'></Name>
+    <Name Value='FinishTime' L='Finish Time' SH='FinTm' FH='Finish Time' i18n='E'></Name>
+    <Name Value='FinishType' L='Finish Type' SH='FnTyp' FH='FinType' i18n='E'></Name>
+    <Name Value='FirstName' L='First Name:' SH='FirstName' FH='First Name' i18n='E'></Name>
+    <Name Value='Flat' L='Flat:' SH='Flat' FH='Flat' i18n='E'></Name>
+    <Name Value='Floor' L='Floor' SH='Floor' FH='Floor' i18n='E'></Name>
+    <Name Value='FloorLevelApproval' L='Floor Level Approval' SH='FloorLevelApproval' FH='FloorLevelApproval' i18n='E'></Name>
+    <Name Value='Food' L='Food' SH='FA' FH='Food' i18n='E'></Name>
+    <Name Value='FreightCost' L='Freight Cost' SH='Freight Cost' FH='Freight Cost' i18n='E'></Name>
+    <Name Value='FrequencyOfAccrualDays' L='Frequency of Accrual Days' SH='FreqOfAccrDays' FH='Frequency of Accrual Days' i18n='E'></Name>
+    <Name Value='From' L='From' SH='From' FH='From' i18n='E'></Name>
+    <Name Value='FromJoiningDateOfEmployee' L='Joining date of employee' SH='JoinDtOfEmp' FH='Joining date of employee' i18n='E'></Name>
+    <Name Value='FullHeader' L='Full Header' SH='FH' FH='Full Header' i18n='E'></Name>
+  </F>
+  <G>
+    <Name Value='GAF' L='GAF' SH='GAF' FH='GAF' i18n='E'></Name>
+    <Name Value='GLT' L='GLT' SH='GLT' FH='Germent lead time' i18n='E'></Name>
+    <Name Value='GMTCategory' L='GMT Category' SH='GMTCategory' FH='GMT Category' i18n='E'></Name>
+    <Name Value='GMTColor' L='GMT Color' SH='GMT Color' FH='GMT Color' i18n='E'></Name>
+    <Name Value='GMTQuantity' L='GMT Quantity' SH='GMTqty' FH='GMT Quantity' i18n='E'></Name>
+    <Name Value='GMTSize' L='GMT Size' SH='GMTSize' FH='GMT Size' i18n='E'></Name>
+    <Name Value='GMTTypeCode' L='GMT Type Code' SH='GMTTypeCode' FH='GMT Type Code' i18n='E'></Name>
+    <Name Value='GMTUnit' L='GMT Unit' SH='GU' FH='GMT Unit' i18n='E'></Name>
+    <Name Value='GMTUnitQuantity' L='GMT Unit Quantity' SH='GUQty' FH='GMTUnitQty' i18n='E'></Name>
+    <Name Value='GSM' L='GSM' SH='GSM' FH='GSM' i18n='E'></Name>
+    <Name Value='GUBalQty' L='GU Bal Qty' SH='GUBalQty' FH='GU Bal Qty' i18n='E'></Name>
+    <Name Value='GUPlannedQty' L='GU Plnd Qty' SH='GUPlndQty' FH='GU Plnd Qty' i18n='E'></Name>
+    <Name Value='Garment Extra Requirements' L='GER' SH='GER' FH='GMT Extra' i18n='E'></Name>
+    <Name Value='GarmentCategory' L='GMT Category' SH='GMTCat' FH='GMT Category' i18n='E'></Name>
+    <Name Value='GarmentImage' L='GMT Img' SH='GMTImg' FH='GMT Img' i18n='E'></Name>
+    <Name Value='GarmentType' L='GMT Type' SH='GMTType' FH='GMT Type' i18n='E'></Name>
+    <Name Value='GarmentsColor' L='GMTColor' SH='GMTColor' FH='GMTColor' i18n='E'></Name>
+    <Name Value='GarmentsSize' L='GMT Size' SH='GMTSize' FH='GMT Size' i18n='E'></Name>
+    <Name Value='GarmentsType' L='GMT Type' SH='GMTtyp' FH='GMT Type' i18n='E'></Name>
+    <Name Value='GarmentsWashType' L='GMTWashTyp' SH='GMTWashTyp' FH='GMTWashTyp' i18n='E'></Name>
+    <Name Value='Gauge' L='Gauge' SH='Gauge' FH='Gauge' i18n='E'></Name>
+    <Name Value='Gender' L='Gender:' SH='Gender' FH='Gender' i18n='E'></Name>
+    <Name Value='General' L='General' SH='General' FH='General' i18n='E'></Name>
+    <Name Value='GlobalLocation' L='leadobal Location' SH='Global Location' FH='Global Location' i18n='E'></Name>
+    <Name Value='GmtMeasurementList' L='GMT Meas. List' SH='GMList' FH='GMT Meas. List' i18n='E'></Name>
+    <Name Value='GmtTechnicalDetail' L='GMT Tech. Detail' SH='GMTTechDtl' FH='GMT Tech Detail' i18n='E'></Name>
+    <Name Value='Grade' L='Grade' SH='GR' FH='Grade' i18n='E'></Name>
+    <Name Value='GramPerSquareMeter' L='GSM' SH='GSM' FH='GSM' i18n='E'></Name>
+    <Name Value='Gross' L='Gross' SH='GP' FH='Gross' i18n='E'></Name>
+    <Name Value='GrossSalary' L='GrossPay' SH='GP' FH='GrossPay' i18n='E'></Name>
+    <Name Value='Grouprole' L='Group Role' SH='Group Role' FH='Group Role' i18n='E'></Name>
+    <Name Value='Guardian' L='Guardian' SH='Guardian' FH='Guardian' i18n='E'></Name>
+  </G>
+  <H>
+    <Name Value='HSCode' L='HS Code' SH='HS Code' FH='HS Code' i18n='E'></Name>
+    <Name Value='HalfDayLeaveAllowed' L='Half day leave allowed' SH='HalfDayLvAllowed' FH='Half day leave allowed' i18n='E'></Name>
+    <Name Value='HeadName' L='Head Name' SH='HeadName' FH='Head Name' i18n='E'></Name>
+    <Name Value='HighestEntitledLeaveForEncashment' L='Highest entitled leave&#x2F;maximum for Encashment' SH='HighestEntLvForEncah' FH='Highest entitled leave&#x2F;maximum for Encashment' i18n='E'></Name>
+    <Name Value='Hobbies' L='Hobbies' SH='Hobbies' FH='Hobbies' i18n='E'></Name>
+    <Name Value='HolidayName' L='Holiday Name:' SH='HolidayName' FH='Holiday Name' i18n='E'></Name>
+    <Name Value='HolidayType' L='Holiday Type:' SH='HolidayType' FH='Holiday Type' i18n='E'></Name>
+    <Name Value='Holidays' L='Holidays' SH='Holidays' FH='Holidays' i18n='E'></Name>
+    <Name Value='HomePhone' L='Home Phone:' SH='HomePhone' FH='Home Phone' i18n='E'></Name>
+    <Name Value='Hours' L='Hours:' SH='Hours' FH='Issue Hours' i18n='E'></Name>
+    <Name Value='HouseNo' L='House No:' SH='HouseNo' FH='House No' i18n='E'></Name>
+    <Name Value='HouseRent' L='House Rent' SH='HRA' FH='House Rent' i18n='E'></Name>
+  </H>
+  <I>
+    <Name Value='IBanNumber' L='IBAN No' SH='IBanNumber' FH='IBAN No' i18n='E'></Name>
+    <Name Value='IDCardNo' L='ID Card' SH='IDCard' FH='ID Card' i18n='E'></Name>
+    <Name Value='INTime' L='InTime' SH='InTime' FH='InTime' i18n='E'></Name>
+    <Name Value='Id' L='Id' SH='Id' FH='Id' i18n='E'></Name>
+    <Name Value='IfterAllowance' L='Iftar Allowance' SH='Iftar' FH='Iftar Allowance' i18n='E'></Name>
+    <Name Value='Image' L='Image:' SH='Image' FH='Image' i18n='E'></Name>
+    <Name Value='ImportCost' L='ImportCost' SH='ImportCost' FH='Import Cost' i18n='E'></Name>
+    <Name Value='InOutDate' L='In Out Date' SH='InOutDate' FH='InOutDate' i18n='E'></Name>
+    <Name Value='InOutTime' L='In Out Time' SH='InOutTime' FH='InOutTime' i18n='E'></Name>
+    <Name Value='InParcentage' L='in percentage' SH='in percentage' FH='in percentage' i18n='E'></Name>
+    <Name Value='InPercentage' L='In Percentage' SH='InPercentage' FH='In Percentage' i18n='E'></Name>
+    <Name Value='Incharge' L='Incharge' SH='Incharge' FH='Incharge' i18n='E'></Name>
+    <Name Value='IncomeTax' L='Income Tax' SH='Income Tax' FH='Income Tax' i18n='E'></Name>
+    <Name Value='IncrementAmount' L='Increment Amount' SH='IncreAmt' FH='Increment Amount' i18n='E'></Name>
+    <Name Value='IncrementDate' L='Increment Date' SH='IncreDate' FH='Increment Date' i18n='E'></Name>
+    <Name Value='IncrementParcent' L='Increment %' SH='Incre %' FH='Increment %' i18n='E'></Name>
+    <Name Value='IncrementType' L='IncrementType' SH='IncreTyp' FH='IncrementType' i18n='E'></Name>
+    <Name Value='Installment' L='Installment' SH='Installment' FH='Installment' i18n='E'></Name>
+    <Name Value='InstallmentsNumber' L='No of Installments' SH='NoOfInstallments' FH='No of Installments' i18n='E'></Name>
+    <Name Value='Institute' L='Institute' SH='Institute' FH='Institute' i18n='E'></Name>
+    <Name Value='InsuranceCoveredBy' L='Insurance Covered By' SH='Insurance Covered By' FH='Insurance Covered By' i18n='E'></Name>
+    <Name Value='Intercom' L='Intercom' SH='Int.com' FH='Intercom' i18n='E'></Name>
+    <Name Value='InvoluntaryTermination' L='Involuntary Termination' SH='InvolTermi' FH='Involuntary Termination' i18n='E'></Name>
+    <Name Value='IsActive' L='IsActive:' SH='IsActive' FH='IsActive' i18n='E'></Name>
+    <Name Value='IsIssue' L='IsIssue' SH='IsIssue' FH='IsIssue' i18n='E'></Name>
+    <Name Value='IsMandatory' L='Is Mandatory:' SH='IsMandatory' FH='Is Mandatory' i18n='E'></Name>
+    <Name Value='IsPartialDayLeaveConsiderAsHalfDayLeave' L='Is Partial day leave consider as half day leave' SH='PartlDayLvConHalfDayLv' FH='Is Partial day leave consider as half day leave' i18n='E'></Name>
+    <Name Value='Issue' L='Issue' SH='Issue' FH='Issue' i18n='E'></Name>
+    <Name Value='IssueBalance' L='Issue Balance' SH='IssueBal' FH='IssueBlnc' i18n='E'></Name>
+    <Name Value='IssueDt' L='Issue Date' SH='IssueDt' FH='Issue Date' i18n='E'></Name>
+    <Name Value='IssueDtFT' L='IssueDtFT' SH='IssueDtFT' FH='IssueDtFT' i18n='E'></Name>
+    <Name Value='IssueNo' L='Issue No' SH='IsuNo' FH='IssueNo' i18n='E'></Name>
+    <Name Value='IssueQuantity' L='Issue Quantity' SH='IsuQty' FH='Issue Quantity' i18n='E'></Name>
+    <Name Value='IssueType' L='Issue Type' SH='Issue Type' FH='Issue Type' i18n='E'></Name>
+    <Name Value='IssuedBy' L='Issued By' SH='IsuBy' FH='Issued By' i18n='E'></Name>
+    <Name Value='IssuedQty' L='Issued Qty' SH='IssuedQty' FH='Issued Qty' i18n='E'></Name>
+    <Name Value='IssuedTo' L='Issued To' SH='IssuedTo' FH='Issued To' i18n='E'></Name>
+    <Name Value='IssuingStock' L='Issuing Stock' SH='IssuingStk' FH='IssuingStk' i18n='E'></Name>
+    <Name Value='Item' L='Item :' SH='Item' FH='Item' i18n='E'></Name>
+    <Name Value='ItemBrandName' L='Item Brand' SH='ItemBrand' FH='ItemBrand' i18n='E'></Name>
+    <Name Value='ItemCategory' L='Item Category:' SH='ItmCtg' FH='Item Category' i18n='E'></Name>
+    <Name Value='ItemName' L='Item Name:' SH='ItmNam' FH='Item Name' i18n='E'></Name>
+    <Name Value='ItemType' L='Item Type:' SH='ItmTyp' FH='Item Type' i18n='E'></Name>
+    <Name Value='ItemTypeCategory' L='ItemTypeCategory' SH='ItemTypCat' FH='Item Type Category' i18n='E'></Name>
+    <Name Value='ItemTypeSubCategory' L='ItemTypeSubCategory' SH='ItemTypSubCat' FH='ItemTypeSubCategory' i18n='E'></Name>
+  </I>
+  <J>
+    <Name Value='January' L='January' SH='Jan' FH='January' i18n='E'></Name>
+    <Name Value='JobAgreeType' L='Job Agree Type' SH='JobAgreeType' FH='Job Agree Type' i18n='E'></Name>
+    <Name Value='JobDuration' L='Job Duration' SH='JobDur' FH='Job Duration' i18n='E'></Name>
+    <Name Value='JobGrade' L='Job Grade' SH='JobGrade' FH='Job Grade' i18n='E'></Name>
+    <Name Value='JobLevel' L='Job Level' SH='JobLevel' FH='Job Level' i18n='E'></Name>
+    <Name Value='JobLevelWiseLeavePolicy' L='Job level wise leave policy' SH='Job level wise leave policy' FH='Job level wise leave policy' i18n='E'></Name>
+    <Name Value='JobTitle' L='Job Title' SH='JobTitle' FH='Job Title' i18n='E'></Name>
+    <Name Value='JoinDate' L='Date of Joining' SH='DOJ' FH='Date of Joining' i18n='E'></Name>
+    <Name Value='JoinDateFrom' L='Join Date From' SH='JoinDtFrom' FH='Join Date From' i18n='E'></Name>
+    <Name Value='JoinDateTo' L='Join Date To' SH='Join Dt To' FH='Join Date To' i18n='E'></Name>
+    <Name Value='July' L='July' SH='July' FH='July' i18n='E'></Name>
+    <Name Value='June' L='June' SH='June' FH='June' i18n='E'></Name>
+  </J>
+  <K>
+    <Name Value='KPOStatus' L='KPO Status' SH='KPO St' FH='KPO Status' i18n='E'></Name>
+    <Name Value='KniDelDt' L='KniDelDt' SH='KniDelDt' FH='Knitting Delivery Date' i18n='E'></Name>
+    <Name Value='Knit Supplier' L='Knit Supplier' SH='KntSup' FH='Knit Supplier' i18n='E'></Name>
+    <Name Value='KnitBuyer' L='Knit Buyer' SH='KntBuyer' FH='Knit Buyer' i18n='E'></Name>
+    <Name Value='KnitBuyerDetl' L='Knit Buyer Detail' SH='Knt. Buyer Detl' FH='Knit Buyer Detail' i18n='E'></Name>
+    <Name Value='KnitColor' L='Knit Color' SH='KnitColr' FH='Knit Color' i18n='E'></Name>
+    <Name Value='KnitDaysLeft' L='Knit Days Left' SH='KDLeft' FH='Knit Days Left' i18n='E'></Name>
+    <Name Value='KnitDye' L='KnitDye' SH='KnitDye' FH='KnitDye' i18n='E'></Name>
+    <Name Value='KnitFinDate' L='Knt. Finish Date' SH='KntFinDt' FH='Knt Finish Date' i18n='E'></Name>
+    <Name Value='KnitLeadTime' L='Knit Lead Time' SH='KLT' FH='Knit Lead Time' i18n='E'></Name>
+    <Name Value='KnitOrdate' L='Knitting Order Date' SH='KODate' FH='Knitting Order Date' i18n='E'></Name>
+    <Name Value='KnitProdtnOrdQty' L='KPO Qty' SH='KPOQty' FH='Knt Prod Ord Qty' i18n='E'></Name>
+    <Name Value='KnitResp' L='Knt Respo' SH='KntResp' FH='Knt Responsible' i18n='E'></Name>
+    <Name Value='KnitStartDate' L='Knt Start Date' SH='KSD' FH='Knt Start Date' i18n='E'></Name>
+    <Name Value='KnitgRespContact' L='Knt Responsible Contact' SH='KntRespCont' FH='KntRespContact' i18n='E'></Name>
+    <Name Value='Knitting Order No' L='Knt Order No' SH='KONo' FH='KntOrdNo' i18n='E'></Name>
+    <Name Value='KnittingProductionOrderNo' L='KPO' SH='KPO' FH='Knt Prod Ord No' i18n='E'></Name>
+    <Name Value='KnittingQty' L='Knt. Qty' SH='KntQty' FH='Knt Qty' i18n='E'></Name>
+  </K>
+  <L>
+    <Name Value='LCCharge' L='LC Charge' SH='LC Charge' FH='LC Charge' i18n='E'></Name>
+    <Name Value='LCDate' L='LC Date' SH='LC Date' FH='LC Date' i18n='E'></Name>
+    <Name Value='LCExpiryDate' L='LC Expiry Date' SH='LC Expiry Date' FH='LC Expiry Date' i18n='E'></Name>
+    <Name Value='LCNo' L='LC No' SH='LC No' FH='LC No' i18n='E'></Name>
+    <Name Value='LCQty' L='LC Qty' SH='LC Qty' FH='LC Qty' i18n='E'></Name>
+    <Name Value='LCValue' L='LC Value' SH='LC Value' FH='LC Value' i18n='E'></Name>
+    <Name Value='LDBCNo' L='LDBC No' SH='LDBC No' FH='LDBC No' i18n='E'></Name>
+    <Name Value='LDFabric' L='LD Fabric' SH='LDFab' FH='LDFabric' i18n='E'></Name>
+    <Name Value='LDImage' L='Lab Dip Image' SH='LDImage' FH='LDImage' i18n='E'></Name>
+    <Name Value='LDOption' L='LDOption' SH='LDOpt' FH='LDOption' i18n='E'></Name>
+    <Name Value='LDReceiptRemarks' L='LDReceiptRemarks' SH='LDRcptRemarks' FH='LDReceiptRemarks' i18n='E'></Name>
+    <Name Value='LDYarn' L='LD Yarn' SH='LD Yarn' FH='LD Yarn' i18n='E'></Name>
+    <Name Value='LDresp' L='LD Responsible' SH='LDResp' FH='LD Resp' i18n='E'></Name>
+    <Name Value='LabdipDevNo' L='Labdip Develop No' SH='LDDevNo' FH='LDDevNo' i18n='E'></Name>
+    <Name Value='Label' L='Label' SH='Lbl' FH='Label' i18n='E'></Name>
+    <Name Value='Language' L='Language' SH='Lang' FH='Language' i18n='E'></Name>
+    <Name Value='LastDate' L='LastDate' SH='LstDt' FH='LastDate' i18n='E'></Name>
+    <Name Value='LastIncrementDate' L='Last Increment Date' SH='LastIncreDt' FH='Last Increment Date' i18n='E'></Name>
+    <Name Value='LastName' L='Last Name' SH='LastName' FH='Last Name' i18n='E'></Name>
+    <Name Value='Late' L='Late' SH='Late' FH='Late' i18n='E'></Name>
+    <Name Value='LateDays' L='LateDays' SH='LateDays' FH='LateDays' i18n='E'></Name>
+    <Name Value='LateMin' L='Late Min' SH='LateMin' FH='Late Min' i18n='E'></Name>
+    <Name Value='LateStatus' L='Late Status' SH='Lt.Status' FH='Late Status' i18n='E'></Name>
+    <Name Value='LateTime' L='Late Time' SH='Late Time' FH='Late Time' i18n='E'></Name>
+    <Name Value='LeadTime' L='Lead Time' SH='LT' FH='Lead Time' i18n='E'></Name>
+    <Name Value='LeavLocation' L='Availability During Leave' SH='LeaveLocation' FH='Availability During Leave' i18n='E'></Name>
+    <Name Value='Leave' L='Leave' SH='Leave' FH='Leave' i18n='E'></Name>
+    <Name Value='LeaveAdjust' L='LeaveAdjust' SH='LeaveAdjust' FH='LeaveAdjust' i18n='E'></Name>
+    <Name Value='LeaveCanBeUseAfter' L='Leave can be use after' SH='Leave can be use after' FH='Leave can be use after' i18n='E'></Name>
+    <Name Value='LeaveCode' L='Leave Code' SH='LvCd' FH='Leave Code' i18n='E'></Name>
+    <Name Value='LeaveCycle' L='Leave Cycle' SH='LvCycl' FH='Leave Cycle' i18n='E'></Name>
+    <Name Value='LeaveDate' L='Leave Date' SH='LeaveDt' FH='Leave Date' i18n='E'></Name>
+    <Name Value='LeavePolicyEffFrom' L='Leave policy effective from' SH='LvPlcyEffFrm' FH='Leave policy effective from' i18n='E'></Name>
+    <Name Value='LeaveStatus' L='Leave Status' SH='LeaveStatus' FH='Leave Status' i18n='E'></Name>
+    <Name Value='LeaveTaken' L='Leave Taken' SH='Leave Taken' FH='Leave Taken' i18n='E'></Name>
+    <Name Value='LeaveType' L='Leave Type' SH='Leave Type' FH='Leave Type' i18n='E'></Name>
+    <Name Value='LeaveWithoutPay' L='Leave Without Pay' SH='LWP' FH='Leave Without Pay' i18n='E'></Name>
+    <Name Value='Length' L='Length:' SH='Lnth' FH='Length' i18n='E'></Name>
+    <Name Value='License' L='License' SH='License' FH='License' i18n='E'></Name>
+    <Name Value='LicenseExpiryDate' L='License Expiry Date' SH='LicenseExpiryDate' FH='License Expiry Date' i18n='E'></Name>
+    <Name Value='Line' L='Line' SH='Line' FH='Line' i18n='E'></Name>
+    <Name Value='Link' L='Link' SH='Link' FH='Link' i18n='E'></Name>
+    <Name Value='Loan' L='Loan' SH='LN' FH='Loan' i18n='E'></Name>
+    <Name Value='LoanAmount' L='LoanAmount' SH='LoanAmnt' FH='Loan Amount' i18n='E'></Name>
+    <Name Value='LoanAppdate' L='Loan App. Date' SH='LoanAppdate' FH='Loan App. Date' i18n='E'></Name>
+    <Name Value='LoanNeededDate' L='Loan Needed Date' SH='LoanNeededDate' FH='Loan Needed Date' i18n='E'></Name>
+    <Name Value='LoanPeriod' L='Loan Period' SH='LoanPeriod' FH='Loan Period' i18n='E'></Name>
+    <Name Value='LoanType' L='Loan Type' SH='LoanType' FH='Loan Type' i18n='E'></Name>
+    <Name Value='Localchargestobepaidby' L='Local charges to be paid by' SH='Local charges to be paid by' FH='Local charges to be paid by' i18n='E'></Name>
+    <Name Value='LotBalanceQty' L='Lot Balance Qty' SH='LotBlQty' FH='LotBlQty' i18n='E'></Name>
+    <Name Value='LotMapQty' L='Lot Map Qty' SH='LotMapQty' FH='Map Quantity' i18n='E'></Name>
+    <Name Value='LotNo' L='Lot No' SH='LotNo' FH='LotNo' i18n='E'></Name>
+    <Name Value='LotQty' L='Lot Qty' SH='LotQty' FH='Lot Quantity' i18n='E'></Name>
+    <Name Value='LunchTime' L='LunchTime' SH='LunchTime' FH='LunchTime' i18n='E'></Name>
+    <Name Value='LunchTimeFrom' L='Lunch Time From' SH='Lunch Time From' FH='Lunch Time From' i18n='E'></Name>
+    <Name Value='LunchTimeTo' L='Lunch Time To' SH='Lunch Time To' FH='Lunch Time To' i18n='E'></Name>
+  </L>
+  <M>
+    <Name Value='MCDiasize' L='MCDia&#x2F;Size' SH='MCDia&#x2F;Size' FH='MCDia Size' i18n='E'></Name>
+    <Name Value='MachineBrand' L='MC Brand' SH='MCBrand' FH='M&#x2F;C Brand' i18n='E'></Name>
+    <Name Value='MachineCategory' L='Machine Category' SH='MCcat' FH='M&#x2F;C Category' i18n='E'></Name>
+    <Name Value='MachineDia&#x2F;Size' L='Mc. Dia&#x2F;Size' SH='MCdia&#x2F;Size' FH='MC Dia&#x2F;Size' i18n='E'></Name>
+    <Name Value='MachineDiaType' L='Mch. Dia Type' SH='M&#x2F;C Dia Type' FH='M&#x2F;C Dia Type' i18n='E'></Name>
+    <Name Value='MachineDiameter' L='Machine Dia' SH='MCdia' FH='M&#x2F;C Dia' i18n='E'></Name>
+    <Name Value='MachineNo' L='MachineNo' SH='MCNo' FH='Month' i18n='E'></Name>
+    <Name Value='MachineNumber' L='Mch. No' SH='MCNo' FH='Mch No' i18n='E'></Name>
+    <Name Value='MachineSize' L='Machine Size' SH='MCSize' FH='MCSize' i18n='E'></Name>
+    <Name Value='MachineStatus' L='Machine Status' SH='MCStatus' FH='Machine Status' i18n='E'></Name>
+    <Name Value='MachineType' L='Machine Type' SH='MCtype' FH='M&#x2F;C Type' i18n='E'></Name>
+    <Name Value='MainBuyer' L='Main Buyer' SH='MainBuyer' FH='MainBuyer' i18n='E'></Name>
+    <Name Value='MainContact' L='Main Contact' SH='MainCont.' FH='Main Contact' i18n='E'></Name>
+    <Name Value='MainProcess' L='Main Proc' SH='MainPrcs' FH='MainProc' i18n='E'></Name>
+    <Name Value='MainReference' L='Main Reference' SH='MainRef.' FH='Main Reference' i18n='E'></Name>
+    <Name Value='MainStock' L='Main Stock' SH='MainStock' FH='MainStock' i18n='E'></Name>
+    <Name Value='Major' L='Major &#x2F; Subjects' SH='Major' FH='Major &#x2F; Subjects' i18n='E'></Name>
+    <Name Value='MapNo' L='Map No' SH='MapNo' FH='Map No' i18n='E'></Name>
+    <Name Value='March' L='March' SH='Mar' FH='March' i18n='E'></Name>
+    <Name Value='MaritalStatus' L='Marital Status' SH='Marital Status' FH='Marital Status' i18n='E'></Name>
+    <Name Value='MarriageCertificate' L='Marriage Certificate No.' SH='MarrCertNo' FH='Marriage Certificate No' i18n='E'></Name>
+    <Name Value='MasterExportLC' L='Master&#x2F;Export LC' SH='Master&#x2F;Export LC' FH='Master&#x2F;Export LC' i18n='E'></Name>
+    <Name Value='MasterLCDate' L='Master LC Date' SH='Master LC Date' FH='Master LC Date' i18n='E'></Name>
+    <Name Value='MasterLCNo' L='Master LC No' SH='Master LC No' FH='Master LC No' i18n='E'></Name>
+    <Name Value='MasterLCValue' L='Master LC Value' SH='Master LC Value' FH='Master LC Value' i18n='E'></Name>
+    <Name Value='Maturitydate' L='Maturity date' SH='Maturity date' FH='Maturity date' i18n='E'></Name>
+    <Name Value='MaximumConsecutiveDaysAllowed' L='Maximum &#x27;consecutive&#x27; days allowed' SH='MaxConsDays&#x2F;Mnth' FH='Maximum &#x27;consecutive&#x27; days allowed' i18n='E'></Name>
+    <Name Value='MaximumEmployeesCaTakeLeaveOnSameDay' L='Maximum employees can take leave on same day' SH='MaxEmpCanakeLv&#x2F;Mnth' FH='Maximum employees can take leave on same day' i18n='E'></Name>
+    <Name Value='MaximumInstallmentAmount' L='Maximum Installment Amount' SH='MaxInstallAmt' FH='Maximum Installment Amount' i18n='E'></Name>
+    <Name Value='MaximumLeaveAllowedAMonth' L='Maximum leaves allowed in a month' SH='MaxLv&#x2F;Mnth' FH='Maximum leaves allowed in a month' i18n='E'></Name>
+    <Name Value='MaximumLoanAmount' L='Maximum Loan Amount' SH='MaxLoanAmt' FH='Maximum Loan Amount' i18n='E'></Name>
+    <Name Value='MaximumNumberInstallments' L='Maximum Number Of Installments' SH='MaxNoInstall' FH='Maximum Number Of Installments' i18n='E'></Name>
+    <Name Value='May' L='May' SH='May' FH='May' i18n='E'></Name>
+    <Name Value='Measlength' L='Meas. Length' SH='M&#x2F;Lnth' FH='Meas Length' i18n='E'></Name>
+    <Name Value='MeasurementCost' L='Meas(CM)' SH='Meas(CM)' FH='Measurememt (CM)' i18n='E'></Name>
+    <Name Value='MeasurementUnit' L='Meas Unit' SH='M&#x2F;Unit' FH='Meas Unit' i18n='E'></Name>
+    <Name Value='Measurementwidth' L='Meas. width' SH='M&#x2F;Wdth' FH='Meas. width' i18n='E'></Name>
+    <Name Value='Medical' L='Medical' SH='MA' FH='Medical' i18n='E'></Name>
+    <Name Value='Membership' L='Membership' SH='Membership' FH='Membership' i18n='E'></Name>
+    <Name Value='MembershipName' L='Membership Name' SH='MembershipName' FH='Membership Name' i18n='E'></Name>
+    <Name Value='MembershipType' L='Membership Type' SH='MembershipType' FH='Membership Type' i18n='E'></Name>
+    <Name Value='Menu' L='Menu Title' SH='Menu' FH='Menu Title' i18n='E'></Name>
+    <Name Value='MenuLevel' L='Menu Level' SH='MenuLevel' FH='Menu Level' i18n='E'></Name>
+    <Name Value='MerchApp' L='MerchApp' SH='Merch App' FH='Merch App' i18n='E'></Name>
+    <Name Value='MerchComnts' L='MerchComnts' SH='MerchComnts' FH='Merch Comnts' i18n='E'></Name>
+    <Name Value='MiddleName' L='Middle Name' SH='MiddleName' FH='Middle Name' i18n='E'></Name>
+    <Name Value='MilestoneTitle' L='Milestone Title' SH='MilestoneTitle' FH='Milestone Title' i18n='E'></Name>
+    <Name Value='MinJobPeriodGuarantor' L='Mininum Job Period Guarantor' SH='MinJobPeriodGuarantor' FH='Mininum Job Period Guarantor' i18n='E'></Name>
+    <Name Value='MinJobPeriodLoanee' L='Minimum Job Period Loanee' SH='MinJobPeriodLoanee' FH='Minimum Job Period Loanee' i18n='E'></Name>
+    <Name Value='MinimumSalary' L='Minimum Salary' SH='Minimum Salary' FH='Minimum Salary' i18n='E'></Name>
+    <Name Value='Minutes' L='Minutes' SH='Min' FH='Minutes' i18n='E'></Name>
+    <Name Value='Misc' L='Misc.' SH='Misc' FH='Misc' i18n='E'></Name>
+    <Name Value='MobileNo' L='Mobile No' SH='MobileNo' FH='Mobile No' i18n='E'></Name>
+    <Name Value='Model' L='Model' SH='Model' FH='Model' i18n='E'></Name>
+    <Name Value='Modeoftransportation' L='Mode of transportation' SH='Mode of transportation' FH='Mode of transportation' i18n='E'></Name>
+    <Name Value='ModuleName' L='Module Name' SH='Module' FH='Module Name' i18n='E'></Name>
+    <Name Value='Month' L='Month' SH='Month' FH='Month' i18n='E'></Name>
+    <Name Value='MonthAfterEmpJoin' L='Month(s) after employee join' SH='MonthAfterEmpJoin' FH='Month(s) after employee join' i18n='E'></Name>
+    <Name Value='MonthDays' L='Month Days' SH='MonDays' FH='Month Days' i18n='E'></Name>
+    <Name Value='MonthFrom' L='Month From' SH='MonFrom' FH='Month From' i18n='E'></Name>
+    <Name Value='MonthTo' L='Month To' SH='MonTo' FH='Month To' i18n='E'></Name>
+    <Name Value='Months' L='Month(s)' SH='Mon(s)' FH='Month(s)' i18n='E'></Name>
+    <Name Value='MonthsOfGrossSalary' L='Months Of Gross Salary' SH='MonOfGrossSal' FH='Months Of Gross Salary' i18n='E'></Name>
+    <Name Value='MothersName' L='Mother&#x27;s Name' SH='Mother&#x27;sName' FH='Mother&#x27;s Name' i18n='E'></Name>
+  </M>
+  <N>
+    <Name Value='NETReceiveValue' L='NET Receive Value' SH='NET Receive Value' FH='NET Receive Value' i18n='E'></Name>
+    <Name Value='Name' L='Name' SH='Employee' FH='Name' i18n='E'></Name>
+    <Name Value='NationalIDNo' L='National ID No' SH='NationalIDNo' FH='National ID No' i18n='E'></Name>
+    <Name Value='Nationality' L='Nationality' SH='Nationality' FH='Nationality' i18n='E'></Name>
+    <Name Value='NegotiationValidity' L='Negotiation Validity' SH='Negotiation Validity' FH='Negotiation Validity' i18n='E'></Name>
+    <Name Value='NetPayment' L='Net Payment' SH='NP' FH='NetPay' i18n='E'></Name>
+    <Name Value='NetSalary' L='Net Salary' SH='NetSal' FH='Net Salary' i18n='E'></Name>
+    <Name Value='NewBasic' L='New Basic' SH='NewBasic' FH='New Basic' i18n='E'></Name>
+    <Name Value='NewDesignition' L='New Designition' SH='NewDesig' FH='New Designition' i18n='E'></Name>
+    <Name Value='NewGross' L='New Gross' SH='NewGross' FH='New Gross' i18n='E'></Name>
+    <Name Value='NewJobGrade' L='New Job Grade' SH='NewJobGrd' FH='New Job Grade' i18n='E'></Name>
+    <Name Value='NickName' L='Nick Name' SH='NickName' FH='Nick Name' i18n='E'></Name>
+    <Name Value='NightShiftAllowance' L='Night Shift Allowance' SH='Night' FH='Night Shift Allowance' i18n='E'></Name>
+    <Name Value='NoOfPots' L='No of Pots' SH='NoP' FH='No of Pots' i18n='E'></Name>
+    <Name Value='NoOfRoll' L='No Of Roll' SH='No Of Roll' FH='No Of Roll' i18n='E'></Name>
+    <Name Value='NomineeName' L='Nominee Name' SH='NomineeName' FH='Nominee Name' i18n='E'></Name>
+    <Name Value='Notes' L='Notes' SH='Notes' FH='Notes' i18n='E'></Name>
+    <Name Value='NumOfReceipes' L='No of Recipes' SH='NoR' FH='No of Recipes' i18n='E'></Name>
+    <Name Value='Number' L='Number' SH='Number' FH='Number' i18n='E'></Name>
+    <Name Value='NumberOfDays' L='Number of Days' SH='NumOfDays' FH='Number of Days' i18n='E'></Name>
+    <Name Value='NumberOfEmployee' L='Number of Employee' SH='Number of Employee' FH='Number of Employee' i18n='E'></Name>
+    <Name Value='NumberOfParts' L='NumberOfParts' SH='NOP' FH='NumberOfParts' i18n='E'></Name>
+  </N>
+  <O>
+    <Name Value='OPD' L='OPD' SH='OPD' FH='OPD' i18n='E'></Name>
+    <Name Value='OTHr' L='OT Hour' SH='OTHr' FH='OT Hour' i18n='E'></Name>
+    <Name Value='OTIn' L='OT In' SH='OTIn' FH='OTIn' i18n='E'></Name>
+    <Name Value='OTOut' L='OT Out' SH='OTOut' FH='OTOut' i18n='E'></Name>
+    <Name Value='Occupation' L='Occupation' SH='Occupation' FH='Occupation' i18n='E'></Name>
+    <Name Value='OfGrossSalary' L='Of Gross Salary' SH='Of Gross Salary' FH='Of Gross Salary' i18n='E'></Name>
+    <Name Value='OfferedBy' L='Offered By' SH='OfferedBy' FH='Offered By' i18n='E'></Name>
+    <Name Value='OfficePhone' L='Office Phone' SH='OfficePhone' FH='Office Phone' i18n='E'></Name>
+    <Name Value='OfficialPhone' L='OfficePh' SH='OfficePh' FH='OfficePh' i18n='E'></Name>
+    <Name Value='OnTime' L='On Time' SH='OnTime' FH='On Time' i18n='E'></Name>
+    <Name Value='Operator' L='Operator' SH='Oper' FH='Operator' i18n='E'></Name>
+    <Name Value='OperatorID' L='Operator ID' SH='OperID' FH='Operator ID' i18n='E'></Name>
+    <Name Value='OptionalLeave' L='Optional Leave' SH='OL' FH='Optional Leave' i18n='E'></Name>
+    <Name Value='OrdDateFromTo' L='Order Date From To' SH='OrdDtFrTo' FH='Order Date From To' i18n='E'></Name>
+    <Name Value='OrderAsstResponsible' L='Order Asst Responsible' SH='OrdAsstResp' FH='Order Asst Responsible' i18n='E'></Name>
+    <Name Value='OrderDate' L='Order Date' SH='OrdDt' FH='Order Date' i18n='E'></Name>
+    <Name Value='OrderDateTime' L='OrderDate&amp;Time' SH='OrDt&amp;Tim' FH='OrDt&amp;Tim' i18n='E'></Name>
+    <Name Value='OrderNo' L='Order No' SH='OrdNo' FH='Order No' i18n='E'></Name>
+    <Name Value='OrderPlacementDate' L='OPD' SH='OPD' FH='OPD' i18n='E'></Name>
+    <Name Value='OrderQty' L='Order Qty' SH='OrdQty' FH='Order Qty' i18n='E'></Name>
+    <Name Value='OrderQuotaionNo' L='Order Quotaion No' SH='OrderQuotaionNo' FH='Order Quotaion No' i18n='E'></Name>
+    <Name Value='OrderResponsible' L='Order Resp.' SH='OrdResp' FH='Order Responsible' i18n='E'></Name>
+    <Name Value='OrderSource' L='Order Source' SH='OrderSource' FH='Order Source' i18n='E'></Name>
+    <Name Value='OrderType' L='Order Type' SH='OrdType' FH='Order Type' i18n='E'></Name>
+    <Name Value='OrderedQuantity' L='OrdrdQty' SH='OrdrdQty' FH='OrdrdQty' i18n='E'></Name>
+    <Name Value='Origin' L='Origin' SH='Origin' FH='Origin' i18n='E'></Name>
+    <Name Value='OtAmount' L='OTAmt' SH='OTA' FH='OT Amount' i18n='E'></Name>
+    <Name Value='OtRate' L='OT&#x2F;Rate' SH='OT&#x2F;RT' FH='OT Rate' i18n='E'></Name>
+    <Name Value='Other' L='Others' SH='OTH' FH='Others' i18n='E'></Name>
+    <Name Value='OtherCost' L='Other Cost' SH='OtherCost' FH='Order Qty' i18n='E'></Name>
+    <Name Value='OthersCharge' L='Others Charge' SH='Others Charge' FH='Others Charge' i18n='E'></Name>
+    <Name Value='OthersCondition' L='Others Condition' SH='Others Condition' FH='Others Condition' i18n='E'></Name>
+    <Name Value='OutTime' L='Out Time' SH='OutTime' FH='Out Time' i18n='E'></Name>
+    <Name Value='OverTime' L='Over Time' SH='Over Time' FH='Over Time' i18n='E'></Name>
+    <Name Value='OverTimeRate' L='Over Time Rate' SH='Over Time Rate' FH='Over Time Rate' i18n='E'></Name>
+    <Name Value='OverTimeWages' L='Over Time Wages' SH='Over Time Wages' FH='Over Time Wages' i18n='E'></Name>
+    <Name Value='Overseaschargestobepaidby' L='Overseas charges to be paid by' SH='Overseas charges to be paid by' FH='Overseas charges to be paid by' i18n='E'></Name>
+  </O>
+  <P>
+    <Name Value='PF' L='PF' SH='PF' FH='PF' i18n='E'></Name>
+    <Name Value='PIDate' L='PI Date' SH='PI Date' FH='PI Date' i18n='E'></Name>
+    <Name Value='PINo' L='PI NO' SH='PI NO' FH='PI NO' i18n='E'></Name>
+    <Name Value='PIValue' L='PI Value' SH='PI Value' FH='PI Value' i18n='E'></Name>
+    <Name Value='POBox' L='PO Box' SH='PO Box' FH='PO Box' i18n='E'></Name>
+    <Name Value='PackQty' L='Packge Quantity' SH='PackQty' FH='PackQty' i18n='E'></Name>
+    <Name Value='PackageNo' L='Package No' SH='PackageNo' FH='PackageNo' i18n='E'></Name>
+    <Name Value='PackgeType' L='PackgeType Name' SH='PackgeType' FH='PackgeType' i18n='E'></Name>
+    <Name Value='Page' L='Page' SH='Page' FH='Page' i18n='E'></Name>
+    <Name Value='PageGroup' L='PageGroup' SH='PageGroup' FH='PageGroup' i18n='E'></Name>
+    <Name Value='PageName' L='Page Name' SH='PageName' FH='PageName' i18n='E'></Name>
+    <Name Value='PageTitle' L='PageTitle' SH='PageTitle' FH='PageTitle' i18n='E'></Name>
+    <Name Value='PaidLeave' L='Paid Leave' SH='PL' FH='Paid Leave' i18n='E'></Name>
+    <Name Value='Pantone' L='Pantone' SH='Pantone' FH='Pantone' i18n='E'></Name>
+    <Name Value='ParcentOfGrossSalary' L='% of Gross Salary' SH='% OfGross Sal' FH='% Of Gross Salary' i18n='E'></Name>
+    <Name Value='ParcentOfUnusedLv' L='% of unused leave' SH='% of unused leave' FH='% of unused leave' i18n='E'></Name>
+    <Name Value='ParentMenu' L='Parent Menu' SH='ParentMenu' FH='Parent Menu' i18n='E'></Name>
+    <Name Value='PartialDayLeaveAllowed' L='Partial day leave allowed' SH='PartlDayLvAllow' FH='Partial day leave allowed' i18n='E'></Name>
+    <Name Value='PartialShipment' L='Partial Shipment' SH='Partial Shipment' FH='Partial Shipment' i18n='E'></Name>
+    <Name Value='Particulars' L='Particulars' SH='Particulars' FH='Particulars' i18n='E'></Name>
+    <Name Value='Parts' L='Parts' SH='Parts' FH='Parts' i18n='E'></Name>
+    <Name Value='PartsType' L='Parts Type' SH='PartsType' FH='Parts Type' i18n='E'></Name>
+    <Name Value='PassportNo' L='Passport No' SH='PassportNo' FH='Passport No' i18n='E'></Name>
+    <Name Value='Password' L='Password' SH='Pwd' FH='Password' i18n='E'></Name>
+    <Name Value='PayDays' L='Pay Days' SH='PayDays' FH='Pay Days' i18n='E'></Name>
+    <Name Value='PayGrade' L='Pay Grade' SH='PayGrade' FH='Pay Grade' i18n='E'></Name>
+    <Name Value='PayGradeDescription' L='Pay Grade Description' SH='PayGradeDesc' FH='Pay Grade Description' i18n='E'></Name>
+    <Name Value='PaySchedule' L='Pay Schedule' SH='PaySch' FH='Pay Schedule' i18n='E'></Name>
+    <Name Value='PaymentMode' L='Payment Mode' SH='PayMod' FH='Payment Mode' i18n='E'></Name>
+    <Name Value='PaymentReceived' L='Payment Received' SH='Payment Received' FH='Payment Received' i18n='E'></Name>
+    <Name Value='PaymentValidity' L='Payment Validity' SH='Payment Validity' FH='Payment Validity' i18n='E'></Name>
+    <Name Value='Paymentterms' L='Payment terms' SH='Payment terms' FH='Payment terms' i18n='E'></Name>
+    <Name Value='PayrollItem' L='Payroll Item' SH='PayrollItm' FH='Payroll Item' i18n='E'></Name>
+    <Name Value='PayrollItemType' L='Payroll Item Type' SH='PayrollItmTyp' FH='Payroll Item Type' i18n='E'></Name>
+    <Name Value='Percentage' L='Prc(%)' SH='Prc(%)' FH='Prc(%)' i18n='E'></Name>
+    <Name Value='Period' L='Period' SH='Period' FH='Period' i18n='E'></Name>
+    <Name Value='PermanentAddress' L='Permanent Address' SH='PermanentAddress' FH='Permanent Address' i18n='E'></Name>
+    <Name Value='PermitArea' L='Permitted Area' SH='PermtArea' FH='PermittedArea' i18n='E'></Name>
+    <Name Value='Placement' L='Placement' SH='Placement' FH='Placement' i18n='E'></Name>
+    <Name Value='PlanQty' L='Plan Quantity' SH='PlnQty' FH='Plan Quantity' i18n='E'></Name>
+    <Name Value='PlanQtyInPC' L='Plan Qty In PC' SH='PlanQtyInPC' FH='PlanQtyInPC' i18n='E'></Name>
+    <Name Value='PlanStartDtTime' L='Plan Start Date and Time[PSDT]' SH='PSDT' FH='Plan SDT' i18n='E'></Name>
+    <Name Value='PlannFinDateTime' L='Plan Finish Date and Time[PFDT]' SH='PFDT' FH='Plan FDT' i18n='E'></Name>
+    <Name Value='PlannedBy' L='Planned By' SH='PlndBy' FH='PlanBy' i18n='E'></Name>
+    <Name Value='Points' L='Points' SH='Points' FH='Points' i18n='E'></Name>
+    <Name Value='PortofDischarge' L='Port of Discharge' SH='Port of Discharge' FH='Port of Discharge' i18n='E'></Name>
+    <Name Value='PostCode' L='Postcode' SH='Postcode' FH='Postcode' i18n='E'></Name>
+    <Name Value='PostHeld' L='Post Held' SH='PostHeld' FH='Post Held' i18n='E'></Name>
+    <Name Value='Prefix' L='Prefix' SH='Prefix' FH='Prefix' i18n='E'></Name>
+    <Name Value='Preorder No' L='Preorder No' SH='PreOrdNo' FH='Preorder No' i18n='E'></Name>
+    <Name Value='PreparedBy' L='Prepared By' SH='PrepBy' FH='Prepared By' i18n='E'></Name>
+    <Name Value='Present' L='Present' SH='P' FH='Present' i18n='E'></Name>
+    <Name Value='PresentAddress' L='Present Address' SH='PresentAddress' FH='Present Address' i18n='E'></Name>
+    <Name Value='PresentDays' L='Present Days' SH='PD' FH='Present Days' i18n='E'></Name>
+    <Name Value='Preview' L='Preview' SH='Preview' FH='Preview' i18n='E'></Name>
+    <Name Value='PreviousLoanDue' L='Previous Loan Due' SH='PreviousLoanDue' FH='PreviousLoanDue' i18n='E'></Name>
+    <Name Value='PreviousLocation' L='PreviousLocation' SH='PrevLocation' FH='PreviousLocation' i18n='E'></Name>
+    <Name Value='PricUnit' L='Pricing Unit' SH='PrcUnit' FH='Pricing Unit' i18n='E'></Name>
+    <Name Value='PricePerDozen' L='Prc&#x2F;D' SH='Prc&#x2F;D' FH='Price per dozen' i18n='E'></Name>
+    <Name Value='PricePerPc' L='Prc&#x2F;P' SH='Prc&#x2F;P' FH='Price per piece' i18n='E'></Name>
+    <Name Value='PricePerUnit' L='Price&#x2F;u' SH='Price&#x2F;u' FH='Price per unit' i18n='E'></Name>
+    <Name Value='Print' L='Print' SH='Print' FH='Print' i18n='E'></Name>
+    <Name Value='Priority' L='Priority' SH='Priority' FH='Priority' i18n='E'></Name>
+    <Name Value='ProbaDate' L='Probation End date' SH='probaDt' FH='Probation End date' i18n='E'></Name>
+    <Name Value='ProbationOn' L='Probation On' SH='Probation On' FH='Probation On' i18n='E'></Name>
+    <Name Value='ProbationPeriod' L='Probation Period' SH='Probation Period' FH='Probation Period(Month)' i18n='E'></Name>
+    <Name Value='Process' L='Process' SH='Prcs' FH='Process' i18n='E'></Name>
+    <Name Value='ProdCost' L='Prod Cost' SH='ProdCost' FH='ProdCost' i18n='E'></Name>
+    <Name Value='ProdCostPerHr' L='Prod. Cost Per Hr' SH='ProdCost&#x2F;hr' FH='Prod. Cost Per Hr' i18n='E'></Name>
+    <Name Value='ProdFinDate' L='PFD' SH='PFD' FH='PFD' i18n='E'></Name>
+    <Name Value='ProdQtyperShift' L='Prod Qty&#x2F;Shift' SH='ProdQty(Kg)&#x2F;Shift' FH='ProdQty&#x2F;Shift' i18n='E'></Name>
+    <Name Value='ProdStartDate' L='PSD' SH='PSD' FH='PSD' i18n='E'></Name>
+    <Name Value='ProdStatus' L='Production Status' SH='ProdSt' FH='ProdStatus' i18n='E'></Name>
+    <Name Value='ProdType' L='Production Type' SH='ProdTyp' FH='ProdType' i18n='E'></Name>
+    <Name Value='ProdUnit' L='Production Unit' SH='Prod Unit' FH='Production Unit' i18n='E'></Name>
+    <Name Value='Product' L='Product' SH='Product' FH='Product' i18n='E'></Name>
+    <Name Value='ProductQuantity' L='ProductQuantity' SH='ProdQty' FH='ProdQty' i18n='E'></Name>
+    <Name Value='ProductType' L='ProdType' SH='PrdTyp' FH='PrdTyp' i18n='E'></Name>
+    <Name Value='ProductValue' L='Product Value' SH='Product Value' FH='Product Value' i18n='E'></Name>
+    <Name Value='ProfileName' L='Profile Name' SH='ProfName' FH='Profile Name' i18n='E'></Name>
+    <Name Value='ProjectFileName' L='ProjectFileName' SH='ProjectFileName' FH='ProjectFileName' i18n='E'></Name>
+    <Name Value='ProjectName' L='Project Name' SH='ProjectName' FH='Project Name' i18n='E'></Name>
+    <Name Value='PurchOrdDate' L='PO Date' SH='PODt' FH='PO Date' i18n='E'></Name>
+    <Name Value='PurchOrdNumber' L='PO No' SH='PONo' FH='PONo' i18n='E'></Name>
+    <Name Value='PurchOrdQty' L='PO Qty' SH='POqty' FH='PO Qty' i18n='E'></Name>
+    <Name Value='PurchaseAmount' L='Purchase Amount' SH='Purchase Amount' FH='Purchase Amount' i18n='E'></Name>
+    <Name Value='PurchaseCost' L='Purchase Cost' SH='PurCost' FH='Purchase Cost' i18n='E'></Name>
+    <Name Value='PurchaseDate' L='Purchase Date' SH='Purchase Date' FH='Purchase Date' i18n='E'></Name>
+    <Name Value='PurposeOfPayment' L='Purpose Of Payment' SH='Purpose Of Payment' FH='Purpose Of Payment' i18n='E'></Name>
+  </P>
+  <Q>
+    <Name Value='QA' L='QA' SH='QA' FH='QA' i18n='E'></Name>
+    <Name Value='QCFailQty' L='QC Fail Qty' SH='QCFailQty' FH='QCFailQty' i18n='E'></Name>
+    <Name Value='QcTest' L='QcTest' SH='QcTest' FH='Qc Test' i18n='E'></Name>
+    <Name Value='QcTestMethod' L='QcTestMethod' SH='QcTestMethod' FH='Qc TestMethod' i18n='E'></Name>
+    <Name Value='QcTestReqment' L='QcTestRequirement' SH='QcTestReqmnt' FH='Qc TestReqmnt' i18n='E'></Name>
+    <Name Value='QtyPerpack' L='Quantity Per Pack' SH='QtyPerpack' FH='QtyPerpack' i18n='E'></Name>
+    <Name Value='Quality' L='Quality' SH='Qualty' FH='Quality' i18n='E'></Name>
+    <Name Value='Quantity' L='Quantity' SH='Qty' FH='Quantity' i18n='E'></Name>
+    <Name Value='Quotation No' L='Quotation No' SH='Quotation No' FH='Quotation No' i18n='E'></Name>
+    <Name Value='Quotation date' L='Quotation date' SH='Quotation date' FH='Quotation date' i18n='E'></Name>
+  </Q>
+  <R>
+    <Name Value='RackOrZoneActive' L='Rack&#x2F;Zone Active' SH='Rack&#x2F;Zone Active' FH='Rack&#x2F;Zone Active' i18n='E'></Name>
+    <Name Value='RackOrZoneName' L='Rack&#x2F;Zone' SH='Rk&#x2F;Zone' FH='Rack&#x2F;Zone' i18n='E'></Name>
+    <Name Value='Range' L='Range' SH='Rng' FH='Range' i18n='E'></Name>
+    <Name Value='Rate' L='Rate' SH='Rate' FH='Rate' i18n='E'></Name>
+    <Name Value='Ratio' L='Ratio' SH='Ratio' FH='Ratio' i18n='E'></Name>
+    <Name Value='RatioOfTotalLeave' L='Ratio of Total Leave' SH='RatioOfTotlLv' FH='Ratio of Total Leave' i18n='E'></Name>
+    <Name Value='Reason' L='Reason' SH='Reasn' FH='Reason' i18n='E'></Name>
+    <Name Value='ReasonBangla' L='Reason(in Bangla)' SH='Reasn(BN)' FH='Reason(in Bangla)' i18n='E'></Name>
+    <Name Value='ReceiveDate' L='Receive Date' SH='RcvDT' FH='Receive Date' i18n='E'></Name>
+    <Name Value='ReceiveDate&amp;Time' L='ReceiveDate&amp;Time' SH='RcvDt&amp;Time' FH='ReceiveDate&amp;Time' i18n='E'></Name>
+    <Name Value='ReceiveFrom' L='Receive From' SH='RcvFrm' FH='Receive From' i18n='E'></Name>
+    <Name Value='ReceiveNo' L='Receive No' SH='RcvNo' FH='Receive No' i18n='E'></Name>
+    <Name Value='ReceiveNumber' L='RecieveNo' SH='RcvNo' FH='RecieveNo' i18n='E'></Name>
+    <Name Value='ReceiveQuantity' L='ReceiveQty' SH='RcvQty' FH='ReceiveQty' i18n='E'></Name>
+    <Name Value='ReceiveStock' L='Receive Stock' SH='RcvStk' FH='Receive Stock' i18n='E'></Name>
+    <Name Value='ReceivedBy' L='Received By' SH='RcvdBy' FH='ReceivedBy' i18n='E'></Name>
+    <Name Value='ReceivedQty' L='Received Qty' SH='RcvdQty' FH='Received Qty' i18n='E'></Name>
+    <Name Value='ReceivingUnit' L='Receiving Unit' SH='RcvUnit' FH='Receiving Unit' i18n='E'></Name>
+    <Name Value='RecipeType' L='RecipeType' SH='RecpTyp' FH='RecipeType' i18n='E'></Name>
+    <Name Value='RecommedRemarks' L='RecommedRemarks' SH='RecommRmks' FH='RecommedRemarks' i18n='E'></Name>
+    <Name Value='RecommedStatus' L='RecommedStatus' SH='RecommStat' FH='RecommedStatus' i18n='E'></Name>
+    <Name Value='RecommendLeave' L='RecommendLeave' SH='RecommendLeave' FH='RecommendLeave' i18n='E'></Name>
+    <Name Value='RefName' L='Reference Name' SH='RefName' FH='RefName' i18n='E'></Name>
+    <Name Value='RefNo' L='Ref. No' SH='RefNo' FH='Ref. No' i18n='E'></Name>
+    <Name Value='RefernceNumber' L='Reference Number' SH='RefNo' FH='Reference Number' i18n='E'></Name>
+    <Name Value='RefernceOrderNumber' L='RefernceOrderNumber' SH='RefOrNo' FH='RefOrNo' i18n='E'></Name>
+    <Name Value='Region' L='Region' SH='Region' FH='Region' i18n='E'></Name>
+    <Name Value='RelateToJobGrade' L='Relate to Job Grade' SH='RelateToJobGrade' FH='Relate to Job Grade' i18n='E'></Name>
+    <Name Value='Relation' L='Relation' SH='Relation' FH='Relation' i18n='E'></Name>
+    <Name Value='Religion' L='Religion' SH='Religion' FH='Religion' i18n='E'></Name>
+    <Name Value='Remarks' L='Remarks' SH='Remarks' FH='Remarks' i18n='E'></Name>
+    <Name Value='RemarksPage' L='Remarks Page' SH='RemarksPage' FH='RemarksPage' i18n='E'></Name>
+    <Name Value='RemarksType' L='Remarks Type' SH='RemType' FH='Remarks Type' i18n='E'></Name>
+    <Name Value='RemindDate' L='Remind Date' SH='RemDt' FH='Remind Date' i18n='E'></Name>
+    <Name Value='RepeatPeriod' L='Repeat Period' SH='Rep Period' FH='Repeat Period' i18n='E'></Name>
+    <Name Value='RepeatSize' L='RepeatSize' SH='RepeatSize' FH='RepeatSize' i18n='E'></Name>
+    <Name Value='RepeatingPattern' L='Repeating Pattern' SH='Rep Pattern' FH='Repeating Pattern' i18n='E'></Name>
+    <Name Value='ReprotColumn' L='Reprot Column' SH='RepCol' FH='Reprot Column' i18n='E'></Name>
+    <Name Value='ReprotName' L='Reprot Name' SH='RepName' FH='Reprot Name' i18n='E'></Name>
+    <Name Value='ReqDate' L='Requ. Date' SH='ReqDt' FH='Requ. Date' i18n='E'></Name>
+    <Name Value='ReqDueQty' L='ReqDue Qty' SH='ReqDueQty' FH='ReqDueQty' i18n='E'></Name>
+    <Name Value='ReqQty' L='Requ Qty' SH='ReqQty' FH='Requ Qty' i18n='E'></Name>
+    <Name Value='ReqType' L='ReqType' SH='ReqType' FH='ReqType' i18n='E'></Name>
+    <Name Value='RequestedBy' L='Requested By' SH='ReqBy' FH='Requested By' i18n='E'></Name>
+    <Name Value='RequireDoctorApproval' L='Require doctor&#x27;s approval?' SH='RequireDoctorApp' FH='Require doctor&#x27;s approval?' i18n='E'></Name>
+    <Name Value='RequireLeaveReason' L='Require Leave Reason' SH='ReqLvReason' FH='Require Leave Reason' i18n='E'></Name>
+    <Name Value='RequiredQty' L='Required Qty' SH='ReqQty' FH='ReqQty' i18n='E'></Name>
+    <Name Value='RequisitionNo' L='Requisition No' SH='ReqNo' FH='Requisition No' i18n='E'></Name>
+    <Name Value='Result' L='Result' SH='Result' FH='Result' i18n='E'></Name>
+    <Name Value='ReviseNo' L='ReviseNo' SH='ReviseNo' FH='ReviseNo' i18n='E'></Name>
+    <Name Value='ReviseReason' L='Revise Reason' SH='RevReasn' FH='Revise Reason' i18n='E'></Name>
+    <Name Value='RevisionDate' L='Revision Date' SH='RevDt' FH='Revision Date' i18n='E'></Name>
+    <Name Value='RevisionNo' L='Revision No' SH='Revision No' FH='Revision No' i18n='E'></Name>
+    <Name Value='RevisionNumber' L='ReviseNo' SH='RevNo' FH='ReviseNo' i18n='E'></Name>
+    <Name Value='RevolsPerMinute' L='RPM' SH='RPM' FH='RPM' i18n='E'></Name>
+    <Name Value='Role' L='Role' SH='Role' FH='Role' i18n='E'></Name>
+    <Name Value='RollNo' L='RollNo' SH='RolNo' FH='RollNo' i18n='E'></Name>
+    <Name Value='RollQty' L='Roll Qty' SH='RolQty' FH='Roll Qty' i18n='E'></Name>
+    <Name Value='RotatingLength' L='Rotating Length' SH='Rotating Length' FH='Rotating Length' i18n='E'></Name>
+    <Name Value='RoundingMethod' L='Rounding Method' SH='RoundMethod' FH='Rounding Method' i18n='E'></Name>
+    <Name Value='Rules' L='Rules' SH='Rules' FH='Rules' i18n='E'></Name>
+    <Name Value='RulesParameter' L='Rules parameter' SH='Rules parameter' FH='Rules parameter' i18n='E'></Name>
+  </R>
+  <S>
+    <Name Value='SalescontractDate' L='Sales contract  Date' SH='Sales contract  Date' FH='Sales contract  Date' i18n='E'></Name>
+    <Name Value='Salescontractno' L='Sales Contract No' SH='Sales Contract No' FH='Sales Contract No' i18n='E'></Name>
+    <Name Value='Sample' L='Sample' SH='Sample' FH='Sample' i18n='E'></Name>
+    <Name Value='Sample Name' L='Sample Name' SH='SampleName' FH='SampleName' i18n='E'></Name>
+    <Name Value='SampleOrderNumber' L='SampleOrderNo' SH='SampleOrderNo' FH='SampleOrderNo' i18n='E'></Name>
+    <Name Value='SampleReceiveStatus' L='SmplRcvSt' SH='SmplRcvSt' FH='SmplRcvSt' i18n='E'></Name>
+    <Name Value='SampleRemarks' L='SampleRemarks' SH='SampleRemarks' FH='SampleRemarks' i18n='E'></Name>
+    <Name Value='SampleType' L='Sample Type' SH='SmplTyp' FH='Sample Type' i18n='E'></Name>
+    <Name Value='SbCycl' L='SbCycl' SH='SbCycl' FH='SbCycl' i18n='E'></Name>
+    <Name Value='Season' L='Season' SH='Season' FH='Season' i18n='E'></Name>
+    <Name Value='Section' L='Section' SH='Section' FH='Section' i18n='E'></Name>
+    <Name Value='SectionBangla' L='Section(in Bangla)' SH='Section(BN)' FH='Section(in Bangla)' i18n='E'></Name>
+    <Name Value='SectionIncharge' L='Section Incharge' SH='SecIncharge' FH='Section Incharge' i18n='E'></Name>
+    <Name Value='SectionLevelApproval' L='Section level Approval' SH='Section level Approval' FH='Section level Approval' i18n='E'></Name>
+    <Name Value='Sector' L='Sector' SH='Sector' FH='Sector' i18n='E'></Name>
+    <Name Value='SelectAll' L='Select All' SH='Select All' FH='Select All' i18n='E'></Name>
+    <Name Value='SequenceNo' L='SequenceNo' SH='SequenceNo' FH='SequenceNo' i18n='E'></Name>
+    <Name Value='SerialNo' L='SL No.' SH='SL' FH='SL No.' i18n='E'></Name>
+    <Name Value='Sew' L='Sew' SH='Sew' FH='Sew' i18n='E'></Name>
+    <Name Value='SewingCompletionDate' L='SewComplDate' SH='SewCompDt' FH='SewComplDate' i18n='E'></Name>
+    <Name Value='Shift' L='Shift' SH='Shift' FH='Shift' i18n='E'></Name>
+    <Name Value='ShiftCategory' L='ShiftCategory' SH='ShiftCategory' FH='Shift Category' i18n='E'></Name>
+    <Name Value='ShiftColor' L='Shift Color' SH='SftColor' FH='Shift Color' i18n='E'></Name>
+    <Name Value='ShiftFrom' L='Shift From' SH='ShiftFrom' FH='Shift From' i18n='E'></Name>
+    <Name Value='ShiftInTime' L='Shift InTime' SH='ShiftInTime' FH='Shift InTime' i18n='E'></Name>
+    <Name Value='ShiftLength' L='Shift Length' SH='Shift Length' FH='Shift Length' i18n='E'></Name>
+    <Name Value='ShiftName' L='Shift Name' SH='Shift Name' FH='Shift Name' i18n='E'></Name>
+    <Name Value='ShiftOutTime' L='Shift OutTime' SH='ShiftOutTime' FH='Shift OutTime' i18n='E'></Name>
+    <Name Value='ShiftPattern' L='Shift Pattern' SH='ShiftPattern' FH='Shift Pattern' i18n='E'></Name>
+    <Name Value='ShiftProfileType' L='Shift Profile Type' SH='SftProfTyp' FH='Shift Profile Type' i18n='E'></Name>
+    <Name Value='ShiftStartFromToTime' L='Start Time(From-To)' SH='SST(From-To)' FH='SST(From-To)' i18n='E'></Name>
+    <Name Value='ShiftTo' L='Shift To' SH='ShiftTo' FH='Shift To' i18n='E'></Name>
+    <Name Value='ShiftType' L='Shift Type' SH='ShiftType' FH='Shift Type' i18n='E'></Name>
+    <Name Value='Shipment' L='Shipment' SH='Shipment' FH='Shipment' i18n='E'></Name>
+    <Name Value='ShipmentDate' L='Shipment Date' SH='Shipment Date' FH='Shipment Date' i18n='E'></Name>
+    <Name Value='ShipmentIncoterms' L='Shipment &#x2F;incoterms' SH='ShipmentIncoterms' FH='Shipment &#x2F;incoterms' i18n='E'></Name>
+    <Name Value='ShortFall' L='Short Fall' SH='ShortFall' FH='ShortFall' i18n='E'></Name>
+    <Name Value='ShortHeader' L='Short Header' SH='SH' FH='Short Header' i18n='E'></Name>
+    <Name Value='SickLeave' L='Sick Leave' SH='SL' FH='Sick Leave' i18n='E'></Name>
+    <Name Value='Size' L='Size' SH='Size' FH='Size' i18n='E'></Name>
+    <Name Value='SizeDescription' L='SizeDescription' SH='SizeDesc' FH='SizeDescription' i18n='E'></Name>
+    <Name Value='SizeGroup' L='Size Group' SH='SizeGroup' FH='Size Group' i18n='E'></Name>
+    <Name Value='SizeUnit' L='SizeUnit' SH='SizeUnit' FH='SizeUnit' i18n='E'></Name>
+    <Name Value='SizeWiseQuantity' L='SizeWiseQty' SH='SizeWiseQty' FH='SizeWiseQty' i18n='E'></Name>
+    <Name Value='SmplResp' L='Smpl Resp' SH='SmplResp' FH='Sample Resp' i18n='E'></Name>
+    <Name Value='SocialMedia' L='Social Media' SH='SocMedia' FH='Social Media' i18n='E'></Name>
+    <Name Value='SpecialInformation' L='Specialinfo' SH='SpInfo' FH='Specialinfo' i18n='E'></Name>
+    <Name Value='SpecialLeave' L='Special Leave' SH='SPL' FH='Special Leave' i18n='E'></Name>
+    <Name Value='SpecialRemarks' L='Special Remarks' SH='SpclRmks' FH='Special Remarks' i18n='E'></Name>
+    <Name Value='Stage' L='Stage' SH='Stage' FH='Stage' i18n='E'></Name>
+    <Name Value='Stamp' L='Stamp' SH='Stmp' FH='Stamp' i18n='E'></Name>
+    <Name Value='StandBy' L='StandBy' SH='StandBy' FH='StandBy' i18n='E'></Name>
+    <Name Value='StandardMinuteValue' L='SMV' SH='SMV' FH='SMV' i18n='E'></Name>
+    <Name Value='StandardSize' L='Standard Size' SH='StandardSize' FH='StandardSize' i18n='E'></Name>
+    <Name Value='Start' L='Start' SH='Start' FH='Start' i18n='E'></Name>
+    <Name Value='StartDT' L='StartDate' SH='StartDT' FH='StartDate' i18n='E'></Name>
+    <Name Value='StartDate' L='Start Date' SH='StDt' FH='Start Date' i18n='E'></Name>
+    <Name Value='StartDateTime' L='SDtTime' SH='SDtTime' FH='SDTime' i18n='E'></Name>
+    <Name Value='StartNo' L='Start No' SH='StartNo' FH='StartNo' i18n='E'></Name>
+    <Name Value='StartTime' L='Start Time' SH='StTm' FH='Start Time' i18n='E'></Name>
+    <Name Value='State' L='State' SH='State' FH='State' i18n='E'></Name>
+    <Name Value='StateCode' L='State Code' SH='StateCode' FH='StateCode' i18n='E'></Name>
+    <Name Value='Status' L='Status' SH='Status' FH='Status' i18n='E'></Name>
+    <Name Value='StichLength' L='Stch Lnth' SH='StchLen' FH='Stich Len.' i18n='E'></Name>
+    <Name Value='StlOrAstRsp' L='Stl&#x2F;OrAstRsp' SH='Stl&#x2F;OrAstRsp' FH='Stl&#x2F;OrAstRsp' i18n='E'></Name>
+    <Name Value='StlOrdRsp' L='Stl&#x2F;Ord Resp' SH='Stl&#x2F;OrdRsp' FH='Style&#x2F;Order Resp' i18n='E'></Name>
+    <Name Value='StockAddress' L='Stock Address' SH='StkAddr' FH='Stock Address' i18n='E'></Name>
+    <Name Value='StockAvailable' L='StkAvail' SH='StkAvail' FH='Stock Available' i18n='E'></Name>
+    <Name Value='StockName' L='StockName' SH='Stock' FH='StkName' i18n='E'></Name>
+    <Name Value='StockOf' L='Stock Of' SH='StockOf' FH='StockOf' i18n='E'></Name>
+    <Name Value='StockQty' L='Stock Qty' SH='StkQty' FH='Stock Qty' i18n='E'></Name>
+    <Name Value='StockType' L='StockType' SH='StkType' FH='StockType' i18n='E'></Name>
+    <Name Value='StoreBuyer' L='Store&#x2F;Buyer' SH='Store&#x2F;Buyer' FH='Store&#x2F;Buyer' i18n='E'></Name>
+    <Name Value='Street' L='Street' SH='Street' FH='Street' i18n='E'></Name>
+    <Name Value='Stripe Measurement Unit' L='SMU' SH='SMU' FH='SMU' i18n='E'></Name>
+    <Name Value='Style' L='Style' SH='Style' FH='Style' i18n='E'></Name>
+    <Name Value='Style&#x2F;product name' L='Style&#x2F;product name' SH='Style&#x2F;product name' FH='Style&#x2F;product name' i18n='E'></Name>
+    <Name Value='StyleDescription' L='StyleDesc' SH='StyleDesc' FH='Style Description' i18n='E'></Name>
+    <Name Value='StyleOrderResponsible' L='Styl&#x2F;OrdResp' SH='Styl&#x2F;OrdResp' FH='Styl&#x2F;OrdResp' i18n='E'></Name>
+    <Name Value='StyleProduct desc' L='Style&#x2F;product desc' SH='Style&#x2F;product desc' FH='Style&#x2F;product desc' i18n='E'></Name>
+    <Name Value='StyleProduct no' L='Style&#x2F;product no' SH='Style&#x2F;product no' FH='Style&#x2F;product no' i18n='E'></Name>
+    <Name Value='StyleProductName' L='Style&#x2F;ProductName' SH='Styl&#x2F;PrdNm' FH='Style&#x2F;ProductName' i18n='E'></Name>
+    <Name Value='StyleProductNo' L='Style&#x2F;ProductNo' SH='Styl&#x2F;PrdNo' FH='Style&#x2F;ProductNo' i18n='E'></Name>
+    <Name Value='Styleproductdesc' L='Style Product Description' SH='Style Product Desc' FH='Style Product Description' i18n='E'></Name>
+    <Name Value='Sub buyer' L='Sub Buyer' SH='Sub buyer' FH='Sub buyer' i18n='E'></Name>
+    <Name Value='SubBuyer' L='SubBuyer' SH='SubBuyer' FH='SubBuyer' i18n='E'></Name>
+    <Name Value='SubBuyerShortName' L='Sub Buyer Short Name' SH='SubBuyerShortName' FH='Sub Buyer Short Name' i18n='E'></Name>
+    <Name Value='SubProcess' L='Sub Process' SH='Sub Process' FH='Sub Process' i18n='E'></Name>
+    <Name Value='SubStock' L='Sub Stock' SH='SubStk' FH='Sub Stock' i18n='E'></Name>
+    <Name Value='Subcategory' L='SubCategory' SH='SubCat' FH='SubCategory' i18n='E'></Name>
+    <Name Value='Subject' L='Subject' SH='Subject' FH='Subject' i18n='E'></Name>
+    <Name Value='Submission' L='Submission' SH='Submission' FH='Submission' i18n='E'></Name>
+    <Name Value='SubmissionCycle' L='SubCycle' SH='SbCycl' FH='SubCycle' i18n='E'></Name>
+    <Name Value='SubmissionDate' L='Submission Date' SH='SubDate' FH='SubDate' i18n='E'></Name>
+    <Name Value='SubmissionRnd' L='Submission Round' SH='SRnd' FH='SRound' i18n='E'></Name>
+    <Name Value='SubmittedSince' L='Submitted Since' SH='SubmittedSince' FH='Submitted Since' i18n='E'></Name>
+    <Name Value='Suffix' L='Suffix' SH='Suffix' FH='Suffix' i18n='E'></Name>
+    <Name Value='Supplier' L='Supplier' SH='Supplier' FH='Supplier' i18n='E'></Name>
+    <Name Value='SupplierContact' L='SupplierContact' SH='SuppCont' FH='SupplierContact' i18n='E'></Name>
+    <Name Value='SupplierDetails' L='Supplier Detls' SH='SuppDetl' FH='SuppDetls' i18n='E'></Name>
+    <Name Value='SupplierRegNo' L='Supplier Reg. No' SH='Supplier RegNo' FH='Supplier Reg. No' i18n='E'></Name>
+    <Name Value='SupplierShortName' L='Supplier Short Name' SH='SupplierShortName' FH='Supplier Short Name' i18n='E'></Name>
+    <Name Value='SupplierType' L='SupplierType' SH='SupTyp' FH='SupplierType' i18n='E'></Name>
+    <Name Value='SurName' L='Surname' SH='Surname' FH='Surname' i18n='E'></Name>
+    <Name Value='SwatchFabric' L='Swatch Fabric' SH='SwatchFab' FH='SwatchFab' i18n='E'></Name>
+  </S>
+  <T>
+    <Name Value='TINNo' L='TIN No' SH='TINNo' FH='TIN No' i18n='E'></Name>
+    <Name Value='TOD' L='TOD' SH='TOD' FH='TOD' i18n='E'></Name>
+    <Name Value='TTLCCHKNO' L='TT&#x2F;LC&#x2F;CHK NO' SH='TT&#x2F;LC&#x2F;CHK NO' FH='TT&#x2F;LC&#x2F;CHK NO' i18n='E'></Name>
+    <Name Value='TTNO' L='TT NO' SH='TT NO' FH='TT NO' i18n='E'></Name>
+    <Name Value='TTReceiveDate' L='TT Receive Date' SH='TT Receive Date' FH='TT Receive Date' i18n='E'></Name>
+    <Name Value='TTTerms' L='TT Terms' SH='TT Terms' FH='TT Terms' i18n='E'></Name>
+    <Name Value='TTValue' L='TT Value' SH='TT Value' FH='TT Value' i18n='E'></Name>
+    <Name Value='TTcharge' L='TT charge' SH='TT charge' FH='TT charge' i18n='E'></Name>
+    <Name Value='TargetDeliDate' L='Target Deli Date' SH='TDD' FH='TrgtDeliDt' i18n='E'></Name>
+    <Name Value='TargetQtyDay' L='Target Qty&#x2F;Day' SH='Tgt&#x2F;Day' FH='TargetQty&#x2F;Day' i18n='E'></Name>
+    <Name Value='TargetQtyHour' L='Target Qty&#x2F;Hour' SH='Tgt&#x2F;Hr' FH='TargetQty&#x2F;Hour' i18n='E'></Name>
+    <Name Value='TargetSubDate' L='Target Sub Date' SH='TrgtSubDt' FH='TarSubDate' i18n='E'></Name>
+    <Name Value='TargtQtyByShift' L='Target Qty&#x2F;Shift' SH='Tgt&#x2F;Shift' FH='Target&#x2F;Shift' i18n='E'></Name>
+    <Name Value='Task' L='Task' SH='Task' FH='Task' i18n='E'></Name>
+    <Name Value='TaskName' L='Task Name' SH='Task Name' FH='Task Name' i18n='E'></Name>
+    <Name Value='Tax' L='Tax' SH='Tax' FH='Tax' i18n='E'></Name>
+    <Name Value='TelePhoneNo' L='Telephone No' SH='TelePhoneNo' FH='Telephone No' i18n='E'></Name>
+    <Name Value='Temparature' L='Temparature' SH='Temp' FH='Temparature' i18n='E'></Name>
+    <Name Value='TerminationDate' L='TermiDt' SH='TermiDt' FH='Termination Date' i18n='E'></Name>
+    <Name Value='Terms' L='Terms' SH='Terms' FH='Terms' i18n='E'></Name>
+    <Name Value='Test' L='T' SH='T' FH='T' i18n='E'></Name>
+    <Name Value='Thana' L='Thana' SH='Thana' FH='Thana' i18n='E'></Name>
+    <Name Value='Thickness' L='Thickness' SH='Thick' FH='Thickness' i18n='E'></Name>
+    <Name Value='TimeDiff' L='Time Difference' SH='TimDif' FH='TimeDiff' i18n='E'></Name>
+    <Name Value='TimeLimit' L='Time Limit' SH='TL' FH='Time Limit' i18n='E'></Name>
+    <Name Value='Title' L='Title' SH='Title' FH='Title' i18n='E'></Name>
+    <Name Value='To' L='To' SH='To' FH='To' i18n='E'></Name>
+    <Name Value='TodayOtHrs' L='Today&#x27;s Ot Hrs' SH='Today&#x27;s Ot Hrs' FH='Today&#x27;sOTHours' i18n='E'></Name>
+    <Name Value='TodayOtIn' L='Today&#x27;s Ot In' SH='Today&#x27;sOtIn' FH='Today&#x27;sOTIn' i18n='E'></Name>
+    <Name Value='TodayOtOut' L='Today&#x27;s Ot Out' SH='Today&#x27;sOtOut' FH='Today&#x27;sOTOut' i18n='E'></Name>
+    <Name Value='Token' L='Token' SH='Token' FH='Token' i18n='E'></Name>
+    <Name Value='TokenTime' L='Token Time' SH='Token Time' FH='Token Time' i18n='E'></Name>
+    <Name Value='TokenTimeFrom' L='Token Time From' SH='Token Time From' FH='Token Time From' i18n='E'></Name>
+    <Name Value='TokenTimeList' L='TokenTimeList' SH='TokenTimeList' FH='TokenTimeList' i18n='E'></Name>
+    <Name Value='TokenTimeTo' L='Token Time To' SH='Token Time To' FH='Token Time To' i18n='E'></Name>
+    <Name Value='TokenType' L='Token Type' SH='TT' FH='Token Type' i18n='E'></Name>
+    <Name Value='ToleranceAfter' L='Tolerance After' SH='Tol.After' FH='Tolerance After' i18n='E'></Name>
+    <Name Value='ToleranceBefore' L='Tolerance Before' SH='Tol.Before' FH='Tolerance Before' i18n='E'></Name>
+    <Name Value='ToleranceTime' L='Tolerance Time For &quot;IN&quot;' SH='Tolerance Time For &quot;IN&quot;' FH='Tolerance Time For &quot;IN&quot;' i18n='E'></Name>
+    <Name Value='Total' L='Total' SH='Total' FH='Total' i18n='E'></Name>
+    <Name Value='TotalCourse' L='TC' SH='TC' FH='TC' i18n='E'></Name>
+    <Name Value='TotalDUQty' L='Total DU Qty' SH='TotDUQty' FH='Total DU Qty' i18n='E'></Name>
+    <Name Value='TotalDays' L='Total Days' SH='Total Days' FH='Total Days' i18n='E'></Name>
+    <Name Value='TotalDeduc' L='Total Deduction' SH='TlDduc' FH='Total Deduction' i18n='E'></Name>
+    <Name Value='TotalDeduction' L='Total Deduction' SH='TotalDeduc' FH='Total Deduction' i18n='E'></Name>
+    <Name Value='TotalHolidays' L='Total Holidays' SH='TotHolidays' FH='Total Holidays' i18n='E'></Name>
+    <Name Value='TotalIssueQty' L='Total Issue Qty' SH='TIsuQty' FH='Total Issue Qty' i18n='E'></Name>
+    <Name Value='TotalLeave' L='Total Leave' SH='TotLeave' FH='Total Leave' i18n='E'></Name>
+    <Name Value='TotalOt' L='Total Deduction' SH='TotalDeduc' FH='Total OT' i18n='E'></Name>
+    <Name Value='TotalPresent' L='Total Present' SH='Total Present' FH='Total Present' i18n='E'></Name>
+    <Name Value='TotalQty' L='Total Qty' SH='TotQty' FH='Total Qty' i18n='E'></Name>
+    <Name Value='TotalReceivedQty' L='Total Received Qty' SH='TotRcvQty' FH='TotRecdQty' i18n='E'></Name>
+    <Name Value='TotalValue' L='Total Value' SH='Totval' FH='Total Value' i18n='E'></Name>
+    <Name Value='TotalWages' L='Total Wages' SH='Total Wages' FH='Total Wages' i18n='E'></Name>
+    <Name Value='TrainerName' L='Trainer(s) Name' SH='Trainer(s)' FH='Trainer(s) Name' i18n='E'></Name>
+    <Name Value='Training' L='Training' SH='Training' FH='Training' i18n='E'></Name>
+    <Name Value='TransferDate' L='Transfer Date' SH='Transfer Date' FH='Transfer Date' i18n='E'></Name>
+    <Name Value='TransferLocation' L='Transfer Location' SH='TransLoc' FH='Transfer Location' i18n='E'></Name>
+    <Name Value='Transferable' L='Transferable' SH='Transferable' FH='Transferable' i18n='E'></Name>
+    <Name Value='Transport' L='Transport' SH='TA' FH='Transport' i18n='E'></Name>
+    <Name Value='Type' L='Type' SH='Type' FH='Type' i18n='E'></Name>
+  </T>
+  <U>
+    <Name Value='UOM' L='UOM' SH='UOM' FH='Unit of Measurement' i18n='E'></Name>
+    <Name Value='Unit' L='Unit' SH='Unit' FH='Unit' i18n='E'></Name>
+    <Name Value='UnitBangla' L='Unit(in Bangla)' SH='Unit(BN)' FH='Unit(in Bangla)' i18n='E'></Name>
+    <Name Value='UnitHead' L='Unit Head' SH='UnitHead' FH='Unit Head' i18n='E'></Name>
+    <Name Value='UnitLevelApproval' L='Unit level Approval' SH='UnitLevelApproval' FH='Unit level Approval' i18n='E'></Name>
+    <Name Value='UnitName' L='Unit Name' SH='UnitName' FH='Unit Name' i18n='E'></Name>
+    <Name Value='UnitOfMeasurement' L='UOM' SH='UOM' FH='UOM' i18n='E'></Name>
+    <Name Value='UnitPrice' L='Unit Price' SH='UP' FH='Unit Price' i18n='E'></Name>
+    <Name Value='UnpaidLeave' L='Unpaid Leave Days' SH='UL' FH='Unpaid Leave' i18n='E'></Name>
+    <Name Value='UnpaidLeaveAmount' L='Unpaid Leave' SH='ULA' FH='Unpaid Leave' i18n='E'></Name>
+    <Name Value='Until' L='Until' SH='Until' FH='Until' i18n='E'></Name>
+    <Name Value='UnusedLeavesCarryForward' L='Unused Leaves Carry Forward' SH='UnusedLvCarrForward' FH='Unused Leaves Carry Forward' i18n='E'></Name>
+    <Name Value='Url' L='Url' SH='Url' FH='Url' i18n='E'></Name>
+    <Name Value='Usage' L='Usage' SH='Usage' FH='Usage' i18n='E'></Name>
+    <Name Value='UsageAfter' L='Usage After' SH='Usage After' FH='Usage After' i18n='E'></Name>
+    <Name Value='UsedQty' L='Used Qty' SH='UsedQty' FH='Used Qty' i18n='E'></Name>
+    <Name Value='UserID' L='User ID' SH='UserID' FH='User ID' i18n='E'></Name>
+    <Name Value='UserName' L='User Name' SH='UserName' FH='User Name' i18n='E'></Name>
+    <Name Value='Users' L='Users' SH='Users' FH='Users' i18n='E'></Name>
+    <Name Value='UtilizationType' L='Utilization Type' SH='UtilizationType' FH='Utilization Type' i18n='E'></Name>
+  </U>
+  <V>
+    <Name Value='V1' L='V4' SH='V3' FH='V2' i18n='E'></Name>
+    <Name Value='VAT' L='VAT' SH='VAT' FH='VAT' i18n='E'></Name>
+    <Name Value='VATNo' L='VAT No' SH='VATNo' FH='VAT No' i18n='E'></Name>
+    <Name Value='ValidUpto' L='ValidUpto' SH='ValidUpto' FH='ValidUpto' i18n='E'></Name>
+    <Name Value='Validity' L='Validity' SH='Validity' FH='Validity' i18n='E'></Name>
+    <Name Value='Value' L='Value' SH='Value' FH='Value' i18n='E'></Name>
+    <Name Value='Vc' L='Vj' SH='Vg' FH='Vk' i18n='E'></Name>
+    <Name Value='VerifiedBy' L='Verified By' SH='Verified By' FH='Verified By' i18n='E'></Name>
+    <Name Value='View' L='View' SH='View' FH='View' i18n='E'></Name>
+    <Name Value='ViewAccess' L='View Access' SH='VAccess' FH='View Access' i18n='E'></Name>
+    <Name Value='VoluntaryTermination' L='Voluntary Termination' SH='VolTermi' FH='Voluntary Termination' i18n='E'></Name>
+    <Name Value='Vr' L='Vk' SH='Vw' FH='Vg' i18n='E'></Name>
+    <Name Value='Vtest1' L='VTEST4' SH='VEST3' FH='VTETS2' i18n='E'></Name>
+  </V>
+  <W>
+    <Name Value='Wastage' L='Wastage' SH='Wstg' FH='Wastage' i18n='E'></Name>
+    <Name Value='WebSite' L='Website' SH='Website' FH='Website' i18n='E'></Name>
+    <Name Value='WeekShiftPattern' L='Week Shift Pattern' SH='WeekShiftpattern' FH='Week Shift Pattern' i18n='E'></Name>
+    <Name Value='Weekends' L='Weekends' SH='Weekends' FH='Weekend' i18n='E'></Name>
+    <Name Value='Width' L='Width' SH='Wdth' FH='Width' i18n='E'></Name>
+    <Name Value='WorkDays' L='WorkDays' SH='WD' FH='Working Day' i18n='E'></Name>
+    <Name Value='WorkMin' L='Work Min' SH='WorkMin' FH='Work Min' i18n='E'></Name>
+    <Name Value='WorkPhone' L='Work Phone' SH='WorkPhone' FH='Work Phone' i18n='E'></Name>
+    <Name Value='WorkSite' L='WorkSite' SH='WorkSite' FH='Work Site' i18n='E'></Name>
+    <Name Value='WorkType' L='Work Type' SH='WorkType' FH='Work Type' i18n='E'></Name>
+    <Name Value='WorkedHour' L='Worked Hour' SH='WorkedHr' FH='Worked Hour' i18n='E'></Name>
+    <Name Value='WorkingArea' L='Working Area' SH='Work Area' FH='Working Area' i18n='E'></Name>
+    <Name Value='WorkingDays' L='working days' SH='WorkingDays' FH='working days' i18n='E'></Name>
+    <Name Value='WorkingStatus' L='WorkingStatus' SH='WorkStat' FH='Width' i18n='E'></Name>
+    <Name Value='WtGSM' L='WtGSM' SH='WtGSM' FH='WtGSM' i18n='E'></Name>
+  </W>
+  <Y>
+    <Name Value='YDLT' L='YDLT' SH='YDLT' FH='Yarn Delivery Lead Time' i18n='E'></Name>
+    <Name Value='YDelDt' L='YDelDt' SH='YDelDt' FH='Yarn Delivery Date' i18n='E'></Name>
+    <Name Value='YarnColor' L='Yarn Color' SH='Y&#x2F;color' FH='Yarn Color' i18n='E'></Name>
+    <Name Value='YarnComp' L='Yarn Composition' SH='Y&#x2F;Comp' FH='Yarn Composition' i18n='E'></Name>
+    <Name Value='YarnCompAndType' L='Y&#x2F;CompType' SH='Y&#x2F;Comp&#x2F;Type' FH='Y&#x2F;CompType' i18n='E'></Name>
+    <Name Value='YarnCount' L='Yarn Count' SH='Y&#x2F;Cnt' FH='Yarn Count' i18n='E'></Name>
+    <Name Value='YarnDesc' L='Yarn Desc' SH='Y&#x2F;Desc' FH='Y&#x2F;Des' i18n='E'></Name>
+    <Name Value='YarnLotNo' L='Yarn Lot No' SH='Y&#x2F;lot' FH='Yarn Lot No' i18n='E'></Name>
+    <Name Value='YarnPrice' L='YrnPr' SH='YrnPr' FH='Yarn Price' i18n='E'></Name>
+    <Name Value='YarnQty' L='YarnQty' SH='Y&#x2F;Qty' FH='YarnQty' i18n='E'></Name>
+    <Name Value='YarnQuality' L='Yarn Quality' SH='Y&#x2F;Quality' FH='Yarn Quality' i18n='E'></Name>
+    <Name Value='YarnType' L='Yarn Type' SH='Y&#x2F;type' FH='Yarn Type' i18n='E'></Name>
+    <Name Value='Year' L='Year' SH='Year' FH='Year' i18n='E'></Name>
+    <Name Value='YearOfEstab' L='Year of Establishment' SH='YrOfEstab' FH='Year of Establishment' i18n='E'></Name>
+    <Name Value='YearlyRevinue' L='Yearly Revenue' SH='YearlyRevenue' FH='Yearly Revenue' i18n='E'></Name>
+  </Y>
+  <Z>
+    <Name Value='ZipCode' L='Zip Code' SH='ZipCode' FH='Zip Code' i18n='E'></Name>
+    <Name Value='ZipCodeOrPostCode' L='Zip Code&#x2F;PO' SH='ZipCode&#x2F;PO' FH='Zip Code&#x2F;PO' i18n='E'></Name>
+  </Z>
+</Fields>

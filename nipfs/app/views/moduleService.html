@@ -1,0 +1,249 @@
+﻿<div class="container-fluid  fl-stretch-box">
+    <div class="row fl-box fl-content-box gutter-h">
+        <div class="col-md-3 fl-row-box" style="padding-left: .5%;">
+            <div class="panel panel-default w-full">
+                <div class="panel-heading">Module Entry</div>
+                <div class="panel-body">
+                    <form name="moduleForm" role="form" class="form-horizontal" data-ng-submit="submitForm(moduleForm.$valid)" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label ni-sup">Application </label>
+                            <div class="col-sm-9">
+                                <div>
+                                    <ui-select ng-model="appObj.selected" theme="bootstrap" on-select="appOnchange(appObj.selected);" ng-disabled="isPageEdit || isSectionEdit || isModuleEdit" required>
+                                        <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="app in applicationList | filter: $select.search | orderBy:'name'">
+                                            <div ng-bind-html="app.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sectionName" class="col-sm-3 control-label ni-sup">Module </label>
+                            <div class="col-sm-9">
+                                <ui-select ng-model="moduleObj.selected" theme="bootstrap" on-select="moduleOnchange(moduleObj.selected);" ng-disabled="isPageEdit || isSectionEdit" required>
+                                     <ui-select-match placeholder="Select module">{{$select.selected.name}}</ui-select-match>
+                                     <ui-select-choices repeat="module in appModuleEntryList | filter: $select.search | orderBy:'name'">
+                                         <div ng-bind-html="module.name | highlight: $select.search"></div>
+                                     </ui-select-choices>
+                                 </ui-select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sectionName" class="col-sm-3 control-label ni-sup">Module Code </label>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control input-lg" data-ng-model="module.moduleCode" data-ng-disabled="true" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pageName" class="col-sm-3 control-label">Page Range :</label>
+                            <div class="col-sm-9">
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" data-ng-model="module.fromPageRange" data-ng-disabled="true" required="" />
+                                </div>
+                                <label for="module" class="col-md-1 control-label">To </label>
+                                <div class="col-md-4">
+                                    <input type="number" class="form-control" data-ng-model="module.toPageRange" data-ng-disabled="true" required="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-1">
+                                <input type="checkbox" id="isPage" class="form-control" data-ng-disabled="isPageEdit || module.moduleId == null || isSectionEdit" data-ng-model="isChecked" data-ng-change="pageCheckChange()" />
+                            </div>
+                            <label for="isPage" class="control-label">Page:</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="pageName" class="col-sm-3 control-label" ng-class="isChecked? 'ni-sup' : ''">Page Title </label>
+                            <div class="col-sm-9" data-ng-class="{ 'has-error' : moduleForm.pageName.$invalid && !moduleForm.pageName.$pristine }">
+                                <input type="text" maxlength="200" class="form-control" name="pageName" data-ng-disabled="!isChecked || isSectionEdit"
+                                    data-ng-model="module.pageObj.pageName" data-ng-required="isChecked" list="pageDataList" data-ng-change="pageOnChange(module.moduleId,module.pageObj.pageName)" />
+
+                                <datalist id="pageDataList" data-ng-if="!isEmptyData">
+                                    <select>
+                                        <option data-ng-repeat="entity in pageDataList" value="{{entity.pageName}}"></option>
+                                    </select>
+                                </datalist>
+                                <p data-ng-show="moduleForm.pageName.$invalid && !moduleForm.pageName.$pristine" class="help-block">Page Name is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pageCode" class="col-sm-3 control-label" ng-class="isChecked? 'ni-sup' : ''">Code </label>
+                            <div class="col-sm-9" data-ng-class="{ 'has-error' : moduleForm.pageCode.$invalid && !moduleForm.pageCode.$pristine }">
+                                <input type="number" class="form-control" name="pageCode" data-ng-model="module.pageObj.pageCode" data-ng-required="isChecked" readonly="" />
+                                <p data-ng-show="moduleForm.pageCode.$invalid && !moduleForm.pageCode.$pristine" class="help-block">Page Name is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pageCode" class="col-sm-3 control-label">Description:</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="resize: none;" data-ng-disabled="!isChecked || isSectionEdit" data-ng-model="module.pageObj.description" rows="2" cols="49"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="isMain" class="col-sm-3 control-label">Is Main Page </label>
+                            <div class="col-sm-1">
+                                <input type="checkbox" id="isMain" class="form-control" data-ng-model="module.pageObj.isMainPage"  data-ng-change="isMainPageChange()"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-1">
+                                <input type="checkbox" id="isSection" class="form-control" data-ng-disabled="isSectionEdit || !isChecked" data-ng-model="isSectionChecked" data-ng-change="sectionCheckChange()" />
+                            </div>
+                            <label for="isPage" class="control-label">Section:</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="sectionName" class="col-sm-3 control-label" ng-class="isSectionChecked? 'ni-sup' : ''">Section Title </label>
+                            <div class="col-sm-9" data-ng-class="{ 'has-error' : moduleForm.sectionName.$invalid && !moduleForm.sectionName.$pristine }">
+                                <input type="text" maxlength="200" class="form-control" name="sectionName" data-ng-disabled="!isSectionChecked"
+                                    data-ng-model="module.pageObj.sectionObj.sectionName" data-ng-required="isSectionChecked" list="sectionDataList" />
+
+                                <datalist id="sectionDataList" data-ng-if="!isEmptyData">
+                                    <select>
+                                        <option data-ng-repeat="entity in sectionDataList" value="{{entity.sectionName}}"></option>
+                                    </select>
+                                </datalist>
+                                <p data-ng-show="moduleForm.sectionName.$invalid && !moduleForm.sectionName.$pristine" class="help-block">Section Name is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pageCode" class="col-sm-3 control-label">Description:</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="resize: none;" data-ng-disabled="!isSectionChecked" data-ng-model="module.pageObj.sectionObj.sectionDesc" rows="2" cols="49"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="btn btn-group pull-right" role="group">
+                            <button type="submit" ng-disabled="moduleForm.$invalid || !moduleForm.$dirty" class="btn btn-default"><i class="fa fa-floppy-o btn-icon-save"></i>Save</button>
+                            <button type="button" ng-disabled="!moduleForm.$dirty" class="btn btn-default" data-ng-click="reset($formValidation)"><i class="fa fa-repeat btn-icon-reset"></i>Reset</button>
+                            <button type="button" data-ng-hide="isCancelBtnHide" class="btn btn-default" data-ng-click="cancel()"><i class="fa fa-minus-square btn-icon-cancel"></i>Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 fl-row-box">
+            <div class="panel panel-default w-full">
+                <div class="panel-heading">Module List {{module.appName}}</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%">Application</th>
+                                    <th style="width: 90%">
+                                        <table style="width: 100%;" class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 12%;">Module - code</th>
+                                                    <th style="width: 80%;" class="no-padder">
+                                                        <table style="width: 100%;" class="table table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style="width: 14%;">Page - code</th>
+                                                                    <th style="width: 10%">IsMain Page</th>
+                                                                    <th style="width: 64%" class="no-padder">
+                                                                        <table style="width: 100%;" class="table table-bordered table-hover">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th style="width: 30%;">Section</th>
+                                                                                    <th style="width: 55%">Description</th>
+                                                                                    <th style="width: 25%">sec Action</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        </table>
+                                                                    </th>
+                                                                    <th style="width: 10%">page Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </th>
+                                                    <th style="width: 8%;">Module Action</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="app in moduleMasterList">
+                                    <th style="width: 10%">{{app.appName}}</th>
+                                    <th style="width: 90%">
+                                        <table style="width: 100%;" class="table table-bordered table-hover">
+                                            <tbody>
+                                                <tr data-ng-repeat="module in app.moduleList">
+                                                    <td style="width: 12%;">{{module.moduleName}} - {{module.moduleCode}}</td>
+                                                    <td style="width: 80%;" class="no-padder">
+                                                        <table style="width: 100%;" class="table table-bordered table-hover">
+                                                            <tbody>
+                                                                <tr data-ng-repeat="page in module.pageList">
+                                                                    <td style="width: 14%;">{{page.pageName}} - {{page.pageCode}}</td>
+                                                                    <td style="width: 10%">{{page.isMainPage? "True" : "" }}</td>
+                                                                    <td style="width: 64%" class="no-padder">
+                                                                        <table style="width: 100%;" class="table table-bordered table-hover">
+                                                                            <tbody>
+                                                                                <tr data-ng-repeat="section in page.sectionList">
+                                                                                    <td style="width: 30%;">{{section.sectionName}}</td>
+                                                                                    <td style="width: 55%">{{section.sectionDesc}}</td>
+                                                                                    <td style="width: 25%">
+                                                                                        <ul class="list-inline" style="text-align: center">
+                                                                                            <li><a href="javascript:void(0)" data-ng-click="editSection(section,page,module)"><i title="Edit" class="fa fa-edit"></i></a></li>
+                                                                                            <li><a href="javascript:void(0)" data-ng-click="deleteSection(section)"><i title="Delete" class="text-danger fa fa-trash-o"></i></a></li>
+                                                                                        </ul>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                    <th style="width: 10%">
+                                                                        <ul class="list-inline" style="text-align: center">
+                                                                            <li><a href="javascript:void(0)" data-ng-click="editPage(page,module)"><i title="Edit" class="fa fa-edit"></i></a></li>
+                                                                            <li><a href="javascript:void(0)" data-ng-click="deletePage(page)"><i title="Delete" class="fa fa-trash-o text-danger"></i></a></li>
+                                                                        </ul>
+                                                                    </th>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <th style="width: 8%;">
+                                                        <ul class="list-inline" style="text-align: center">
+                                                            <li><a href="javascript:void(0)" data-ng-click="editModuleMasterItem(module)"><i title="Edit" class="fa fa-edit"></i></a></li>
+                                                            <li><a href="javascript:void(0)" data-ng-click="deleteModuleMasterItem(module)"><i title="Delete" class="fa fa-trash-o text-danger"></i></a></li>
+                                                        </ul>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row" style="background-color: #2ba6cb;">
+                        <div class="col-lg-4 ">
+                            Showing: {{paging.fromShowing}} - 
+                            {{paging.toShowing}} 
+                            of {{paging.total}} Records
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="pull-right">
+                                <ul class="list-inline">
+                                    <li>
+                                        <select ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions" /></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToFirst()"><i class="fa fa-step-backward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniBackward()"><i class="fa fa-backward"></i></a></li>
+                                    <li>
+                                        <input type='number' ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;' />
+                                        of {{paging.totalpages}}</li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniForward()"><i class="fa fa-forward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToLast()"><i class="fa fa-step-forward"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

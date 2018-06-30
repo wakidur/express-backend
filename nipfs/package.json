@@ -1,0 +1,25 @@
+{
+  "name": "PrototypeBuilder",
+  "version": "0.0.1",
+  "private": true,
+  "author": "development team",
+  "description": "Prototype Builder",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT",
+  "repository": "",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "exceljs": "^0.2.3",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "jade": "^1.11.0",
+    "method-override": "^2.3.5",
+    "mkdirp": "^0.5.1",
+    "mongodb": "^2.0.48",
+    "mongoose": "^4.2.5",
+    "morgan": "^1.6.1",
+    "nodemon": "^1.8.1"
+  }
+}

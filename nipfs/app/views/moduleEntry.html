@@ -1,0 +1,133 @@
+﻿<div class="container-fluid fl-stretch-box">
+    <div class="row fl-box fl-content-box gutter-h">
+        <div class="col-md-1"></div>
+        <div class="col-md-4 fl-row-box">
+            <div class="panel panel-default w-full">
+                <div class="panel-heading">Module Entry</div>
+                <div class="panel-body">
+                    <form name="moduleEntryForm" role="form" class="form-horizontal" data-ng-submit="submitForm(moduleEntryForm.$valid)" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Application </label>
+                            <div class="col-sm-8">
+                                <div>
+                                    <ui-select ng-model="appObj.selected" theme="bootstrap" on-select="getAppInfo(appObj.selected);" required ng-disabled="isEdit">
+                                        <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="app in applicationList | filter: $select.search | orderBy:'name'">
+                                            <div ng-bind-html="app.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Module </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : moduleEntryForm.name.$invalid && !moduleEntryForm.name.$pristine}">
+                                    <input type="text" class="form-control" name="name" data-ng-model="module.name" list="appModuleList" required/>
+                                    <datalist id="appModuleList" data-ng-if="isCancelBtnShow">
+                                        <select>
+                                            <option data-ng-repeat="entity in appModuleList" value="{{entity.name}}"></option>
+                                        </select>
+                                    </datalist>
+                                     <p data-ng-show="moduleEntryForm.name.$invalid && !moduleEntryForm.name.$pristine" class="help-block">Module is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Module Code </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : moduleEntryForm.code.$invalid && !moduleEntryForm.code.$pristine}">
+                                    <input type="text" class="form-control" name="code" data-ng-model="module.code" required list="moduleCodeList" />
+                                    <datalist id="moduleCodeList" data-ng-if="isCancelBtnShow">
+                                        <select>
+                                            <option data-ng-repeat="entity in appModuleList" value="{{entity.code}}"></option>
+                                        </select>
+                                    </datalist>
+                                    <p data-ng-show="moduleEntryForm.code.$invalid && !moduleEntryForm.code.$pristine" class="help-block">Code is required.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btn-group pull-right" role="group">
+                            <button type="submit" class="btn btn-default" data-ng-disabled="moduleEntryForm.$invalid || !moduleEntryForm.$dirty"><i class="fa fa-floppy-o"></i>Save</button>
+                            <button type="button" class="btn btn-default" data-ng-disabled="!moduleEntryForm.$dirty" data-ng-click="reset()"><i class="fa fa-repeat "></i>Reset</button>
+                            <button type="button" class="btn btn-default" data-ng-show="isCancelBtnShow" data-ng-click="cancel()"><i class="fa fa-minus-square"></i>Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 fl-row-box">
+            <div class="panel panel-default w-full">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 35%">Application </th>
+                                    <th style="width: 65%;" class="no-padder">
+                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 65%;">Module </th>
+                                                    <th style="width: 20%;">Code</th>
+                                                    <th style="width: 15%;"></th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="app in moduleList">
+                                    <td style="width: 35%">{{app.name}} </td>
+                                    <td style="width: 65%;" class="no-padder">
+                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                            <tbody>
+                                                <tr ng-repeat="entity in app.moduleList">
+                                                    <td style="width: 65%;">{{entity.name}} </td>
+                                                    <td style="width: 20%;">{{entity.code}}</td>
+                                                    <td style="width: 15%;">
+                                                        <ul class="list-inline" style="text-align: center">
+                                                            <li><a href="javascript:void(0)" data-ng-click="editModule(entity)"><i title="Edit" class="fa fa-edit"></i></a></li>
+                                                            <li><a href="javascript:void(0)" data-ng-click="deleteModule(entity)"><i title="Delete" class="fa fa-trash-o text-danger"></i></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row" style="background-color: #2ba6cb;">
+                        <div class="col-lg-4 ">
+                            Showing: {{paging.fromShowing}} - 
+                            {{paging.toShowing}} 
+                            of {{paging.total}} Records
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="pull-right">
+                                <ul class="list-inline">
+                                    <li>
+                                        <select ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions" /></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToFirst()"><i class="fa fa-step-backward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniBackward()"><i class="fa fa-backward"></i></a></li>
+                                    <li>
+                                        <input type='number' ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;' />
+                                        of {{paging.totalpages}}</li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniForward()"><i class="fa fa-forward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToLast()"><i class="fa fa-step-forward"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
