@@ -10,14 +10,14 @@ var DB = require('./DBAccess');
 
 // routers
 var routes = require('./api/index');
-var fieldServicedataRoutes = require('./api/fieldServiceApi');
-var fieldSpecDataRoutes = require('./api/fieldSpecsApi');  // field specification api 
-var moduleServiceDataRoute = require('./api/moduleServiceApi');
-var pageSectionDataRoute = require('./api/pageSectionApi');
+// var fieldServicedataRoutes = require('./api/fieldServiceApi');
+// var fieldSpecDataRoutes = require('./api/fieldSpecsApi');  // field specification api 
+// var moduleServiceDataRoute = require('./api/moduleServiceApi');
+// var pageSectionDataRoute = require('./api/pageSectionApi');
 var applicationDataRoute = require('./api/applicationApi');
-var moduleEntryDataRoute = require('./api/moduleEntryApi');
-var commonServiceDataRoute = require('./api/commonServiceApi');
-var fieldValidationServiceDataRoute = require('./api/fieldValidationApi');
+// var moduleEntryDataRoute = require('./api/moduleEntryApi');
+// var commonServiceDataRoute = require('./api/commonServiceApi');
+// var fieldValidationServiceDataRoute = require('./api/fieldValidationApi');
 
 //main app
 var app = express();
@@ -47,14 +47,14 @@ var baseUrl = '/api';
 //http://localhost:6666/api/fieldServicedata/SaveFieldServiceData
 
 app.use('/', routes);
-app.use(baseUrl + '/fieldServicedata', fieldServicedataRoutes);
-app.use(baseUrl + '/fieldSpecsData', fieldSpecDataRoutes);
-app.use(baseUrl + '/moduleServiceData', moduleServiceDataRoute); // page_section data 
-app.use(baseUrl + '/pageSectionData', pageSectionDataRoute);
+// app.use(baseUrl + '/fieldServicedata', fieldServicedataRoutes);
+// app.use(baseUrl + '/fieldSpecsData', fieldSpecDataRoutes);
+// app.use(baseUrl + '/moduleServiceData', moduleServiceDataRoute); // page_section data 
+// app.use(baseUrl + '/pageSectionData', pageSectionDataRoute);
 app.use(baseUrl + '/applicationData', applicationDataRoute);
-app.use(baseUrl + '/moduleEntrydata', moduleEntryDataRoute);   // module entry data 
-app.use(baseUrl + '/commonServiceData', commonServiceDataRoute);   // module entry data 
-app.use(baseUrl + '/fieldValidationServiceData', fieldValidationServiceDataRoute);   // module entry data 
+// app.use(baseUrl + '/moduleEntrydata', moduleEntryDataRoute);   // module entry data 
+// app.use(baseUrl + '/commonServiceData', commonServiceDataRoute);   // module entry data 
+// app.use(baseUrl + '/fieldValidationServiceData', fieldValidationServiceDataRoute);   // module entry data 
 
  
 //open database connection

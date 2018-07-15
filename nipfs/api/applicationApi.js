@@ -69,15 +69,23 @@ var saveOrUpdateApplication = function (req, res) {
 // get section page list 
 var getApplication = function (req, res) {
 
-    return ApplicationModel.find(function (err, data) {
-        if (!err) {
-            return res.send(data);
-        } else {
-            res.statusCode = 500;
-            console.log('Internal error(%d): %s', res.statusCode, err.message);
-            return res.send({ error: 'Server error' });
-        }
-    }).sort({ typeId: 1, alphabet: 1, code: 1 });
+    ApplicationModel.find()
+        .sort({ typeId: 1, alphabet: 1, code: 1 })
+        .exec(function(err, data) {
+            if (err) { return next(err); }
+            //Successful, so render
+            res.send(data);
+        });
+
+    // return ApplicationModel.find(function (err, data) {
+    //     if (!err) {
+    //         return res.send(data);
+    //     } else {
+    //         res.statusCode = 500;
+    //         console.log('Internal error(%d): %s', res.statusCode, err.message);
+    //         return res.send({ error: 'Server error' });
+    //     }
+    // }).sort({ typeId: 1, alphabet: 1, code: 1 });
 };
 
 // delete page section 

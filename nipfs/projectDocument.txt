@@ -10,6 +10,10 @@ moduleEntryApi
 commonServiceApi
 fieldValidationApi
 
+var dev_db_url = "mongodb://localhost/local_library";
+
+
+
 /// **********************
 Server side
 var applicationDataRoute = require('./api/applicationApi');

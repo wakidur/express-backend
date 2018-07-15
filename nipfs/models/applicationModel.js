@@ -17,5 +17,5 @@ var ApplicationDataSchema = new Schema({
     
 });
 
-exports.ApplicationDataSchema = ApplicationDataSchema;
+// exports.ApplicationDataSchema = ApplicationDataSchema;
 module.exports = mongoose.model('Application', ApplicationDataSchema);

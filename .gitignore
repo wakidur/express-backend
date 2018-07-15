@@ -21,5 +21,6 @@ nodekb-master/package-lock.json
 nipfs/server
 nipfs/obj
 nipfs/Properties
+nipfs/node_modules
 
 

@@ -58,7 +58,7 @@ toastr.options.positionClass = 'toast-bottom-right';
 //     };
 // }
 
-var apiServiceUrl = 'http://192.168.11.6:6661/api/';
+var apiServiceUrl = 'http://localhost:6661/api/';
 //var apiServiceUrl = 'http://192.168.11.63:6661/api/';
 //var apiServiceUrl = 'http://192.168.9.6:6661/api/';
 
