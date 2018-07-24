@@ -1,15 +1,15 @@
-﻿(function(){
+﻿(function () {
     'use strict';
 
     angular
         .module('app')
         .controller('applicationCtrl', constructor);
 
-        constructor.$inject = ['$scope', 'applicationModelSvc', 'applicationDataSvc'];
+    constructor.$inject = ['$scope', 'applicationModelSvc', 'applicationDataSvc'];
 
     function constructor($scope, modelSvc, dataSvc) {
         /* jshint validthis:true */
-        // var vm = this;
+        //var vm = this;
         // scope variable
         var vm = $scope;
 
@@ -31,7 +31,7 @@
         activate();
 
         // initialize 
-        function activate() { 
+        function activate() {
             try {
                 // application page  initialization
                 _initApplication();
@@ -264,11 +264,9 @@
 
 
                 // set order 
-                flatObjectArrayList = Enumerable.From(flatObjectArrayList).Where(function (x) {
-                    return x;
-                }).OrderBy("$.name").ToArray();
-
+                flatObjectArrayList = Enumerable.From(flatObjectArrayList).Where(function (x) {return x;}).OrderBy("$.name").ToArray();
                 vm.paging.total = flatObjectArrayList.length;
+                
                 if (!vm.isPaginationOptionChange)
                     vm.criteria.pagesize = 10; // set default page size */
 
@@ -407,4 +405,3 @@
 
     }
 })();
-

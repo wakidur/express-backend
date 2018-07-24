@@ -1,7 +1,7 @@
 ﻿<h1>Hello </h1>
 <div class="container-fluid fl-stretch-box">
     <div class="row fl-box fl-content-box gutter-h">
-        
+
         <div class="col-md-4 fl-row-box" style="padding-left: .5%;">
             <div class="panel  w-full">
                 <div class="panel-heading">Application</div>
@@ -11,9 +11,8 @@
                             <label class="col-sm-4 control-label ni-sup">Application </label>
                             <div class="col-sm-8">
                                 <div data-ng-class="{ 'has-error' : applicationForm.name.$invalid && !applicationForm.name.$pristine}">
-                                    <input type="text" class="form-control" name="name" data-ng-model="application.name"
-                                           required list="applicationList" />
-                                    
+                                    <input type="text" class="form-control" name="name" data-ng-model="application.name" required list="applicationList" />
+
                                     <datalist id="applicationList">
                                         <select>
                                             <option data-ng-repeat="app in serverDataList" value="{{app.name}}"></option>
@@ -24,13 +23,12 @@
                                 </div>
                             </div>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label class="col-sm-4 control-label ni-sup">Short App Name </label>
                             <div class="col-sm-8">
                                 <div data-ng-class="{ 'has-error' : applicationForm.shortName.$invalid && !applicationForm.shortName.$pristine}">
-                                    <input type="text" class="form-control" name="shortName" data-ng-model="application.shortName"
-                                        required list="appList" />
-                                    
+                                    <input type="text" class="form-control" name="shortName" data-ng-model="application.shortName" required list="appList" />
+
                                     <datalist id="appList">
                                         <select>
                                             <option data-ng-repeat="app in serverDataList" value="{{app.shortName}}"></option>
@@ -42,9 +40,12 @@
                             </div>
                         </div>
                         <div class="btn-group pull-right" role="group">
-                            <button type="submit" class="btn btn-default" data-ng-disabled="applicationForm.$invalid || !applicationForm.$dirty"><i class="fa fa-floppy-o"></i>Save</button>
-                            <button type="button" class="btn btn-default" data-ng-disabled="!applicationForm.$dirty" data-ng-click="reset()"><i class="fa fa-repeat "></i>Reset</button>
-                            <button type="button" class="btn btn-default" data-ng-show="isCancelBtnShow" data-ng-click="cancel()"><i class="fa fa-minus-square"></i>Cancel</button>
+                            <button type="submit" class="btn btn-default" data-ng-disabled="applicationForm.$invalid || !applicationForm.$dirty">
+                                <i class="fa fa-floppy-o"></i>Save</button>
+                            <button type="button" class="btn btn-default" data-ng-disabled="!applicationForm.$dirty" data-ng-click="reset()">
+                                <i class="fa fa-repeat "></i>Reset</button>
+                            <button type="button" class="btn btn-default" data-ng-show="isCancelBtnShow" data-ng-click="cancel()">
+                                <i class="fa fa-minus-square"></i>Cancel</button>
 
                         </div>
                     </form>
@@ -69,8 +70,16 @@
                                     <td style="width: 30%">{{entity.shortName}}</td>
                                     <td style="width: 10%">
                                         <ul class="list-inline m-b-none" style="text-align: center">
-                                            <li><a href="javascript:void(0)" data-ng-click="edit(entity)"><i title="Edit" class="fa fa-edit"></i></a></li>
-                                            <li><a href="javascript:void(0)" data-ng-click="deleteApplication(entity)"><i title="Delete" class="fa fa-trash-o text-danger"></i></a></li>
+                                            <li>
+                                                <a href="javascript:void(0)" data-ng-click="edit(entity)">
+                                                    <i title="Edit" class="fa fa-edit"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)" data-ng-click="deleteApplication(entity)">
+                                                    <i title="Delete" class="fa fa-trash-o text-danger"></i>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -81,22 +90,36 @@
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-lg-4 line-height-2">
-                            Showing: {{paging.fromShowing}} - 
-                            {{paging.toShowing}} 
-                            of {{paging.total}} Records
+                            Showing: {{paging.fromShowing}} - {{paging.toShowing}} of {{paging.total}} Records
                         </div>
                         <div class="col-lg-8">
                             <div class="pull-right m-t-5">
                                 <ul class="list-inline m-b-none">
                                     <li>
-                                        <select ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions" /></li>
-                                    <li><a href="javascript:void(0)" data-ng-click="pageniToFirst()"><i class="fa fa-step-backward"></i></a></li>
-                                    <li><a href="javascript:void(0)" data-ng-click="pageniBackward()"><i class="fa fa-backward"></i></a></li>
+                                        <select ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions" />
+                                    </li>
                                     <li>
-                                        <input type='number' ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;' />
-                                        of {{paging.totalpages}}</li>
-                                    <li><a href="javascript:void(0)" data-ng-click="pageniForward()"><i class="fa fa-forward"></i></a></li>
-                                    <li><a href="javascript:void(0)" data-ng-click="pageniToLast()"><i class="fa fa-step-forward"></i></a></li>
+                                        <a href="javascript:void(0)" data-ng-click="pageniToFirst()">
+                                            <i class="fa fa-step-backward"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="pageniBackward()">
+                                            <i class="fa fa-backward"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <input type='number' ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;' /> of {{paging.totalpages}}</li>
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="pageniForward()">
+                                            <i class="fa fa-forward"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" data-ng-click="pageniToLast()">
+                                            <i class="fa fa-step-forward"></i>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -104,6 +127,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>

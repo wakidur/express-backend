@@ -9,8 +9,6 @@ app.config(function ($routeProvider) {
         .when('/', {
             templateUrl: 'app/views/application.html',
             controller: 'applicationCtrl'
-            // templateUrl: 'app/views/moduleService.html',
-            //controller: 'moduleServiceCtrl'
         })
         // route for the about page
         .when('/fieldService', {
@@ -31,23 +29,25 @@ app.config(function ($routeProvider) {
         .when('/fieldSpecification', {
             templateUrl: 'app/views/fieldSpecification.html',
             controller: 'fieldSpecsCtrl'
-        }).
-        when('/fieldTitle', {
+        })
+        .when('/fieldTitle', {
             templateUrl: 'app/views/fieldTitleGridView.html',
             controller: 'populateFieldTitleCtrl'
-        }).
+        })
         /* when('/pageExtra', {
             templateUrl: 'app/views/pageExtra.html',
             controller: 'pageExtraCtrl'
         }).*/
-        when('/pageSection', {
+        .when('/pageSection', {
             templateUrl: 'app/views/pageSection.html',
             controller: 'pageSectionCtrl'
-        }).when('/applicationService', {
+        })
+        .when('/applicationService', {
             //route for the application page
             templateUrl: 'app/views/application.html',
             controller: 'applicationCtrl'
-        }).when('/fieldValidation', {
+        })
+        .when('/fieldValidation', {
             //route for the field validation page
             templateUrl: 'app/views/fieldValidation.html',
             controller: 'fieldValidationCtrl'

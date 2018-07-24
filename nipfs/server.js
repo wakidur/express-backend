@@ -4,12 +4,12 @@ var session = require('express-session');
 var http = require('http');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-
+var  path = require('path');
 var methodOverride = require('method-override');
 var DB = require('./DBAccess');
 
 // routers
-var routes = require('./api/index');
+var homepage = require('./api/index');
 // var fieldServicedataRoutes = require('./api/fieldServiceApi');
 // var fieldSpecDataRoutes = require('./api/fieldSpecsApi');  // field specification api 
 // var moduleServiceDataRoute = require('./api/moduleServiceApi');
@@ -25,14 +25,18 @@ var dirPath = "/";
 
 // view engine setup
 app.set('port', process.env.PORT || 6661);
-app.set('views', __dirname + dirPath + 'views');
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(session({ secret: 'proptotypestandard', saveUninitialized: true, resave: true }));
 
 // use of dependencies
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(bodyParser.json({ limit: '50mb' }));// pull information from html in POST
-app.use(express.static(__dirname + dirPath));   // set the static files location
+//app.use(express.static(__dirname + dirPath));   // set the static files location
+app.use(express.static(path.join(__dirname + "/")));  // set the static files location
+app.use(express.static(path.join(__dirname + "/")));  // set the static files location
+//app.use(express.static(path.join(__dirname + "content")));  // set the static files location
+//app.use(express.static(path.join(__dirname + "vendors")));  // set the static files location
 app.use(morgan('dev')); 					// log every request to the console
 app.use(methodOverride()); 					// simulate DELETE and PUT
 app.use(function (req, res, next) {
@@ -46,12 +50,12 @@ var baseUrl = '/api';
 
 //http://localhost:6666/api/fieldServicedata/SaveFieldServiceData
 
-app.use('/', routes);
+app.use('/', homepage);
 // app.use(baseUrl + '/fieldServicedata', fieldServicedataRoutes);
 // app.use(baseUrl + '/fieldSpecsData', fieldSpecDataRoutes);
 // app.use(baseUrl + '/moduleServiceData', moduleServiceDataRoute); // page_section data 
 // app.use(baseUrl + '/pageSectionData', pageSectionDataRoute);
-app.use(baseUrl + '/applicationData', applicationDataRoute);
+app.use('/api' + '/applicationData', applicationDataRoute);
 // app.use(baseUrl + '/moduleEntrydata', moduleEntryDataRoute);   // module entry data 
 // app.use(baseUrl + '/commonServiceData', commonServiceDataRoute);   // module entry data 
 // app.use(baseUrl + '/fieldValidationServiceData', fieldValidationServiceDataRoute);   // module entry data 
