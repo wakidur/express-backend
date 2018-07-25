@@ -11,7 +11,10 @@
                             <label class="col-sm-4 control-label ni-sup">Application </label>
                             <div class="col-sm-8">
                                 <div data-ng-class="{ 'has-error' : applicationForm.name.$invalid && !applicationForm.name.$pristine}">
-                                    <input type="text" class="form-control" name="name" data-ng-model="application.name" required list="applicationList" />
+                                    <input type="text" 
+                                    class="form-control"
+                                     name="name" 
+                                     data-ng-model="application.name" required list="applicationList" />
 
                                     <datalist id="applicationList">
                                         <select>
@@ -27,7 +30,12 @@
                             <label class="col-sm-4 control-label ni-sup">Short App Name </label>
                             <div class="col-sm-8">
                                 <div data-ng-class="{ 'has-error' : applicationForm.shortName.$invalid && !applicationForm.shortName.$pristine}">
-                                    <input type="text" class="form-control" name="shortName" data-ng-model="application.shortName" required list="appList" />
+                                    <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    name="shortName" 
+                                    data-ng-model="application.shortName" 
+                                    required list="appList" />
 
                                     <datalist id="appList">
                                         <select>
@@ -40,11 +48,23 @@
                             </div>
                         </div>
                         <div class="btn-group pull-right" role="group">
-                            <button type="submit" class="btn btn-default" data-ng-disabled="applicationForm.$invalid || !applicationForm.$dirty">
-                                <i class="fa fa-floppy-o"></i>Save</button>
-                            <button type="button" class="btn btn-default" data-ng-disabled="!applicationForm.$dirty" data-ng-click="reset()">
+                            <button 
+                            type="submit" 
+                            class="btn btn-default" 
+                            data-ng-disabled="applicationForm.$invalid || !applicationForm.$dirty">
+                                <i class="fa fa-floppy-o"></i> Save
+                            </button>
+                            <button 
+                            type="button" 
+                            class="btn btn-default" 
+                            data-ng-disabled="!applicationForm.$dirty" 
+                            data-ng-click="reset()">
                                 <i class="fa fa-repeat "></i>Reset</button>
-                            <button type="button" class="btn btn-default" data-ng-show="isCancelBtnShow" data-ng-click="cancel()">
+                            <button 
+                            type="button" 
+                            class="btn btn-default"
+                            data-ng-show="isCancelBtnShow" 
+                            data-ng-click="cancel()">
                                 <i class="fa fa-minus-square"></i>Cancel</button>
 
                         </div>

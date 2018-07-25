@@ -33,7 +33,7 @@ function ($http, baseSvc) {
         try {
             return baseSvc.executeQuery(getApplicationUrl, { tick: tick });
         } catch (e) {
-
+            throw e;
         }
     }
     

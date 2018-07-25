@@ -5,9 +5,9 @@
         .module('app')
         .service('baseDataSvc', constructor);
 
-        constructor.$inject = ['$http', '$window'];
+        constructor.$inject = ['$http', '$window', '$q'];
 
-    function constructor($http, $window) {
+    function constructor($http, $window, $q) {
         this.executeQuery = executeQuery;
         this.save = save;
         this.remove = remove;
@@ -16,6 +16,7 @@
 
         function executeQuery(url, params, isPost) {
             try {
+                var deferred = $q.defer();
                 var config;
                 if (isPost) {
                     config = {
@@ -30,11 +31,14 @@
                         params: params
                     };
                 }
-                return $http(config).then(function (results) {
-                    return results.data;
-                }).catch(function (ex) {
-                    throw ex;
+                $http(config).then(function (results) {
+                    deferred.resolve(results.data);
+                }).catch(function (error) {
+                    deferred.reject(error);
                 });
+                return deferred.promise;
+
+
             } catch (ex) {
                 throw ex;
             }

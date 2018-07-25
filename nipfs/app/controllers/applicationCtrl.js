@@ -261,8 +261,6 @@
 
         function search(flatObjectArrayList) {
             try {
-
-
                 // set order 
                 flatObjectArrayList = Enumerable.From(flatObjectArrayList).Where(function (x) {return x;}).OrderBy("$.name").ToArray();
                 vm.paging.total = flatObjectArrayList.length;
