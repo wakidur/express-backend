@@ -2,12 +2,12 @@
 var express = require('express');
 var router = express.Router();
 
-var ApplicationModel = require('../models/applicationModel.js');
+var ApplicationModel = require('../models/applicationModel');
 
-var ModelContainer = require('../models/moduleServiceModel.js');
+var ModelContainer = require('../models/moduleServiceModel');
 var ModuleModel = ModelContainer[2];
 
-var FieldServiceModel = require('../models/fieldServiceModel.js');
+var FieldServiceModel = require('../models/fieldServiceModel');
 
 // save or update application data 
 var saveOrUpdateApplication = function (req, res) {
@@ -76,16 +76,6 @@ var getApplication = function (req, res) {
             //Successful, so render
             res.send(data);
         });
-
-    // return ApplicationModel.find(function (err, data) {
-    //     if (!err) {
-    //         return res.send(data);
-    //     } else {
-    //         res.statusCode = 500;
-    //         console.log('Internal error(%d): %s', res.statusCode, err.message);
-    //         return res.send({ error: 'Server error' });
-    //     }
-    // }).sort({ typeId: 1, alphabet: 1, code: 1 });
 };
 
 // delete page section 

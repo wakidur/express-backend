@@ -34,7 +34,6 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(bodyParser.json({ limit: '50mb' }));// pull information from html in POST
 //app.use(express.static(__dirname + dirPath));   // set the static files location
 app.use(express.static(path.join(__dirname + "/")));  // set the static files location
-app.use(express.static(path.join(__dirname + "/")));  // set the static files location
 //app.use(express.static(path.join(__dirname + "content")));  // set the static files location
 //app.use(express.static(path.join(__dirname + "vendors")));  // set the static files location
 app.use(morgan('dev')); 					// log every request to the console
