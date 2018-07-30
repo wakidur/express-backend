@@ -15,6 +15,7 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "jade": "^1.11.0",
+    "lodash": "^4.17.10",
     "method-override": "^2.3.5",
     "mkdirp": "^0.5.1",
     "mongodb": "^2.0.48",

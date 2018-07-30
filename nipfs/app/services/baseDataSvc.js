@@ -8,6 +8,7 @@
         constructor.$inject = ['$http', '$window', '$q'];
 
     function constructor($http, $window, $q) {
+        
         this.executeQuery = executeQuery;
         this.save = save;
         this.remove = remove;
