@@ -76,7 +76,8 @@
         // save data to server 
         function submitForm() {
             try {
-                if (!vm.application._id) { // insert new application 
+                if (!vm.application._id) {
+                    // insert new application 
                     if (!modelSvc.chcekdDuplicate(vm.application, vm.serverDataList)) {
                         dataSvc.saveOrUpdateEntity(vm.application).then(function (result) {
                             _afterSave(result.data);
@@ -84,7 +85,8 @@
                     } else {
                         showDuplicateMsg(); // show duplicate message found 
                     }
-                } else { // update application
+                } else {
+                    // update application
                     if (!modelSvc.chcekdDuplicate(vm.application, vm.serverDataList, vm.tempApplication)) {
                         dataSvc.saveOrUpdateEntity(vm.application).then(function (result) {
                             _afterUpdate(result.data);
@@ -262,9 +264,13 @@
         function search(flatObjectArrayList) {
             try {
                 // set order 
-                flatObjectArrayList = Enumerable.From(flatObjectArrayList).Where(function (x) {return x;}).OrderBy("$.name").ToArray();
+                flatObjectArrayList = Enumerable
+                                        .From(flatObjectArrayList)
+                                        .Where(function (x) { return x; })
+                                        .OrderBy("$.name")
+                                        .ToArray();
                 vm.paging.total = flatObjectArrayList.length;
-                
+
                 if (!vm.isPaginationOptionChange)
                     vm.criteria.pagesize = 10; // set default page size */
 

@@ -70,7 +70,7 @@ var saveOrUpdateApplication = function (req, res) {
 var getApplication = function (req, res) {
 
     ApplicationModel.find()
-        .sort({ typeId: 1, alphabet: 1, code: 1 })
+        .sort([["name" , 1]])
         .exec(function(err, data) {
             if (err) { return next(err); }
             //Successful, so render

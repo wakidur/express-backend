@@ -22,19 +22,19 @@
                 if (tempObj) // For update application 
                     if (entity.name.toLocaleLowerCase() === tempObj.name.toLocaleLowerCase() && entity.shortName.toLocaleLowerCase() === tempObj.shortName.toLocaleLowerCase())
                         return isDuplicate;
-                /*
-                var dupliateObj = Enumerable.From(list).FirstOrDefault(null, function (x) {
-                    return x.name.toLocaleLowerCase() === entity.name.toLocaleLowerCase() || x.shortName.toLocaleLowerCase() === entity.shortName.toLocaleLowerCase();
-                });
+                
+                // var dupliateObj = Enumerable.From(list).FirstOrDefault(null, function (x) {
+                //     return x.name.toLocaleLowerCase() === entity.name.toLocaleLowerCase() || x.shortName.toLocaleLowerCase() === entity.shortName.toLocaleLowerCase();
+                // });
 
-                if (dupliateObj)
-                    isDuplicate = true;
+                // if (dupliateObj)
+                //     isDuplicate = true;
 
-                */
+                
                 var dupliateObjLodesh = _.filter(list, function(o) { 
                     return o.name.toLocaleLowerCase() === entity.name.toLocaleLowerCase() || o.shortName.toLocaleLowerCase() === entity.shortName.toLocaleLowerCase();
                 });
-                if (dupliateObjLodesh.length === 0) {
+                if ( !(dupliateObjLodesh.length === 0) ) {
                     isDuplicate = true;
                 }
 
