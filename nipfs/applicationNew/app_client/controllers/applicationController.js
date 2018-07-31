@@ -14,6 +14,9 @@
         // Method binding
         vm.submitForm = submitForm;
         vm.edit = edit;
+        vm.deleteApplication = deleteApplication;
+        vm.reset = reset;
+        vm.cancel = cancel;
 
         // Variable binding
         vm.application = {}; // Main object for application
@@ -74,23 +77,23 @@
                             // show duplicate  message found
                             showDuplicateMsg();
                         });
-                    } 
-                    
+                    }
+
                 } else {
-                   // Update Application
-                   if (!appModelSvc.checkDuplicate(vm.application, vm.serverDataList, vm.tempApplication)) {
-                       appDataSvc.saveOrUpdateEntity(vm.application).then((result) => {
-                           _afterUpdate(result.data);
-                       }).catch((err) => {
-                           showDuplicateMsg();
-                       });
-                   } 
+                    // Update Application
+                    if (!appModelSvc.checkDuplicate(vm.application, vm.serverDataList, vm.tempApplication)) {
+                        appDataSvc.saveOrUpdateEntity(vm.application).then((result) => {
+                            _afterUpdate(result.data);
+                        }).catch((err) => {
+                            showDuplicateMsg();
+                        });
+                    }
                 }
-                
+
             } catch (error) {
                 showErrorMsg(error);
             }
-            
+
         }
 
         // Edit Application
@@ -116,17 +119,45 @@
                             usagesAnotherScopeMsg();
                         } else {
                             vm.isPaginationOptionChange = false;
-                            // return data
+                            // return deletedData
+                            if (vm.tempApplication._id == entity._id) {
+                                // Application page initialization
+                                _initApplication();
+                                vm.applicationForm.$setPristine();
+                            }
+                            _updateGridData(entity);
+                            showSuccessDeletedMsg();
                         }
                     }).catch((err) => {
-                        
+                        showErrorMsg(err)
                     });
                 }
             } catch (error) {
-                
+
             }
         }
 
+        // Reset form 
+        function reset() {
+            try {
+                // assaing old object temp Object property
+                vm.application = angular.copy(vm.tempApplication);
+                // reset form
+                vm.applicationForm.$setPristine();
+            } catch (error) {
+                showErrorMsg(error);
+            }
+        }
+
+        //cancel action
+        function cancel(params) {
+            try {
+                // application page initialization
+                _initApplication();
+            } catch (error) {
+                showErrorMsg(error);
+            }
+        }
 
         // get server data
         function getServerData(params) {
@@ -252,7 +283,108 @@
             }
         }
 
+        // after save operation
+        function _afterSave(entity) {
+            try {
+                // add new entity into list
+                vm.serverDataList.push(entity);
+                // prepare gird view and pagination
+                search(vm.serverDataList);
+                // initialize application page
+                _initApplication();
+                // Show success message
+                showSuccessSaveMsg();
+                // reset form
+                vm.applicationForm.$setPristine();
 
+            } catch (error) {
+                showErrorMsg();
+            }
+        }
+
+        // After update
+        function _afterUpdate(entity) {
+            try {
+                let appObject = Enumarable.From(vm.serverDataList).FirstOrDefault(null, function (x) {
+                    return x._id == entity._id;
+                });
+                if (appObject) {
+                    appObject.name = entity.name;
+                    appObject.shortName = entity.shortName;
+                }
+
+                // Grid data update
+                search(vm.serverDataList);
+                // initApplication 
+                _initApplication();
+                // reset form
+                vm.applicationForm.$setPristine();
+                // show successfully update message
+                showSuccessUpdateMsg();
+            } catch (error) {
+                showErrorMsg();
+            }
+        }
+        // Update grid data after delete entity
+        function _updateGridData(entity) {
+            try {
+                let index = vm.serverDataList.indexOf(entity);
+                if (index > -1) {
+                    vm.serverDataList.splice(index, 1);
+                }
+                search(vm.serverDataList);
+            } catch (error) {
+                showErrorMsg(error);
+            }
+        }
+
+
+        // show first page data 
+        vm.pageniToFirst = function () {
+            try {
+                if (vm.criteria.page > 1) {
+                    vm.criteria.page = 1;
+                }
+            } catch (error) {
+                showErrorMsg(error);
+            }
+
+        };
+
+        // back to page
+        vm.pageniBackward = function () {
+            try {
+                if (vm.criteria.page && vm.criteria.page > 1) {
+                    if (vm.criteria.page <= vm.paging.totalpages) {
+                        vm.criteria.page = vm.criteria.page - 1;
+                    }
+                }
+            } catch (error) {
+                showErrorMsg(error);
+            }
+        };
+
+        // forward to page  
+        vm.pageniForward = function () {
+            try {
+                if (vm.criteria.page < vm.paging.totalpages) {
+                    vm.criteria.page = vm.criteria.page + 1;
+                }
+            } catch (error) {
+                showErrorMsg(error);
+            }
+        }
+
+        // show last page data 
+        vm.pageniToLast = function () {
+            try {
+                if (vm.criteria.page < vm.paging.totalpages) {
+                    vm.criteria.page = vm.paging.totalpages;
+                }
+            } catch (error) {
+                showErrorMsg(error);
+            }
+        }
 
 
         // Object defination

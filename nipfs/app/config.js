@@ -1,5 +1,11 @@
-﻿toastr.options.timeOut = 4000;
+﻿// toastr Current Version 2.1.4 
+toastr.options.timeOut = 4000;
 toastr.options.positionClass = 'toast-bottom-right';
+// new add 
+toastr.options.closeButton = true;
+toastr.options.closeMethod = 'fadeOut';
+toastr.options.closeDuration = 3000;
+toastr.options.closeEasing = 'swing';
 
 (function() {
     'use strict';
@@ -9,33 +15,33 @@ toastr.options.positionClass = 'toast-bottom-right';
 
 
 
-(function(){
-    'use strict';
+// (function(){
+//     'use strict';
 
-    angular
-        .module('app')
-        .config(appConfig);
+//     angular
+//         .module('app')
+//         .config(appConfig);
 
-        appConfig.$inject = ['$provide'];
+//         appConfig.$inject = ['$provide'];
 
-    function appConfig($provide) {
-        $provide.decorator('$exceptionHandler', ['$delegate', '$log', extendExceptionHandler]);
+//     function appConfig($provide) {
+//         $provide.decorator('$exceptionHandler', ['$delegate', '$log', extendExceptionHandler]);
 
-        function extendExceptionHandler($delegate, $log) {
-            return function (exception, cause) {
-                $delegate(exception, cause);
-                var errorData = {
-                    exception: exception,
-                    cause: cause
-                };
-                var msg = 'ERROR PREFIX' + exception.message;
-                $log.error(msg, errorData);
-            };
-        }
+//         function extendExceptionHandler($delegate, $log) {
+//             return function (exception, cause) {
+//                 $delegate(exception, cause);
+//                 var errorData = {
+//                     exception: exception,
+//                     cause: cause
+//                 };
+//                 var msg = 'ERROR PREFIX' + exception.message;
+//                 $log.error(msg, errorData);
+//             };
+//         }
 
-    }
+//     }
 
-}());
+// }());
 
 
 
