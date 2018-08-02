@@ -264,11 +264,13 @@
         function search(flatObjectArrayList) {
             try {
                 // set order 
-                flatObjectArrayList = Enumerable
-                                        .From(flatObjectArrayList)
-                                        .Where(function (x) { return x; })
-                                        .OrderBy("$.name")
-                                        .ToArray();
+                // flatObjectArrayList = Enumerable
+                //                         .From(flatObjectArrayList)
+                //                         .Where(function (x) { return x; })
+                //                         .OrderBy("$.name")
+                //                         .ToArray();
+
+               flatObjectArrayList = _.orderBy(flatObjectArrayList, ['name'], ['asc']);                        
                 vm.paging.total = flatObjectArrayList.length;
 
                 if (!vm.isPaginationOptionChange)

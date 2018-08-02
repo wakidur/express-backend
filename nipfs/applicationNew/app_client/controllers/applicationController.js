@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .controller('applicationCtrl', constructor)
+        .controller('applicationCtrl', constructor);
 
     constructor.$inject = ['$scope', 'applicationDataService', 'applicationModelSvc'];
 
@@ -43,21 +43,21 @@
         var watchData = $scope.$watch('criteria', function (newValue, oldValue) {
             if (!angular.equals(newValue, oldValue)) {
                 if (newValue.page <= vm.paging.totalpages) {
-                    search(vm.serverDataList);
+                    prepareGrid(vm.serverDataList);
                 } else {
                     vm.criteria.page = 1;
                 }
             }
         }, true);
 
-        /***************application controller***************/
-        // initialize 
-        activate();
 
-        function activate(params) {
+        // initialize 
+        init();
+
+        function init() {
             try {
                 // initialize new application
-                _initApplication()
+                _initApplication();
                 // get server data
                 getServerData();
             } catch (error) {
@@ -159,16 +159,19 @@
             }
         }
 
-        // get server data
+        /*
+         * controller Helper functions
+         */
+
+        // Get server data
         function getServerData(params) {
             try {
                 let tick = (new Date()).getTime().toString();
                 dataSvc.getApplication(tick).then((result) => {
                     // get flat object array list
                     vm.serverDataList = angular.copy(result);
-
                     // prepare grid  view and pagination
-                    search(vm.serverDataList);
+                    prepareGrid(vm.serverDataList);
                 }).catch((err) => {
                     showErrorMsg(err);
                 });
@@ -177,13 +180,16 @@
             }
         }
 
-        // search data 
-        function search(flatObjectArrayList) {
+        // prepareGrid data 
+        function prepareGrid(flatObjectArrayList) {
             try {
                 // set order
-                flatObjectArrayList = Enumarable.Form(flatObjectArrayList).whare(function (x) {
-                    return x;
-                }).OrderBy("$.name").ToArray();
+                // flatObjectArrayList = Enumarable.Form(flatObjectArrayList).whare(function (x) {
+                //     return x;
+                // }).OrderBy("$.name").ToArray();
+
+                flatObjectArrayList = _.orderBy(flatObjectArrayList, ['name'], ['asc']);
+                
                 vm.paging.total = flatObjectArrayList.length;
                 if (!vm.isPaginationOptionChange)
                     vm.criteria.pagesize = 10; // set default page size 
@@ -254,13 +260,9 @@
             }
         }
 
-
-
-
-
-
-
-
+        /**
+         * Partial Function
+         */
         // initialize application
         function _initApplication() {
             try {
@@ -289,7 +291,7 @@
                 // add new entity into list
                 vm.serverDataList.push(entity);
                 // prepare gird view and pagination
-                search(vm.serverDataList);
+                prepareGrid(vm.serverDataList);
                 // initialize application page
                 _initApplication();
                 // Show success message
@@ -314,7 +316,7 @@
                 }
 
                 // Grid data update
-                search(vm.serverDataList);
+                prepareGrid(vm.serverDataList);
                 // initApplication 
                 _initApplication();
                 // reset form
@@ -332,7 +334,7 @@
                 if (index > -1) {
                     vm.serverDataList.splice(index, 1);
                 }
-                search(vm.serverDataList);
+                prepareGrid(vm.serverDataList);
             } catch (error) {
                 showErrorMsg(error);
             }
@@ -373,7 +375,7 @@
             } catch (error) {
                 showErrorMsg(error);
             }
-        }
+        };
 
         // show last page data 
         vm.pageniToLast = function () {
@@ -384,7 +386,7 @@
             } catch (error) {
                 showErrorMsg(error);
             }
-        }
+        };
 
 
         // Object defination
