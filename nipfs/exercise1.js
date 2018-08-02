@@ -12,15 +12,15 @@
 
 vm.application
 
-name:"aaaa"
-shortName:"aaadd"
+name:"aa Human Resource Management"
+shortName:"HRM rrr rr"
 __v:0
 _id:"5b583bdc6efadec81e8268ab"
 
 vm.tempApplication
 
-name : "aaaa" 
-shortName : "aaadd"
+name : "aa Human Resource Management dd dd" 
+shortName : "HRM rrr rr"
 __v : 0
 _id : "5b583bdc6efadec81e8268ab"
 
@@ -52,6 +52,15 @@ pageniToFirst()
 pageniBackward()
 pageniForward()
 pageniToLast()
+
+
+_afterSave(result.data);
+_afterUpdate(result.data);
+
+
+showDuplicateMsg()
+
+
 
 /********** Client side request path  *//
 var apiServiceUrl = 'http://localhost:6661/api/';
@@ -126,4 +135,12 @@ function dataservice($http, $location, $q, exception, logger) {
     function ready(nextPromises) {
         // implementation details go here
     }
+}
+
+var isPaginationOptionChange = true;
+
+if(isPaginationOptionChange){
+	console.log(`Hello ${isPaginationOptionChange}`);
+} else {
+	console.log(`Else ${isPaginationOptionChange}`)	
 }

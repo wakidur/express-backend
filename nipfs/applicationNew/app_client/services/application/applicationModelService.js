@@ -24,7 +24,7 @@
                     }
                 }
                var dupliateObjLodesh = _.filter(list, function(o) { 
-                    return x.name.toLocaleLowerCase() === entity.name.toLocaleLowerCase() || x.shortName.toLocaleLowerCase() === entity.shortName.toLocaleLowerCase();; 
+                    return o.name.toLocaleLowerCase() === entity.name.toLocaleLowerCase() || o.shortName.toLocaleLowerCase() === entity.shortName.toLocaleLowerCase();; 
                 });
                 if (dupliateObjLodesh) {
                     isDuplicate = true;
