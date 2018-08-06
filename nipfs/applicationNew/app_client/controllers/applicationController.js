@@ -160,7 +160,7 @@
         }
 
         /*
-         * controller Helper functions
+         * ************* controller Helper functions ************
          */
 
         // Get server data
@@ -184,34 +184,32 @@
         function prepareGrid(flatObjectArrayList) {
             try {
                 // set order
-                // flatObjectArrayList = Enumarable.Form(flatObjectArrayList).whare(function (x) {
-                //     return x;
-                // }).OrderBy("$.name").ToArray();
-
                 flatObjectArrayList = _.orderBy(flatObjectArrayList, ['name'], ['asc']);
-                
                 vm.paging.total = flatObjectArrayList.length;
-                if (!vm.isPaginationOptionChange)
+                if (!vm.isPaginationOptionChange){
                     vm.criteria.pagesize = 10; // set default page size 
+                }
+                    
                 vm.paging.totalpages = (Math.ceil(flatObjectArrayList.length / vm.criteria.pagesize)) == 0 ? 1 : (Math.ceil(flatObjectArrayList.length / vm.criteria.pagesize));
                 // set pagination option
                 if (!vm.isPaginationOptionChange) {
                     vm.paging.pagingOptions.length = 0;
-                    for (let i = 0; i < vm.paging.length; i++) {
+                    for (let i = 0; i < vm.paging.totalpages; i++) {
                         if (vm.paging.tempPaginationOption.length > i) {
                             vm.paging.pagingOptions.push(vm.paging.tempPaginationOption[i]);
                         }
-                        vm.isPaginationOptionChange = true;
                     }
-                    _getGridViewList(flatObjectArrayList, vm.criteria);
+                    vm.isPaginationOptionChange = true;
                 }
+                    _getGridViewList(flatObjectArrayList, vm.criteria);
+                
 
             } catch (error) {
                 showErrorMsg(error);
             }
         }
 
-        // get get Fileter Data 
+        //Get Fileter Data 
         function getFileterData(list, entity) {
             try {
                 let dataList = [];
@@ -219,7 +217,7 @@
                     let pageNo = !entity.page ? 1 : entity.page;
 
                     if (list.length >= 10) {
-                        vm.paging.formShowing = 10;
+                        vm.paging.formShowing = 1;
                         if (list.length < entity.pagesize) {
                             vm.paging.toShowing = list.length;
                         } else {
@@ -261,7 +259,7 @@
         }
 
         /**
-         * Partial Function
+         ************* Partial Function *******************
          */
         // initialize application
         function _initApplication() {
