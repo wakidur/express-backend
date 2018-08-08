@@ -2,7 +2,7 @@
  * Get user page
  */
 function users(req, res) {
-    res.render('users', {
+    res.render('users/users', {
         title: 'user',
         id: 123456,
         name: 'Wakidur',

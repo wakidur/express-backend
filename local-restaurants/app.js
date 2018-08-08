@@ -5,12 +5,36 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
+const dotenv = require('dotenv');
+
+/**
+ * Connect to MongoDB.
+*/
+require('./app_server/models/dbConnection');
+
 
 const indexRouter = require('./app_server/routes/locationsRoutes');
 const usersRouter = require('./app_server/routes/users');
 const aboutRouter = require('./app_server/routes/aboutRoutes');
 
+// Api Router
+const apiRoutes = require('./app_api/routes/locationApiRoute');
+
+/**
+ * Load environment variables from .env file, where API keys and passwords are configured.
+ */
+dotenv.load({
+  path: '.env'
+});
+
+/**
+ * Create Express server.
+ */
 const app = express();
+
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
@@ -29,6 +53,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
+
+// API Router
+app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

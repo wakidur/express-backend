@@ -14,8 +14,8 @@ block content
             p.rating
               +outputRating(location.rating)
             p 125 High Street, Reading, RG6 1PS
-            .card.card-primary
-              .card-block
+            .card.card-primary.my-2
+              .card-body
                 h2.card-title Opening hours
                 each time in location.openingTimes
                   p.card-text
@@ -24,8 +24,8 @@ block content
                       | closed
                     else
                       | #{time.opening} - #{time.closing}
-            .card.card-primary
-              .card-block
+            .card.card-primary.my-2
+              .card-body
                 h2.card-title Facilities
                 each facility in location.facilities
                   span.badge.badge-warning
@@ -34,13 +34,13 @@ block content
                   | &nbsp;
           .col-12.col-md-6.location-map
             .card.card-primary
-              .card-block
+              .card-body
                 h2.card-title Location map
                 img.img-fluid.rounded(src=`http://maps.googleapis.com/maps/api/staticmap?center=${location.coords.lat},${location.coords.lng}&zoom=17&size=400x350&sensor=false&markers=${location.coords.lat},${location.coords.lng}&scale=2`)
         .row
           .col-12
             .card.card-primary.review-card
-              .card-block
+              .card-body
                 a.btn.btn-primary.float-right(href='/location/review/new') Add review
                 h2.card-title Customer reviews
                 each review in location.reviews
@@ -53,5 +53,7 @@ block content
                     .col-12
                       p !{(review.reviewText).replace(/\n/g, '<br/>')}
       .col-12.col-lg-3
-        p.lead #{location.name} #{sidebar.context}
-        p= sidebar.callToAction
+        .card
+          .card-body
+            p.lead #{location.name} #{sidebar.context}
+            p= sidebar.callToAction

@@ -12,17 +12,19 @@ block content
       .col-12.col-md-8
 
         each location in locations
-          .card
-            .card-block
-              h4
-                a(href="/location")= location.name
+          .card.my-2
+            .card-body
+              h4.card-title
+                a(class='text-secondary', href="/location")= location.name
                 small &nbsp;
                   +outputRating(location.rating)
-                span.badge.badge-pill.badge-default.float-right= location.distance
-              p.address= location.address
+                span.badge.badge-pill.badge-dark.float-right= location.distance
+              h6.card-subtitle= location.address
               .facilities
                 each facility in location.facilities
-                  span.badge.badge-warning= facility
+                  span.ml-1.badge.badge-pill.badge-info= facility
 
       .col-12.col-md-4
-        p.lead= sidebar
+        .card
+          .card-body
+            h6.card-subtitle.mb-2= sidebar

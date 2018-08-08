@@ -83,8 +83,10 @@ function locationInfo(req, res) {
 function addReview(req, res) {
     res.render('locations/location-review-form', {
         title: 'Review Starcups on Loc8r',
-        pageHeader: { title: 'Review Starcups' }
-      });
+        pageHeader: {
+            title: 'Review Starcups'
+        }
+    });
 }
 
 module.exports = {
