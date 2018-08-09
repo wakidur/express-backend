@@ -5,25 +5,25 @@ const ctrlReviews = require('../controllers/reviewsApiCtrl');
 
 // locations
 router
-    .route('/locations')
-    .get(ctrlLocations.locationsListByDistance)
-    .post(ctrlLocations.locationsCreate);
+  .route('/locations')
+  .get(ctrlLocations.locationsListByDistance)
+  .post(ctrlLocations.locationsCreate);
 
 router
-    .route('/locations/:locationid')
-    .get(ctrlLocations.locationsReadOne)
-    .put(ctrlLocations.locationsUpdateOne)
-    .delete(ctrlLocations.locationsDeleteOne);
-
+  .route('/locations/:locationid')
+  .get(ctrlLocations.locationsReadOne)
+  .put(ctrlLocations.locationsUpdateOne)
+  .delete(ctrlLocations.locationsDeleteOne);
+  
 // reviews
 router
-    .route('/locations/:locationid/reviews')
-    .post(ctrlReviews.reviewsCreate);
+  .route('/locations/:locationid/reviews')
+  .post(ctrlReviews.reviewsCreate);
 
 router
-    .route('/locations/:locationid/reviews/:reviewid')
-    .get(ctrlReviews.reviewsReadOne)
-    .put(ctrlReviews.reviewsUpdateOne)
-    .delete(ctrlReviews.reviewsDeleteOne);
+  .route('/locations/:locationid/reviews/:reviewid')
+  .get(ctrlReviews.reviewsReadOne)
+  .put(ctrlReviews.reviewsUpdateOne)
+  .delete(ctrlReviews.reviewsDeleteOne);
 
 module.exports = router;

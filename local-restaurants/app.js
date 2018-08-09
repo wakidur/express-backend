@@ -6,11 +6,12 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
-
+const mongoose = require('mongoose');
+require('./app_api/models/db');
 /**
  * Connect to MongoDB.
 */
-require('./app_server/models/dbConnection');
+
 
 
 const indexRouter = require('./app_server/routes/locationsRoutes');
@@ -31,8 +32,6 @@ dotenv.load({
  * Create Express server.
  */
 const app = express();
-
-
 
 
 

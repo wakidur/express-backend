@@ -15,7 +15,7 @@ block content
           .card.my-2
             .card-body
               h4.card-title
-                a(class='text-secondary', href=`/location/${location._id}`)= location.name
+                a(class='text-secondary', href="/location")= location.name
                 small &nbsp;
                   +outputRating(location.rating)
                 span.badge.badge-pill.badge-dark.float-right= location.distance

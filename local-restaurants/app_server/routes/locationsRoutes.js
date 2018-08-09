@@ -3,9 +3,11 @@ const router = express.Router();
 const locationCtrl = require('../controllers/locationsCtrl');
 
 
-/* GET home page. */
+/* Locations pages */
 router.get('/', locationCtrl.homelist);
-router.get('/location', locationCtrl.locationInfo);
-router.get('/location/review/new', locationCtrl.addReview);
-
+router.get('/location/:locationid', locationCtrl.locationInfo);
+router
+  .route('/location/:locationid/review/new')
+  .get(locationCtrl.addReview)
+  .post(locationCtrl.doAddReview);
 module.exports = router;

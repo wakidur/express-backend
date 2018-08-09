@@ -1,4 +1,5 @@
-var Loc = require('../models/location/locationApiSchema');
+const mongoose = require('mongoose');
+const Loc = mongoose.model('Location');
 
 // EXPOSED METHODS
 
@@ -220,6 +221,7 @@ const _doAddReview = function(req, res, location) {
     });
     location.save((err, location) => {
       if (err) {
+        console.log(err);
         res
           .status(400)
           .json(err);
@@ -240,7 +242,7 @@ const _updateAverageRating = function(locationid) {
     .select('rating reviews')
     .exec((err, location) => {
       if (!err) {
-        doSetAverageRating(location); 
+        _doSetAverageRating(location); 
       }
     });
 };

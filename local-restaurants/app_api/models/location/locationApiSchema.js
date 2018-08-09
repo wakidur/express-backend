@@ -1,6 +1,40 @@
 const mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var locationSchema = new Schema({
+
+const openingTimeSchema = new mongoose.Schema({
+  days: {
+    type: String,
+    required: true
+  },
+  opening: String,
+  closing: String,
+  closed: {
+    type: Boolean,
+    required: true
+  }
+});
+
+const reviewSchema = new mongoose.Schema({
+  author: {
+    type: String,
+    required: true
+  },
+  rating: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5
+  },
+  reviewText: {
+    type: String,
+    required: true
+  },
+  createdOn: {
+    type: Date,
+    'default': Date.now
+  }
+});
+
+const locationSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -17,17 +51,8 @@ var locationSchema = new Schema({
     type: [Number],
     index: '2dsphere'
   },
-  openingTimes: {
-    type: Schema.ObjectId,
-    ref: 'OpeningTimeApi',
-    required: true
-  },
-  reviews: {
-    type: Schema.ObjectId,
-    ref: 'ReviewApi',
-    required: true
-  }
-
+  openingTimes: [openingTimeSchema],
+  reviews: [reviewSchema]
 });
-//Export model
-module.exports = mongoose.model('Location', locationSchema);
+
+mongoose.model('Location', locationSchema);

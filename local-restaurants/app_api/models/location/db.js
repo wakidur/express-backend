@@ -41,3 +41,4 @@ process.on('SIGTERM', () => {
   });
 });
 
+require('./locationApiSchema');
