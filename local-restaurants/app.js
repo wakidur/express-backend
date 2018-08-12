@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-require('./app_api/models/db');
+
 /**
  * Connect to MongoDB.
 */
@@ -19,7 +19,7 @@ const usersRouter = require('./app_server/routes/users');
 const aboutRouter = require('./app_server/routes/aboutRoutes');
 
 // Api Router
-const apiRoutes = require('./app_api/routes/locationApiRoute');
+//const apiRoutes = require('./app_api/routes/locationApiRoute');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -34,6 +34,12 @@ dotenv.load({
 const app = express();
 
 
+let mongoDB = 'mongodb://localhost/Loc8r';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', console.log.bind("we're connected......... 3300"));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
@@ -54,7 +60,7 @@ app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 
 // API Router
-app.use('/api', apiRoutes);
+//app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

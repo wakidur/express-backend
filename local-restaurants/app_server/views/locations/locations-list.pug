@@ -14,6 +14,8 @@ block content
         each location in locations
           .card.my-2
             .card-body
+              - if (message)
+                 .alert.alert-danger(role="alert")= message 
               h4.card-title
                 a(class='text-secondary', href=`/location/${location._id}`)= location.name
                 small &nbsp;
