@@ -4,6 +4,8 @@ const locationCtrl = require('../controllers/locationsCtrl');
 
 
 /* Locations pages */
-router.get('/', locationCtrl.homelist);
+router.get('/', locationCtrl.homeList);
+
+
 
 module.exports = router;

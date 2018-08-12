@@ -10,12 +10,12 @@ block content
           small &nbsp;#{pageHeader.strapline}
     .row
       .col-12.col-md-8
-
+        
         each location in locations
           .card.my-2
             .card-body
-              - if (message)
-                 .alert.alert-danger(role="alert")= message 
+              if !(message.length === 0) 
+               .alert.alert-danger.coustom(role="alert")= message 
               h4.card-title
                 a(class='text-secondary', href=`/location/${location._id}`)= location.name
                 small &nbsp;

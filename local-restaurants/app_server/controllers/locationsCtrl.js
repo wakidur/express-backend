@@ -1,29 +1,44 @@
-var request = require('request');
-var Locatondata = require('../models/locations');
-// PUBLIC EXPOSED METHODS
-
 /* GET 'home' page */
-var homelist = function (req, res) {
-  Locatondata.find()
-    .sort([
-      ['name', 'ascending']
-    ]).then((data) => {
-      if (data) {
-        for (let i = 0; i < data.length; i++) {
-          data[i].distance = _formatDistance(data[i].distance);
-        }
-      }
+const request = require('request');
+const apiOptions = {
+  server: 'http://localhost:3300/'
+}
+if (process.env.NODE_ENV === 'productionc') {
+  console.log(process.env.NODE_ENV);
+}
+
+// Public exposed methods
+
+/**
+ * GET 'home' page 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+function homeList(req, res, next) {
+  const path = 'api/locations';
+  const requestOptions = {
+    url: apiOptions.server + path,
+    method: 'GET',
+    json: {},
+    qs: {}
+  }
+  request(requestOptions, (error, response, body) => {
+    if (error) {
+      return next(error);
+    }
+    let data = body;
+    if (response.statusCode === 200 && data.length) {
       _renderHomepage(req, res, data);
-    }).catch((err) => {
-      return next(err);
-    });
+    }
 
+  });
+}
 
-};
+// PRIVATE METHODS
 
-
-var _renderHomepage = function (req, res, responseBody) {
-  let message = null;
+function _renderHomepage(req, res, responseBody) {
+  let message = [];
   if (!(responseBody instanceof Array)) {
     message = 'API lookup error';
     responseBody = [];
@@ -38,12 +53,17 @@ var _renderHomepage = function (req, res, responseBody) {
       title: 'Loc8r',
       strapline: 'Find places to work with wifi near you!'
     },
-    sidebar: 'Looking hellos  for wifi and a seat? Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you\'re looking for.',
+    sidebar: 'Looking for wifi and a seat? Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you\'re looking for.',
     locations: responseBody,
-    message: message
+    message: 'API lookup error'
   });
-};
-var _formatDistance = function (distance) {
+}
+
+function _isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function _formatDistance(distance) {
   if (distance && _isNumeric(distance)) {
     let thisDistance = 0;
     let unit = 'm';
@@ -57,12 +77,9 @@ var _formatDistance = function (distance) {
   } else {
     return '?';
   }
-};
-
-
-
+}
 
 module.exports = {
-  homelist,
-  
+  homeList,
+
 };

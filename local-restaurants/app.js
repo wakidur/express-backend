@@ -19,7 +19,7 @@ const usersRouter = require('./app_server/routes/users');
 const aboutRouter = require('./app_server/routes/aboutRoutes');
 
 // Api Router
-//const apiRoutes = require('./app_api/routes/locationApiRoute');
+const apiRoutes = require('./app_api/routes/locationApiRoute');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -58,9 +58,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
-
+app.use('/api', apiRoutes);
 // API Router
-//app.use('/api', apiRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
