@@ -17,17 +17,40 @@ const _buildLocationList = function (req, res, results, stats) {
 };
 
 function locationsListByDistance(req, res, next) {
-  Location.find().then((locations) => {
+  const lng = parseFloat(req.query.lng);
+  const lat = parseFloat(req.query.lat);
+  const maxDistance = parseFloat(req.query.maxDistance);
+  const point = {
+    type: "Point",
+    coordinates: [lng, lat]
+  };
+  const geoOptions = {
+    spherical: true,
+    maxDistance: 20000,
+    num: 10
+  };
+  if ((!lng && lng !== 0) || (!lat && lat !== 0) || !maxDistance) {
+    console.log('locationsListByDistance missing params');
     res
-      .status(200)
-      .json(locations);
-  }).catch((err) => {
-    return next(err);
-  });
+      .status(404)
+      .json({
+        message: 'lng, lat and maxDistance query parameters are all required'
+      });
+    return;
+  }
+  Location.find().then((results) => {
+      res
+        .status(200)
+        .json(results);
+    }).catch((err) => {
+      return next(err);
+    });
 }
 
+/* GET 'Location info' page */
 
 
 module.exports = {
-  locationsListByDistance
+  locationsListByDistance,
+  locationInfo
 };

@@ -11,9 +11,6 @@ const mongoose = require('mongoose');
 /**
  * Connect to MongoDB.
 */
-
-
-
 const indexRouter = require('./app_server/routes/locationsRoutes');
 const usersRouter = require('./app_server/routes/users');
 const aboutRouter = require('./app_server/routes/aboutRoutes');
@@ -58,9 +55,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
-app.use('/api', apiRoutes);
-// API Router
 
+// API Router
+app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

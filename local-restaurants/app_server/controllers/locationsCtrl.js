@@ -15,27 +15,56 @@ if (process.env.NODE_ENV === 'productionc') {
  * @param {*} res 
  * @param {*} next 
  */
+
 function homeList(req, res, next) {
   const path = 'api/locations';
   const requestOptions = {
-    url: apiOptions.server + path,
-    method: 'GET',
-    json: {},
-    qs: {}
-  }
-  request(requestOptions, (error, response, body) => {
-    if (error) {
-      return next(error);
+    url : apiOptions.server + path,
+    method : 'GET',
+    json : {},
+    qs : {
+      lng : -0.7992599,
+      lat : 51.378091,
+      maxDistance : 20
     }
-    let data = body;
-    if (response.statusCode === 200 && data.length) {
+  };
+  request(
+    requestOptions,
+    (err, response, body) => {
+      let data = body;
+      if (response.statusCode === 200 && data.length) {
+        for (let i = 0; i < data.length; i++) {
+          data[i].distance = _formatDistance(data[i].distance);
+        }
+      }
       _renderHomepage(req, res, data);
     }
-
-  });
+  );
 }
 
+/**
+ * GET 'Location info' page
+ */
+
+function locationInfo(req, res) {
+  _getLocationInfo(req, res, () => {
+    console.log(responseData);
+    _renderDetailPage(req, res, responseData)
+  });
+}
 // PRIVATE METHODS
+
+function _getLocationInfo(req, res, callback) {
+  const path = `api/locations/${req.params.locationid}`;
+  const requestOptions = {
+    url: apiOptions.server + path,
+    method: 'GET',
+    json: {}
+  };
+
+  request(requestOptions, (err, response, body))
+  
+}
 
 function _renderHomepage(req, res, responseBody) {
   let message = [];
@@ -55,7 +84,7 @@ function _renderHomepage(req, res, responseBody) {
     },
     sidebar: 'Looking for wifi and a seat? Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you\'re looking for.',
     locations: responseBody,
-    message: 'API lookup error'
+    message: message
   });
 }
 
@@ -81,5 +110,6 @@ function _formatDistance(distance) {
 
 module.exports = {
   homeList,
+  locationInfo
 
 };
