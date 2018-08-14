@@ -8,4 +8,5 @@ router.get('/', locationCtrl.homeList);
 
 
 
+
 module.exports = router;

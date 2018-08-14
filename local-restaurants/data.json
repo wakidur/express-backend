@@ -1,0 +1,70 @@
+ {
+   "name": "Tarka, Dhaka",
+   "address": "62, Road 10, Block D Banani-10, Dhaka 1213",
+   "rating": 4.0,
+   "facilities": ["Hot drinks", "Food", "Premium wifi"],
+   "coords": {
+     "lat": 90.406091,
+     "lng": 23.792546
+   },
+   "openingTimes": [{
+     "days": "Monday - Friday",
+     "opening": "12–10:30PM",
+     "closing": "7:00pm",
+     "closed": false
+   }, {
+     "days": "Saturday",
+     "opening": "8:00am",
+     "closing": "5:00pm",
+     "closed": false
+   }, {
+     "days": "Sunday",
+     "closed": true
+   }],
+   "reviews": [{
+     "author": "Simon Holmes",
+     "rating": 5,
+     "timestamp": "16 July 2013",
+     "reviewText": "What a great place. I can\"t say enough good things about it."
+   }, {
+     "author": "Charlie Chaplin",
+     "rating": 3,
+     "timestamp": "16 June 2013",
+     "reviewText": "It was okay. Coffee wasn\"t great, but the wifi was fast."
+   }]
+ },
+  {
+   "name": "Sajna Restaurant, Dhaka.",
+   "address": "House 14, Rd No. 11, Dhaka 1213",
+   " rating": 4.0,
+   "facilities": ["Hot drinks", "Food", "Premium wifi"],
+   "coords": {
+     "lat": 90.406949,
+     "lng": 23.791141
+   },
+   "openingTimes": [{
+     "days": "Monday - Friday",
+     "opening": "12–10:30PM",
+     "closing": "7:00pm",
+     "closed": false
+   }, {
+     "days": "Saturday",
+     "opening": "8:00am",
+     "closing": "5:00pm",
+     "closed": false
+   }, {
+     "days": "Sunday",
+     "closed": true
+   }],
+   "reviews": [{
+     "author": "Simon Holmes",
+     "rating": 5,
+     "timestamp": "16 July 2013",
+     "reviewText": "What a great place. I can\"t say enough good things about it."
+   }, {
+     "author": "Charlie Chaplin",
+    "rating": 3,
+     "timestamp": "16 June 2013",
+     "reviewText": "It was okay. Coffee wasn\"t great, but the wifi was fast."
+   }]
+ }

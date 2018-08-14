@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const ctrlLocations = require('../controllers/locationApiCtrl');
+const locationsCtrl = require('../controllers/locationApiCtrl');
 
 
 // locations
 router
   .route('/locations')
-  .get(ctrlLocations.locationsListByDistance);
+  .get(locationsCtrl.locationsListByDistance);
+  
  
 
 module.exports = router;

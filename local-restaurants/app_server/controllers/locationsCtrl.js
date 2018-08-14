@@ -1,7 +1,7 @@
 /* GET 'home' page */
 const request = require('request');
 const apiOptions = {
-  server: 'http://localhost:3300/'
+  server: 'http://localhost:3300'
 }
 if (process.env.NODE_ENV === 'productionc') {
   console.log(process.env.NODE_ENV);
@@ -17,14 +17,14 @@ if (process.env.NODE_ENV === 'productionc') {
  */
 
 function homeList(req, res, next) {
-  const path = 'api/locations';
+  const path = '/api/locations';
   const requestOptions = {
     url : apiOptions.server + path,
     method : 'GET',
     json : {},
     qs : {
-      lng : -0.7992599,
-      lat : 51.378091,
+      lng : 23.789139,
+      lat :90.403645,
       maxDistance : 20
     }
   };
@@ -46,26 +46,13 @@ function homeList(req, res, next) {
  * GET 'Location info' page
  */
 
-function locationInfo(req, res) {
-  _getLocationInfo(req, res, () => {
-    console.log(responseData);
-    _renderDetailPage(req, res, responseData)
-  });
-}
+
+
 // PRIVATE METHODS
 
-function _getLocationInfo(req, res, callback) {
-  const path = `api/locations/${req.params.locationid}`;
-  const requestOptions = {
-    url: apiOptions.server + path,
-    method: 'GET',
-    json: {}
-  };
 
-  request(requestOptions, (err, response, body))
-  
-}
 
+// Render Homepage
 function _renderHomepage(req, res, responseBody) {
   let message = [];
   if (!(responseBody instanceof Array)) {
@@ -108,8 +95,22 @@ function _formatDistance(distance) {
   }
 }
 
+function _showError(req, res, status) {
+  let title = '';
+  let content = '';
+  if (status === 400) {
+    title = '400, page not found';
+    content = 'Oh dear. Looks like we can\'t find this page. sorry';
+  } else {
+    title = `${status}, someting's gone worng`;
+    content = 'Something, somewhere, has gone just a little bit wrong.';
+  }
+  res.status(status);
+  res.render('./about/about', {
+    title: title,
+    content: content,
+  });
+}
 module.exports = {
   homeList,
-  locationInfo
-
 };
