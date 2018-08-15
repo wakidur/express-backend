@@ -49,7 +49,7 @@ function locationsListByDistance(req, res, next) {
       },
       "distanceField": "dis",
       "spherical": true,
-      "maxDistance": 10000
+      "maxDistance": 500
     }
   }]).then((results) => {
     const locations = _buildLocationList(results);
