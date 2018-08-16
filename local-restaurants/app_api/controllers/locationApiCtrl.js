@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-var Loc = require('../models/location/locationApiSchema');
+
+const Loc = require('../models/location/locationApiSchema');
 
 
 
@@ -8,15 +9,6 @@ function locationsListByDistance(req, res, next) {
   const lng = parseFloat(req.query.lng);
   const lat = parseFloat(req.query.lat);
   const maxDistance = parseFloat(req.query.maxDistance);
-  const point = {
-    "type": "Point",
-    "coordinates": [lng, lat]
-  };
-  const geoOptions = {
-    spherical: true,
-    maxDistance: 20000,
-    num: 10
-  };
   if ((!lng && lng !== 0) || (!lat && lat !== 0) || !maxDistance) {
     console.log('locationsListByDistance missing params');
     res
@@ -49,7 +41,6 @@ function locationsListByDistance(req, res, next) {
     return next(err);
   });
 }
-
 // Create Location 
 function locationsCreate(req, res) {
   Loc.create({
@@ -79,23 +70,19 @@ function locationsCreate(req, res) {
 // Get Location by id
 function locationsReadOne(req, res) {
   if (req.params && req.params.locationid) {
-    Loc.find().exec((err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(data);
+    Loc.aggregate([{
+      "$geoNear": {
+        "near": {
+          "type": "Point",
+          "coordinates": [90.403712, 23.789182]
+        },
+        "distanceField": "dist",
+        "spherical": true,
+        "maxDistance": 10000,
+        "includeLocs": "location",
+        "num": 10
       }
-    });
-    var options = {
-      near: [10, 10],
-      maxDistance: 5
-    };
-    Loc.geoSearch({
-      type: "house"
-    }, options, function (err, res) {
-      console.log(res);
-    });
-    Loc.findById(req.params.locationid).then((location) => {
+    }]).then((location) => {
       if (!location) {
         res.status(404).json({
           "message": "locationid not found"
@@ -109,8 +96,6 @@ function locationsReadOne(req, res) {
         .status(404)
         .json(err);
     });
-
-
   } else {
     res
       .status(404)
@@ -119,6 +104,7 @@ function locationsReadOne(req, res) {
       });
   }
 }
+
 // PRIVATE METHODS
 function _buildLocationList(results) {
   let locations = [];

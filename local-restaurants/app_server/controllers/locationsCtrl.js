@@ -1,19 +1,55 @@
 /* GET 'home' page */
 const request = require('request');
+const _ = require('lodash');
+const Loc = require('../../app_api/models/location/locationApiSchema');
 const apiOptions = {
   server: 'http://localhost:3300'
-}
-if (process.env.NODE_ENV === 'productionc') {
-  console.log(process.env.NODE_ENV);
-}
+};
+
+
+
 
 // Public exposed methods
+function locationCreateGet(req, res) {
+  res.render('./locations/location-entre-form' , {
+    title: `Location Entry for`
+  });
+}
+function locationCreatePost(req, res) {
+  var closeflag = req.body.closed === "closed" ? true : false;
+  Loc.create({
+    name: req.body.name,
+    address: req.body.address,
+    rating: req.body.rating,
+    facilities: req.body.facilities.split(","),
+    coords: [parseFloat(req.body.lat), parseFloat(req.body.lng)],
+    openingTimes: [{
+      days: req.body.days,
+      opening: req.body.opening,
+      closing: req.body.closing,
+      closed: closeflag,
+    }]
+  }, (err, location) => {
+    if (err) {
+      res
+        .status(400)
+        .json(err);
+    } else {
+      console.log(location);
+      res
+        .status(201)
+        .json({"message": "Success"});
+        // res.redirect('/location/new');
+    }
+  });
+  
 
+
+  
+  
+}
 /**
  * GET 'home' page 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
  */
 
 function homeList(req, res, next) {
@@ -25,7 +61,7 @@ function homeList(req, res, next) {
     qs: {
       lng: 23.789182,
       lat: 90.403712,
-      maxDistance: 1000
+      maxDistance: 10000
     }
   };
   request(requestOptions, (err, response, resData) => {
@@ -45,8 +81,6 @@ function homeList(req, res, next) {
 
 /* GET 'Location info' page */
 function locationInfo(req, res, next) {
-  const lng = req.params.lng;
-  const lat = req.params.lat; 
   const path = `/api/locations/${req.params.locationid}`;
   const requestOptions = {
     url: apiOptions.server + path,
@@ -54,17 +88,14 @@ function locationInfo(req, res, next) {
     json: {}
   };
   request(requestOptions, (err, response, responseData) => {
-    let data = responseData
+
+    const matchesid =  _.filter(responseData, _.matches({ '_id': req.params.locationid}));
+    //console.log(resultsmatch);
+    let data = matchesid[0];
     if (err) {
       return next(err);
     } else {
       if(response.statusCode === 200){
-
-        
-        // data.coords = {
-        //   lng: responseData.coords[0],
-        //   lat: responseData.coords[1]
-        // };
         _renderDetailPage(req, res, data); 
       } else {
         _showError(req, res, response.statusCode);
@@ -72,10 +103,30 @@ function locationInfo(req, res, next) {
     }
   });
 }
-/**
- * GET 'Location info' page
- */
 
+/**
+ * Get add review page
+ */
+function addReview(req, res) {
+  const path = `/api/locations/${req.params.locationid}`;
+  const requestOptions = {
+    url: apiOptions.server + path,
+    method: "GET",
+    json: {}
+  };
+  request(requestOptions, (err, response, body) => {
+    let data = body;
+    if (response.statusCode === 200) {
+      _renderReviewForm(req, res, responseData);
+    } else {
+      _showError(req, res, response.statusCode);
+    }
+  })
+}
+
+function doAddReview(req, res) {
+  
+}
 
 
 // PRIVATE METHODS
@@ -137,6 +188,14 @@ function _formatDistance(distance) {
   }
 }
 
+function _renderReviewForm(req, res, locDetail) {
+  res.render('./locations/location-review-form', {
+    title: `Review ${locDetail.name}`,
+    pageHeader: {title: `Review ${locDetail.name}`},
+    error: req.query.err
+  });
+}
+
 function _showError(req, res, status) {
   let title = '';
   let content = '';
@@ -157,5 +216,9 @@ function _showError(req, res, status) {
 
 module.exports = {
   homeList,
-  locationInfo
+  locationInfo,
+  locationCreateGet,
+  locationCreatePost,
+  addReview,
+  doAddReview
 };
