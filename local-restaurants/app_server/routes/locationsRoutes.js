@@ -4,7 +4,11 @@ const locationCtrl = require('../controllers/locationsCtrl');
 
 
 /* Locations pages */
-router.get('/', locationCtrl.homeList);
+router
+    .route('/')
+    .get(locationCtrl.homeList);
+   
+router.get('/location/:locationid', locationCtrl.locationInfo);
 
 
 

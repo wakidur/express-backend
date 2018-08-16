@@ -1,31 +1,16 @@
 const mongoose = require('mongoose');
-require('../models/locationSchema');
-var geoLoation = require('../models/loc');
-var Loc = mongoose.model('location');
+var Loc = require('../models/location/locationApiSchema');
 
 
-const _buildLocationList = function (results) {
-  let locations = [];
-  results.forEach((doc) => {
-    locations.push({
-      distance: doc.dis,
-      name: doc.name,
-      address: doc.address,
-      rating: doc.rating,
-      facilities: doc.facilities,
-      _id: doc._id
-    });
-  });
-  return locations;
-};
 
+// GET location list by Distance
 function locationsListByDistance(req, res, next) {
   const lng = parseFloat(req.query.lng);
   const lat = parseFloat(req.query.lat);
   const maxDistance = parseFloat(req.query.maxDistance);
   const point = {
-    type: "Point",
-    coordinates: [lng, lat]
+    "type": "Point",
+    "coordinates": [lng, lat]
   };
   const geoOptions = {
     spherical: true,
@@ -47,9 +32,11 @@ function locationsListByDistance(req, res, next) {
         "type": "Point",
         "coordinates": [lat, lng]
       },
-      "distanceField": "dis",
+      "distanceField": "dist",
       "spherical": true,
-      "maxDistance": 500
+      "maxDistance": maxDistance,
+      "includeLocs": "location",
+      "num": 10
     }
   }]).then((results) => {
     const locations = _buildLocationList(results);
@@ -63,10 +50,94 @@ function locationsListByDistance(req, res, next) {
   });
 }
 
-// Create location
+// Create Location 
+function locationsCreate(req, res) {
+  Loc.create({
+    name: req.body.name,
+    address: req.body.address,
+    facilities: req.body.facilities.split(","),
+    coords: [parseFloat(req.body.lng), parseFloat(req.body.lat)],
+    openingTimes: [{
+      days: req.body.days,
+      opening: req.body.opening,
+      closing: req.body.closing,
+      closed: req.body.closed,
+    }]
+  }, (err, location) => {
+    if (err) {
+      res
+        .status(400)
+        .json(err);
+    } else {
+      res
+        .status(201)
+        .json(location);
+    }
+  });
+}
+
+// Get Location by id
+function locationsReadOne(req, res) {
+  if (req.params && req.params.locationid) {
+    Loc.find().exec((err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data);
+      }
+    });
+    var options = {
+      near: [10, 10],
+      maxDistance: 5
+    };
+    Loc.geoSearch({
+      type: "house"
+    }, options, function (err, res) {
+      console.log(res);
+    });
+    Loc.findById(req.params.locationid).then((location) => {
+      if (!location) {
+        res.status(404).json({
+          "message": "locationid not found"
+        });
+        return;
+      } else {
+        res.status(200).json(location);
+      }
+    }).catch((err) => {
+      res
+        .status(404)
+        .json(err);
+    });
 
 
+  } else {
+    res
+      .status(404)
+      .json({
+        "message": "No locationid in request"
+      });
+  }
+}
+// PRIVATE METHODS
+function _buildLocationList(results) {
+  let locations = [];
+  results.forEach((doc) => {
+    locations.push({
+      distance: doc.dist,
+      name: doc.name,
+      address: doc.address,
+      rating: doc.rating,
+      facilities: doc.facilities,
+      _id: doc._id
+    });
+  });
+  return locations;
+}
 
+// Method exports
 module.exports = {
-  locationsListByDistance
+  locationsListByDistance,
+  locationsCreate,
+  locationsReadOne
 };

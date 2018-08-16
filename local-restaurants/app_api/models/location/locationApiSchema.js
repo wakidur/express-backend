@@ -14,8 +14,8 @@ const locationSchema = new Schema({
   },
   facilities: [String],
   coords: {
-    type: { type: String },
-    coordinates: []
+    type: [Number],
+    index: '2dsphere'
   },
   openingTimes: [{
     days: {

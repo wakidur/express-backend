@@ -6,7 +6,12 @@ const locationsCtrl = require('../controllers/locationApiCtrl');
 // locations
 router
   .route('/locations')
-  .get(locationsCtrl.locationsListByDistance);
+  .get(locationsCtrl.locationsListByDistance)
+  .post(locationsCtrl.locationsCreate);
+
+router
+  .route('/locations/:locationid')
+  .get(locationsCtrl.locationsReadOne)
   
  
 

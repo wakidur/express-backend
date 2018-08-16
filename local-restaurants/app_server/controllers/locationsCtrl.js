@@ -19,29 +19,59 @@ if (process.env.NODE_ENV === 'productionc') {
 function homeList(req, res, next) {
   const path = '/api/locations';
   const requestOptions = {
-    url : apiOptions.server + path,
-    method : 'GET',
-    json : {},
-    qs : {
-      lng : 23.789139,
-      lat :90.403645,
-      maxDistance : 20
+    url: apiOptions.server + path,
+    method: 'GET',
+    json: {},
+    qs: {
+      lng: 23.789182,
+      lat: 90.403712,
+      maxDistance: 1000
     }
   };
-  request(
-    requestOptions,
-    (err, response, body) => {
-      let data = body;
+  request(requestOptions, (err, response, resData) => {
+    let data = resData;
+    if (err) {
+      return next(err);
+    } else {
       if (response.statusCode === 200 && data.length) {
-        for (let i = 0; i < data.length; i++) {
-          data[i].distance = _formatDistance(data[i].distance);
-        }
+        data.forEach(element => {
+          element.distance =  _formatDistance(element.distance);
+        });
       }
       _renderHomepage(req, res, data);
     }
-  );
+  });
 }
 
+/* GET 'Location info' page */
+function locationInfo(req, res, next) {
+  const lng = req.params.lng;
+  const lat = req.params.lat; 
+  const path = `/api/locations/${req.params.locationid}`;
+  const requestOptions = {
+    url: apiOptions.server + path,
+    method: "GET",
+    json: {}
+  };
+  request(requestOptions, (err, response, responseData) => {
+    let data = responseData
+    if (err) {
+      return next(err);
+    } else {
+      if(response.statusCode === 200){
+
+        
+        // data.coords = {
+        //   lng: responseData.coords[0],
+        //   lat: responseData.coords[1]
+        // };
+        _renderDetailPage(req, res, data); 
+      } else {
+        _showError(req, res, response.statusCode);
+      }
+    }
+  });
+}
 /**
  * GET 'Location info' page
  */
@@ -49,8 +79,6 @@ function homeList(req, res, next) {
 
 
 // PRIVATE METHODS
-
-
 
 // Render Homepage
 function _renderHomepage(req, res, responseBody) {
@@ -72,6 +100,20 @@ function _renderHomepage(req, res, responseBody) {
     sidebar: 'Looking for wifi and a seat? Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you\'re looking for.',
     locations: responseBody,
     message: message
+  });
+}
+
+function _renderDetailPage(req, res, locDetail) {
+  res.render('./locations/location-info', {
+    title: locDetail.name,
+    pageHeader: {
+      title: locDetail.name
+    },
+    sidebar: {
+      context: 'is on Loc8r because it has accessible wifi and space to sit down with your laptop and get some work done.',
+      callToAction: 'If you\'ve been and you like it - or if you don\'t - please leave a review to help other people just like you.'
+    },
+    location: locDetail
   });
 }
 
@@ -98,19 +140,22 @@ function _formatDistance(distance) {
 function _showError(req, res, status) {
   let title = '';
   let content = '';
-  if (status === 400) {
-    title = '400, page not found';
-    content = 'Oh dear. Looks like we can\'t find this page. sorry';
+  if (status === 404) {
+    title = "404 page not found";
+    content = `Oh dear. Looks like we can\t find this page. Sorry.`;
   } else {
-    title = `${status}, someting's gone worng`;
-    content = 'Something, somewhere, has gone just a little bit wrong.';
+    title = `${status}, something's gone wrong`;
+    content = `Something, somewhere, has gone just a little bit wrong.`;
   }
   res.status(status);
-  res.render('./about/about', {
+  res.render('/about/about', {
     title: title,
-    content: content,
+    content: content
   });
 }
+
+
 module.exports = {
   homeList,
+  locationInfo
 };
