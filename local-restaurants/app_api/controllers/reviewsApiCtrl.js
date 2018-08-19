@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const Loc = mongoose.model('Location');
+const Loc = require('../models/location/locationApiSchema');
 
 // EXPOSED METHODS
 
-const reviewsCreate = function (req, res) {
+function reviewsCreate (req, res) {
   const locationid = req.params.locationid;
   if (locationid) {
     Loc
@@ -26,9 +26,9 @@ const reviewsCreate = function (req, res) {
         "message": "Not found, locationid required"
       });
   }
-};
+}
 
-const reviewsReadOne = function (req, res) {
+function reviewsReadOne(req, res) {
   if (req.params && req.params.locationid && req.params.reviewid) {
     Loc
       .findById(req.params.locationid)
@@ -83,7 +83,7 @@ const reviewsReadOne = function (req, res) {
   }
 };
 
-const reviewsUpdateOne = function (req, res) {
+function reviewsUpdateOne(req, res) {
   if (!req.params.locationid || !req.params.reviewid) {
     res
       .status(404)
@@ -143,9 +143,9 @@ const reviewsUpdateOne = function (req, res) {
       }
     }
   );
-};
+}
 
-const reviewsDeleteOne = function (req, res) {
+function reviewsDeleteOne (req, res) {
   if (!req.params.locationid || !req.params.reviewid) {
     res
       .status(404)
@@ -206,7 +206,7 @@ const reviewsDeleteOne = function (req, res) {
 
 // PRIVATE HELPER METHODS
 
-const _doAddReview = function(req, res, location) {
+function _doAddReview(req, res, location) {
   if (!location) {
     res
       .status(404)
@@ -236,7 +236,7 @@ const _doAddReview = function(req, res, location) {
   }
 };
 
-const _updateAverageRating = function(locationid) {
+function _updateAverageRating(locationid) {
   Loc
     .findById(locationid)
     .select('rating reviews')
@@ -245,9 +245,9 @@ const _updateAverageRating = function(locationid) {
         _doSetAverageRating(location); 
       }
     });
-};
+}
 
-const _doSetAverageRating = function(location) {
+function _doSetAverageRating (location) {
   if (location.reviews && location.reviews.length > 0) {
     const reviewCount = location.reviews.length;
     let ratingTotal = 0;
@@ -264,7 +264,7 @@ const _doSetAverageRating = function(location) {
       }
     });
   }
-};
+}
 
 
 module.exports = {

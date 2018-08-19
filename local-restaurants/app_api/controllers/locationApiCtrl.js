@@ -104,7 +104,62 @@ function locationsReadOne(req, res) {
       });
   }
 }
+// location update 
+function locationsUpdateOne(req, res) {
+  if (!req.params.locationid) {
+    res.status(404).json({
+      "message": "Not found, locationid is required"
+    });
+    return;
+  } else {
+    Loc.findById(req.params.locationid).select('-reviews -rating').exec((err, location) => {
+      if (!location) {
+        res.status(404).json({
+          "message": "locationid not found"
+        });
+        return;
+      } else if (err) {
+        res.status(400).json(err);
+        return;
+      }
 
+      location.name = req.body.name;
+      location.address = req.body.address;
+      location.facilities = req.body.facilities.split(",");
+      location.coords = [parseFloat(req.body.lat), parseFloat(req.body.lng)];
+      location.openingTimes = [{
+        days: req.body.days,
+        opening: req.body.opening,
+        closing: req.body.closing,
+        closed: req.body.closed
+      }];
+      location.save((err, location) => {
+        if (err) {
+          res.status(404).json(err);
+        } else {
+          res.status(200).json(location);
+        }
+      });
+    });
+  }
+}
+
+// Location Delete One
+function locationsDeleteOne(req, res) {
+  const locationid = req.params.locationid;
+  if (locationid) {
+    Loc.findByIdAndRemove(locationid).exec((err, location) => {
+      if (err) {
+        res.status(404).json(err);
+        return;
+      } else {
+        res.status(204).json(null);
+      }
+    });
+  } else {
+    res.status(404).status(404).json({"message": "No locationid"});
+  }
+}
 // PRIVATE METHODS
 function _buildLocationList(results) {
   let locations = [];
@@ -125,5 +180,8 @@ function _buildLocationList(results) {
 module.exports = {
   locationsListByDistance,
   locationsCreate,
-  locationsReadOne
+  locationsReadOne,
+  locationsUpdateOne,
+  locationsDeleteOne
+
 };

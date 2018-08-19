@@ -11,10 +11,11 @@ const apiOptions = {
 
 // Public exposed methods
 function locationCreateGet(req, res) {
-  res.render('./locations/location-entre-form' , {
+  res.render('./locations/location-entre-form', {
     title: `Location Entry for`
   });
 }
+
 function locationCreatePost(req, res) {
   var closeflag = req.body.closed === "closed" ? true : false;
   Loc.create({
@@ -38,15 +39,17 @@ function locationCreatePost(req, res) {
       console.log(location);
       res
         .status(201)
-        .json({"message": "Success"});
-        // res.redirect('/location/new');
+        .json({
+          "message": "Success"
+        });
+      // res.redirect('/location/new');
     }
   });
-  
 
 
-  
-  
+
+
+
 }
 /**
  * GET 'home' page 
@@ -71,7 +74,7 @@ function homeList(req, res, next) {
     } else {
       if (response.statusCode === 200 && data.length) {
         data.forEach(element => {
-          element.distance =  _formatDistance(element.distance);
+          element.distance = _formatDistance(element.distance);
         });
       }
       _renderHomepage(req, res, data);
@@ -89,14 +92,16 @@ function locationInfo(req, res, next) {
   };
   request(requestOptions, (err, response, responseData) => {
 
-    const matchesid =  _.filter(responseData, _.matches({ '_id': req.params.locationid}));
+    const matchesid = _.filter(responseData, _.matches({
+      '_id': req.params.locationid
+    }));
     //console.log(resultsmatch);
     let data = matchesid[0];
     if (err) {
       return next(err);
     } else {
-      if(response.statusCode === 200){
-        _renderDetailPage(req, res, data); 
+      if (response.statusCode === 200) {
+        _renderDetailPage(req, res, data);
       } else {
         _showError(req, res, response.statusCode);
       }
@@ -107,7 +112,7 @@ function locationInfo(req, res, next) {
 /**
  * Get add review page
  */
-function addReview(req, res) {
+function addReview(req, res, next) {
   const path = `/api/locations/${req.params.locationid}`;
   const requestOptions = {
     url: apiOptions.server + path,
@@ -115,17 +120,50 @@ function addReview(req, res) {
     json: {}
   };
   request(requestOptions, (err, response, body) => {
-    let data = body;
-    if (response.statusCode === 200) {
-      _renderReviewForm(req, res, responseData);
+    if (err) {
+      return next(err);
     } else {
-      _showError(req, res, response.statusCode);
+      let data = body;
+      if (response.statusCode === 200) {
+        _renderReviewForm(req, res, data);
+      } else {
+        _showError(req, res, response.statusCode);
+      }
     }
-  })
+  });
 }
 
-function doAddReview(req, res) {
-  
+function doAddReview(req, res, next) {
+  const locationid = req.params.locationid;
+  const path = `/api/locations/${locationid}/reviews`;
+  const postdata = {
+    author: req.body.name,
+    rating: parseInt(req.body.rating, 10),
+    reviewText: req.body.review
+  };
+  const requestOptions = {
+    url: apiOptions.server + path,
+    method: "POST",
+    json: postdata
+  };
+
+  if (!postdata.author || !postdata.rating || !postdata.reviewText) {
+    res.redirect(`/location/${locationid}/review/new?err=val`);
+  } else {
+    request(requestOptions, (err, response, body) => {
+      if (err) {
+        return next(err);
+      } else {
+        if (response.statusCode === 201) {
+          res.redirect(`/location/${locationid}`);
+        } else if(response.statusCode === 400 && body.name && body.name === "ValidationError") {
+          res.redirect(`/location/${locationid}/review/new?err=val`);
+        } else {
+          _showError(req, res, response.statusCode);
+        }
+      }
+    })
+  }
 }
 
 
@@ -190,8 +228,10 @@ function _formatDistance(distance) {
 
 function _renderReviewForm(req, res, locDetail) {
   res.render('./locations/location-review-form', {
-    title: `Review ${locDetail.name}`,
-    pageHeader: {title: `Review ${locDetail.name}`},
+    title: `Review ${locDetail.name} on Loc8r`,
+    pageHeader: {
+      title: `Review ${locDetail.name}`
+    },
     error: req.query.err
   });
 }
