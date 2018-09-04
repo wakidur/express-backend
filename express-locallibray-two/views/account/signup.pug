@@ -10,6 +10,15 @@ block content
       .col-md-7
         input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, autocomplete='email', required)
     .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='role') Role:
+      .col-md-7
+        select#role.form-control(type='select', placeholder='Select role' name='role' required='true' )
+          option(value='Admin' selected=(undefined===users || users.role!='Admin' ? false:'selected')) Admin
+          option(value='AminGroup' selected=(undefined===users || users.role!='AminGroup' ? false:'selected')) AminGroup
+          option(value='Account' selected=(undefined===users || users.role!='Account' ? false:'selected')) Account
+          option(value='Visitor' selected=(undefined===users || users.role!='Visitor' ? false:'selected')) Visitor
+          option(value='User' selected=(undefined===users || users.role!='User' ? false:'selected')) User
+    .form-group.row
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='password') Password
       .col-md-7
         input.form-control(type='password', name='password', id='password', placeholder='Password', autocomplete='new-password', required)

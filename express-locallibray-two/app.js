@@ -12,6 +12,7 @@ const compression = require('compression');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const errorHandler = require('errorhandler');
+const lusca = require('lusca');
 const dotenv = require('dotenv');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
@@ -81,7 +82,21 @@ app.use((req, res, next) => {
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(cookieParser());
+app.use((req, res, next) => {
+  if (req.path === '/api/upload') {
+    next();
+  } else {
+    lusca.csrf()(req, res, next);
+  }
+});
+app.use(lusca.xframe('SAMEORIGIN'));
+app.use(lusca.xssProtection(true));
+app.disable('x-powered-by');
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
+//app.use(cookieParser());
 
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page

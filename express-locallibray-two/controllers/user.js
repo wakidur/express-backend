@@ -6,19 +6,29 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
 
+var Q = require('q');
+
+const userservice = require('../services/users')
+
 const randomBytesAsync = promisify(crypto.randomBytes);
+
 
 /**
  * GET /login
  * Login page.
  */
-exports.getLogin = (req, res) => {
+
+
+
+exports.getLogin = (req, res, next) => {
     if (req.user) {
         return res.redirect('/');
     }
-    res.render('account/login', {
-        title: 'Login'
-    });
+     res.render('account/login', {
+            title: 'Book Instance List',
+           
+        });
+    
 };
 
 /**
@@ -36,7 +46,7 @@ exports.postLogin = (req, res, next) => {
 
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/login');
+        return res.redirect('/users/login');
     }
 
     passport.authenticate('local', (err, user, info) => {
@@ -45,7 +55,7 @@ exports.postLogin = (req, res, next) => {
         }
         if (!user) {
             req.flash('errors', info);
-            return res.redirect('/login');
+            return res.redirect('/users/login');
         }
         req.logIn(user, (err) => {
             if (err) {
@@ -76,13 +86,22 @@ exports.logout = (req, res) => {
  * GET /signup
  * Signup page.
  */
-exports.getSignup = (req, res) => {
+exports.getSignup = (req, res,next) => {
     if (req.user) {
         return res.redirect('/');
     }
-    res.render('account/signup', {
-        title: 'Create Account'
+
+    userservice.getUserAllRole().then((values) => {
+      console.log(values);
+      res.render('account/signup', {
+        title: 'Create Account',
+        users: values,  
+      })
+    }).catch((err) => {
+        return next(err);
     });
+    
+    
 };
 
 /**
@@ -101,7 +120,7 @@ exports.postSignup = (req, res, next) => {
 
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/signup');
+        return res.redirect('/users/signup');
     }
 
     const user = new User({
@@ -119,7 +138,7 @@ exports.postSignup = (req, res, next) => {
             req.flash('errors', {
                 msg: 'Account with that email address already exists.'
             });
-            return res.redirect('/signup');
+            return res.redirect('/users/signup');
         }
         user.save((err) => {
             if (err) {
@@ -159,7 +178,7 @@ exports.postUpdateProfile = (req, res, next) => {
 
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/account');
+        return res.redirect('/users/account');
     }
 
     User.findById(req.user.id, (err, user) => {
@@ -184,7 +203,7 @@ exports.postUpdateProfile = (req, res, next) => {
             req.flash('success', {
                 msg: 'Profile information has been updated.'
             });
-            res.redirect('/account');
+            res.redirect('/users/account');
         });
     });
 };
@@ -201,7 +220,7 @@ exports.postUpdatePassword = (req, res, next) => {
 
     if (errors) {
         req.flash('errors', errors);
-        return res.redirect('/account');
+        return res.redirect('/users/account');
     }
 
     User.findById(req.user.id, (err, user) => {
@@ -216,7 +235,7 @@ exports.postUpdatePassword = (req, res, next) => {
             req.flash('success', {
                 msg: 'Password has been changed.'
             });
-            res.redirect('/account');
+            res.redirect('/users/account');
         });
     });
 };
@@ -261,7 +280,7 @@ exports.getOauthUnlink = (req, res, next) => {
             req.flash('info', {
                 msg: `${provider} account has been unlinked.`
             });
-            res.redirect('/account');
+            res.redirect('/users/account');
         });
     });
 };
