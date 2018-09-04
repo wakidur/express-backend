@@ -26,7 +26,9 @@ const sass = require('node-sass-middleware');
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenv.load({ path: '.env' });
+dotenv.load({
+  path: '.env'
+});
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -38,7 +40,9 @@ const app = express();
 /**
  * Connect to MongoDB.
  */
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true
+});
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
@@ -58,17 +62,21 @@ app.use(sass({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   outputStyle: 'compressed',
-  prefix:  '/prefix'
+  prefix: '/prefix'
 }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(expressValidator());
 app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET,
-  cookie: { maxAge: 1209600000 }, // two weeks in milliseconds
+  cookie: {
+    maxAge: 1209600000
+  }, // two weeks in milliseconds
   store: new MongoStore({
     url: process.env.MONGODB_URI,
     autoReconnect: true,
@@ -100,7 +108,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
-  if (!req.user  && req.path !== '/users/login' && req.path !== '/users/signup' && !req.path.match(/^\/auth/) && !req.path.match(/\./)) {
+  if (!req.user && req.path !== '/users/login' && req.path !== '/users/signup' && !req.path.match(/^\/auth/) && !req.path.match(/\./)) {
     req.session.returnTo = req.originalUrl;
   } else if (req.user && (req.path === '/users/account' || req.path.match(/^\/api/))) {
     req.session.returnTo = req.originalUrl;
@@ -108,17 +116,27 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
-app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/popper.js/dist/umd'), { maxAge: 31557600000 }));
-app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js'), { maxAge: 31557600000 }));
-app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/jquery/dist'), { maxAge: 31557600000 }));
-app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/webfonts'), { maxAge: 31557600000 }));
+app.use('/', express.static(path.join(__dirname, 'public'), {
+  maxAge: 31557600000
+}));
+app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/popper.js/dist/umd'), {
+  maxAge: 31557600000
+}));
+app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js'), {
+  maxAge: 31557600000
+}));
+app.use('/js/lib', express.static(path.join(__dirname, 'node_modules/jquery/dist'), {
+  maxAge: 31557600000
+}));
+app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/webfonts'), {
+  maxAge: 31557600000
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 

@@ -14,4 +14,6 @@ function getUserAllRole() {
     return deferred.promise;
 }
 
-module.exports = {getUserAllRole}
+module.exports = {
+    getUserAllRole
+}

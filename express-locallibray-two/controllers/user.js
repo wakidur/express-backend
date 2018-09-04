@@ -8,7 +8,7 @@ const User = require('../models/User');
 
 var Q = require('q');
 
-const userservice = require('../services/users')
+const userservice = require('../services/users');
 
 const randomBytesAsync = promisify(crypto.randomBytes);
 
@@ -17,18 +17,13 @@ const randomBytesAsync = promisify(crypto.randomBytes);
  * GET /login
  * Login page.
  */
-
-
-
 exports.getLogin = (req, res, next) => {
     if (req.user) {
         return res.redirect('/');
     }
-     res.render('account/login', {
-            title: 'Book Instance List',
-           
-        });
-    
+    res.render('account/login', {
+        title: 'Login page',
+    });
 };
 
 /**
@@ -86,22 +81,19 @@ exports.logout = (req, res) => {
  * GET /signup
  * Signup page.
  */
-exports.getSignup = (req, res,next) => {
+exports.getSignup = (req, res, next) => {
     if (req.user) {
         return res.redirect('/');
     }
-
     userservice.getUserAllRole().then((values) => {
-      console.log(values);
-      res.render('account/signup', {
-        title: 'Create Account',
-        users: values,  
-      })
+        console.log(values);
+        res.render('account/signup', {
+            title: 'Create Account',
+            users: values,
+        });
     }).catch((err) => {
         return next(err);
     });
-    
-    
 };
 
 /**
@@ -186,6 +178,7 @@ exports.postUpdateProfile = (req, res, next) => {
             return next(err);
         }
         user.email = req.body.email || '';
+        user.role = req.body.role || '';
         user.profile.name = req.body.name || '';
         user.profile.gender = req.body.gender || '';
         user.profile.location = req.body.location || '';
@@ -196,7 +189,7 @@ exports.postUpdateProfile = (req, res, next) => {
                     req.flash('errors', {
                         msg: 'The email address you have entered is already associated with an account.'
                     });
-                    return res.redirect('/account');
+                    return res.redirect('/users/account');
                 }
                 return next(err);
             }
@@ -245,9 +238,7 @@ exports.postUpdatePassword = (req, res, next) => {
  * Delete user account.
  */
 exports.postDeleteAccount = (req, res, next) => {
-    User.remove({
-        _id: req.user.id
-    }, (err) => {
+    User.remove({ _id: req.user.id }, (err) => {
         if (err) {
             return next(err);
         }
@@ -256,32 +247,6 @@ exports.postDeleteAccount = (req, res, next) => {
             msg: 'Your account has been deleted.'
         });
         res.redirect('/');
-    });
-};
-
-/**
- * GET /account/unlink/:provider
- * Unlink OAuth provider.
- */
-exports.getOauthUnlink = (req, res, next) => {
-    const {
-        provider
-    } = req.params;
-    User.findById(req.user.id, (err, user) => {
-        if (err) {
-            return next(err);
-        }
-        user[provider] = undefined;
-        user.tokens = user.tokens.filter(token => token.kind !== provider);
-        user.save((err) => {
-            if (err) {
-                return next(err);
-            }
-            req.flash('info', {
-                msg: `${provider} account has been unlinked.`
-            });
-            res.redirect('/users/account');
-        });
     });
 };
 
@@ -306,7 +271,7 @@ exports.getReset = (req, res, next) => {
                 req.flash('errors', {
                     msg: 'Password reset token is invalid or has expired.'
                 });
-                return res.redirect('/forgot');
+                return res.redirect('/users/forgot');
             }
             res.render('account/reset', {
                 title: 'Password Reset'
@@ -329,7 +294,7 @@ exports.postReset = (req, res, next) => {
         return res.redirect('back');
     }
 
-    const resetPassword = () =>
+    const resetPassword = () => {
         User
         .findOne({
             passwordResetToken: req.params.token
@@ -354,7 +319,7 @@ exports.postReset = (req, res, next) => {
                 });
             }));
         });
-
+    }
     const sendResetPasswordEmail = (user) => {
         if (!user) {
             return;
@@ -366,9 +331,9 @@ exports.postReset = (req, res, next) => {
                 pass: process.env.SENDGRID_PASSWORD
             }
         });
-        const mailOptions = {
+        let mailOptions = {
             to: user.email,
-            from: 'hackathon@starter.com',
+            from: 'wakidur@yahoo.com',
             subject: 'Your Hackathon Starter password has been changed',
             text: `Hello,\n\nThis is a confirmation that the password for your account ${user.email} has just been changed.\n`
         };
@@ -479,7 +444,7 @@ exports.postForgot = (req, res, next) => {
         });
         const mailOptions = {
             to: user.email,
-            from: 'hackathon@starter.com',
+            from: 'wakidur@yahoo.com',
             subject: 'Reset your password on Hackathon Starter',
             text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n
         Please click on the following link, or paste this into your browser to complete the process:\n\n

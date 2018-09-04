@@ -3,7 +3,7 @@ extends ../layout
 block content
   .pb-2.mt-2.mb-4.border-bottom
     h3 Profile Information
-
+  pre=user
   form(action='/users/account/profile', method='POST')
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group.row
@@ -30,6 +30,24 @@ block content
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='location') Location
       .col-md-7
         input.form-control(type='text', name='location', id='location', value=user.profile.location, autocomplete)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right Role
+      .col-sm-9
+        label.radio.col-sm-2
+          input(type='radio', checked=user.role=='Admin', name='role', value='Admin', data-toggle='radio')
+          span Admin
+        label.radio.col-sm-2
+          input(type='radio', checked=user.role=='AminGroup', name='role', value='AminGroup', data-toggle='radio')
+          span AminGroup
+        label.radio.col-sm-2
+          input(type='radio', checked=user.role=='Account', name='role', value='Account', data-toggle='radio')
+          span Account
+        label.radio.col-sm-2
+          input(type='radio', checked=user.role=='Visitor', name='role', value='Visitor', data-toggle='radio')
+          span Visitor
+        label.radio.col-sm-2
+          input(type='radio', checked=user.role=='User', name='role', value='User', data-toggle='radio')
+          span User
     .form-group.row
       label.col-md-3.col-form-label.font-weight-bold.text-right(for='website') Website
       .col-md-7
