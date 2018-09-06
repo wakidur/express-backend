@@ -10,11 +10,9 @@ const userSchema = new mongoose.Schema({
 
   steam: String,
   role: {
-    type: String,
+    type: Array,
     required: true,
-    enum: ['Admin', 'AminGroup', 'Account', 'Visitor','User'],
-    default: 'Visitor'
-
+    default: ['Visitor', 'User'], 
   },
   tokens: Array,
 

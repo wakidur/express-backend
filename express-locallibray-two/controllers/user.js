@@ -45,6 +45,8 @@ exports.postLogin = (req, res, next) => {
     }
 
     passport.authenticate('local', (err, user, info) => {
+        // If this function gets called, authentication was successful.
+        // `req.user` contains the authenticated user.
         if (err) {
             return next(err);
         }
@@ -117,7 +119,8 @@ exports.postSignup = (req, res, next) => {
 
     const user = new User({
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        role: req.body.role,
     });
 
     User.findOne({

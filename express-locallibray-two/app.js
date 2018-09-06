@@ -23,6 +23,7 @@ const expressStatusMonitor = require('express-status-monitor');
 
 
 const sass = require('node-sass-middleware');
+
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -83,10 +84,6 @@ app.use(session({
   })
 }));
 
-app.use((req, res, next) => {
-  res.locals.user = req.user;
-  next();
-});
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -104,13 +101,13 @@ app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
 });
-//app.use(cookieParser());
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
-  if (!req.user && req.path !== '/users/login' && req.path !== '/users/signup' && !req.path.match(/^\/auth/) && !req.path.match(/\./)) {
+  if (!req.user && req.path !== '/users/login' && req.path !== '/users/signup' && !req.path.match(/\./)) {
     req.session.returnTo = req.originalUrl;
-  } else if (req.user && (req.path === '/users/account' || req.path.match(/^\/api/))) {
+  } else if (req.user && (req.path === '/users/account')) {
     req.session.returnTo = req.originalUrl;
   }
   next();
