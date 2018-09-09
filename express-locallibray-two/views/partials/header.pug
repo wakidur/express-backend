@@ -12,6 +12,8 @@
           a.nav-link(href='/') Home
         li.nav-item(class=(title === 'Contact') ? 'active' : undefined)
           a.nav-link(href='/users/contact') Contact
+        li.nav-item(class=(title === 'Create Genre') ? 'active' : undefined)
+          a.nav-link(href='/genre/genre/create') Genre
       ul.nav.navbar-nav.ml-auto
         if !user
           li.nav-item(class=(title === 'Login') ? 'active' : undefined)

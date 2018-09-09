@@ -33,6 +33,7 @@ dotenv.load({
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const libraryRouter = require('./routes/libraryRouter');
 
 
 
@@ -129,8 +130,10 @@ app.use('/webfonts', express.static(path.join(__dirname, 'node_modules/@fortawes
   maxAge: 31557600000
 }));
 
+// Route declaration
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/genre', libraryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
