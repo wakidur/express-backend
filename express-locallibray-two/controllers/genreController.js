@@ -14,8 +14,8 @@ function getGenreCreateForm(req, res) {
 
 function postGenreCreateForm(req, res) {
     // Validate that the name field is not empty.
-    req.assert('name', 'Email is not valid').isLength({ min: 1 }).trim();
-    req.sanitize('name').trim();
+    req.assert('name', 'Email is not valid').isLength({ min: 3 }).trim();
+    req.sanitizeBody('name').trim();
 
     const errors = req.validationErrors();
     const genre = new Genre({
@@ -25,10 +25,10 @@ function postGenreCreateForm(req, res) {
     // Process request after validation and sanitization.
     if (errors) {
         req.flash('errors', errors);
-        res.redirect('./genre/createGenreFormView',{
+        res.render('./genre/createGenreFormView',{
             title: 'Create Genre',
             genre: genre,
-            errors: errors.array()
+            errors: errors
         });
         return;
     } else {
