@@ -5,12 +5,23 @@ let Genre = require('../models/genreModel');
 /*----------------- require q -----------------*/
 let Q = require('q');
 
+// get genre list 
+function getGenreList(params) {
+    let deferred = Q.defer();
+    Genre.find().sort([['name','ascending']]).then((result) => {
+        deferred.resolve(result)
+    }).catch((err) => {
+        deferred.reject(err);
+    });
+    return deferred.promise;
+    
+}
+
 // genre Create Post
 function genreCreatePost(name) {
     let deferred = Q.defer();
-    Genre.findOne({
-            'name': name
-        })
+    Genre
+        .findOne({'name': name})
         .then((result) => {
             deferred.resolve(result);
         }).catch((err) => {
@@ -35,6 +46,7 @@ function getGenreDetail(reqId) {
 }
 
 module.exports = {
+    getGenreList,
     genreCreatePost,
     getGenreDetail
 }

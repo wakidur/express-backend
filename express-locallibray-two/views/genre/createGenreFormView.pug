@@ -10,7 +10,11 @@ block content
                         input(type='hidden', name='_csrf', value=_csrf)
                         .form-group
                             label(for='name') Genre
-                            input#name.form-control(type='text' name='name' aria-describedby='name' placeholder='Enter name' value=(undefined===genre ? '' : genre.name))
+                            input#name(type='text' class=(errors===undefined ? 'form-control' : 'form-control is-invalid') name='name' aria-describedby='name' placeholder='Enter name' value=(undefined===genre ? '' : genre.name))
+                            if errors
+                                .invalid-feedback
+                                    for error in errors
+                                        span=error.msg
                         button.btn.btn-primary(type='submit') Submit
                     
                     if errors
