@@ -18,6 +18,10 @@ let genreService = require('../services/genreService');
 exports.genreList = genreList;
 exports.getGenreCreateForm = getGenreCreateForm;
 exports.genreDetail = genreDetail;
+exports.getGenreDeleteGet = getGenreDeleteGet;
+exports.genreDeletePost = genreDeletePost;
+exports.genreUpdateGet = genreUpdateGet;
+exports.genreUpdatePost = genreUpdatePost;
 
 
 
@@ -56,6 +60,26 @@ function genreList(req, res, next) {
 
     });
 }
+
+// Display detail page for a specific Genre.
+function genreDetail(req, res, next) {
+    genreService.getGenreDetail(req.params.id).then((results) => {
+        if (results.genre == null) {
+            var err = new Error('Genre not found');
+            err.status = 404;
+            req.flash('errors', err);
+            return next(err);
+        }
+        res.render('./genre/genreDetailView', {
+            title: "Genre Detail",
+            genre: results.genre,
+        });
+    }).catch((err) => {
+        req.flash('errors', err);
+        return next(err);
+    });
+}
+
 // Display Genry create form on GET 
 function getGenreCreateForm(req, res) {
     res.render('./genre/createGenreFormView', {
@@ -122,64 +146,75 @@ exports.postGenreCreateForm = [
     }
 ];
 
-// function postGenreCreateForm(req, res) {
-//     // Validate that the name field is not empty.
-//     req.assert('name', 'Email is not valid').isLength({ min: 3 }).trim();
-//     req.sanitizeBody('name').trim();
 
-//     const errors = req.validationErrors();
-//     const genre = new Genre({
-//         name: req.body.name,
-//     });
-
-//     // Process request after validation and sanitization.
-//     if (errors) {
-//         req.flash('errors', errors);
-//         res.render('./genre/createGenreFormView',{
-//             title: 'Create Genre',
-//             genre: genre,
-//             errors: errors
-//         });
-//         return;
-//     } else {
-//         genreService.genreCreatePost(req.body.name).then((found_genre) => {
-//             if (found_genre) {
-//                 // Genre exists, redirect to its detail page.
-//                 res.redirect(found_genre.url);
-//             } else {
-//                 genre.save(function(err) {
-//                     if (err) {
-//                         return next(err);
-//                     }
-//                     // Genre saved. Redirect to genre detail page.
-//                     res.redirect(genre.url);
-//                 });
-//             }
-//         }).catch((err) => {
-//             return next(err);
-//         });
-//     }
-
-
-
-// }
-
-// Display detail page for a specific Genre.
-function genreDetail(req, res, next) {
-    let id = mongoose.Types.ObjectId(req.params.id);
-    genreService.getGenreDetail(id).then((results) => {
-        if (results.genre == null) {
-            var err = new Error('Genre not found');
-            err.status = 404;
-            req.flash('errors', err);
-            return next(err);
+// Display Genre delet form on Get 
+function getGenreDeleteGet(req, res, next) {
+    genreService.genreDeleteGet(req.params.id).then((result) => {
+        if (result.genre == null) {
+             res.redirect('/genre/genre');
         }
-        res.render('./genre/genreDetailView', {
-            title: "Genre Detail",
-            genre: results.genre,
+        //successfull, so render.
+        res.render('./genre/genreDeleteView',{
+            title: 'Delete Genre',
+            genre: result.genre
         });
     }).catch((err) => {
-        req.flash('errors', err);
-        return next(err);
+        res.flash('error', err);
     });
 }
+
+function genreDeletePost(req, res) {
+    genreService.genreDeleteById(req.params.id).then((result) => {
+        // success
+        // req.flash('message', result);
+        req.flash('success', {
+            msg: result
+        });
+        
+        res.redirect('/genre/genre');
+        
+    }).catch((err) => {
+        res.flash('error', err);
+    });
+}
+
+// Display genre update form on get 
+function genreUpdateGet(req, res) {
+    genreService.genreUpdateGet(req.params.id).then((result) => {
+        res.render('./genre/createGenreFormView',{
+            title: "Update Genre",
+            genre: result
+        }); 
+    }).catch((err) => {
+        req.flash("error" , err);
+    });
+}
+// Handle Genre update form on POST
+exports.genreUpdatePost = [
+    body('name','Genre name required').isLength({min: 2, max: 30}).trim(),
+    sanitizeBody('name').trim().escape(),
+    (req,res,next) => {
+        const errors = validationResult(req);
+        let genre = new Genre({
+            name: req.body.name,
+            _id: req.body.id
+        });
+        if (!errors.isEmpty()) {
+            res.render('./genre/createGenreFormView',{
+                title: 'Update Genre',
+                genre: genre,
+                errors: errors.array()
+            });
+            return;
+
+        } else {
+            genreService.genreUpdatePost(req.params.id, genre).then((results) => {
+                // Successful - redirect to genre detail page.
+                res.redirect(results.url);
+            }).catch((err) => {
+                return next(err);
+            });
+        }
+    }
+]
+

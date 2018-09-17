@@ -31,17 +31,15 @@ block content
                     else
                         .alert.alert-secondary There are no genres.
         .card-footer
-           
-            h1= PossiblePages
             - var nextPage = currentPage
             nav(aria-label="...")
                 ul.pagination.pagination-md.justify-content-center
-                    li.page-item(class= {disabled: currentPage==1})
+                    li.page-item(class= {disabled: currentPage == 1})
                         a.page-link(href="/genre/genre?page="+(currentPage-1) tabindex="-1") Previous
                     - var p = 1;
                     while p <= PossiblePages
                         li.page-item(class= {active: currentPage == p})
-                            a.page-link(href="/genre/genre?page="+p)= p
+                            a.page-link(href="/genre/genre?page=" + p)= p
                         - p++;
                     li.page-item(class={disabled: currentPage == PossiblePages})
                         a.page-link(href="/genre/genre?page="+ ++nextPage ) Next

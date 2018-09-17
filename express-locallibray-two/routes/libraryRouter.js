@@ -12,8 +12,20 @@ router
     .route('/genre/create')
     .get(genre_controller.getGenreCreateForm)
     .post(genre_controller.postGenreCreateForm);
+
 // GET request for one Genre.
-router.get('/genre/:id', genre_controller.genreDetail);
+router.route('/genre/:id').get(genre_controller.genreDetail);
+
+// Delete Genre
+router
+    .route('/genre/:id/delete')
+    .get(genre_controller.getGenreDeleteGet)
+    .post(genre_controller.genreDeletePost);
+// Edit Genre
+router
+    .route('/genre/:id/update')
+    .get(genre_controller.genreUpdateGet)
+    .post(genre_controller.genreUpdatePost);
 
 
 module.exports = router;
