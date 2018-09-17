@@ -23,26 +23,33 @@ exports.genreDetail = genreDetail;
 
 // Display list of all Genre.
 function genreList(req, res, next) {
-    genreService.getGenreList().then((result) => {
+    genreService.getGenreList(req, res).then((result) => {
         let newArray = [];
-        let countTotal = result.length;
 
-        result.forEach((element, key) => {
+        let currentPage = result.page;
+        let countTotal = result.total;
+        let limit = result.limit;
+        let PossiblePages = Math.trunc(countTotal/limit) + 1;
+        
+
+        result.docs.forEach((element, key) => {
             let newObject = {};
             newObject.name = element.name;
             newObject.url = element.url;
             newObject.count = key + 1;
             newArray.push(newObject);
         });
-        
-        console.log(newArray);
 
+        
         res.render('./genre/genreListView', {
             title: 'Genre list',
             genreList: newArray,
-            countTotal: countTotal
+            currentPage: currentPage,
+            countTotal: countTotal,
+            limit: limit,
+            PossiblePages: PossiblePages
+           
         });
-       
     }).catch((err) => {
         req.flash('errors', err);
         return next(err);
@@ -61,7 +68,7 @@ exports.postGenreCreateForm = [
 
     // Validate that the name field is not empty.
     body('name', 'Genre name required').isLength({
-        min: 1,
+        min: 3,
         max: 30
     }).trim(),
 
@@ -103,7 +110,8 @@ exports.postGenreCreateForm = [
                             return next(err);
                         }
                         // Genre saved. Redirect to genre detail page.
-                        res.redirect(genre.url);
+                        // res.redirect(genre.url);
+                         res.redirect('/genre/genre');
                     });
                 }
             }).catch((err) => {

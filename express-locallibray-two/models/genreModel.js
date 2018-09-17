@@ -1,11 +1,13 @@
-const mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const  mongoose  = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
+const { Schema } = mongoose;
 
-let GenreSchema = new Schema({
+const  GenreSchema = new Schema({
     name: {
         type: String,
-        required: true,
-        max: 100,
+        required:[true, 'Nave must have'],
+        min: 0,
+        max: 5,
     }
 });
 
@@ -13,5 +15,5 @@ let GenreSchema = new Schema({
 GenreSchema.virtual('url').get(function () {
     return `/genre/genre/${this._id}`;
 });
-
+GenreSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Genre', GenreSchema);

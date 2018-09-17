@@ -6,22 +6,33 @@ let Genre = require('../models/genreModel');
 let Q = require('q');
 
 // get genre list 
-function getGenreList(params) {
+function getGenreList(req, res) {
+    const {
+        page,
+        perPage
+    } = req.query;
+    const options = {
+        page: parseInt(page) || 1,
+        limit: parseInt(perPage) || 5,
+    };
+
     let deferred = Q.defer();
-    Genre.find().sort([['name','ascending']]).then((result) => {
-        deferred.resolve(result)
+    Genre.paginate({}, options).then((result) => {
+        deferred.resolve(result);
     }).catch((err) => {
         deferred.reject(err);
     });
     return deferred.promise;
-    
+
 }
 
 // genre Create Post
 function genreCreatePost(name) {
     let deferred = Q.defer();
     Genre
-        .findOne({'name': name})
+        .findOne({
+            'name': name
+        })
         .then((result) => {
             deferred.resolve(result);
         }).catch((err) => {

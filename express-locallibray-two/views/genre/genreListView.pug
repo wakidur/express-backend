@@ -2,24 +2,46 @@
 extends ../layout
 
 block content
-  h1= title
-  h2= countTotal
-  
-  table.table
-    thead.thead-dark
-        tr
-        th(scope='col') #
-        th(scope='col') Name
-        th(scope='col') Action
-    tbody
-        each genre in genreList
-            pre=genre.name + genre.url
-            tr
-                td= genre.count
-                td 
-                    a(href=genre.url) #{genre.name}
-                td 
-                    a(href=genre.url+'/delete', class='btn btn-danger mr-2' ) Delete genre
-                    a(href=genre.url+'/update', class='btn btn-warning') Update genre
-        else
-            .alert.alert-secondary There are no genres.
+    .card
+        .card-header
+            .d-flex.justify-content-between
+                div
+                    h1= title
+                    //- h2= countTotal + " " countTotal + " " + limit + " " + PossiblePages
+                    h2= `${currentPage} + " " + ${countTotal} + " " + ${limit} + " " + ${PossiblePages}`
+                div
+                    h2 Create genre
+                    a(href='/genre/genre/create', class='btn btn-primary mr-2' ) Create genre
+        .card-body
+            table.table
+                thead.thead-dark
+                    tr
+                    th(scope='col') #
+                    th(scope='col') Name
+                    th.text-center(scope='col') Action
+                tbody
+                    each genre in genreList
+                        tr
+                            td= genre.count
+                            td 
+                                a(href=genre.url) #{genre.name}
+                            td.text-right 
+                                a(href=genre.url+'/delete', class='btn btn-danger mr-2' ) Delete genre
+                                a(href=genre.url+'/update', class='btn btn-warning') Update genre
+                    else
+                        .alert.alert-secondary There are no genres.
+        .card-footer
+           
+            h1= PossiblePages
+            - var nextPage = currentPage
+            nav(aria-label="...")
+                ul.pagination.pagination-md.justify-content-center
+                    li.page-item(class= {disabled: currentPage==1})
+                        a.page-link(href="/genre/genre?page="+(currentPage-1) tabindex="-1") Previous
+                    - var p = 1;
+                    while p <= PossiblePages
+                        li.page-item(class= {active: currentPage == p})
+                            a.page-link(href="/genre/genre?page="+p)= p
+                        - p++;
+                    li.page-item(class={disabled: currentPage == PossiblePages})
+                        a.page-link(href="/genre/genre?page="+ ++nextPage ) Next
