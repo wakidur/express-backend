@@ -21,7 +21,6 @@ exports.genreDetail = genreDetail;
 exports.getGenreDeleteGet = getGenreDeleteGet;
 exports.genreDeletePost = genreDeletePost;
 exports.genreUpdateGet = genreUpdateGet;
-exports.genreUpdatePost = genreUpdatePost;
 
 
 
@@ -197,7 +196,7 @@ exports.genreUpdatePost = [
         const errors = validationResult(req);
         let genre = new Genre({
             name: req.body.name,
-            _id: req.body.id
+            _id: req.params.id
         });
         if (!errors.isEmpty()) {
             res.render('./genre/createGenreFormView',{

@@ -16,6 +16,10 @@
           a.nav-link(href='/genre/genre') Genre List
         li.nav-item(class=(title === 'Create Genre') ? 'active' : undefined)
           a.nav-link(href='/genre/genre/create') Genre
+        li.nav-item(class=(title === 'Create Author') ? 'active' : undefined)
+          a.nav-link(href='/genre/author/create') Author
+        li.nav-item(class=(title === 'Author list') ? 'active' : undefined)
+          a.nav-link(href='/genre/author') Author List
       ul.nav.navbar-nav.ml-auto
         if !user
           li.nav-item(class=(title === 'Login') ? 'active' : undefined)

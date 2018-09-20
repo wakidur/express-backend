@@ -128,7 +128,7 @@ function genreUpdateGet(reqId) {
 // Genre Update post 
 function genreUpdatePost(reqId, genre) {
     let deferred = Q.defer();
-    Genre.findByIdAndUpdate(reqId, genre).then((result) => {
+    Genre.findByIdAndUpdate(reqId, genre, {}).then((result) => {
         deferred.resolve(result);
     }).catch((err) => {
         deferred.reject(err);

@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+    .table-responsive
+        table.table.table-striped.table-sm
+            thead
+                tr
+                    th(scope='col') Name
+                
+                    th(scope='col') Background
+                    th(scope='col') Education
+                    th(scope='col') Profession
+                    th(scope='col') Awards
+                    th(scope='col') Publishing
+                    th(scope='col') email
+                    //- th(scope='col') website
+                    th(scope='col') phoneNumber
+                    th(scope='col') Wife
+                    th(scope='col') Child
+                    th(scope='col') City
+                    th(scope='col') Location
+                    //- th(scope='col') About
+                    th(scope='col') Birth
+                    th(scope='col') Death
+            tbody
+                each val in authors
+                    tr
+                        td #{val.name}
+                    
+                        td #{val.professionalBackground}
+                        td #{val.education}
+                        td #{val.currentBusinessOrProfession}
+                        td #{val.achievementsOrAwards}
+                        td #{val.PreviousPublishingExperience}
+                        td #{val.contactInformation.email}
+                        //- td #{val.contactInformation.website}
+                        td #{val.contactInformation.phoneNumber}
+                        td #{val.personalDetails.family.wifeName}
+                        td #{val.personalDetails.family.childName}
+                        td #{val.personalDetails.cityOfResidence}
+                        td #{val.personalDetails.location}
+                        //- td #{val.whatAuthorSaid}
+                        td #{val.dateOfBirthFormatted}
+                        td #{val.dateOfDeathFormatted}
+                
