@@ -32,7 +32,7 @@ WriterSchema
 WriterSchema
     .virtual('url')
     .get(function () {
-        return '/author/' + this._id;
+        return '/writer/' + this._id;
     });
 // virtual date format
 WriterSchema
@@ -47,4 +47,4 @@ WriterSchema
         return this.date_of_death ? moment(this.date_of_death).format('YYYY-MM-DD') : '';
     });
 //Export model
-module.exports = mongoose.model('Author', WriterSchema);
+module.exports = mongoose.model('Writer', WriterSchema);

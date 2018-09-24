@@ -20,6 +20,8 @@
           a.nav-link(href='/genre/author/create') Author
         li.nav-item(class=(title === 'Author list') ? 'active' : undefined)
           a.nav-link(href='/genre/author') Author List
+        li.nav-item(class=(title === 'Author list') ? 'active' : undefined)
+          a.nav-link(href='/genre/writer/create') writer create
       ul.nav.navbar-nav.ml-auto
         if !user
           li.nav-item(class=(title === 'Login') ? 'active' : undefined)

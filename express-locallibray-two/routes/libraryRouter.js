@@ -37,6 +37,33 @@ router
 
 
 
+/**
+ * Writer 
+ */
+
+ // GET & POST request for creating Writer.
+router
+    .route('/writer/create')
+    .get(writerController.writerCreateGet)
+    .post(writerController.writerCreatePost);
+// GET & POST request to delete Writer.   
+router
+    .route('/writer/:id/delete')
+    .get(writerController.writerDeleteGet)
+    .post(writerController.writerDeletePost);
+// GET & POST request to update Writer.
+router
+    .route('/writer/:id/update')
+    .get(writerController.writerUpdateGet)
+    .post(writerController.writerUpdatePost);
+// GET request for one Writer.
+router
+    .route('/writer/:id')
+    .get(writerController.writerDetail);
+// GET request for list of all Writer.
+router
+    .route('/writer')
+    .get(writerController.writerList);
 
 
 /**
@@ -53,28 +80,6 @@ router
 router.route('/author').get(authorController.getAllAuthor);
 
 
-/**
- * Writer 
- */
-
-router
-    .route('/writer/create')
-    .get(writerController.writerCreateGet)
-    .post(writerController.writerCreatePost);
-router
-    .route('/writer/:id/delete')
-    .get(writerController.writerDeleteGet)
-    .post(writerController.writerDeletePost);
-router
-    .route('/writer/:id/update')
-    .get(writerController.writerUpdateGet)
-    .post(writerController.writerUpdatePost);
-router
-    .route('/writer/:id')
-    .get(writerController.writerDetail);
-router
-    .route('/writer')
-    .get(writerController.writerList);
 
 
 
