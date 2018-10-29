@@ -12,7 +12,8 @@ router
     .get(locationCtrl.locationCreateGet)
     .post(locationCtrl.locationCreatePost);
 
-router.get('/location/:locationid', locationCtrl.locationInfo);
+router
+    .get('/location/:locationid', locationCtrl.locationInfo);
 
 router
     .route('/location/:locationid/review/new')

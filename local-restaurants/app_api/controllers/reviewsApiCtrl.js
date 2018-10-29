@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Loc = require('../models/location/locationApiSchema');
+const User = require('../models/users');
 
 // EXPOSED METHODS
 
@@ -81,7 +82,7 @@ function reviewsReadOne(req, res) {
         "message": "Not found, locationid and reviewid are both required"
       });		
   }
-};
+}
 
 function reviewsUpdateOne(req, res) {
   if (!req.params.locationid || !req.params.reviewid) {

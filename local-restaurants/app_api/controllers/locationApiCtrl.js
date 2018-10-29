@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Loc = require('../models/location/locationApiSchema');
 
 
@@ -107,19 +106,25 @@ function locationsReadOne(req, res) {
 // location update 
 function locationsUpdateOne(req, res) {
   if (!req.params.locationid) {
-    res.status(404).json({
-      "message": "Not found, locationid is required"
-    });
+    res
+      .status(404)
+      .json({
+        "message": "Not found, locationid is required"
+      });
     return;
   } else {
     Loc.findById(req.params.locationid).select('-reviews -rating').exec((err, location) => {
       if (!location) {
-        res.status(404).json({
-          "message": "locationid not found"
-        });
+        res
+          .status(404)
+          .json({
+            "message": "locationid not found"
+          });
         return;
       } else if (err) {
-        res.status(400).json(err);
+        res
+          .status(400)
+          .json(err);
         return;
       }
 
@@ -135,9 +140,13 @@ function locationsUpdateOne(req, res) {
       }];
       location.save((err, location) => {
         if (err) {
-          res.status(404).json(err);
+          res
+            .status(404)
+            .json(err);
         } else {
-          res.status(200).json(location);
+          res
+            .status(200)
+            .json(location);
         }
       });
     });
@@ -150,14 +159,22 @@ function locationsDeleteOne(req, res) {
   if (locationid) {
     Loc.findByIdAndRemove(locationid).exec((err, location) => {
       if (err) {
-        res.status(404).json(err);
+        res
+          .status(404)
+          .json(err);
         return;
       } else {
-        res.status(204).json(null);
+        res
+          .status(204)
+          .json(null);
       }
     });
   } else {
-    res.status(404).status(404).json({"message": "No locationid"});
+    res
+      .status(404)
+      .json({
+        "message": "No locationid"
+      });
   }
 }
 // PRIVATE METHODS
