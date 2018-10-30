@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 var jwt = require('express-jwt');
 var auth = jwt({
-  secret: process.env.JWT_SECRET,
+  secret: 'shhhhhhared-secret',
   userProperty: 'payload'
 });
 const locationsCtrl = require('../controllers/locationApiCtrl');
