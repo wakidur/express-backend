@@ -17,7 +17,7 @@
           </h4>
           <p class="address">{{ location.address }}</p>
           <p>
-            <span class="label label-warning label-facility" ng-repeat="facility in location.facilities">
+            <span class="label label-warning label-facility" ng-repeat="facility in location.facilities track by $index">
               {{ facility }}
             </span>
           </p>

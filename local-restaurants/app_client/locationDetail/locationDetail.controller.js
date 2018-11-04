@@ -15,7 +15,11 @@
 
     loc8rData.locationById(vm.locationid)
       .success(function(data) {
-        vm.data = { location: data };
+        const matchesid = _.filter(data, _.matches({
+          '_id': vm.locationid
+        }));
+        console.log(matchesid);
+        vm.data = { location: matchesid[0] };
         vm.pageHeader = {
           title: vm.data.location.name
         };

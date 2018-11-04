@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const _ = require('lodash');
 const Loc = require('../models/location/locationApiSchema');
 
 
@@ -68,6 +69,7 @@ function locationsCreate(req, res) {
 
 // Get Location by id
 function locationsReadOne(req, res) {
+  let locationid  = req.params.locationid;
   if (req.params && req.params.locationid) {
     Loc.aggregate([{
       "$geoNear": {
@@ -88,6 +90,11 @@ function locationsReadOne(req, res) {
         });
         return;
       } else {
+        const matchesid = _.filter(location, _.matches({
+          '_id': locationid
+        }));
+        //console.log(resultsmatch);
+        let data = matchesid[0];
         res.status(200).json(location);
       }
     }).catch((err) => {
