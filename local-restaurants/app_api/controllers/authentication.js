@@ -1,5 +1,5 @@
-var passport = require('passport');
-var User = require('../models/users');
+const passport = require('passport');
+const User = require('../models/users');
 
 var sendJSONresponse = function (res, status, content) {
     res.status(status);
@@ -8,13 +8,15 @@ var sendJSONresponse = function (res, status, content) {
 
 module.exports.register = function (req, res) {
     if (!req.body.name || !req.body.email || !req.body.password) {
-        sendJSONresponse(res, 400, {
-            "message": "All fields required"
-        });
+        res
+            .status(400)
+            .json({
+                "message": "All fields required"
+            });
         return;
     }
 
-    var user = new User();
+    const user = new User();
 
     user.name = req.body.name;
     user.email = req.body.email;
@@ -24,40 +26,49 @@ module.exports.register = function (req, res) {
     user.save(function (err) {
         var token;
         if (err) {
-            sendJSONresponse(res, 404, err);
+            res
+                .status(404)
+                .json(err);
         } else {
             token = user.generateJwt();
-            sendJSONresponse(res, 200, {
-                "token": token
-            });
+            res
+                .status(200)
+                .json({
+                    "token": token
+                });
         }
     });
-
 };
 
 module.exports.login = function (req, res) {
     if (!req.body.email || !req.body.password) {
-        sendJSONresponse(res, 400, {
-            "message": "All fields required"
-        });
+        res
+            .status(400)
+            .json({
+                "message": "All fields required"
+            });
         return;
     }
 
     passport.authenticate('local', function (err, user, info) {
-        var token;
-
+        let token;
         if (err) {
-            sendJSONresponse(res, 404, err);
+            res
+                .status(404)
+                .json(err);
             return;
         }
-
         if (user) {
             token = user.generateJwt();
-            sendJSONresponse(res, 200, {
-                "token": token
-            });
+            res
+                .status(200)
+                .json({
+                    "token": token
+                });
         } else {
-            sendJSONresponse(res, 401, info);
+            res
+                .status(401)
+                .json(info);
         }
     })(req, res);
 
