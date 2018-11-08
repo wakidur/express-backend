@@ -1,18 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('express-jwt');
-const isAuthenticated = jwt({
-  secret: 'helloWorld',
-  // secret: new Buffer('helloWorld', 'base64'),
-  // audience: 'http://myapi/protected',
-  // issuer: 'http://issuer',
-  userProperty: 'payload',
-  // requestProperty: 'auth',
-  // resultProperty: 'locals.user'
+const secret = process.env.JWT_SECRET
+const auth = jwt({
+  secret: 'secret',
+  userProperty: 'payload'
 });
 const locationsCtrl = require('../controllers/locationApiCtrl');
 const reviewsCtrl = require('../controllers/reviewsApiCtrl');
-const ctrlAuth = require('../controllers/authentication');
+const authCtrl = require('../controllers/authentication');
 
 
 // locations
@@ -30,21 +26,21 @@ router
 // reviews 
 router
   .route('/locations/:locationid/reviews')
-  .post(isAuthenticated, reviewsCtrl.reviewsCreate);
+  .post(auth, reviewsCtrl.reviewsCreate);
 
 router
   .route('/locations/:locationid/reviews/:reviewid')
   .get(reviewsCtrl.reviewsReadOne)
-  .put(isAuthenticated, reviewsCtrl.reviewsUpdateOne)
-  .delete(isAuthenticated, reviewsCtrl.reviewsDeleteOne);
+  .put(auth, reviewsCtrl.reviewsUpdateOne)
+  .delete(auth, reviewsCtrl.reviewsDeleteOne);
 
 // authentication
 router
   .route('/register')
-  .post(ctrlAuth.register);
+  .post(authCtrl.register);
 router
   .route('/login')
-  .post(ctrlAuth.login);
+  .post(authCtrl.login);
 
 
 module.exports = router;

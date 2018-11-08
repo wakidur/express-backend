@@ -1,12 +1,13 @@
+const dotenv = require('dotenv');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+require('./app_api/models/db');
 require('./app_api/config/passport');
 /**
  * Connect to MongoDB.
@@ -31,12 +32,12 @@ dotenv.load({
 const app = express();
 
 
-let mongoDB = 'mongodb://localhost/Loc8r';
-mongoose.connect(mongoDB);
-mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', console.log.bind("we're connected......... 3300"));
+// let mongoDB = 'mongodb://localhost/Loc8r';
+// mongoose.connect(mongoDB);
+// mongoose.Promise = global.Promise;
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// db.once('open', console.log.bind("we're connected......... 3300"));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
@@ -53,10 +54,10 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_client')));
-
-app.use('/api', function(req, res, next) {
+app.use(passport.initialize());
+app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3300');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 // app.use('/', indexRouter);
@@ -85,5 +86,16 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// error handlers
+// Catch unauthorised errors
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res
+       .status(401)
+      .json({"message" : err.name + ": " + err.message});
+  }
+});
+
 
 module.exports = app;

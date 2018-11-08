@@ -4,9 +4,36 @@ const User = require('../models/users');
 
 // EXPOSED METHODS
 
+// function reviewsCreate (req, res) {
+//   const locationid = req.params.locationid;
+//   getAuthor(req, res, function (req, res, userName) {
+//     if (locationid) {
+//       Loc
+//         .findById(locationid)
+//         .select('reviews')
+//         .exec((err, location) => {
+//           if (err) {
+//             res
+//               .status(400)
+//               .json(err);
+//           } else {
+//             _doAddReview(req, res, location, userName);
+//           }
+//         }
+//       );
+//     } else {
+//       res
+//         .status(404)
+//         .json({
+//           "message": "Not found, locationid required"
+//         });
+//     }
+//   })
 
+// }
 function reviewsCreate(req, res) {
-  getAuthor(req, res, (req, res, userName) => {
+  getAuthor(req, res,
+      (req, res, userName) => {
         const locationId = req.params.locationid;
         if (locationId) {
           Loc
@@ -296,6 +323,41 @@ function reviewsCreate(req, res) {
         }
       }
 
+      function _getAuthor(req, res, callback) {
+        console.log("Finding author with email " + req.payload.email);
+        if (req.payload.email) {
+          User
+            .findOne({
+              email: req.payload.email
+            })
+            .exec(function (err, user) {
+              if (!user) {
+                res
+                  .status(404)
+                  .json({
+                    "message": "User not found"
+                  });
+
+                return;
+              } else if (err) {
+                console.log(err);
+                res.status(404).json(err);
+
+                return;
+              }
+              console.log(user);
+              callback(req, res, user.name);
+            });
+
+        } else {
+          res.status(404).json({
+            "message": "User not found"
+          });
+          return;
+        }
+
+      }
+      
       function getAuthor(req, res, callback)  {
         if (req.payload && req.payload.email) {
           User

@@ -38,8 +38,9 @@
             <div class="panel-heading">
               <h2 class="panel-title">Location map</h2>
             </div>
+            {{ vm.data.location.coords.lat }},{{ vm.data.location.coords.lng }}
             <div class="panel-body">
-              <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ vm.data.location.coords[1] }},{{ vm.data.location.coords[0] }}&amp;zoom=17&amp;size=400x350&amp;sensor=false&amp;markers={{ vm.data.location.coords[1] }},{{ vm.data.location.coords[0] }}&amp;scale=2" class="img-responsive img-rounded">
+              <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ vm.data.location.coords.lat }},{{ vm.data.location.coords.lng }}&amp;zoom=17&amp;size=400x350&amp;sensor=false&amp;markers={{ vm.data.location.coords.lat }},{{ vm.data.location.coords.lng }}&amp;scale=2" class="img-responsive img-rounded">
             </div>
           </div>
         </div>
