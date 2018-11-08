@@ -1,12 +1,7 @@
 const passport = require('passport');
 const User = require('../models/users');
 
-var sendJSONresponse = function (res, status, content) {
-    res.status(status);
-    res.json(content);
-};
-
-module.exports.register = function (req, res) {
+function register(req, res) {
     if (!req.body.name || !req.body.email || !req.body.password) {
         res
             .status(400)
@@ -38,9 +33,9 @@ module.exports.register = function (req, res) {
                 });
         }
     });
-};
+}
 
-module.exports.login = function (req, res) {
+function login (req, res) {
     if (!req.body.email || !req.body.password) {
         res
             .status(400)
@@ -50,7 +45,7 @@ module.exports.login = function (req, res) {
         return;
     }
 
-    passport.authenticate('local', function (err, user, info) {
+    passport.authenticate('local',  (err, user, info) => {
         let token;
         if (err) {
             res
@@ -72,4 +67,9 @@ module.exports.login = function (req, res) {
         }
     })(req, res);
 
-};
+}
+
+module.exports = {
+    register,
+    login,
+  };

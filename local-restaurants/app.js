@@ -7,9 +7,6 @@ const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const uglifyJs = require("uglify-js");
-const fs = require('fs');
-const passport = require('passport');
 require('./app_api/config/passport');
 /**
  * Connect to MongoDB.

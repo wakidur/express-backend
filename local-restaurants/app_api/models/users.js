@@ -31,7 +31,11 @@ UserSchema.methods.generateJwt = function() {
   var expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);
 
-  
+  // var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+  // jwt.sign({
+  //   exp: Math.floor(Date.now() / 1000) + (60 * 60),
+  //   data: 'foobar'
+  // }, 'secret');
   return jwt.sign({
     _id: this._id,
     email: this.email,
