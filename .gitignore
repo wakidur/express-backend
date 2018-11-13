@@ -1,8 +1,8 @@
 # Object file
-*.o
+
 
 # Ada Library Information
-*.ali
+
 apps/node_modules
 apps/package-lock.json
 
@@ -38,3 +38,5 @@ express-locallibray-two/node_modules
 express-locallibray-two/package-lock.json
 
 
+MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/server-side/node_modules/
+MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/server-side/package-lock.json
