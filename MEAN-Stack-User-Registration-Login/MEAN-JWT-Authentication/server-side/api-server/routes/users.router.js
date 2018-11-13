@@ -9,5 +9,9 @@ router
   .get(userCtrl.getRegister)
   .post(userCtrl.postRegister);
 
+router
+  .route('/authenticate')
+  .post(userCtrl.authenticateUser);
+
 
 module.exports = router;
