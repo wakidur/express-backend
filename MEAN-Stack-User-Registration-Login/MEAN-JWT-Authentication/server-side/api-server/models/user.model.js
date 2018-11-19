@@ -15,9 +15,9 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    required: 'Password can\'t empty',
-    minlength: [4, 'Password must be atleast 4 character leng'],
-    maxlength: [8, 'Password must be atleast 4 character leng']
+    required: 'Password can\'t be empty',
+    minlength: [4, 'Password must be atleast 4 character long'],
+    maxlength: [8, 'Password must be atleast 8 character leng']
   },
   saltSecret: String
 });

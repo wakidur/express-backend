@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 const userCtrl = require('../controllers/user.controller');
+
+const jwtHelper = require('../config/jwtHelper');
 /* GET users listing. */
 
 router
@@ -11,7 +13,13 @@ router
 
 router
   .route('/authenticate')
-  .post(userCtrl.authenticateUser);
+  .get(userCtrl.getAuthenticateUser)
+  .post(userCtrl.postAuthenticateUser);
+
+  router
+  .route('/userprofile')
+  .get(jwtHelper.verifyJwtToken, userCtrl.userProfile);
+ 
 
 
 module.exports = router;
