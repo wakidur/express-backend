@@ -1,5 +1,5 @@
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
+const { Strategy: LocalStrategy } = require('passport-local');
 const mongoose = require('mongoose');
 const User = require('../models/user.model');
 
@@ -17,20 +17,14 @@ passport.deserializeUser((id, done) => {
  * Sign in using Email and Password.
  */
 passport.use(
-  new localStrategy({
-      usernameField: 'email'
-    },
-    (username, password, done) => {
-      User.findOne({
-          email: username
-        },
-        (err, user) => {
+  new LocalStrategy({ usernameField: 'email' }, (username, password, done) => {
+      User.findOne({ email: username }, (err, user) => {
           if (err)
             return done(err);
           // unknown user
           else if (!user)
             return done(null, false, {
-              message: 'Email is not registered'
+              message: `Email ${email} not found.`
             });
           // wrong password
           else if (!user.verifyPassword(password))

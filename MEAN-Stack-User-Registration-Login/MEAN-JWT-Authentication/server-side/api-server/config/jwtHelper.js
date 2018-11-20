@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
 
-module.exports.verifyJwtToken = (req, res, next) => {
+
+/**
+ * Authorization Required middleware.
+ */
+exports.isAuthenticated = (req, res, next) => {
     var token;
     if ('authorization' in req.headers)
         token = req.headers['authorization'].split(' ')[1];

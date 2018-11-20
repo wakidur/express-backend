@@ -1,6 +1,6 @@
 // require('./config/config');
 require('./db-connection/db');
-require('./api-server/config/passportConfig');
+require('./api-server/config/passport');
 
 const createError = require('http-errors');
 const express = require('express');
@@ -10,6 +10,7 @@ const logger = require('morgan');
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const passport = require('passport');
 const dotenv = require('dotenv');
 
 const indexRouter = require('./app-server/routes/home.router');
@@ -37,6 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors());
+app.use(passport.initialize());
 app.use(express.static(path.join(__dirname, 'app-server', 'public')));
 
 app.use('/', indexRouter);

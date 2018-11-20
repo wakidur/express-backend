@@ -3,16 +3,57 @@ const passport = require('passport');
 const _ = require('lodash');
 const User = require('../models/user.model');
 
-function getRegister(req, res, next) {
+/**
+ * GET /login
+ * Login page.
+ */
+exports.getLogin = (req, res, next) => {
+    console.log("get Authenticate User");
+};
+
+/**
+ * POST /login
+ * Sign in using email and password.
+ */
+exports.postLogin  = (req, res, next) => {
+
+    if (!req.body.email || !req.body.password) {
+        res.status(400).json({
+            "message": "All fields required"
+        });
+        return;
+    }
+    // call for passport authentication
+    passport.authenticate('local', (err, user, info) => {
+        // error from passport middleware
+        if (err) return res.status(404).json(err);
+        // registered user
+        else if (user) return res.status(200).json({
+            "token": user.generateJwt()
+        });
+        // unknown user or wrong password
+        else return res.status(401).json(info);
+    })(req, res);
+};
+
+/**
+ * GET /signup
+ * Signup page.
+ */
+exports.getSignup = (req, res, next) => {
     console.log(`user register controller get`);
     res
         .status(200)
         .json({
             token: "token"
         });
-}
+};
 
-function postRegister(req, res, next) {
+/**
+ * POST /signup
+ * Create a new local account.
+ */
+exports.postSignup = (req, res, next) => {
     if (!req.body.fullName || !req.body.email || !req.body.password) {
         res.status(400).json({
             "message": "All fields required"
@@ -56,34 +97,14 @@ function postRegister(req, res, next) {
         });
     });
 
-}
+};
 
-function getAuthenticateUser(req, res, next) {
-    console.log("get Authenticate User");
-}
+/**
+ * POST /signup
+ * Create a new local account.
+ */
 
-function postAuthenticateUser(req, res, next) {
-
-    if (!req.body.email || !req.body.password) {
-        res.status(400).json({
-            "message": "All fields required"
-        });
-        return;
-    }
-    // call for passport authentication
-    passport.authenticate('local', (err, user, info) => {
-        // error from passport middleware
-        if (err) return res.status(404).json(err);
-        // registered user
-        else if (user) return res.status(200).json({
-            "token": user.generateJwt()
-        });
-        // unknown user or wrong password
-        else return res.status(401).json(info);
-    })(req, res);
-}
-
-function userProfile(req, res, next) {
+exports.userProfile = (req, res, next) => {
     User.findOne({
             _id: req._id
         },
@@ -104,12 +125,29 @@ function userProfile(req, res, next) {
                 });
         }
     );
-}
-
-module.exports = {
-    getRegister,
-    postRegister,
-    getAuthenticateUser,
-    postAuthenticateUser,
-    userProfile
 };
+
+/**
+ * GET /account
+ * Profile page.
+ */
+exports.getAccount = (req, res) => {};
+
+/**
+ * POST /account/profile
+ * Update profile information.
+ */
+exports.postUpdateProfile = (req, res, next) => {};
+
+/**
+ * POST /account/password
+ * Update current password.
+ */
+exports.postUpdatePassword = (req, res, next) => {};
+
+
+/**
+ * POST /account/delete
+ * Delete user account.
+ */
+exports.postDeleteAccount = (req, res, next) => {};
