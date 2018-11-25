@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: 'Full name can\'t be empty'
@@ -19,7 +18,15 @@ const UserSchema = new Schema({
     minlength: [4, 'Password must be atleast 4 character long'],
     maxlength: [8, 'Password must be atleast 8 character leng']
   },
-  saltSecret: String
+  role: {
+    type: String,
+    enum: ['reader', 'creator', 'editor', 'user', 'moderators', 'admin', 'ghost'],
+    default: 'ghost'
+  },
+  saltSecret: String,
+}, {
+  timestamps: true
+
 });
 
 // Custom validation for email
@@ -66,22 +73,21 @@ jwt.sign(
 );
 */
 UserSchema.methods.generateJwt = function () {
-  
+
   const expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);
 
-  return jwt.sign(
-    { 
+  return jwt.sign({
       _id: this._id,
       email: this.email,
       name: this.fullName,
+      role: this.role,
     },
-      process.env.JWT_SECRET,
-    {
+    process.env.JWT_SECRET, {
       // expiresIn: process.env.JWT_EXP
       expiresIn: parseInt(expiry.getTime() / 1000)
     }
-    );
+  );
 };
 
 

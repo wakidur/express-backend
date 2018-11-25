@@ -3,38 +3,6 @@ const passport = require('passport');
 const _ = require('lodash');
 const User = require('../models/user.model');
 
-/**
- * GET /login
- * Login page.
- */
-exports.getLogin = (req, res, next) => {
-    console.log("get Authenticate User");
-};
-
-/**
- * POST /login
- * Sign in using email and password.
- */
-exports.postLogin  = (req, res, next) => {
-
-    if (!req.body.email || !req.body.password) {
-        res.status(400).json({
-            "message": "All fields required"
-        });
-        return;
-    }
-    // call for passport authentication
-    passport.authenticate('local', (err, user, info) => {
-        // error from passport middleware
-        if (err) return res.status(404).json(err);
-        // registered user
-        else if (user) return res.status(200).json({
-            "token": user.generateJwt()
-        });
-        // unknown user or wrong password
-        else return res.status(401).json(info);
-    })(req, res);
-};
 
 /**
  * GET /signup
@@ -65,6 +33,7 @@ exports.postSignup = (req, res, next) => {
         fullName: req.body.fullName,
         email: req.body.email,
         password: req.body.password,
+        role: req.body.role
 
     });
     User.findOne({
@@ -100,11 +69,43 @@ exports.postSignup = (req, res, next) => {
 };
 
 /**
- * POST /signup
- * Create a new local account.
+ * GET /login
+ * Login page.
  */
+exports.getLogin = (req, res, next) => {
+    console.log("get Authenticate User");
+};
 
-exports.userProfile = (req, res, next) => {
+/**
+ * POST /login
+ * Sign in using email and password.
+ */
+exports.postLogin = (req, res, next) => {
+
+    if (!req.body.email || !req.body.password) {
+        res.status(400).json({
+            "message": "All fields required"
+        });
+        return;
+    }
+    // call for passport authentication
+    passport.authenticate('local', (err, user, info) => {
+        // error from passport middleware
+        if (err) return res.status(404).json(err);
+        // registered user
+        else if (user) return res.status(200).json({
+            "token": user.generateJwt()
+        });
+        // unknown user or wrong password
+        else return res.status(401).json(info);
+    })(req, res);
+};
+
+/**
+ * GET /account
+ * Profile page.
+ */
+exports.getAccount = (req, res, next) => {
     User.findOne({
             _id: req._id
         },
@@ -121,17 +122,11 @@ exports.userProfile = (req, res, next) => {
             else
                 return res.status(200).json({
                     status: true,
-                    user: _.pick(user, ['fullName', 'email'])
+                    user: _.pick(user, ['fullName', 'email', 'role'])
                 });
         }
     );
 };
-
-/**
- * GET /account
- * Profile page.
- */
-exports.getAccount = (req, res) => {};
 
 /**
  * POST /account/profile
@@ -151,3 +146,15 @@ exports.postUpdatePassword = (req, res, next) => {};
  * Delete user account.
  */
 exports.postDeleteAccount = (req, res, next) => {};
+
+/**
+ * GET /forgot
+ * Forgot Password page.
+ */
+exports.getForgot = (req, res) => {}
+
+/**
+ * POST /forgot
+ * Create a random token, then the send user an email with a reset link.
+ */
+exports.postForgot = (req, res, next) => {}

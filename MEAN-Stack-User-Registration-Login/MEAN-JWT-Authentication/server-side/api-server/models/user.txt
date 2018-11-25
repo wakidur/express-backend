@@ -1,0 +1,13 @@
+https://www.joshmorony.com/creating-role-based-authentication-with-passport-in-ionic-2-part-1/
+
+https://blog.slatepeak.com/refactoring-a-basic-authenticated-api-with-node-express-and-mongo/
+
+http://catalin.me/role-based-authentication-with-angular-express-jwt-mysql-part-2/
+
+authentication 
+We might want to have different types of users
+    normal users
+    moderators
+    admins 
+I am going to show you how to create a flexible, role-based authentication system using Passport and the MEAN stack (MongoDB, Express, Angular, and Node). 
+

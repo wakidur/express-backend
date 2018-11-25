@@ -19,29 +19,22 @@ router
 router
   .route('/account/profile')
   .get(jwtHelper.verifyJwtToken, userCtrl.getAccount)
-  .post(jwtHelper.verifyJwtToken, userController.postUpdateProfile);
+  .post(jwtHelper.verifyJwtToken, userCtrl.postUpdateProfile);
 
 router
   .route('/account/password')
-  // .get(jwtHelper.verifyJwtToken, userCtrl.getUpdatePassword)
   .post(jwtHelper.verifyJwtToken, userCtrl.postUpdatePassword);
 
 router
   .route('/account/delete')
-  // .get(jwtHelper.verifyJwtToken, userCtrl.getUpdatePassword)
   .post(jwtHelper.verifyJwtToken, userCtrl.postDeleteAccount);
-
-router
-  .route('/contact')
-  .get(jwtHelper.verifyJwtToken, userCtrl.getContact)
-  .post(jwtHelper.verifyJwtToken, userCtrl.postContact);
-
+  
 router
   .route('/forgot')
-  .get(jwtHelper.verifyJwtToken, userCtrl.postForgot);
-router
-  .route('/userprofile')
-  .get(jwtHelper.verifyJwtToken, userCtrl.userProfile);
+  .get(jwtHelper.verifyJwtToken, userCtrl.getForgot)
+  .post(jwtHelper.verifyJwtToken, userCtrl.postForgot);
+
+
  
 
 
