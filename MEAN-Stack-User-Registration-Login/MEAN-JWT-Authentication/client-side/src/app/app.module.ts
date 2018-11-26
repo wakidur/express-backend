@@ -10,8 +10,18 @@ import { SingUpComponent } from "./user/sing-up/sing-up.component";
 import { CoreModule } from "./core/core.module";
 
 @NgModule({
-  declarations: [AppComponent, UserComponent, SingUpComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule, CoreModule],
+  declarations: [
+    AppComponent,
+    UserComponent,
+    SingUpComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    CoreModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

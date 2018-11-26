@@ -13,7 +13,7 @@ export class SingUpComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   showSucessMessage: boolean;
   serverErrorMessages: string;
-  public userServicemodel: User;
+
   constructor(private userService: UserService) {}
 
   ngOnInit() {}
@@ -31,14 +31,13 @@ export class SingUpComponent implements OnInit {
         } else {
           this.serverErrorMessages =
             "Something went wrong.Please contact admin.";
-        }
-
+          }
       }
     );
   }
 
   resetForm(form: NgForm) {
-    this.userServicemodel = {
+    this.userService.selectedUser = {
       fullName: "",
       email: "",
       password: ""

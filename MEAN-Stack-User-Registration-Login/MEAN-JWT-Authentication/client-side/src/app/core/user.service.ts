@@ -8,23 +8,26 @@ import { CoreModule } from "./core.module";
 import { User } from "./userModel";
 import { environment } from "../../environments/environment";
 
-
 @Injectable({
   providedIn: CoreModule
 })
 export class UserService {
+  selectedUser: User = {
+    fullName: "",
+    email: "",
+    password: ""
+  };
   constructor(private httpClient: HttpClient) {}
 
   /**
    * postUser
    */
+
   public postUser(user: User) {
     return this.httpClient.post(environment.apiBaseUrl + "/signup", user);
   }
 
   public addHero(hero: User): Observable<User> {
-    return this.httpClient
-      .post<User>(environment.apiBaseUrl + "/signup", hero);
+    return this.httpClient.post<User>(environment.apiBaseUrl + "/signup", hero);
   }
-
 }
