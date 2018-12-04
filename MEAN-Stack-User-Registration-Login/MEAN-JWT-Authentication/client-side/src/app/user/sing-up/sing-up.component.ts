@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 
 import { UserService } from "../../core/user.service";
-import { User } from "../../core/userModel";
+import { User, HeroUser } from "../../core/userModel";
 
 @Component({
   selector: "app-sing-up",
@@ -13,12 +13,15 @@ export class SingUpComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   showSucessMessage: boolean;
   serverErrorMessages: string;
+  selectedUser = new HeroUser();
+
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {}
 
   onSubmit(form: NgForm) {
+    console.log(this.selectedUser);
     this.userService.postUser(form.value).subscribe(
       res => {
         this.showSucessMessage = true;
@@ -34,10 +37,17 @@ export class SingUpComponent implements OnInit {
           }
       }
     );
+
+    // this.userService.addHero(form.value).subscribe(hero => {
+    //   this.showSucessMessage = true;
+    //     setTimeout(() => (this.showSucessMessage = false), 4000);
+    //     this.resetForm(form);
+    // });
+
   }
 
   resetForm(form: NgForm) {
-    this.userService.selectedUser = {
+    this.selectedUser = {
       fullName: "",
       email: "",
       password: ""
