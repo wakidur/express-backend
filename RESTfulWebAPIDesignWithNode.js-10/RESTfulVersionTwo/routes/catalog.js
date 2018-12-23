@@ -13,4 +13,9 @@ router
     .route('/:categoryId/:itemId')
     .get(catalogCtrl.findItem);
 
+router
+    .route('/create')
+    .post(catalogCtrl.createItem);
+// router.post('/',catalogCtrl.createItem);
+
 module.exports = router;

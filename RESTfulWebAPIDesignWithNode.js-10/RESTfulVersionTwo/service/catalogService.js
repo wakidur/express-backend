@@ -83,7 +83,29 @@ function remove(data) {
 
 function findOne(itemId) {
     let deferred = Q.defer();
-    Items.findOne(itemId).then((result) => {
+    Items.findOne({itemId: itemId}).then((result) => {
+        deferred.resolve(result);
+    }).catch((err) => {
+        deferred.reject(err);
+    });
+    return deferred.promise;
+    
+}
+
+function save(value) {
+    
+    function toItem(body) {
+        return new Items({
+            itemId: body.itemId,
+            itemName: body.itemName,
+            price: body.price,
+            currency: body.currency,
+            categories: body.categories
+        });
+    }
+    let item = toItem(value);
+    let deferred = Q.defer();
+    item.save().then((result) => {
         deferred.resolve(result);
     }).catch((err) => {
         deferred.reject(err);
@@ -96,5 +118,6 @@ module.exports = {
     findItems,
     findItem,
     findOne,
-    remove
+    remove,
+    save
 }

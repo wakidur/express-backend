@@ -4,12 +4,25 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog');
 
 const app = express();
+
+/**
+ * Connect to MongoDB.
+ */
+mongoose.connect('mongodb://localhost/restfulapi', {
+  useNewUrlParser: true
+});
+mongoose.connection.on('error', (err) => {
+  console.error(err);
+  console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
+  process.exit();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
