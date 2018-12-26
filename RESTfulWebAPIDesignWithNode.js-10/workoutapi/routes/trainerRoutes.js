@@ -10,6 +10,7 @@ const router = express.Router();
 
 let exerciseController = require('../controllers/exerciseCtrl');
 let exercisePlanController = require('../controllers/exercisePlanCtrl');
+let workoutPlanController = require('../controllers/workoutPlanCtrl');
 /**
  * exercise Routes
  */
@@ -26,6 +27,11 @@ router
     .route('/exerciseplan/create')
     .get(exercisePlanController.getExercisePlanCreate)
     .post(exercisePlanController.postExercisePlanCreate);
+// GET request for creating a WorkoutPlan.
+router
+    .route('/workoutplan/create')
+    .get(workoutPlanController.getWorkoutPlanCreate)
+    .post(workoutPlanController.postWorkoutPlanCreate);
 
 module.exports = router;
 

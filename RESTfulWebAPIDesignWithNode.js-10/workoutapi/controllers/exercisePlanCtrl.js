@@ -1,11 +1,14 @@
 const Exercise = require('../model/exerciseSchema');
 const ExercisePlan = require('../model/exercisePlanSchema');
 
+const exercisePlanDS = require('../service/exercisePlanDataService');
+
 exports.getExercisePlanCreate = (req, res, next) => {
-    ExercisePlan.find().then((result) => {
+    exercisePlanDS.getExercisePlanList().then((result) => {
         res.status(200).json(result);
     }).catch((err) => {
-        handleError(res, err.message, "Failed to create new contact.");
+        // handleError(res, err.message, "Failed to create new contact.");
+        return next(err);
     });
 };
 

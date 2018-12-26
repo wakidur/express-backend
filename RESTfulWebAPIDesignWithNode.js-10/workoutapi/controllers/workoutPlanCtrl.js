@@ -1,28 +1,30 @@
 const Exercise = require('../model/exerciseSchema');
 const ExercisePlan = require('../model/exercisePlanSchema');
+const WorkoutPlan = require('../model/workoutPlanSchema');
 
-exports.getExerciseCreate = (req, res, next) => {
-    Exercise.find({}).then((result) => {
+const workoutPlanDS = require('../service/workoutPlanDataService');
+
+exports.getWorkoutPlanCreate = (req, res, next) => {
+    workoutPlanDS.getWorkoutPlanList().then((result) => {
         res.status(200).json(result);
     }).catch((err) => {
-        handleError(res, err.message, "Failed to create new contact.");
+        // handleError(res, err.message, "Failed to create new contact.");
+        return next(err);
     });
 };
 
-exports.postExerciseCreate = (req, res, next) => {
+exports.postWorkoutPlanCreate = (req, res, next) => {
     // Create an Author object with escaped and trimmed data.
-    let exercise = new Exercise({
+    let workoutPlan = new WorkoutPlan({
         name: req.body.name,
         title: req.body.title,
-        description: req.body.description,
-        image: req.body.image,
-        nameSound: req.body.nameSound,
-        procedure: req.body.procedure,
-        videos: req.body.videos,         
+        restBetweenExercise: req.body.restBetweenExercise,
+        exercises: req.body.exercises,
+        description: req.body.description,       
     });
-    exercise.save(function (err, result) {
+    workoutPlan.save(function (err, result) {
         if (err) {
-            // next(err);;
+            // next(err);
             handleError(res, err.message, "Failed to Save.");
         } else {
             res.status(201).json(result);

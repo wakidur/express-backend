@@ -25,7 +25,7 @@ const ExerciseModelSchema = new Schema({
     procedure: {
         type: String,
     },
-    videos: [String],
+    videos: Array,
 });
 
 //Export function to create "SomeModel" model class
