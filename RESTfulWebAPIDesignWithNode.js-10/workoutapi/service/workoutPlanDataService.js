@@ -9,20 +9,21 @@ const WorkoutPlan = require('../model/workoutPlanSchema');
 // Get Book List
 function getWorkoutPlanList() {
     var deferred = Q.defer();
-    WorkoutPlan.find({})
-        .populate('exercises')
-        .exec(function (err, list_books) {
-            if (err) {
-                deferred.reject(err);
-            }
-            //sucessfull , 
-            deferred.resolve(list_books);
-        });
+    WorkoutPlan.find({}).populate({
+        path: 'exercises',
+        populate: {
+            path: 'exercise',
+            model: 'Exercise'
+        }
+    }).then((result) => {
+        deferred.resolve(result);
+    }).catch((err) => {
+        deferred.reject(err);
+    });
     return deferred.promise;
-    
 }
 
 module.exports = {
     getWorkoutPlanList,
-   
+
 };
