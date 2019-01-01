@@ -1,7 +1,43 @@
+const Joi = require('joi');
 const Exercise = require('../model/exerciseSchema');
+
 const ExercisePlan = require('../model/exercisePlanSchema');
 
 const exerciseDS = require('../service/exerciseDataService');
+
+
+
+// async function insert(req, res, next) {
+//     const userSchema = Joi.object({
+//         name: Joi.string().required(),
+//         description: Joi.string().required(),
+//         image: Joi.string().required(),
+//         nameSound: Joi.string().required(),
+//         procedure: Joi.string().required(),
+//         videos: Joi.string().required(),
+//     });
+
+
+
+//     let user = await Joi.validate(req.body, userSchema, {
+//         abortEarly: false
+//     });
+//     delete user.name;
+//     let exercise = new Exercise(user);
+
+//     exercise.save((err, location) => {
+//         if (err) {
+//             res
+//                 .status(404)
+//                 .json(err);
+//         } else {
+//             res
+//                 .status(200)
+//                 .json(location);
+//         }
+//     });
+// }
+
 
 exports.getExerciseCreate = (req, res, next) => {
     exerciseDS.getExerciseList().then((result) => {
@@ -13,24 +49,41 @@ exports.getExerciseCreate = (req, res, next) => {
 
 exports.postExerciseCreate = (req, res, next) => {
     // Create an Author object with escaped and trimmed data.
-    let exercise = new Exercise({
-        name: req.body.name,
-        title: req.body.title,
-        description: req.body.description,
-        image: req.body.image,
-        nameSound: req.body.nameSound,
-        procedure: req.body.procedure,
-        videos: req.body.videos,
+
+    const exerciseSchema = Joi.object({
+        name: Joi.string().required(),
+        title: Joi.string().required(),
+        description: Joi.string().required(),
+        image: Joi.string().required(),
+        nameSound: Joi.string().required(),
+        procedure: Joi.string().required(),
+        videos: Joi.string().required(),
     });
-    exercise.save(function (err, result) {
+    Joi.validate(req.body, exerciseSchema, (err, value) => {
         if (err) {
-            // next(err);;
-            handleError(res, err.message, "Failed to Save.");
+            res.status(201).json(err);
         } else {
-            res.status(201).json(result);
+            let exercise = new Exercise(value);
+            exercise.save(function (err, result) {
+                if (err) {
+                    // next(err);;
+                    handleError(res, err.message, "Failed to Save.");
+                } else {
+                    res.status(201).json(result);
+                }
+            });
         }
     });
+
+
+
+
+
 };
+
+
+
+
 
 
 exports.exerciseReadOne = (req, res) => {

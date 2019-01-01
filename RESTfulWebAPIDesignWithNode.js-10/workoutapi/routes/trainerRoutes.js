@@ -4,7 +4,7 @@
  *    GET: finds all Exercise
  *    POST: creates a new Exercise
  */
-
+const asyncHandler = require('express-async-handler');
 const express = require('express');
 const router = express.Router();
 
