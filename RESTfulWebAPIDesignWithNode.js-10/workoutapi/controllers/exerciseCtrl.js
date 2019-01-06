@@ -40,11 +40,16 @@ const exerciseDS = require('../service/exerciseDataService');
 
 
 exports.getExerciseCreate = (req, res, next) => {
-    exerciseDS.getExerciseList().then((result) => {
-        res.status(200).json(result);
-    }).catch((err) => {
-        handleError(res, err.message, "Failed to create new contact.");
-    });
+    try {
+        exerciseDS.getExerciseList().then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            handleError(res, err.message, "Failed to create new contact.");
+        });
+    } catch (error) {
+        res.json(error);
+    }
+
 };
 
 exports.postExerciseCreate = (req, res, next) => {
@@ -66,7 +71,7 @@ exports.postExerciseCreate = (req, res, next) => {
             let exercise = new Exercise(value);
             exercise.save(function (err, result) {
                 if (err) {
-                    // next(err);;
+                    // next(err);
                     handleError(res, err.message, "Failed to Save.");
                 } else {
                     res.status(201).json(result);
@@ -74,11 +79,6 @@ exports.postExerciseCreate = (req, res, next) => {
             });
         }
     });
-
-
-
-
-
 };
 
 
@@ -86,7 +86,7 @@ exports.postExerciseCreate = (req, res, next) => {
 
 
 
-exports.exerciseReadOne = (req, res) => {
+exports.exerciseReadById = (req, res) => {
     /**
      * The try statement lets you test a block of code for errors.
      * The catch statement lets you handle the error.
@@ -94,11 +94,12 @@ exports.exerciseReadOne = (req, res) => {
      */
     try {
         if (req.params && req.params.id) {
-            exerciseDS.findById(req.params.id).then((result) => {
+            exerciseDS.exerciseReadById(req.params.id).then((result) => {
                 if (!result) {
                     res.status(404).json({
-                        "message": "exercise id not found"
+                        "message": "Exercise id not found"
                     });
+                    return;
                 } else {
                     res.status(200).json(result);
                 }
@@ -107,7 +108,7 @@ exports.exerciseReadOne = (req, res) => {
             });
         } else {
             res.status(404).json({
-                "message": "No id in request"
+                "message": "No Exercise id in request"
             });
         }
     } catch (error) {
@@ -118,7 +119,60 @@ exports.exerciseReadOne = (req, res) => {
     }
 };
 
-exports.exerciseUpdateOne = (req, res) => {};
+exports.exerciseUpdateById = (req, res) => {
+    try {
+
+        if (!req.params.id) {
+            res.status(value).json({
+                "message": "Not found, Exercise id is required"
+            });
+            return;
+        } else {
+            exerciseDS.exerciseUpdateById(req.params.id).then((result) => {
+                if (!result) {
+                    res.status(404).json({
+                        "message": "Exercise id not found"
+                    });
+                    return;
+                } else {
+                    const exerciseSchema = Joi.object({
+                        name: Joi.string().required(),
+                        title: Joi.string().required(),
+                        description: Joi.string().required(),
+                        image: Joi.string().required(),
+                        nameSound: Joi.string().required(),
+                        procedure: Joi.string().required(),
+                        videos: Joi.string().required(),
+                    });
+                    Joi.validate(req.body, exerciseSchema, (err, result) => {
+                        if (err) {
+                            res.status(201).json(err);
+                        } else {
+                            let exercise = new Exercise();
+                            Exercise.findOneAndUpdate(req.params.id, req.body, {
+                                new: true
+                            }, (err, result) => {
+                                // Handle any possible database errors
+                                if (err) {
+                                    res.status(500).json(err);
+                                } else {
+                                    res.status(201).json(result);
+                                }
+
+                            });
+                        }
+                    });
+                }
+            }).catch((err) => {
+                res.status(400).json(err);
+            });
+        }
+    } catch (error) {
+        res.json({
+            "message": "block of code for errors!"
+        });
+    }
+};
 exports.exerciseDeleteOne = (req, res) => {};
 
 // Generic error handler used by all endpoints.

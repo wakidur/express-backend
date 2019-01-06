@@ -23,8 +23,8 @@ router
 
 router
     .route('/exercise/:id')
-    .get(exerciseController.exerciseReadOne)
-    .put(exerciseController.exerciseUpdateOne)
+    .get(exerciseController.exerciseReadById)
+    .put(exerciseController.exerciseUpdateById)
     .delete(exerciseController.exerciseDeleteOne);
 
 

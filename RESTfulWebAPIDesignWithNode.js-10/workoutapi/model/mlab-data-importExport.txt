@@ -1,0 +1,16 @@
+// for create .bson file "default to dump"
+mongodump  
+
+C:\mongodb\bin\dump\trainerapp\
+
+Import collection data from local pc to mlab
+mongorestore -h ds137019.mlab.com:37019 -d workoutapp -c exercises -u wakidur -p Wakidur_234 exercises.bson
+
+mongorestore -h ds137019.mlab.com:37019 -d workoutapp -c exercises -u <user> -p <password> C:\mongodb\bin\dump\trainerapp\exercises.bson
+
+
+mongorestore -h ds137019.mlab.com:37019 -d workoutapp -c exerciseplans -u wakidur -p Wakidur_234 C:\mongodb\bin\dump\trainerapp\exerciseplans.bson
+
+
+mongorestore -h ds137019.mlab.com:37019 -d workoutapp -c workoutplans -u wakidur -p Wakidur_234 C:\mongodb\bin\dump\trainerapp\workoutplans.bson
+

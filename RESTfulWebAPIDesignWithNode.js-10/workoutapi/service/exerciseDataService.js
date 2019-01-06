@@ -13,24 +13,34 @@ function getExerciseList() {
         deferred.resolve(result);
     }).catch((err) => {
         deferred.reject(err);
-    });
-       
+    }); 
     return deferred.promise;
 }
 
-function findById(id) {
+function exerciseReadById(id) {
     let deferred = Q.defer();
     Exercise.findById(id).then((result) => {
         deferred.resolve(result);
-    }).catch((err) => {
-        deferred.reject(err);
+    }).catch((error) => {
+       // deferred.reject(error);
+        deferred.reject(new Error(error));
     });
-    
+    return deferred.promise;
+}
+function exerciseUpdateById(id) {
+    let deferred = Q.defer();
+    Exercise.findById(id).then((result) => {
+        deferred.resolve(result);
+    }).catch((error) => {
+       // deferred.reject(error);
+        deferred.reject(new Error(error));
+    });
     return deferred.promise;
 }
 
 module.exports = {
     getExerciseList,
-    findById
+    exerciseReadById,
+    exerciseUpdateById,
    
 };
