@@ -18,8 +18,8 @@ let workoutPlanController = require('../controllers/workoutPlanCtrl');
 // GET request for creating a exercise.
 router
     .route('/exercise/create')
-    .get(exerciseController.getExerciseCreate)
-    .post(exerciseController.postExerciseCreate);
+    .get(exerciseController.getAllExercise)
+    .post(exerciseController.createExercise);
 
 router
     .route('/exercise/:id')

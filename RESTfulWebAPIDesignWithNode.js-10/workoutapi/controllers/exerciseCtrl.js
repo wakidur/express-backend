@@ -5,46 +5,13 @@ const ExercisePlan = require('../model/exercisePlanSchema');
 
 const exerciseDS = require('../service/exerciseDataService');
 
-
-
-// async function insert(req, res, next) {
-//     const userSchema = Joi.object({
-//         name: Joi.string().required(),
-//         description: Joi.string().required(),
-//         image: Joi.string().required(),
-//         nameSound: Joi.string().required(),
-//         procedure: Joi.string().required(),
-//         videos: Joi.string().required(),
-//     });
-
-
-
-//     let user = await Joi.validate(req.body, userSchema, {
-//         abortEarly: false
-//     });
-//     delete user.name;
-//     let exercise = new Exercise(user);
-
-//     exercise.save((err, location) => {
-//         if (err) {
-//             res
-//                 .status(404)
-//                 .json(err);
-//         } else {
-//             res
-//                 .status(200)
-//                 .json(location);
-//         }
-//     });
-// }
-
-
-exports.getExerciseCreate = (req, res, next) => {
+// Retrieve all Exercise from the database.
+exports.getAllExercise = (req, res, next) => {
     try {
         exerciseDS.getExerciseList().then((result) => {
             res.status(200).json(result);
         }).catch((err) => {
-            handleError(res, err.message, "Failed to create new contact.");
+            handleError(res, err.message, "Something wrong while retrieving exercise.");
         });
     } catch (error) {
         res.json(error);
@@ -52,40 +19,45 @@ exports.getExerciseCreate = (req, res, next) => {
 
 };
 
-exports.postExerciseCreate = (req, res, next) => {
-    // Create an Author object with escaped and trimmed data.
-
-    const exerciseSchema = Joi.object({
-        name: Joi.string().required(),
-        title: Joi.string().required(),
-        description: Joi.string().required(),
-        image: Joi.string().required(),
-        nameSound: Joi.string().required(),
-        procedure: Joi.string().required(),
-        videos: Joi.string().required(),
-    });
-    Joi.validate(req.body, exerciseSchema, (err, value) => {
-        if (err) {
-            res.status(201).json(err);
-        } else {
-            let exercise = new Exercise(value);
-            exercise.save(function (err, result) {
-                if (err) {
-                    // next(err);
-                    handleError(res, err.message, "Failed to Save.");
-                } else {
-                    res.status(201).json(result);
-                }
+//Create new Exercise
+exports.createExercise = (req, res, next) => {
+    try {
+        if (!req.body) {
+            res.status(400).json({
+                "message": "Exercise content can not be empty"
             });
+            return;
         }
-    });
+        // Create a Exercise
+        const exerciseSchema = Joi.object({
+            name: Joi.string().required(),
+            title: Joi.string().required(),
+            description: Joi.string().required(),
+            image: Joi.string().required(),
+            nameSound: Joi.string().required(),
+            procedure: Joi.string().required(),
+            videos: Joi.string().required(),
+        });
+        Joi.validate(req.body, exerciseSchema, (err, value) => {
+            if (err) {
+                res.status(201).json(err);
+            } else {
+                exerciseDS.saveExercise(value).then((result) => {
+                    res.status(201).json(result);
+                }).catch((err) => {
+                    next(err);
+                    handleError(res, err.message, "Something wrong while creating the Exercise.");
+                });
+            }
+        });
+    } catch (error) {
+        res.json({
+            "message": "block of code for errors!"
+        });
+    }
 };
 
-
-
-
-
-
+// Find a single Exercise with a exercise Id
 exports.exerciseReadById = (req, res) => {
     /**
      * The try statement lets you test a block of code for errors.
@@ -104,7 +76,14 @@ exports.exerciseReadById = (req, res) => {
                     res.status(200).json(result);
                 }
             }).catch((err) => {
-                res.status(404).json(err);
+                if (err.kind === "ObjectId") {
+                    res.status(404).json({
+                        "message": "Exercise not found"
+                    });
+                }
+                res.status(500).json({
+                    "message": "Something wrong retrieving product with id "
+                });
             });
         } else {
             res.status(404).json({
@@ -119,7 +98,8 @@ exports.exerciseReadById = (req, res) => {
     }
 };
 
-exports.exerciseUpdateById = (req, res) => {
+// Update a exercise
+exports.exerciseUpdateById = (req, res, next) => {
     try {
 
         if (!req.params.id) {
@@ -146,19 +126,39 @@ exports.exerciseUpdateById = (req, res) => {
                     });
                     Joi.validate(req.body, exerciseSchema, (err, result) => {
                         if (err) {
-                            res.status(201).json(err);
+                            // res.status(201).json(err);
+                            // return next(err);
+                            throw new Error(`Config validation error: ${err.message}`);
                         } else {
-                            let exercise = new Exercise();
-                            Exercise.findOneAndUpdate(req.params.id, req.body, {
+                            // findByIdAndUpdate
+                            // findOneAndUpdate
+                            Exercise.findByIdAndUpdate(req.params.id, {
+                                name: req.body.name,
+                                title: req.body.title,
+                                description: req.body.description,
+                                image: req.body.image,
+                                nameSound: req.body.nameSound,
+                                procedure: req.body.procedure,
+                                videos: req.body.videos,
+                            }, {
                                 new: true
-                            }, (err, result) => {
-                                // Handle any possible database errors
-                                if (err) {
-                                    res.status(500).json(err);
-                                } else {
-                                    res.status(201).json(result);
+                            }).then((result) => {
+                                if (!result) {
+                                    res.status(404).json({
+                                        "message": "Exercise not found with id"
+                                    });
                                 }
-
+                                res.status(200).json(result);
+                            }).catch((err) => {
+                                if (err.kind === 'ObjectId') {
+                                    res.status(404).json({
+                                        "message": "Exercise not found with id"
+                                    });
+                                    return;
+                                }
+                                res.status(500).json({
+                                    "message": "Something wrong updating note with id "
+                                });
                             });
                         }
                     });

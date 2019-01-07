@@ -27,16 +27,19 @@
  mongoose.connection.once('open', () => {
      console.log('MongoDB database connection established successfully!');
  });
- mongoose.connection.on('error', () => {
-     console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
+ mongoose.connection.on('error', (err) => {
+     console.log(`Could not connect to the database. Exiting now... ${err}`);
      process.exit();
-     throw new Error(`unable to connect to database: ${mongoUri}`);
- });
+});
 
-// enable CORS - Cross Origin Resource Sharing
+ // enable CORS - Cross Origin Resource Sharing
  app.use(cors());
+ // It is Node.js body parser middleware. It parse the incoming request bodies in a middleware before your handlers, 
+ // available under the req.body property.
  app.use(bodyParser.json());
- app.use(bodyParser.urlencoded({ extended: false }));
+ app.use(bodyParser.urlencoded({
+     extended: false
+ }));
  app.use(cookieParser());
 
 

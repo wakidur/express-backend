@@ -1,0 +1,16 @@
+1. https://www.zeptobook.com/how-to-create-restful-crud-api-with-node-js-mongodb-and-express-js/
+
+REST
+REST(Representational State Transfer)
+It is an architectural style design for distributed hypermedia, or an Application Programming Interface (API). 
+
+Resource: 
+    In REST, everything is Resource. A resource can be an 
+        image, 
+        document, 
+        a temporary service, 
+        a collection of other resource, 
+        and any other object. 
+    Each resource has resource identifier to identify it.
+
+HTTP Methods for CRUD: 

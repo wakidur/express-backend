@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 //Define a schema
-const Schema = mongoose.Schema;
-const ExerciseModelSchema = new Schema({
+const ExerciseModelSchema = mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Name field required ?'],
@@ -26,8 +25,9 @@ const ExerciseModelSchema = new Schema({
         type: String,
     },
     videos: Array,
+}, {
+    timestamps: true
 });
 
 //Export function to create "SomeModel" model class
 module.exports = mongoose.model('Exercise', ExerciseModelSchema);
-
