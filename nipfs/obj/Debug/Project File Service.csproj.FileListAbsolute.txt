@@ -1,0 +1,5 @@
+E:\NextIT TFS Projects\Utility Projects\ProjectFileService\Project File Service\bin\Project File Service1.dll
+E:\NextIT TFS Projects\Utility Projects\ProjectFileService\Project File Service\bin\Project File Service1.pdb
+E:\NextIT TFS Projects\Utility Projects\ProjectFileService\Project File Service\obj\Debug\Project File Service.csprojResolveAssemblyReference.cache
+E:\NextIT TFS Projects\Utility Projects\ProjectFileService\Project File Service\obj\Debug\Project File Service1.dll
+E:\NextIT TFS Projects\Utility Projects\ProjectFileService\Project File Service\obj\Debug\Project File Service1.pdb
