@@ -1,0 +1,38 @@
+// Chapter-3
+// dependencies = {
+//     "body-parser": "~1.15.2",
+//     "cookie-parser": "~1.4.3",
+//     "debug": "~2.2.0",
+//     "express": "~4.14.0",
+//     "morgan": "~1.7.0",
+//     "pug": "~2.0.0-beta6",
+//     "serve-favicon": "~2.3.0"
+// }
+
+
+//Chapter - 5
+
+// "dependencies": {
+//     "body-parser": "~1.15.2",
+//     "cookie-parser": "~1.4.3",
+//     "debug": "~2.2.0",
+//     "express": "~4.14.0",
+//     "morgan": "~1.7.0",
+//     "pug": "~2.0.0-beta6",
+//     "serve-favicon": "~2.3.0"
+//   }
+
+
+// chapter - 6
+// "body-parser": "~1.15.2",
+//     "cookie-parser": "~1.4.3",
+//     "debug": "~2.2.0",
+//     "express": "~4.14.0",
+//     "mongoose": "^4.9.1",
+//     "morgan": "~1.7.0",
+//     "pug": "~2.0.0-beta6",
+//     "serve-favicon": "~2.3.0"
+
+// SET DEBUG=local-restaurants:* & npm run devstart
+
+// p !{(content).replace(/\n/g, '<br/>')}
