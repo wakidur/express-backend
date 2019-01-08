@@ -1,0 +1,37 @@
+﻿<div class="modal-content" style="width: 30%; vertical-align: middle;">
+    <form name="generateFieldXmlForm" role="form" data-ng-submit="createXML()" novalidate>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-ng-click="closeModal()">×</button>
+            <h4 class="modal-title">{{modalHeader}}</h4>
+        </div>
+        <!-- START OF MODAL BODY-->
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Application</label>
+                <div>
+                    <ui-select ng-model="appObj.selected" theme="bootstrap" on-select="getApp(appObj.selected);" required>
+                        <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="app in appList | filter: $select.search | orderBy:'name'">
+                            <div ng-bind-html="app.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+<!--             <div class="form-group">
+                <label>Module </label>
+                <div>
+                    <ui-select ng-model="moduleObj.selected" theme="bootstrap" on-select="getModule(moduleObj.selected);" required>
+                        <ui-select-match placeholder="Select module">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="module in appModuleList | filter: $select.search | orderBy:'name'">
+                            <div ng-bind-html="module.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>-->
+        </div>
+        <!-- END OF APPLICATION FORM MODAL BODY -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-ng-disabled="!generateFieldXmlForm.$dirty || isBangaliFieldExist || !generateFieldXmlForm.$valid"><i class="fa fa-file-excel-o"></i>Ok</button>
+        </div>
+    </form>
+</div>

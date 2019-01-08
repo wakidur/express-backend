@@ -1,8 +1,8 @@
 # Object file
-*.o
+
 
 # Ada Library Information
-*.ali
+
 apps/node_modules
 apps/package-lock.json
 
@@ -13,7 +13,48 @@ simple-knowledgebase-app/node_modules
 simple-knowledgebase-app/package-lock.json
 
 
+
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/node_modules/
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/package-lock.json
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/client-side/node_modules/webdriver-js-extender/built/built/built/built/built/built/built/built/built/built/built/built/built/built/built/built/spec/command_tests/totally_real_apk.apk
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/client-side/node_modules/webdriver-js-extender/built/built/built/built/built/built/built/built/built/built/built/built/built/built/built/spec/command_tests/totally_real_apk.apk
+
+hackathon-starter/
+hackathon-starter
+hackathon-starter-master/node_modules
+hackathon-starter-master/package-lock.json
+
+nodekb-master/node_modules
+nodekb-master/package-lock.json
+
+nipfs/server
+nipfs/obj
+nipfs/Properties
+nipfs/node_modules
+
+MEAN
+
+hackathon-starter/node_modules
+hackathon-starter-master-Old/node_modules 
+
+hackathon-starter-29-08-2018
+
+local-restaurants/node_modules
+local-restaurants/package-lock.json
+local-restaurants/practiceNote
+
+express-locallibray-two/node_modules
+express-locallibray-two/package-lock.json
+
+
+MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/server-side/node_modules/
+MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/server-side/package-lock.json
+
+RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionOne/node_modules/
+RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionOne/package-lock.json
+RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionTwo/node_modules/
+RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionTwo/package-lock.json
+
+RESTfulWebAPIDesignWithNode.js-10/workoutapi/node_modules/
+RESTfulWebAPIDesignWithNode.js-10/workoutapi/package-lock.json
+

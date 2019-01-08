@@ -1,0 +1,60 @@
+extends ../layout
+
+block content
+  pre=users
+  .pb-2.mt-2.mb-4.border-bottom
+    h3 Sign up
+  form(id='signup-form', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='email') Email
+      .col-md-7
+        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, autocomplete='email', required)
+    //- .form-group.row
+    //-   label.col-md-3.col-form-label.font-weight-bold.text-right(for='role') Role:
+    //-   .col-md-7
+    //-     select#role.form-control(type='select', placeholder='Select role' name='role' multiple )
+    //-       option(value='Admin') Admin
+    //-       option(value='AminGroup') AminGroup
+    //-       option(value='Account') Account
+    //-       option(value='Visitor') Visitor
+    //-       option(value='User') User
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='role') Role:
+      .col-md-7
+        .form-check.form-check-inline
+          input#Admin.form-check-input(type='checkbox' name='role' value='Admin')
+          label.form-check-label(for='Admin') Admin
+        .form-check.form-check-inline
+          input#AminGroup.form-check-input(type='checkbox' name='role' value='AminGroup')
+          label.form-check-label(for='AminGroup') AminGroup
+        .form-check.form-check-inline
+          input#Account.form-check-input(type='checkbox' name='role' value='Account')
+          label.form-check-label(for='Account') Account
+        .form-check.form-check-inline
+          input#Visitor.form-check-input(type='checkbox' name='role' value='Visitor')
+          label.form-check-label(for='Visitor') Visitor
+        .form-check.form-check-inline
+          input#User.form-check-input(type='checkbox' name='role' value='User')
+          label.form-check-label(for='User') User
+     
+
+
+    //-   label Genre:
+    //-   div
+    //-     for user in users.role
+    //-       div(style='display: inline; padding-right:10px;')
+    //-         input.checkbox-input(type='checkbox', name='role', id=user, value=user, checked=genre.checked )
+    //-         label(for=user) #{user}
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='password') Password
+      .col-md-7
+        input.form-control(type='password', name='password', id='password', placeholder='Password', autocomplete='new-password', required)
+    .form-group.row
+      label.col-md-3.col-form-label.font-weight-bold.text-right(for='confirmPassword') Confirm Password
+      .col-md-7
+        input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', autocomplete='new-password', required)
+    .form-group.offset-sm-3.col-md-7.pl-2
+      button.btn.btn-success(type='submit')
+        i.fas.fa-user-plus.fa-sm
+        | Signup

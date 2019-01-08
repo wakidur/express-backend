@@ -1,0 +1,47 @@
+extends ../layout
+
+block content
+    .container
+        h1=title
+        if (message) 
+            .alert.alert-danger.coustom(role="alert")= message 
+        form(method='POST' action='')
+            .form-row
+                .form-group.col-md-3
+                    label(for='name') Restaurants Name
+                    input#name.form-control(type='text', aria-describedby='name', placeholder='Name', name='name' required='true')
+                .form-group.col-md-3
+                    label(for='address') Address
+                    input#address.form-control(type='text', aria-describedby='address', placeholder='address', name='address' required='true')
+                .form-group.col-md-3
+                    label(for='facilities') Facilities
+                    input#facilities.form-control(type='text', aria-describedby='facilities', placeholder='facilities', name='facilities' required='true')
+                .form-group.col-md-3
+                    label(for='rating') Rating
+                    select#rating.form-control(type='select', placeholder='Select Rating' name='rating' required='true')
+                        option(value=1) 1
+                        option(value=2) 2
+                        option(value=3) 3
+                        option(value=4) 4
+                        option(value=5) 5
+            .form-row
+                .form-group.col-md-2
+                    label(for='lng') Lng
+                    input#lng.form-control(type='text', aria-describedby='lng', placeholder='lng', name='lng' required='true')
+                .form-group.col-md-2
+                    label(for='lat') Lat
+                    input#lat.form-control(type='text', aria-describedby='lat', placeholder='lat', name='lat' required='true')
+                .form-group.col-md-2
+                    label(for='days') Day
+                    input#days.form-control(type='text', aria-describedby='days', placeholder='days', name='days' required='true')
+                .form-group.col-md-3
+                    label(for='opening') Opening Time
+                    input#opening.form-control(type='time', aria-describedby='opening', placeholder='opening', name='opening' required='true')
+                .form-group.col-md-3
+                    label(for='closing') Closing time
+                    input#closing.form-control(type='time', aria-describedby='closing', placeholder='closing', name='closing' required='true')
+            .form-group
+                .form-check
+                    input#closed.form-check-input(type='checkbox', value="closed" name='closed')
+                    label.form-check-label(for='closed') Closed
+            button.btn.btn-primary(type='submit') Submit

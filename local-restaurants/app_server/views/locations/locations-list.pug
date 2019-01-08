@@ -1,0 +1,32 @@
+extends ../layout
+
+include ../_includes/sharedHTMLfunctions
+
+block content
+  .container
+    .row.banner
+      .col-12
+        h1= pageHeader.title
+          small &nbsp;#{pageHeader.strapline}
+    .row
+      .col-12.col-md-8
+        
+        each location in locations
+          .card.my-2
+            .card-body
+              if !(message.length === 0) 
+               .alert.alert-danger.coustom(role="alert")= message 
+              h4.card-title
+                a(class='text-secondary', href=`/location/${location._id}`)= location.name
+                small &nbsp;
+                  +outputRating(location.rating)
+                span.badge.badge-pill.badge-dark.float-right= location.distance
+              h6.card-subtitle= location.address
+              .facilities
+                each facility in location.facilities
+                  span.ml-1.badge.badge-pill.badge-info= facility
+
+      .col-12.col-md-4
+        .card
+          .card-body
+            h6.card-subtitle.mb-2= sidebar

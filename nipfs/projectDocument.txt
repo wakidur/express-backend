@@ -1,0 +1,35 @@
+ProjectFileService
+// routers
+index
+fieldServiceApi
+fieldSpecsApi
+moduleServiceApi
+pageSectionApi
+applicationApi
+moduleEntryApi
+commonServiceApi
+fieldValidationApi
+
+var dev_db_url = "mongodb://localhost/local_library";
+
+
+
+/// **********************
+Server side
+var applicationDataRoute = require('./api/applicationApi');
+
+//use api
+var baseUrl = '/api';
+// http://localhost:6666/api/fieldServicedata/SaveFieldServiceData
+
+app.use(baseUrl + '/applicationData', applicationDataRoute);
+// http://localhost:6666/api/applicationData
+
+/// **********************
+Client-side
+
+var apiServiceUrl = 'http://192.168.11.6:6661/api/'
+ var serviceUrl = apiServiceUrl + 'applicationData/';
+ var getApplicationUrl = serviceUrl + 'getApplication';
+ 
+ http://192.168.11.6:6661/api/applicationData/getApplication'

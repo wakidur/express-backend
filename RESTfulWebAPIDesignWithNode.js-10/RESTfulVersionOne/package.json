@@ -1,0 +1,14 @@
+{
+  "name": "restfulversionone",
+  "version": "1.0.0",
+  "description": "RESTful Web API Design Version 1.0.0 ",
+  "main": "app.js",
+  "scripts": {
+    "test": "text"
+  },
+  "author": "Wakidur",
+  "license": "ISC",
+  "dependencies": {
+    "http": "0.0.0"
+  }
+}

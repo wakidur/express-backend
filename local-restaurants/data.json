@@ -1,0 +1,135 @@
+{
+  "name": "Star Kabab & Restaurant",
+  "address": "House-15, Rd no. 17, Block- C, Dhaka 1213",
+  "rating": 4.0,
+  "facilities": [
+    "Late-night food",
+    "Delivery",
+    "Good for kids"
+  ],
+  "coords": {
+    "lat": 90.402915,
+    "lng": 23.793850
+  },
+  "openingTimes": [{
+      "days": "Monday - Friday",
+      "opening": "12–10:30PM",
+      "closing": "7:00pm",
+      "closed": false
+    },
+    {
+      "days": "Saturday",
+      "opening": "8:00am",
+      "closing": "5:00pm",
+      "closed": false
+    },
+    {
+      "days": "Sunday",
+      "closed": true
+    }
+  ],
+  "reviews": [{
+      "author": "Simon Holmes",
+      "rating": 5,
+      "timestamp": "16 July 2013",
+      "reviewText": "What a great place. I can\"t say enough good things about it."
+    },
+    {
+      "author": "Charlie Chaplin",
+      "rating": 3,
+      "timestamp": "16 June 2013",
+      "reviewText": "It was okay. Coffee wasn\"t great, but the wifi was fast."
+    }
+  ]
+},
+
+{
+  "name": "Bukhara Restaurant",
+  "address": "42 Kemal Ataturk Avenue,17th Floor, Iqbal Center, Dhaka 1213",
+  "rating": 4.0,
+  "facilities": [
+    "Delivery",
+    "Delivery",
+    "Good for kids"
+  ],
+  "coords": {
+    "lat": 90.405648,
+    "lng": 23.793757
+  },
+  "openingTimes": [{
+      "days": "Monday - Friday",
+      "opening": "12–3:30PM",
+      "closing": "7–11:30PM",
+      "closed": false
+    },
+    {
+      "days": "Saturday",
+      "opening": "8:00am",
+      "closing": "5:00pm",
+      "closed": false
+    },
+    {
+      "days": "Sunday",
+      "closed": true
+    }
+  ],
+  "reviews": [{
+      "author": "Simon Holmes",
+      "rating": 5,
+      "timestamp": "16 July 2013",
+      "reviewText": "What a great place. I can\"t say enough good things about it."
+    },
+    {
+      "author": "Charlie Chaplin",
+      "rating": 3,
+      "timestamp": "16 June 2013",
+      "reviewText": "It was okay. Coffee wasn\"t great, but the wifi was fast."
+    }
+  ]
+}
+
+
+{
+  "name": "Foodbook",
+  "address": "32, 2nd Floor, Chandewala Mansion, Road No. 11, Banani, Dhaka 1213",
+  "rating": 4.0,
+  "facilities": [
+    "Delivery",
+    "Delivery",
+    "Good for kids"
+  ],
+  "coords": {
+    "lat": 90.404098,
+    "lng": 23.790929
+  },
+  "openingTimes": [{
+      "days": "Monday - Friday",
+      "opening": "10AM",
+      "closing": "11PM",
+      "closed": false
+    },
+    {
+      "days": "Saturday",
+      "opening": "8:00am",
+      "closing": "5:00pm",
+      "closed": false
+    },
+    {
+      "days": "Sunday",
+      "closed": true
+    }
+  ],
+  "reviews": [{
+      "author": "Simon Holmes",
+      "rating": 5,
+      "timestamp": "16 July 2013",
+      "reviewText": "What a great place. I can\"t say enough good things about it."
+    },
+    {
+      "author": "Charlie Chaplin",
+      "rating": 3,
+      "timestamp": "16 June 2013",
+      "reviewText": "It was okay. Coffee wasn\"t great, but the wifi was fast."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+﻿<div class="container-fluid fl-stretch-box">
+    <div class="row fl-box fl-content-box gutter-h">
+        <div class="panel panel-default w-full">
+            <div class="panel-heading">Field Title </div>
+            <div class="panel-body">
+                <form name="fieldTitleForm" role="form" class="form-horizontal" data-ng-submit="submitForm()" novalidate>
+                    <div class="table-responsive" style="height: 540px; overflow-y: scroll;">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%;">Range</th>
+                                    <th style="width: 90%;" class="no-padder">
+                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                   <!-- <th style="width: 10%;">Code</th>-->
+                                                    <th style="width: 25%;">Name</th>
+                                                    <th style="width: 25%;">Label</th>
+                                                    <th style="width: 25%;">FullHeader</th>
+                                                    <th style="width: 25%;">ShortHeader</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="range in fieldTitleList | orderBy:'range'">
+                                    <td style="width: 10%;">{{range.range }}</td>
+                                    <td style="width: 90%;" class="no-padder">
+                                        <table style="width: 100%;" class="table table-striped table-bordered table-hover">
+                                            <tbody>
+                                                <tr data-ng-repeat="field in range.fieldTitleList | orderBy:'code'">
+                                                    <!--<td style="width: 10%;">{{field.code }}</td>-->
+                                                    <td style="width: 25%;">{{field.name }}</td>
+                                                    <td style="width: 25%;">{{field.l}}</td>
+                                                    <td style="width: 25%;">{{field.fh}}</td>
+                                                    <td style="width: 25%;">{{field.sh}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row" style="background-color: #2ba6cb;">
+                        <div class="col-lg-4 ">
+                            Showing: {{paging.fromShowing}} - 
+                            {{paging.toShowing}} 
+                            of {{paging.total}} Records
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="pull-right">
+                                <ul class="list-inline">
+                                    <li>
+                                        <select ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions" /></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToFirst()"><i class="fa fa-step-backward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniBackward()"><i class="fa fa-backward"></i></a></li>
+                                    <li>
+                                        <input type='number' ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;' />
+                                        of {{paging.totalpages}}</li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniForward()"><i class="fa fa-forward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToLast()"><i class="fa fa-step-forward"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group pull-right" role="group">
+                        <button type="submit" class="btn btn-default" data-ng-disabled="true"><i class="fa fa-floppy-o"></i>Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,431 @@
+﻿<style type='text/css'>
+    table {
+        width: 100%;
+        border: 0 solid #C5B798;
+    }
+
+    td {
+        border: 0;
+        padding: 0;
+        font-family: "Trebuchet MS", Arial, Verdana;
+        font-size: 10px;
+    }
+
+    th {
+        font-family: "Trebuchet MS", Arial, Verdana;
+        font-size: 10px;
+        padding: 0;
+        background-color: #CDC1A7;
+        border: 0;
+        font-weight: normal;
+    }
+</style>
+
+
+<div class="container-fluid fl-stretch-box">
+    <div class="row fl-box fl-content-box gutter-h">
+        <div class="panel panel-default w-full">
+            <div class="panel-heading">Field Specification </div>
+            <div class="panel-body">
+                <form name="fieldSpecsForm" role="form" class="form-horizontal" data-ng-submit="submitForm(fieldSpecsForm.$valid)" novalidate>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Application </label>
+                            <div class="col-sm-8">
+                                <div>
+                                    <ui-select ng-model="appObj.selected" theme="bootstrap" on-select="getAppInfo(appObj.selected);" ng-disabled="isEdit" required>
+                                            <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                                            <ui-select-choices repeat="app in applicationList | filter: $select.search | orderBy:'name'">
+                                                <div ng-bind-html="app.name | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                     </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Module </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldSpecsForm.module.$invalid && !fieldSpecsForm.module.$pristine }">
+                                    <ui-select ng-model="moduleObj.selected" theme="bootstrap" on-select="getModuleInfo(moduleObj.selected);" ng-disabled="isEdit" required>
+                                        <ui-select-match placeholder="Select module">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="module in appModuleList | filter: $select.search | orderBy:'name'">
+                                            <div ng-bind-html="module.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <p data-ng-show="fieldSpecsForm.module.$invalid && !fieldSpecsForm.module.$pristine" class="help-block">Module is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Main Page </label>
+                            <div class="col-sm-8">
+                                <div>
+                                    <ui-select ng-model="mainPageObj.selected" theme="bootstrap" on-select="getMainPageInfo(mainPageObj.selected);" ng-disabled="isEdit" required>
+                                        <ui-select-match placeholder="Select Page">{{$select.selected.pageName}}</ui-select-match>
+                                        <ui-select-choices repeat="page in mainPageList | filter: $select.search | orderBy:'pageName'">
+                                            <div ng-bind-html="page.pageName | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Page </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldSpecsForm.page.$invalid && !fieldSpecsForm.page.$pristine }">
+                                    <ui-select ng-model="pageObj.selected" theme="bootstrap" on-select="getPageInfo(pageObj.selected);" ng-disabled="isEdit" required>
+                                        <ui-select-match placeholder="Select page">{{$select.selected.pageName}}</ui-select-match>
+                                        <ui-select-choices repeat="page in pageList | filter: $select.search | orderBy:'pageName'">
+                                            <div ng-bind-html="page.pageName | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <p data-ng-show="fieldSpecsForm.page.$invalid && !fieldSpecsForm.page.$pristine" class="help-block">Page is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-4 control-label">Page Description:</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" ng-disabled="true" style="resize: none;" data-ng-model="fieldSpecs.pageDesc" rows="5" cols="49"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Section </label>
+                            <div class="col-sm-8">
+                                <div>
+                                    <ui-select ng-model="sectionObj.selected" theme="bootstrap" on-select="getSectionInfo(sectionObj.selected);">
+                                        <ui-select-match placeholder="Select section">{{$select.selected.sectionName}}</ui-select-match>
+                                        <ui-select-choices repeat="section in sectionList | filter: $select.search | orderBy:'sectionName'">
+                                            <div ng-bind-html="section.sectionName | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="field" class="col-sm-4 control-label ni-sup">Field </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldSpecsForm.field.$invalid && !fieldSpecsForm.field.$pristine }" ng-disabled="fieldList.length==0">
+                                    <ui-select ng-model="fieldObj.selected" theme="bootstrap" on-select="getFieldInfo(fieldObj.selected);" required>
+                                        <ui-select-match placeholder="Select or search a field in the list...">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="field in fieldList | filter: $select.search | orderBy:'name'">
+                                            <div ng-bind-html="field.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <p data-ng-show="fieldSpecsForm.field.$invalid && !fieldSpecsForm.field.$pristine" class="help-block">Field is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end tag  -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Full Header:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" data-ng-model="fieldSpecs.fh" data-ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Short Header:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" data-ng-model="fieldSpecs.sh" ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-4 control-label">Field Description:</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" style="resize: none;" name="desc" data-ng-model="fieldSpecs.fieldDesc" rows="4" cols="49"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Data Type:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" data-ng-model="fieldSpecs.dataType" ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Max Length:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" data-ng-model="fieldSpecs.maxLength" maxlength="3" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Min Length:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" data-ng-model="fieldSpecs.minLength" maxlength="3" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Scale:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" data-ng-model="fieldSpecs.scale" maxlength="3" />
+                            </div>
+                        </div>
+                        <!--end tag -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Length:</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" data-ng-model="fieldSpecs.length" maxlength="3" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editable" class="col-sm-4 control-label ni-sup">Short / Full Name </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldSpecsForm.shortFullName.$invalid && !fieldSpecsForm.shortFullName.$pristine }">
+                                    <div class="ni-select fa-caret-down">
+                                        <select name="shortFullName" class="form-control"
+                                            data-ng-model="fieldSpecs.shortFullTypeVal"
+                                            data-ng-options="entity.value as entity.name for entity in shortFullTypeList"
+                                            data-ng-change="selectedshortFullType(fieldSpecs.shortFullTypeVal)" required>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <p data-ng-show="fieldSpecsForm.shortFullName.$invalid && !fieldSpecsForm.shortFullName.$pristine" class="help-block">Short / Full name is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editable" class="col-sm-4 control-label ni-sup">Input Type </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldSpecsForm.inputType.$invalid && !fieldSpecsForm.inputType.$pristine }">
+                                    <div class="ni-select fa-caret-down">
+                                        <select name="inputType" class="form-control"
+                                            data-ng-model="fieldSpecs.inputTypeId"
+                                            data-ng-options="entity.id as entity.name for entity in inputTypeList"
+                                            data-ng-change="selectedInputType(fieldSpecs.inputTypeId)" required>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <p data-ng-show="fieldSpecsForm.inputType.$invalid && !fieldSpecsForm.inputType.$pristine" class="help-block">Input Type is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mandatory" class="col-sm-4 control-label">Is Mandatory:</label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldSpecsForm.mandatory.$invalid && !fieldSpecsForm.mandatory.$pristine }">
+                                    <div class="ni-select fa-caret-down">
+                                        <select name="mandatory" class="form-control"
+                                            data-ng-model="fieldSpecs.isMandatory"
+                                            data-ng-options="entity.value as entity.name for entity in confirmationList"
+                                            data-ng-required="fieldSpecs.inputTypeId != '1'" data-ng-disabled="fieldSpecs.inputTypeId == '1'">
+                                        </select>
+                                    </div>
+                                    <p data-ng-show="fieldSpecsForm.mandatory.$invalid && !fieldSpecsForm.mandatory.$pristine" class="help-block">Mandatory field is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-4 control-label">Permissible Values:</label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" style="resize: none;" data-ng-model="fieldSpecs.permValues" rows="4" cols="49"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editable" class="col-sm-4 control-label ni-sup">Is Editable </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldSpecsForm.editable.$invalid && !fieldSpecsForm.editable.$pristine }">
+                                    <div class="ni-select fa-caret-down">
+                                        <select name="editable" class="form-control"
+                                            data-ng-model="fieldSpecs.isEditable"
+                                            data-ng-options="entity.value as entity.name for entity in confirmationList" required>
+                                        </select>
+                                    </div>
+                                    <p data-ng-show="fieldSpecsForm.editable.$invalid && !fieldSpecsForm.editable.$pristine" class="help-block">Editable field is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end tag  -->
+                    </div>
+
+                    <div class="btn-group pull-right" role="group">
+                        <button type="submit" class="btn btn-default" data-ng-disabled="fieldSpecsForm.$invalid || !fieldSpecsForm.$dirty"><i class="fa fa-floppy-o"></i>Save</button>
+                        <button type="button" class="btn btn-default" data-ng-disabled="!fieldSpecsForm.$dirty" data-ng-click="reset()"><i class="fa fa-repeat "></i>Reset</button>
+                        <button type="button" class="btn btn-default" data-ng-hide="isCancelBtnHide" data-ng-click="cancel()"><i class="fa fa-minus-square"></i>Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Field specification  table  information  -->
+
+<div class="container-fluid fl-stretch-box">
+    <div class="panel panel-default w-full">
+        <div class="panel-heading">
+            Field Specification List
+            <!-- data-ng-click="createXls()-->
+            <button type="button" class="btn btn-success" ng-disabled="fieldSpecs.pageId == null" data-ng-click="openFieldXlsModal()"><i class="fa fa-file-excel-o"></i>Generate Excel </button>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive fixed-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 6%">Application</th>
+                            <th style="width: 94%" class="no-padder">
+                                <table class="table table-bordered table-hover" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 8%;">Module</th>
+                                            <th style="width: 92%;" class="no-padder">
+                                                <table class="table table-bordered table-hover" style="width: 100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 10%;">MainPage</th>
+                                                            <th style="width: 90%;" class="no-padder">
+                                                                <table style="width: 100%" class="table table-bordered table-hover">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="width: 10%;">Page</th>
+                                                                            <th style="width: 90%">
+                                                                                <table style="width: 100%" class="table table-bordered table-hover">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th style="width: 12%">Section</th>
+                                                                                            <th style="width: 88%;" class="no-padder">
+                                                                                                <table style="table-layout: fixed; width: 100%;" class="table table-bordered table-hover">
+                                                                                                    <thead>
+                                                                                                        <tr>
+                                                                                                            <th style="width: 14%;">Field</th>
+                                                                                                            <th style="width: 14%;">Full Header</th>
+                                                                                                            <th style="width: 14%;">Short Header</th>
+                                                                                                            <th style="width: 7%;">Type</th>
+                                                                                                            <th style="width: 5%;">Max Lnth</th>
+                                                                                                            <th style="width: 5%;">Min Lnth</th>
+                                                                                                            <th style="width: 5%;">Scale</th>
+                                                                                                            <th style="width: 5%;">Lnth</th>
+                                                                                                            <th style="width: 7%;">SH/FH</th>
+                                                                                                            <th style="width: 8%;">Input Type</th>
+                                                                                                            <th style="width: 5%;">Mnd try</th>
+                                                                                                            <th style="width: 5%;">Edt ble</th>
+                                                                                                            <th style="width: 6%;"></th>
+                                                                                                        </tr>
+                                                                                                    </thead>
+                                                                                                </table>
+                                                                                            </th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                </table>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="app in modulePageSpecsList | orderBy:'appName'">
+                            <td style="width: 6%">{{app.appName}}</td>
+                            <td style="width: 94%;" class="no-padder">
+                                <table style="width: 100%;" class="table table-striped table-bordered table-hover">
+                                    <tbody>
+                                        <tr data-ng-repeat="module in app.moduleList">
+                                            <td style="width: 8%">{{module.moduleName}}</td>
+                                            <td style="width: 92%" class="no-padder">
+                                                <table style="width: 100%;" class="table table-striped table-bordered table-hover">
+                                                    <tbody>
+                                                        <tr data-ng-repeat="mainPage in module.mainPageList">
+                                                            <td style="width: 10%">{{mainPage.mainPageName}}</td>
+                                                            <td style="width: 90%" class="no-padder">
+                                                                <table style="width: 100%;" class="table table-striped table-bordered table-hover">
+                                                                    <tbody>
+                                                                        <tr data-ng-repeat="page in mainPage.pageList">
+                                                                            <td style="width: 10%">{{page.pageName}}</td>
+                                                                            <td style="width: 90%" class="no-padder">
+                                                                                <table style="width: 100%" class="table table-bordered table-hover">
+                                                                                    <tbody>
+                                                                                        <tr data-ng-repeat="section in page.sectionList | orderBy:'sectionName'">
+                                                                                            <td style="width: 12%">{{section.sectionName}}</td>
+                                                                                            <td style="width: 88%;" class="no-padder">
+                                                                                                <table style="table-layout: fixed; width: 100%;" class="table table-bordered table-hover">
+                                                                                                    <tbody>
+                                                                                                        <tr data-ng-repeat="fieldSpces in section.fieldSpecsList | orderBy:'name'">
+                                                                                                            <td style="width: 14%;">{{fieldSpces.name}}</td>
+                                                                                                            <td style="width: 14%;">{{fieldSpces.fh}}</td>
+                                                                                                            <td style="width: 14%;">{{fieldSpces.sh}}</td>
+                                                                                                            <td style="width: 7%;">{{fieldSpces.dataType}}</td>
+                                                                                                            <td style="width: 5%;">{{fieldSpces.maxLength}}</td>
+                                                                                                            <td style="width: 5%;">{{fieldSpces.minLength}}</td>
+                                                                                                            <td style="width: 5%;">{{fieldSpces.scale}}</td>
+                                                                                                            <td style="width: 5%;">{{fieldSpces.length}}</td>
+                                                                                                            <td style="width: 7%;">{{fieldSpces.shortFullTypeName}}</td>
+                                                                                                            <td style="width: 8%;">{{fieldSpces.inputTypeName}}</td>
+                                                                                                            <td style="width: 5%;">{{fieldSpces.isMandatory == null? null: fieldSpces.isMandatory? "Yes" : "No"}}</td>
+                                                                                                            <td style="width: 5%;">{{fieldSpces.isEditable? "Yes" : "No"}}</td>
+                                                                                                            <td style="width: 6%;" class="no-padder">
+                                                                                                                <ul class="list-inline" style="text-align: center">
+                                                                                                                    <li><a href="javascript:void(0)" data-ng-click="editFieldSpecs(fieldSpces)"><i title="Edit" class="fa fa-edit"></i></a></li>
+                                                                                                                    <li><a href="javascript:void(0)" data-ng-click="deleteFieldSpecs(fieldSpces)"><i title="Delete" class="fa fa-trash-o text-danger"></i></a></li>
+                                                                                                                </ul>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--  paging -->
+            <div class="row" style="background-color: #2ba6cb;">
+                <div class="col-lg-3">
+                    <div class="pull-left">
+                        <ul class="list-inline">
+                            <li><a href="javascript:void(0)" data-ng-click="refreshButtonEvent()" title="Reload"><i class="fa fa-refresh"></i></a></li>
+                        </ul>
+                    </div>
+                    </div>
+                <div class="col-lg-6 text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <select data-ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions" /></li>
+                        <li><a href="javascript:void(0)" data-ng-click="pageniToFirst()"><i class="fa fa-step-backward"></i></a></li>
+                        <li><a href="javascript:void(0)" data-ng-click="pageniBackward()"><i class="fa fa-backward"></i></a></li>
+                        <li>
+                            <input type='number' data-ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;' />
+                            of {{paging.totalpages}}</li>
+                        <li><a href="javascript:void(0)" data-ng-click="pageniForward()"><i class="fa fa-forward"></i></a></li>
+                        <li><a href="javascript:void(0)" data-ng-click="pageniToLast()"><i class="fa fa-step-forward"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <div class="pull-right">
+                        Showing: {{paging.fromShowing}} -
+                        {{paging.toShowing}}
+                        of {{paging.total}} Records
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

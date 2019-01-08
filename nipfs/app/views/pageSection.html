@@ -1,0 +1,206 @@
+﻿<div class="container-fluid fl-stretch-box">
+    <div class="row fl-box fl-content-box gutter-h">
+        <div class="col-md-1"></div>
+        <div class="col-md-3 fl-row-box">
+            <div class="panel panel-default w-full">
+                <div class="panel-heading">Page Extra</div>
+                <div class="panel-body">
+                    <form name="pageSecForm" role="form" class="form-horizontal" data-ng-submit="submitForm(pageSecForm.$valid)" novalidate>
+                        <div class="form-group">
+                            <label for="typeId" class="col-sm-4 control-label ni-sup">Type </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : pageSecForm.typeId.$invalid && !pageSecForm.typeId.$pristine }">
+                                    <div class="ni-select fa-caret-down">
+                                        <select name="typeId" class="form-control" autofocus
+                                            data-ng-model="pageSection.typeId"
+                                            data-ng-options="dataType.id as dataType.name for dataType in typeList"
+                                            required data-ng-change="selectedType(pageSection.typeId)">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <p data-ng-show="pageSecForm.typeId.$invalid && !pageSecForm.typeId.$pristine" class="help-block">Type is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alphabet" class="col-sm-4 control-label ni-sup">Alphabetic Range </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : pageSecForm.alphabet.$invalid && !pageSecForm.alphabet.$pristine }">
+                                    <div class="ni-select fa-caret-down">
+                                        <select name="alphabet" class="form-control"
+                                            data-ng-disabled="isEdit"
+                                            data-ng-model="pageSection.alphabet"
+                                            data-ng-options="range.name as range.name for range in rangeList"
+                                            data-ng-change="selectedRange(pageSection.alphabet)" required ni-control-focus="alphabet">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <p data-ng-show="pageSecForm.alphabet.$invalid && !pageSecForm.alphabet.$pristine" class="help-block">Range is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="code" class="col-sm-4 control-label ni-sup">Code </label>
+                            <div class="col-sm-8" data-ng-class="{ 'has-error' : pageSecForm.code.$invalid && !pageSecForm.code.$pristine }">
+                                <input type="text" class="form-control" readonly=""
+                                    name="code" data-ng-model="pageSection.code" required />
+                                <p data-ng-show="pageSecForm.code.$invalid && !pageSecForm.code.$pristine" class="help-block">Code is required.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Name:</label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : pageSecForm.name.$invalid && !pageSecForm.name.$pristine}">
+                                    <input type="text" class="form-control" data-ng-keydown="fValueKeyDown($event)" data-ng-keyup="fValueKeyUp($event)"
+                                        name="name" ng-trim='false' data-ng-model="pageSection.name" list="nameList" data-ng-change="nameOnchange(pageSection.name)" required />
+
+                                    <datalist id="nameList">
+                                        <select>
+                                            <option data-ng-repeat="name in selectedArrayList" value="{{name.name}}"></option>
+                                        </select>
+                                    </datalist>
+
+                                    <p data-ng-show="pageSecForm.name.$invalid && !pageSecForm.name.$pristine" class="help-block">Name is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Title (EN) </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : pageSecForm.titleEN.$invalid && !pageSecForm.titleEN.$pristine}">
+                                    <input type="text" class="form-control" name="titleEN" data-ng-model="pageSection.titleEN"
+                                        data-ng-keydown="titleENKeyDown($event)" data-ng-keyup="titleENKeyUp($event)" required list="titleENDataList" />
+
+                                    <datalist id="titleENDataList">
+                                        <select>
+                                            <option data-ng-repeat="name in selectedArrayList" value="{{name.titleEN}}"></option>
+                                        </select>
+                                    </datalist>
+                                    <p data-ng-show="pageSecForm.titleEN.$invalid && !pageSecForm.titleEN.$pristine" class="help-block">Title is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Title (BN):</label>
+                            <div class="col-sm-8" data-ng-class="{ 'has-error' : pageSecForm.titleBN.$invalid && !pageSecForm.titleBN.$pristine }">
+                                <input type="text" class="form-control" name="titleBN" data-ng-model="pageSection.titleBN" list="titleBNList" />
+
+                                <datalist id="titleBNList">
+                                    <select>
+                                        <option data-ng-repeat="name in selectedArrayList" value="{{name.titleBN}}"></option>
+                                    </select>
+                                </datalist>
+                            </div>
+                        </div>
+
+                        <div class="btn-group pull-right" role="group">
+                            <button type="submit" class="btn btn-default" data-ng-disabled="pageSecForm.$invalid || !pageSecForm.$dirty"><i class="fa fa-floppy-o"></i>Save</button>
+                            <button type="button" class="btn btn-default" data-ng-disabled="!pageSecForm.$dirty" data-ng-click="reset()"><i class="fa fa-repeat "></i>Reset</button>
+                            <button type="button" class="btn btn-default" data-ng-hide="isCancelBtnHide" data-ng-click="cancel()"><i class="fa fa-minus-square"></i>Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 fl-row-box">
+            <div class="panel panel-default w-full">
+                <div class="panel-heading">
+                    Page Extra List
+                    <button type="button" class="btn btn-success" data-ng-click="crateXML()"><i class="fa fa-file-code-o"></i>Generate XML </button>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive" style="height: 400px; overflow-y: scroll;">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 12%;">Type</th>
+                                    <th style="width: 88%;" class="no-padder">
+                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 10%;">Range</th>
+                                                    <th style="width: 90%;" class="no-padder">
+                                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style="width: 10%;">Code</th>
+                                                                    <th style="width: 25%;">Name</th>
+                                                                    <th style="width: 27%;">Title</th>
+                                                                    <th style="width: 27%;">Title Bangla</th>
+                                                                    <th style="width: 10%;"></th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr data-ng-repeat="master in masterDataList">
+                                    <td style="width: 12%;">{{master.typeName}}</td>
+                                    <td style="width: 88%;" class="no-padder">
+                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                            <tbody>
+                                                <tr data-ng-repeat="range in master.rangeList">
+                                                    <td style="width: 10%;">{{range.alphabet}}</td>
+                                                    <td style="width: 90%;" class="no-padder">
+                                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                                            <tbody>
+                                                                <tr data-ng-repeat="entity in  range.pageSectonList | orderBy:'name'">
+                                                                    <td style="width: 10%;">{{entity.code}}</td>
+                                                                    <td style="width: 25%;">{{entity.name}}</td>
+                                                                    <td style="width: 27%;">{{entity.titleEN}}</td>
+                                                                    <td style="width: 27%;">{{entity.titleBN}}</td>
+                                                                    <td style="width: 10%;">
+                                                                        <ul class="list-inline" style="text-align: center">
+                                                                            <li><a href="javascript:void(0)" data-ng-click="editSection(entity)"><i title="Edit" class="fa fa-edit"></i></a></li>
+                                                                            <li><a href="javascript:void(0)" data-ng-click="deleteSection(entity)"><i title="Delete" class="fa fa-trash-o text-danger"></i></a></li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row" style="background-color: #2ba6cb;">
+                        <div class="col-lg-4 ">
+                            Showing: {{paging.fromShowing}} - 
+                            {{paging.toShowing}} 
+                            of {{paging.total}} Records
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="pull-right">
+                                <ul class="list-inline">
+                                    <li>
+                                        <select ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions" /></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToFirst()"><i class="fa fa-step-backward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniBackward()"><i class="fa fa-backward"></i></a></li>
+                                    <li>
+                                        <input type='number' ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;' />
+                                        of {{paging.totalpages}}</li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniForward()"><i class="fa fa-forward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToLast()"><i class="fa fa-step-forward"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>

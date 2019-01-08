@@ -8,18 +8,20 @@ var bodyParser = require('body-parser');
 // var index = require('./routes/index');
 var users = require('./routes/users'); //Import routes for "users" area of site
 var catalog = require('./routes/catalog'); //Import routes for "catalog" area of site
+
 var compression = require('compression');
 var helmet = require('helmet');
 
 // Create the Express application object
 var app = express();
 
+
 app.use(helmet());
 
 // Set up mongoose connection
 var mongoose = require('mongoose');
-//var dev_db_url = "mongodb://localhost/local_library";
-var dev_db_url = "mongodb://wakidur:Wakidur_234@ds117010.mlab.com:17010/local_library";
+var dev_db_url = "mongodb://localhost/local_library";
+//var dev_db_url = "mongodb://wakidur:Wakidur_234@ds117010.mlab.com:17010/local_library";
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
 // production 
 // var mongoDB = process.env.MONGODB_URI || 'mongodb://wakidur:Wakidur_234@ds117010.mlab.com:17010/local_library';

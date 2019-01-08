@@ -5,13 +5,17 @@ SET DEBUG=expressnew:* & npm run devstart
 
 SET DEBUG=express-locallibrary:* & npm start
 
+broken-skull
+http://www.cmt.com/shows/steve-austins-broken-skull-challenge
 
 Class room 
 
 https://classroom.google.com/c/MTQ0NTY4MzA0MzBa
 a717lh
 
-
+https://www.upwork.com/
+wakidur@gmail.com
+Wakidur_234
 
 mLab 
 
@@ -21,6 +25,10 @@ Wakidur_234
 
 database 
 wakidur
+Wakidur_234
+
+heroku.com
+wakidur@gmail.com
 Wakidur_234
 
 mongodb://your_user_namer:your_password@ds119748.mlab.com:19748/local_library.
@@ -35,3 +43,12 @@ https://github.com/sahat/hackathon-starter
 
 express-locallibrary-tutorial
 https://github.com/mdn/express-locallibrary-tutorial
+
+
+The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrys, or properites from objects, into distince variables
+
+C:\mongodb\bin>mongod --directorypardb --dbpath C:\mongodb\data\db --logpath C:\mongodb\log\mongo.log --logappend --rest --install
+
+C:\mongodb\bin>"C:\mongodb\bin\mongod.exe" --config "C:\mongodb\mongod.cfg" --install
+
+C:\mongodb\bin> net start MongoDB

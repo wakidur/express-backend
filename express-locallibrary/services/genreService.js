@@ -1,78 +1,48 @@
+/*----------------- require Model -----------------*/
 /*import  genreModel*/
 let Genre = require('../models/genreModel');
 
 /* import  bookModel */
 let Book = require('../models/bookModel');
 
-/* Import validation and sanitisation methods */
-const { body, validationResult } = require('express-validator/check');
-const { sanitizeBody } = require('express-validator/filter');
-
-/* Import async */
-let async = require('async');
-
-/* Q */
+/*----------------- require q -----------------*/
 let Q = require('q');
-/*
+
+/*----------------- exports service-----------------*/
 module.exports = {
     getGenreList: getGenreList,
     getGenreDetail: getGenreDetail,
-    GenreCreatePost: GenreCreatePost,
+    genreCreatePost: genreCreatePost,
     genreDeleteGet: genreDeleteGet,
     genreDeletePost: genreDeletePost,
     genreUpdateGet: genreUpdateGet,
     genreUpdatePost: genreUpdatePost,
-}
+};
 
-function getCount() {
-    var deferred = Q.defer();
-    var resutls = {};
-    Q.all([]).then((value) => {
-        resutls.book_count = value[0];
-
-        deferred.resolve(resutls);
-    }).catch((err) => {
-        deferred.resolve(err);
-    });
-    return deferred.promise;
-}
-
-function getBookList() {
-    var deferred = Q.defer();
-    Book.find({}, 'title author')
-        .populate('author')
-        .exec(function(err, list_books) {
-            if (err) {
-                deferred.reject(err);
-            }
-            //sucessfull , 
-            deferred.resolve(list_books);
-        });
-    return deferred.promise;
-}
-
-function getGenreList(params) {
+// Get Genre List
+function getGenreList() {
     let deferred = Q.defer();
     Genre.find()
-        .sort(['name', 'ascending'])
-        .exec((err, genresList) => {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                // Successful
-                deferred.resolve(genresList);
-            }
+        .sort([
+            ['name', 'ascending']
+        ])
+        .then((genresList) => {
+            deferred.resolve(genresList);
+        }).catch((err) => {
+            deferred.reject(err);
         });
     return deferred.promise;
 }
 
-// getGenreDetail
+// Get Genre Detail
 function getGenreDetail(reqId) {
     let deferred = Q.defer();
     let resutls = {};
     Q.all([
         Genre.findById(reqId),
-        Book.find({ 'genre': reqId })
+        Book.find({
+            'genre': reqId
+        })
     ]).then((value) => {
         resutls.genre = value[0];
         resutls.genre_books = value[1];
@@ -80,7 +50,83 @@ function getGenreDetail(reqId) {
     }).catch((err) => {
         deferred.resolve(err);
     });
-
     return deferred.promise;
 }
-*/
+
+// genre Create Post
+function genreCreatePost(name) {
+    let deferred = Q.defer();
+    Genre.findOne({
+            'name': name
+        })
+        .then((result) => {
+            deferred.resolve(result);
+        }).catch((err) => {
+            deferred.reject(err);
+        });
+    return deferred.promise;
+}
+
+// genre Delete Get
+function genreDeleteGet(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+    Q.all([
+        Genre.findById(reqId),
+        Book.find({
+            'genre': reqId
+        })
+    ]).then((value) => {
+        resutls.genre = value[0];
+        resutls.genre_books = value[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+    return deferred.promise;
+}
+
+// genre Delete Post
+function genreDeletePost(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+    Q.all([
+        Genre.findById(reqId),
+        Book.find({
+            'genre': reqId
+        })
+    ]).then((value) => {
+        resutls.genre = value[0];
+        resutls.genre_books = value[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+    return deferred.promise;
+}
+
+// genre Update Get
+function genreUpdateGet(reqId) {
+    let deferred = Q.defer();
+    Genre.findById(reqId)
+        .then((result) => {
+            deferred.resolve(result);
+        }).catch((err) => {
+            deferred.reject(err);
+        });
+    return deferred.promise;
+
+}
+
+// genre Update Post
+function genreUpdatePost(reqId, genre) {
+    let deferred = Q.defer();
+    Genre.findByIdAndUpdate(reqId, genre, {})
+        .then((genre) => {
+            deferred.reject(err);
+        }).catch((err) => {
+            deferred.resolve(genre);
+        });
+    return deferred.promise;
+
+}

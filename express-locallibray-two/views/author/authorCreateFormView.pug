@@ -1,0 +1,78 @@
+extends ../layout
+
+block content
+    h1=title
+
+    form(method='POST' action='')
+        .form-row
+            .form-group.col-md-3
+                label(for='firstName') First Name:
+                input#firstName.form-control(type='text' placeholder='First Name' name='firstName' required='true' value=(author===undefined ? '' : author.firstName))
+            .form-group.col-md-3
+                label(for='lastName') First Name:
+                input#lastName.form-control(type='text', placeholder='Last name' name='lastName' required='true' value=(author===undefined ? '' : author.lastName) ) 
+            .form-group.col-md-3
+                label(for='professionalBackground') Professional Background:
+                input#professionalBackground.form-control(type='text' placeholder='First Name' name='professionalBackground'  value=(author===undefined ? '' : author.professionalBackground))
+            .form-group.col-md-3
+                label(for='education') Education:
+                input#education.form-control(type='text', placeholder='Last name' name='education'  value=(author===undefined ? '' : author.education) ) 
+
+        .form-row
+            .form-group.col-md-3
+                label(for='currentBusinessOrProfession') Current Business Or Profession:
+                input#currentBusinessOrProfession.form-control(type='text' placeholder='First Name' name='currentBusinessOrProfession'  value=(author===undefined ? '' : author.currentBusinessOrProfession))
+            .form-group.col-md-3
+                label(for='achievementsOrAwards') Achievements Or Awards:
+                input#achievementsOrAwards.form-control(type='text', placeholder='Last name' name='achievementsOrAwards'  value=(author===undefined ? '' : author.achievementsOrAwards) ) 
+            .form-group.col-md-3
+                label(for='PreviousPublishingExperience') Previous Publishing Experience:
+                input#PreviousPublishingExperience.form-control(type='text' placeholder='First Name' name='PreviousPublishingExperience'  value=(author===undefined ? '' : author.PreviousPublishingExperience))
+            .form-group.col-md-3
+
+        .form-row
+            .form-group.col-md-3
+                label(for='wifeName') Author Wife Name:
+                input#wifeName.form-control(type='text' placeholder='First Name' name='wifeName'  value=(author===undefined ? '' : author.personalDetails.family.wifeName))
+            .form-group.col-md-3
+                label(for='childName') Author Child Name:
+                input#childName.form-control(type='text', placeholder='Last name' name='childName'  value=(author===undefined ? '' : author.personalDetails.family.childName)) 
+            .form-group.col-md-3
+                label(for='cityOfResidence') City Of Residence:
+                input#cityOfResidence.form-control(type='text' placeholder='First Name' name='cityOfResidence'  value=(author===undefined ? '' : author.personalDetails.cityOfResidence))
+            .form-group.col-md-3
+                label(for='location') Location:
+                input#location.form-control(type='text', placeholder='Last name' name='location'  value=(author===undefined ? '' : author.personalDetails.location)) 
+        .form-row
+            .form-group.col-md-3
+                label(for='email') Email:
+                input#email.form-control(type='email' placeholder='First Name' name='email'  value=(author===undefined ? '' : author.contactInformation.email))
+            .form-group.col-md-3
+                label(for='website') Website:
+                input#website.form-control(type='text', placeholder='Last name' name='website'  value=(author===undefined ? '' : author.contactInformation.website)) 
+            .form-group.col-md-3
+                label(for='phoneNumber') Phone Number:
+                input#phoneNumber.form-control(type='phoneNumber' placeholder='First Name' name='phoneNumber'  value=(author===undefined ? '' : author.contactInformation.phoneNumber))
+            .form-group.col-md-3
+                label(for='picture') Picture:
+                input#picture.form-control(type='text', placeholder='Last name' name='picture'  value=(author===undefined ? '' : author.contactInformation.picture)) 
+        .form-row
+            .form-group.col-md-6
+                label(for='dateOfBirth') Date of birth:
+                input#dateOfBirth.form-control(type='date', name='dateOfBirth', value=(author===undefined ? '' : author.dateOfBirth) )
+            .form-group.col-md-6
+                label(for='dateOfDeath') Date of Death:
+                input#dateOfDeath.form-control(type='date', name='dateOfDeath', value=(author===undefined ? '' : author.dateOfDeath) )
+        .form-group
+            label(for='whatAuthorSaid') What Author Said
+            textarea.form-control(name='whatAuthorSaid', id='whatAuthorSaid', rows='3', autofocus=(!whatAuthorSaid).toString())
+
+        
+
+
+    
+        button.btn.btn-primary(type='submit') Submit
+    if errors 
+        ul
+        for error in errors
+            li!= error.msg

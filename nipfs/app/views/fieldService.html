@@ -1,0 +1,387 @@
+﻿<div class="container-fluid fl-stretch-box">
+    <div class="row fl-box fl-content-box gutter-h">
+        <div class="col-md-12 fl-row-box" style="padding-left: .5%;">
+            <div class="panel panel-default w-full">
+                <div class="panel-body">
+                    <form name="appCopyForm" role="form" class="form-horizontal" novalidate>
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-1">
+                                        <input type="checkbox" class="form-control" data-ng-model="cloneAppFieldObj.isAppFieldCopy" data-ng-change="appCheckChange(cloneAppFieldObj.isAppFieldCopy)" required />
+                                    </div>
+                                    <label class="col-sm-5 control-label">Copy Fields from Application </label>
+                                    <div class="col-sm-6">
+                                        <ui-select ng-model="fromAppObj.selected" theme="bootstrap" on-select="getAppInfoToCopy(fromAppObj.selected,false);" ng-disabled="!cloneAppFieldObj.isAppFieldCopy" required>
+                                                <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                                                <ui-select-choices repeat="app in applicationList | filter: $select.search | orderBy:'name'">
+                                                    <div ng-bind-html="app.name | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">To Application</label>
+                                    <div class="col-sm-7">
+                                        <ui-select ng-model="toAppObj.selected" theme="bootstrap" on-select="getAppInfoToCopy(toAppObj.selected, true);" ng-disabled="!cloneAppFieldObj.isAppFieldCopy || !cloneAppFieldObj.fromApplicationId" required>
+                                            <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                                            <ui-select-choices repeat="app in applicationList | filter: $select.search | orderBy:'name'">
+                                                <div ng-bind-html="app.name | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="btn-group pull-left col-sm-1" role="group">
+                                        <button type="button" class="btn btn-default" data-ng-disabled="appCopyForm.$invalid || !appCopyForm.$dirty" data-ng-click="openAppFieldModal()"><i class="fa fa-floppy-o"></i>Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row fl-box fl-content-box gutter-h">
+        <div class="col-md-3 fl-row-box" style="padding-left: .5%;">
+            <div class="panel panel-default w-full">
+                <div class="panel-heading">Field Information</div>
+                <div class="panel-body">
+                    <form name="fieldForm" role="form" class="form-horizontal" data-ng-submit="submitForm(fieldForm.$valid)" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Application </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldForm.name.$invalid && !fieldForm.name.$pristine }">
+                                    <ui-select ng-model="appObj.selected" theme="bootstrap" on-select="getAppInfo(appObj.selected);" required ng-disabled="isEdit || cloneAppFieldObj.isAppFieldCopy">
+                                        <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="app in applicationList | filter: $select.search | orderBy:'name'">
+                                            <div ng-bind-html="app.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <p data-ng-show="fieldForm.name.$invalid && !fieldForm.name.$pristine" class="help-block">Application Name is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="range" class="col-sm-4 control-label ni-sup">Alphabetic Range </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldForm.fieldIndex.$invalid && !fieldForm.fieldIndex.$pristine }">
+                                    <div class="ni-select fa-caret-down">
+                                        <select name="fieldIndex" class="form-control" autofocus id="range"
+                                            data-ng-disabled="isEdit || !appObj.selected._id || cloneAppFieldObj.isAppFieldCopy"
+                                            data-ng-model="fieldRange.index"
+                                            data-ng-options="range.name as range.name for range in rangeList"
+                                            data-ng-change="selectedRange(fieldRange.index)" required ni-control-focus="range">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <p data-ng-show="fieldForm.fieldIndex.$invalid && !fieldForm.fieldIndex.$pristine" class="help-block">Range is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlVlue" class="col-sm-4 control-label ni-sup">Name </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' :  fieldForm.fieldName.$invalid && !fieldForm.fieldName.$pristine}">
+                                    <input type="text" class="form-control" data-ng-keydown="fValueKeyDown($event)" data-ng-keyup="fValueKeyUp($event)"
+                                        id="ddlVlue" name="fieldName" data-ng-model="fieldDetail.name"
+                                        required list="nameList" data-ng-change="nameOnchange(fieldDetail.name)" ng-pattern-restrict="^[A-Za-z]*$"
+                                        data-ng-disabled="cloneAppFieldObj.isAppFieldCopy" />
+
+                                    <datalist id="nameList">
+                                        <select>
+                                            <option data-ng-repeat="name in selectedArrayList" value="{{name.name}}"></option>
+                                        </select>
+                                    </datalist>
+
+                                    <p data-ng-show="fieldForm.fieldName.$invalid && !fieldForm.fieldName.$pristine" class="help-block">Field is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-4 control-label">Description </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" style="resize: none;" data-ng-model="fieldDetail.desc" rows="4" cols="49" name="discription"
+                                    data-ng-disabled="cloneAppFieldObj.isAppFieldCopy"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dataType" class="col-sm-4 control-label ni-sup">Data Type </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldForm.dataType.$invalid && !fieldForm.dataType.$pristine }">
+                                    <div class="ni-select fa-caret-down">
+                                        <select name="dataType" class="form-control"
+                                            data-ng-model="fieldDetail.dataType"
+                                            data-ng-options="dataType.id as dataType.name for dataType in dataTypeList"
+                                            data-ng-change="selectedDataType()"
+                                            data-ng-disabled="cloneAppFieldObj.isAppFieldCopy" required>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <p data-ng-show="fieldForm.dataType.$invalid && !fieldForm.dataType.$pristine" class="help-block">DataType is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullHeader" class="col-sm-4 control-label">Min Length </label>
+                            <div class="col-sm-8">
+                                <input type="number" maxlength="5" class="form-control" name="minLength" data-ng-model="fieldDetail.minLength" data-ng-disabled="cloneAppFieldObj.isAppFieldCopy" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullHeader" class="col-sm-4 control-label">Max Length </label>
+                            <div class="col-sm-8">
+                                <input type="number" maxlength="5" class="form-control" data-ng-change="setLength(fieldDetail.maxLength);"
+                                    name="maxLength" data-ng-model="fieldDetail.maxLength" data-ng-disabled="cloneAppFieldObj.isAppFieldCopy" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullHeader" class="col-sm-4 control-label ni-sup">Length </label>
+                            <div class="col-sm-8" data-ng-class="{ 'has-error' : fieldForm.length.$invalid && !fieldForm.length.$pristine }">
+                                <input type="number" maxlength="5" class="form-control" name="length" data-ng-model="fieldDetail.length" data-ng-disabled="cloneAppFieldObj.isAppFieldCopy" required />
+                                <p data-ng-show="fieldForm.length.$invalid && !fieldForm.length.$pristine" class="help-block">Length is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullHeader" class="col-sm-4 control-label" ng-class="(fieldDetail.dataType =='3') ? 'ni-sup' : ''">Scale </label>
+                            <div class="col-sm-8" data-ng-class="{ 'has-error' : fieldForm.scale.$invalid && !fieldForm.scale.$pristine }">
+                                <input type="number" ng-disabled="fieldDetail.dataType !=3 || cloneAppFieldObj.isAppFieldCopy"
+                                    maxlength="3" class="form-control" max="255"
+                                    name="scale" data-ng-model="fieldDetail.scale" data-ng-required="fieldDetail.dataType =='3' " />
+                                <p data-ng-show="fieldForm.scale.$invalid && !fieldForm.scale.$pristine" class="help-block">Scale is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullHeader" class="col-sm-4 control-label">Values </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" style="resize: none;" data-ng-model="fieldDetail.values" rows="4" cols="49"
+                                    name="discription" data-ng-disabled="cloneAppFieldObj.isAppFieldCopy"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="label" class="col-sm-4 control-label ni-sup">Label </label>
+                            <div class="col-sm-8" data-ng-class="{ 'has-error' : fieldForm.l.$invalid && !fieldForm.l.$pristine }">
+                                <input type="text" data-ng-keyup="fLabelKeyUp($event)"
+                                    maxlength="50" class="form-control" id="label" data-ng-change="setFhShEng(fieldDetail.l);"
+                                    name="l" data-ng-model="fieldDetail.l" data-ng-disabled="cloneAppFieldObj.isAppFieldCopy" required
+                                    list="labelList" />
+
+                                <datalist id="labelList">
+                                    <select>
+                                        <option data-ng-repeat="entity in selectedArrayList" value="{{entity.l}}"></option>
+                                    </select>
+                                </datalist>
+
+                                <p data-ng-show="fieldForm.l.$invalid && !fieldForm.l.$pristine" class="help-block">Label is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullHeader" class="col-sm-4 control-label">Full Header </label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-keyup="fFHeadKeyUp($event)"
+                                    maxlength="50" class="form-control" id="fullHeader"
+                                    name="fullHeader" data-ng-model="fieldDetail.fh" data-ng-disabled="cloneAppFieldObj.isAppFieldCopy"
+                                    list="fullHeaderList" />
+
+                                <datalist id="fullHeaderList">
+                                    <select>
+                                        <option data-ng-repeat="entity in selectedArrayList" value="{{entity.fh}}"></option>
+                                    </select>
+                                </datalist>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shortHeader" class="col-sm-4 control-label">Short Header </label>
+                            <div class="col-sm-8">
+                                <input type="text"  ng-keyup="fSHeadKeyUp($event)"
+                                    maxlength="50" class="form-control" id="shortHeader"
+                                    name="shortHeader" data-ng-model="fieldDetail.sh"
+                                    list="shortHeaderList" data-ng-disabled="cloneAppFieldObj.isAppFieldCopy" />
+
+                                <datalist id="shortHeaderList">
+                                    <select>
+                                        <option data-ng-repeat="entity in selectedArrayList" value="{{entity.sh}}"></option>
+                                    </select>
+                                </datalist>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-1">
+                                <input type="checkbox" id="isPage" class="form-control" data-ng-model="isBangali"
+                                    data-ng-change="checkUncheckChekBox(isBangali)" data-ng-disabled="cloneAppFieldObj.isAppFieldCopy" />
+                            </div>
+                            <label for="isPage" class="control-label">In Bengali </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="labelBan" class="col-sm-4 control-label" ng-class="isBangali? 'ni-sup' : ''">Label (BN) </label>
+                            <div class="col-sm-8" data-ng-class="{ 'has-error' : fieldForm.lBangla.$invalid && !fieldForm.lBangla.$pristine }">
+                                <input type="text" data-ng-disabled="!isBangali || cloneAppFieldObj.isAppFieldCopy" data-ng-change="setFhShBan(fieldDetail.lBangla);"
+                                    maxlength="50" class="form-control" id="labelBan"
+                                    name="lBangla" data-ng-model="fieldDetail.lBangla" data-ng-required="isBangali" list="lBanglaDataList" />
+
+                                <datalist id="lBanglaDataList">
+                                    <select>
+                                        <option data-ng-repeat="entity in selectedArrayList" value="{{entity.lBangla}}"></option>
+                                    </select>
+                                </datalist>
+                                <p data-ng-show="fieldForm.lBangla.$invalid && !fieldForm.lBangla.$pristine" class="help-block">Label is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fhBang" class="col-sm-4 control-label">Full Header (BN) </label>
+                            <div class="col-sm-8">
+                                <input type="text" data-ng-disabled="!isBangali || cloneAppFieldObj.isAppFieldCopy" maxlength="50" class="form-control" id="fhBang" name="fullHeader"
+                                    data-ng-model="fieldDetail.fhBangla" list="fhBDataList" />
+
+                                <datalist id="fhBDataList">
+                                    <select>
+                                        <option data-ng-repeat="entity in selectedArrayList" value="{{entity.fhBangla}}"></option>
+                                    </select>
+                                </datalist>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shBang" class="col-sm-4 control-label">Short Header (BN) </label>
+                            <div class="col-sm-8">
+                                <input type="text" data-ng-disabled="!isBangali || cloneAppFieldObj.isAppFieldCopy"
+                                    maxlength="50" class="form-control" id="shBang"
+                                    name="shortHeader" data-ng-model="fieldDetail.shBangla" list="shBDataList" />
+                                <datalist id="shBDataList">
+                                    <select>
+                                        <option data-ng-repeat="entity in selectedArrayList" value="{{entity.shBangla}}"></option>
+                                    </select>
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="descBangla" class="col-sm-4 control-label">Description </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="descBangla" style="resize: none;"
+                                    data-ng-model="fieldDetail.descBangla" rows="4" cols="49" name="descBangla" data-ng-disabled="!isBangali || cloneAppFieldObj.isAppFieldCopy"></textarea>
+                            </div>
+                        </div>
+                        <div class="btn-group pull-right" role="group">
+                            <button type="submit" class="btn btn-default" data-ng-disabled="fieldForm.$invalid || !fieldForm.$dirty"><i class="fa fa-floppy-o"></i>Save</button>
+                            <button type="button" class="btn btn-default" data-ng-disabled="!fieldForm.$dirty" data-ng-click="reset()"><i class="fa fa-repeat "></i>Reset</button>
+                            <button type="button" class="btn btn-default" data-ng-hide="isCancelBtnHide" data-ng-click="cancel()"><i class="fa fa-minus-square"></i>Cancel</button>
+
+                            <!-- <button type="button" class="btn btn-default" data-ng-click="saveJsonData()"><i class="fa fa-minus-square"></i>AddJsonData</button>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 fl-row-box">
+            <div class="panel panel-default w-full">
+                <div class="panel-heading">
+                    <div class="col-sm-2">Field List</div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-success" data-ng-click="crateXML()"><i class="fa fa-file-code-o"></i>Generate XML EN </button>
+                        <button type="button" class="btn btn-success" data-ng-click="crateXMLBN()"><i class="fa fa-file-code-o"></i>Generate XML BN </button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive" style="height: 400px; overflow-y: scroll;">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%">Application</th>
+                                    <th style="width: 90%" class="no-padder">
+                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 6%;">Range</th>
+                                                    <th style="width: 94%;" class="no-padder">
+                                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th style="width: 20%;">Name</th>
+                                                                    <th style="width: 20%;">Label</th>
+                                                                    <th style="width: 20%;">FullHeader</th>
+                                                                    <th style="width: 20%;">ShortHeader</th>
+                                                                    <th style="width: 10%;"></th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="app in fieldList">
+                                    <td style="width: 10%">{{app.appName}}</td>
+                                    <td style="width: 90%" class="no-padder">
+                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                            <tbody>
+                                                <tr data-ng-repeat="alphabet in app.alphabetList">
+                                                    <td style="width: 6%;">{{alphabet.index}}</td>
+                                                    <td style="width: 94%;" class="no-padder">
+                                                        <table style="width: 100%" class="table table-bordered table-hover">
+                                                            <tbody>
+                                                                <tr data-ng-repeat="item in alphabet.fieldDetails | orderBy:'name'">
+                                                                    <td style="width: 20%;">{{ item.name }}</td>
+                                                                    <td style="width: 20%;">{{item.l}}</td>
+                                                                    <td style="width: 20%;">{{item.fh}}</td>
+                                                                    <td style="width: 20%;">{{item.sh}}</td>
+                                                                    <td style="width: 10%;">
+                                                                        <ul class="list-inline" style="text-align: center">
+                                                                            <li><a href="javascript:void(0)" data-ng-click="editField(item)"><i title="Edit" class="fa fa-edit"></i></a></li>
+                                                                            <li><a href="javascript:void(0)" data-ng-click="deleteField(item)"><i title="Delete" class="fa fa-trash-o text-danger"></i></a></li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row" style="background-color: #2ba6cb;">
+                        <div class="col-lg-3">
+                            <div class="pull-left">
+                                <ul class="list-inline">
+                                    <li><a href="javascript:void(0)" data-ng-click="refreshButtonEvent()" title="Reload"><i class="fa fa-refresh"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <ul class="list-inline">
+                                <li>
+                                    <select data-ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions" /></li>
+                                <li><a href="javascript:void(0)" data-ng-click="pageniToFirst()"><i class="fa fa-step-backward"></i></a></li>
+                                <li><a href="javascript:void(0)" data-ng-click="pageniBackward()"><i class="fa fa-backward"></i></a></li>
+                                <li>
+                                    <input type='number' data-ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;' />
+                                    of {{paging.totalpages}}</li>
+                                <li><a href="javascript:void(0)" data-ng-click="pageniForward()"><i class="fa fa-forward"></i></a></li>
+                                <li><a href="javascript:void(0)" data-ng-click="pageniToLast()"><i class="fa fa-step-forward"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="pull-right">
+                                Showing: {{paging.fromShowing}} -
+                        {{paging.toShowing}}
+                        of {{paging.total}} Records
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,3 +1,4 @@
+/*----------------- require Model -----------------*/
 /*bookModel*/
 var Book = require('../models/bookModel');
 /*authorModel*/
@@ -6,39 +7,27 @@ var Author = require('../models/authorModel');
 var Genre = require('../models/genreModel');
 /*bookinstanceModel*/
 var BookInstance = require('../models/bookinstanceModel');
+
+/*-----------------require mongoose -----------------*/
 /*mongoose*/
 var mongoose = require('mongoose');
-/*async*/
-var async = require('async');
 
+/*----------------- require q -----------------*/
 var Q = require('q');
 
-/*body validationResult */
-const {
-    body,
-    validationResult
-} = require('express-validator/check');
-const {
-    sanitizeBody
-} = require('express-validator/filter');
 
-/*
-var booksService = {};
-
-booksService.getCount = getCount;
-booksService.getBookList = getBookList;
-booksService.getBookDetail = getBookDetail;
-
-module.exports = booksService;
- */
+/*----------------- exports service-----------------*/
 module.exports = {
     getCount: getCount,
     getBookList: getBookList,
     getBookDetail: getBookDetail,
     bookCreateGet: bookCreateGet,
-    bookCreatePost: bookCreatePost
-
-}
+    bookCreatePost: bookCreatePost,
+    bookDeleteGet : bookDeleteGet,
+    bookDeletePost : bookDeletePost,
+    bookUpdateGet : bookUpdateGet,
+    bookUpdatePost: bookUpdatePost
+};
 
 // Get Count value 
 
@@ -67,7 +56,6 @@ function getCount() {
 }
 
 // Get Book List
-
 function getBookList() {
     var deferred = Q.defer();
     Book.find({}, 'title author')
@@ -83,7 +71,6 @@ function getBookList() {
 }
 
 // Get Book Detail
-
 function getBookDetail(id) {
     let deferred = Q.defer();
     let resutls = {};
@@ -100,7 +87,6 @@ function getBookDetail(id) {
 
 
 // Book create form on GET
-
 function bookCreateGet() {
     let deferred = Q.defer();
     let resutls = {};
@@ -135,7 +121,82 @@ function bookCreatePost() {
     return deferred.promise;
      
 }
+// book delete get
+function bookDeleteGet(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+    Q.all([
+        Book.findById(reqId).populate('author').populate('genre'),
+        BookInstance.find({ 'book': reqId })
+        ]).then((value) => {
+        resutls.book = value[0];
+        resutls.book_bookinstances = value[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.resolve(err);
+    });
+    return deferred.promise;
+     
+}
 
+//book Delete Post
+function bookDeletePost(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+
+    Q.all([
+        Book.findById(reqId).populate('author').populate('genre'),
+        BookInstance.find({'book': reqId})
+    ]).then((result) => {
+        resutls.book = result[0];
+        resutls.book_bookinstances = result[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.reject(err);
+    });
+
+    return deferred.promise;
+}
+
+
+function bookUpdateGet(reqId) {
+    let deferred = Q.defer();
+    let resutls = {};
+
+    Q.all([
+        Book.findById(reqId).populate('author').populate('genre'),
+        Author.find(),
+        Genre.find()
+    ]).then((result) => {
+        resutls.book = result[0];
+        resutls.authors = result[1];
+        resutls.genres = result[2];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.reject(err);
+    });
+
+    return deferred.promise;
+}
+
+
+function bookUpdatePost() {
+    let deferred = Q.defer();
+    let resutls = {};
+
+    Q.all([
+        Author.find(),
+        Genre.find(),
+    ]).then((result) => {
+        resutls.authors = result[0];
+        resutls.genres = result[1];
+        deferred.resolve(resutls);
+    }).catch((err) => {
+        deferred.reject(err);
+    });
+    
+    return deferred.promise;
+}
 
 
 

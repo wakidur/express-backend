@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <title>Project file service</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="content/sass/main.min.css" rel="stylesheet" />
+    <link href="content/select.min.css" rel="stylesheet" />
+    <!--<link href="content/bootstrap-combined.min.css" rel="stylesheet" />-->
+    <link href="content/toastr.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="fevicon.png" type="image/png" />
+
+</head>
+<body style="background: #e6e6e6;">
+    <!-- HEADER AND NAVBAR -->
+    <header>
+        <nav class="navbar navbar-default" style=" background: #3367d6;">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Project File</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="#applicationService"><i class=""></i>Application</a></li>
+                    <li><a href="#moduleEntry"><i class=""></i>Module</a></li>
+                    <li><a href="#pageSectionEntry"><i class=""></i>page/Section Entry</a></li>
+                    <li><a href="#pageSection"><i class=""></i>Page Extra</a></li>
+                    <li><a href="#fieldService"><i class=""></i>Fields</a></li>
+                    <li><a href="#fieldValidation"><i class=""></i>Field Validation</a></li>
+                    <li><a href="#fieldSpecification"><i class=""></i>Field Specification</a></li>
+                    <!--<li><a href="#fieldTitle"><i class="fa fa-book"></i>Populate FieldTile</a></li>-->
+                    <!--  <li><a href="#pageExtra"><i class="fa fa-book"></i>Page Extra</a></li>-->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT AND INJECTED VIEWS -->
+    <div id="main">
+        <div ng-view></div>
+    </div>
+
+    <script src="vendors/jquery-1.9.1.min.js"></script>
+    <script src="vendors/linq.js"></script>
+    <script src="vendors/toastr.min.js"></script>
+
+    <script src="vendors/angular.min.js"></script>
+    <script src="vendors/bootstrapModal.js"></script>
+    <script src="vendors/angular-route.min.js"></script>
+    <script src="vendors/angular-sanitize.min.js"></script>
+    <script src="vendors/select.min.js"></script>
+
+
+    <script src="vendors/xml2json.js"></script>
+    <script src="vendors/saveAs.js"></script>
+
+    <script src="vendors/lodash.min.js"></script>
+    <script src="app/commonComponents/dropdown-multiselect.js"></script>
+    <script src="app/commonComponents/allowPatternDirective.js"></script>
+    <script src="app/commonComponents/generateExcel.js"></script>
+
+
+    <script src="app/config.js"></script>
+    <script src="app/config.router.js"></script>
+    <script src="app/config.messages.js"></script>
+    <script src="app/services/baseDataSvc.js"></script>
+
+    <script src="app/services/common/commonDataSvc.js"></script>
+
+    <script src="app/services/Field/fieldModelSvc.js"></script>
+    <script src="app/services/field/fieldDataSvc.js"></script>
+    <script src="app/controllers/fieldServiceCtrl.js"></script>
+    <script src="app/controllers/generateFieldXMLCtrl.js"></script>
+
+    <script src="app/services/fieldSpecification/fieldSpecsModelSvc.js"></script>
+    <script src="app/services/fieldSpecification/fieldSpecsDataSvc.js"></script>
+    <script src="app/controllers/fieldSpecsCtrl.js"></script>
+    <script src="app/controllers/fieldSpecXlsCtrl.js"></script>
+
+     <script src="app/controllers/populateFieldTitleCtrl.js"></script>
+
+    <script src="app/services/Module/moduleModelSvc.js"></script>
+    <script src="app/services/Module/moduleDataSvc.js"></script>
+    <script src="app/controllers/moduleServiceCtrl.js"></script>
+
+    <!--    <script src="app/services/pageExtra/pageExtraModelSvc.js"></script>
+    <script src="app/services/pageExtra/pageExtraDataSvc.js"></script>
+    <script src="app/controllers/pageExtraCtrl.js"></script>-->
+
+    <script src="app/services/pageSection/pageSectionModelSvc.js"></script>
+    <script src="app/services/pageSection/pageSectionDataSvc.js"></script>
+    <script src="app/controllers/pageSectionCtrl.js"></script>
+
+    <script src="app/services/application/applicationModelSvc.js"></script>
+    <script src="app/services/application/applicationDataSvc.js"></script>
+    <script src="app/controllers/applicationCtrl.js"></script>
+
+    <script src="app/controllers/modalFieldServiceCtrl.js"></script>
+
+    <script src="app/services/moduleEntry/moduleEntryModelSvc.js"></script>
+    <script src="app/services/moduleEntry/moduleEntryDataSvc.js"></script>
+    <script src="app/controllers/moduleEntryCtrl.js"></script>
+
+
+    <script src="app/services/fieldValidation/fieldValidationModelSvc.js"></script>
+    <script src="app/services/fieldValidation/fieldValidationDataSvc.js"></script>
+    <script src="app/controllers/fieldValidationCtrl.js"></script>
+    <script src="app/controllers/generateFieldValidationXMLCtrl.js"></script>
+
+    <script src="app/controllers/modalFieldValidationCtrl.js"></script>
+
+</body>
+</html>

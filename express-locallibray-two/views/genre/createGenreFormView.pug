@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+    .row
+        .col-6  
+            .card 
+                .card-header #{title}
+                .card-body
+                    form(method='POST' action='')
+                        //- input(type='hidden', name='_csrf', value=_csrf)
+                        .form-group
+                            label(for='name') Genre
+                            input#name(type='text' class=(errors===undefined ? 'form-control' : 'form-control is-invalid') name='name' aria-describedby='name' placeholder='Enter name' value=(genre===undefined ? '' : genre.name))
+                            if errors
+                                .invalid-feedback
+                                    for error in errors
+                                        span=error.msg
+                        button.btn.btn-primary(type='submit') Submit
+                    
+                    if errors
+                        ul 
+                            for error in errors
+                                li!= error.msg

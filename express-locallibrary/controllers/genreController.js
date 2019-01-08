@@ -1,83 +1,65 @@
+/*----------------- require Model -----------------*/
 /*import  genreModel*/
 var Genre = require('../models/genreModel');
-
 /* import  bookModel */
 var Book = require('../models/bookModel');
 
+/*-----------------require mongoose -----------------*/
+var mongoose = require('mongoose');
+
+/*-----------------require express-validator -----------------*/
 /* Import validation and sanitisation methods */
-const {
-    body,
-    validationResult
-} = require('express-validator/check');
-const {
-    sanitizeBody
-} = require('express-validator/filter');
+const { body, validationResult } = require('express-validator/check');
+const {  sanitizeBody } = require('express-validator/filter');
 
-/* Import async */
-var async = require('async');
-
+/*-----------------require genre Service -----------------*/
 let genreService = require('../services/genreService');
 
-
+/*----------------- exports controller-----------------*/
+exports.genre_list = genreList;
+exports.genre_detail = genreDetail;
+exports.genre_create_get = genreCreateGet;
+exports.genre_delete_get = getGenreDelete;
+exports.genre_delete_post = postGenreDelete;
+exports.genre_update_get = getGenreUpdate;
 
 // Display list of all Genre.
-exports.genre_list = function(req, res, next) {
-    Genre.find()
-        .sort([
-            ['name', 'ascending']
-        ])
-        .exec(function(err, list_genres) {
-            if (err) {
-                return next(err);
-            }
-            //Successful , so render
-            res.render('./genre/genreListView', {
-                title: 'Genre List',
-                genre_list: list_genres
-            })
+function genreList(req, res, next) {
+    genreService.getGenreList().then((values) => {
+        res.render('./genre/genreListView', {
+            title: 'Genre List',
+            genre_list: values
         });
-
+    }).catch((err) => {
+        return next(err);
+    });
 }
 
 // Display detail page for a specific Genre.
-exports.genre_detail = function(req, res, next) {
-    async.parallel({
-        genre: function(callback) {
-            Genre.findById(req.params.id).exec(callback);
-        },
-        genre_books: function(callback) {
-            Book.find({
-                'genre': req.params.id
-            }).exec(callback);
-        },
-    }, function(err, results) {
-        if (err) {
-            return next(err);
-        }
+function genreDetail(req, res, next) {
+    let id = mongoose.Types.ObjectId(req.params.id);
+    genreService.getGenreDetail(id).then((results) => {
         if (results.genre == null) {
-            // no results.
             var err = new Error('Genre not found');
             err.status = 404;
             return next(err);
         }
-
-        // successfull, so render 
         res.render('./genre/genreDetailView', {
             title: "Genre Detail",
             genre: results.genre,
             genre_books: results.genre_books
         });
+    }).catch((err) => {
+        return next(err);
     });
-};
-
+}
 
 // Display Genre create form on GET.
-
-exports.genre_create_get = function(req, res, next) {
+function genreCreateGet(req, res, next) {
     res.render('./genre/genreFormView', {
         title: 'Create Genre'
     });
-};
+}
 
 // Handle Genre create on POST.
 exports.genre_create_post = [
@@ -90,7 +72,7 @@ exports.genre_create_post = [
 
     // Process request after validation and sanitization.
     (req, res, next) => {
-
+        // Finds the validation errors in this request and wraps them in an object with handy functions
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
@@ -98,7 +80,6 @@ exports.genre_create_post = [
         var genre = new Genre({
             name: req.body.name
         });
-
 
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values/error messages.
@@ -108,101 +89,90 @@ exports.genre_create_post = [
                 errors: errors.array()
             });
             return;
+            // return res.status(422).json({ errors: errors.array() });
         } else {
             // Data from form is valid.
             // Check if Genre with same name already exists.
-            Genre.findOne({
-                    'name': req.body.name
-                })
-                .exec(function(err, found_genre) {
-                    if (err) {
-                        return next(err);
-                    }
-
-                    if (found_genre) {
-                        // Genre exists, redirect to its detail page.
-                        res.redirect(found_genre.url);
-                    } else {
-                        genre.save(function(err) {
-                            if (err) {
-                                return next(err);
-                            }
-                            // Genre saved. Redirect to genre detail page.
-                            res.redirect(genre.url);
-                        });
-
-                    }
-
-                });
+            genreService.genreCreatePost(req.body.name).then((found_genre) => {
+                if (found_genre) {
+                    // Genre exists, redirect to its detail page.
+                    res.redirect(found_genre.url);
+                } else {
+                    genre.save(function(err) {
+                        if (err) {
+                            return next(err);
+                        }
+                        // Genre saved. Redirect to genre detail page.
+                        res.redirect(genre.url);
+                    });
+                }
+            }).catch((err) => {
+                return next(err);
+            });
         }
     }
 ];
 // Display Genre delete form on GET.
-exports.genre_delete_get = function(req, res, next) {
-
-    async.parallel({
-        genre: function(callback) {
-            Genre.findById(req.params.id).exec(callback);
-        },
-        genre_books: function(callback) {
-            Book.find({ 'genre': req.params.id }).exec(callback);
-        },
-    }, function(err, results) {
-        if (err) { return next(err); }
+function getGenreDelete(req, res, next) {
+    genreService.genreDeleteGet(req.params.id).then((results) => {
         if (results.genre == null) { // No results.
             res.redirect('/catalog/genres');
         }
         // Successful, so render.
-        res.render('./genre/genreDeleteView', { title: 'Delete Genre', genre: results.genre, genre_books: results.genre_books });
+        res.render('./genre/genreDeleteView', {
+            title: 'Delete Genre',
+            genre: results.genre,
+            genre_books: results.genre_books
+        });
+    }).catch((err) => {
+        return next(err);
     });
-
-};
+}
 
 // Handle Genre delete on POST.
-exports.genre_delete_post = function(req, res, next) {
-
-    async.parallel({
-        genre: function(callback) {
-            Genre.findById(req.params.id).exec(callback);
-        },
-        genre_books: function(callback) {
-            Book.find({ 'genre': req.params.id }).exec(callback);
-        },
-    }, function(err, results) {
-        if (err) { return next(err); }
+function postGenreDelete(req, res, next) {
+    genreService.genreDeletePost(req.params.id).then((results) => {
         // Success
         if (results.genre_books.length > 0) {
             // Genre has books. Render in same way as for GET route.
-            res.render('./genre/genreDeleteView', { title: 'Delete Genre', genre: results.genre, genre_books: results.genre_books });
+            res.render('./genre/genreDeleteView', {
+                title: 'Delete Genre',
+                genre: results.genre,
+                genre_books: results.genre_books
+            });
             return;
         } else {
             // Genre has no books. Delete object and redirect to the list of genres.
             Genre.findByIdAndRemove(req.body.id, function deleteGenre(err) {
-                if (err) { return next(err); }
+                if (err) {
+                    return next(err);
+                }
                 // Success - go to genres list.
                 res.redirect('/genres');
             });
-
         }
+    }).catch((err) => {
+        return next(err);
     });
-
-};
+}
 
 // Display Genre update form on GET.
-exports.genre_update_get = function(req, res, next) {
-
-    Genre.findById(req.params.id, function(err, genre) {
-        if (err) { return next(err); }
+function getGenreUpdate(req, res, next) {
+    genreService.genreUpdateGet(req.params.id).then((genre) => {
         if (genre == null) { // No results.
             var err = new Error('Genre not found');
             err.status = 404;
             return next(err);
         }
         // Success.
-        res.render('./genre/genreFormView', { title: 'Update Genre', genre: genre });
+        res.render('./genre/genreFormView', {
+            title: 'Update Genre',
+            genre: genre
+        });
+    }).catch((err) => {
+        return next(err);
     });
-
-};
+}
 
 // Handle Genre update on POST.
 exports.genre_update_post = [
@@ -224,18 +194,21 @@ exports.genre_update_post = [
             name: req.body.name,
             _id: req.params.id
         });
-
-
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values and error messages.
-            res.render('./genre/genreFormView', { title: 'Update Genre', genre: genre, errors: errors.array() });
+            res.render('./genre/genreFormView', {
+                title: 'Update Genre',
+                genre: genre,
+                errors: errors.array()
+            });
             return;
         } else {
             // Data from form is valid. Update the record.
-            Genre.findByIdAndUpdate(req.params.id, genre, {}, function(err, thegenre) {
-                if (err) { return next(err); }
+            genreService.genreUpdatePost(req.params.id, genre).then((results) => {
                 // Successful - redirect to genre detail page.
-                res.redirect(thegenre.url);
+                res.redirect(results.url);
+            }).catch((err) => {
+                return next(err);
             });
         }
     }

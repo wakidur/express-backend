@@ -1,2 +1,8 @@
 //express-validato
 https://github.com/ctavan/express-validator#express-validator
+
+Getting MEAN with Mongo, Express, Angular, and Node, Second Edition
+https://www.manning.com/books/getting-mean-with-mongo-express-angular-and-node-second-edition
+https://livebook.manning.com/#!/book/getting-mean-with-mongo-express-angular-and-node-second-edition/chapter-1/v-7/
+
+We're Hiring – UI Frontend Developer for our Direct Client in Louisville, KY - Fulltime Position. Please share your resume to raj.p@techaspect.com or reach me at 510-256-5876

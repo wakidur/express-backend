@@ -1,0 +1,219 @@
+﻿<div class="container-fluid fl-stretch-box">
+
+<div class="row fl-box fl-content-box gutter-h">
+        <div class="col-md-12 fl-row-box" style="padding-left: .5%;">
+            <div class="panel panel-default w-full">
+                <div class="panel-body">
+                    <form name="appCopyForm" role="form" class="form-horizontal" novalidate>
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-1">
+                                        <input type="checkbox" class="form-control" data-ng-model="cloneAppFieldObj.isAppFieldCopy" data-ng-change="appCheckChange(cloneAppFieldObj.isAppFieldCopy)" required />
+                                    </div>
+                                    <label class="col-sm-5 control-label">Copy Validations from Application </label>
+                                    <div class="col-sm-6">
+                                        <ui-select ng-model="fromAppObj.selected" theme="bootstrap" on-select="getAppInfoToCopy(fromAppObj.selected,false);" ng-disabled="!cloneAppFieldObj.isAppFieldCopy" required>
+                                                <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                                                <ui-select-choices repeat="app in applicationList | filter: $select.search | orderBy:'name'">
+                                                    <div ng-bind-html="app.name | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">To Application</label>
+                                    <div class="col-sm-7">
+                                        <ui-select ng-model="toAppObj.selected" theme="bootstrap" on-select="getAppInfoToCopy(toAppObj.selected, true);" ng-disabled="!cloneAppFieldObj.isAppFieldCopy || !cloneAppFieldObj.fromApplicationId" required>
+                                            <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                                            <ui-select-choices repeat="app in applicationList | filter: $select.search | orderBy:'name'">
+                                                <div ng-bind-html="app.name | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                    <div class="btn-group pull-left col-sm-1" role="group">
+                                        <button type="button" class="btn btn-default" data-ng-disabled="appCopyForm.$invalid || !appCopyForm.$dirty" data-ng-click="openAppValidationdModal()"><i class="fa fa-floppy-o"></i>Ok</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row fl-box fl-content-box gutter-h">
+        <div class="col-md-4 fl-row-box">
+            <div class="panel panel-default w-full">
+                <div class="panel-heading">Field Validation</div>
+                <div class="panel-body">
+                    <form name="fieldValidationForm" role="form" class="form-horizontal" data-ng-submit="submitForm(fieldValidationForm.$valid)" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Application </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldValidationForm.name.$invalid && !fieldValidationForm.name.$pristine }">
+                                    <ui-select ng-model="appObj.selected" theme="bootstrap" on-select="getAppInfo(appObj.selected);" required ng-disabled="isEdit || cloneAppFieldObj.isAppFieldCopy">
+                                        <ui-select-match placeholder="Select application">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="app in applicationList | filter: $select.search | orderBy:'name'">
+                                            <div ng-bind-html="app.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                    <p data-ng-show="fieldValidationForm.name.$invalid && !fieldValidationForm.name.$pristine" class="help-block">Application Name is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="range" class="col-sm-4 control-label ni-sup">Alphabetic Range </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' : fieldValidationForm.alphabet.$invalid && !fieldValidationForm.alphabet.$pristine }">
+                                    <div class="ni-select fa-caret-down">
+                                        <select name="alphabet" class="form-control"
+                                                data-ng-model="fieldValidation.alphabet"
+                                                data-ng-disabled="isEdit || !appObj.selected._id"
+                                                data-ng-options="range.name as range.name for range in rangeList"
+                                                data-ng-change="selectedAlphabet()" required>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <p data-ng-show="fieldValidationForm.alphabet.$invalid && !fieldValidationForm.alphabet.$pristine" class="help-block">Range is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label ni-sup">Field Name</label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' :  fieldValidationForm.fieldName.$invalid && !fieldValidationForm.fieldName.$pristine}">
+                                    <input type="text" class="form-control" data-ng-keydown="fValueKeyDown($event)" data-ng-keyup="fValueKeyUp($event)"
+                                           name="fieldName" data-ng-model="fieldValidation.name"
+                                           required list="nameList" data-ng-change="nameOnchange(fieldValidation.name)" ng-pattern-restrict="^[A-Za-z]*$">
+                                    <datalist id="nameList">
+                                        <select>
+                                            <option data-ng-repeat="name in alphabetWiseFieldList" value="{{name.name}}"></option>
+                                        </select>
+                                    </datalist>
+
+                                    <p data-ng-show="fieldValidationForm.fieldName.$invalid && !fieldValidationForm.fieldName.$pristine" class="help-block">Field is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="col-sm-4 control-label ni-sup">Message </label>
+                            <div class="col-sm-8">
+                                <div data-ng-class="{ 'has-error' :  fieldValidationForm.message.$invalid && !fieldValidationForm.message.$pristine}">
+                                    <textarea class="form-control" style="resize: none;" data-ng-model="fieldValidation.message" rows="4" cols="49" name="message" required></textarea>
+                                    <p data-ng-show="fieldValidationForm.message.$invalid && !fieldValidationForm.message.$pristine" class="help-block">Message is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group pull-right" role="group">
+                            <button type="submit" class="btn btn-default" data-ng-disabled="fieldValidationForm.$invalid || !fieldValidationForm.$dirty"><i class="fa fa-floppy-o"></i>Save</button>
+                            <button type="button" class="btn btn-default" data-ng-disabled="!fieldValidationForm.$dirty" data-ng-click="reset()"><i class="fa fa-repeat "></i>Reset</button>
+                            <button type="button" class="btn btn-default" data-ng-hide="isCancelBtnHide" data-ng-click="cancel()"><i class="fa fa-minus-square"></i>Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 fl-row-box">
+            <div class="panel panel-default w-full">
+                <div class="panel-heading">
+                    <div class="col-sm-2">Field List</div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-success" data-ng-click="crateXML()"><i class="fa fa-file-code-o"></i>Generate XML </button>
+                        <button type="button" class="btn btn-success" ng-hide="true" data-ng-click="populateFieldValidation()"><i class="fa fa-file-code-o"></i>Populate FieldValidation</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive" style="height: 400px; overflow-y: scroll;">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th style="width: 15%">Application</th>
+                                <th style="width: 85%" class="no-padder">
+                                    <table style="width: 100%" class="table table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 10%;">Range</th>
+                                            <th style="width: 90%;" class="no-padder">
+                                                <table style="width: 100%" class="table table-bordered table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th style="width: 30%;">Name</th>
+                                                        <th style="width: 60%;">Message</th>
+                                                        <th style="width: 10%;"></th>
+                                                    </tr>
+                                                    </thead>
+                                                </table>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr data-ng-repeat="app in fieldList">
+                                <td style="width: 15%">{{app.name}}</td>
+                                <td style="width: 85%" class="no-padder">
+                                    <table style="width: 100%" class="table table-bordered table-hover">
+                                        <tbody>
+                                        <tr data-ng-repeat="alphabetObj in app.alphabetList">
+                                            <td style="width: 10%;">{{alphabetObj.alphabet}}</td>
+                                            <td style="width: 90%;" class="no-padder">
+                                                <table style="width: 100%" class="table table-bordered table-hover">
+                                                    <tbody>
+                                                    <tr data-ng-repeat="item in alphabetObj.fieldValidationList | orderBy:'name'">
+                                                        <td style="width: 30%;">{{ item.name }}</td>
+                                                        <td style="width: 60%;">{{ item.message }}</td>
+                                                        <td style="width: 10%;">
+                                                            <ul class="list-inline" style="text-align: center">
+                                                                <li><a href="javascript:void(0)" data-ng-click="editEntity(item)"><i title="Edit" class="fa fa-edit"></i></a></li>
+                                                                <li><a href="javascript:void(0)" data-ng-click="deleteEntity(item)"><i title="Delete" class="fa fa-trash-o text-danger"></i></a></li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row" style="background-color: #2ba6cb;">
+                        <div class="col-lg-4 ">
+                            Showing: {{paging.fromShowing}} -
+                            {{paging.toShowing}}
+                            of {{paging.total}} Records
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="pull-right">
+                                <ul class="list-inline">
+                                    <li>
+                                        <select ng-model="criteria.pagesize" ng-options="obj as obj for obj in paging.pagingOptions"/></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToFirst()"><i class="fa fa-step-backward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniBackward()"><i class="fa fa-backward"></i></a></li>
+                                    <li>
+                                        <input type='number' ng-model='criteria.page' min="1" max="{{paging.totalpages}}" style='width: 70px;'/>
+                                        of {{paging.totalpages}}</li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniForward()"><i class="fa fa-forward"></i></a></li>
+                                    <li><a href="javascript:void(0)" data-ng-click="pageniToLast()"><i class="fa fa-step-forward"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
