@@ -25,7 +25,7 @@ router
     .route('/exercise/:id')
     .get(exerciseController.exerciseReadById)
     .put(exerciseController.exerciseUpdateById)
-    .delete(exerciseController.exerciseDeleteOne);
+    .delete(exerciseController.exerciseDeleteById);
 
 
 // GET request for creating a exercise.

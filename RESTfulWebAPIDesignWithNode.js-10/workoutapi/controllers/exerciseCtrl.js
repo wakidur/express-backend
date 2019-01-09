@@ -103,7 +103,7 @@ exports.exerciseUpdateById = (req, res, next) => {
     try {
 
         if (!req.params.id) {
-            res.status(value).json({
+            res.status(404).json({
                 "message": "Not found, Exercise id is required"
             });
             return;
@@ -126,9 +126,7 @@ exports.exerciseUpdateById = (req, res, next) => {
                     });
                     Joi.validate(req.body, exerciseSchema, (err, result) => {
                         if (err) {
-                            // res.status(201).json(err);
-                            // return next(err);
-                            throw new Error(`Config validation error: ${err.message}`);
+                            next(err);
                         } else {
                             // findByIdAndUpdate
                             // findOneAndUpdate
@@ -160,7 +158,7 @@ exports.exerciseUpdateById = (req, res, next) => {
                                     "message": "Something wrong updating note with id "
                                 });
                             });
-                        }
+                        };
                     });
                 }
             }).catch((err) => {
@@ -173,7 +171,42 @@ exports.exerciseUpdateById = (req, res, next) => {
         });
     }
 };
-exports.exerciseDeleteOne = (req, res) => {};
+// Delete a note with the specified noteId in the request
+exports.exerciseDeleteById = (req, res, next) => {
+    try {
+        if (!req.params.id) {
+            return res.status(404).json({
+                "message": "Not found, Exercise id is required"
+            });
+        }
+        exerciseDS.exerciseDeleteById(req.params.id).then((result) => {
+            if (!result) {
+                return res.status(404).json({
+                    "message": "Exercise not found with id"
+                });
+            } else {
+                res.status(200).json({
+                    "message": "Exercise deleted successfully!"
+                });
+            }
+        }).catch((err) => {
+            if (err.kind === "Object" || err.kind === "ObjectID" || err.name === "NotFound") {
+                return res.status(404).json({
+                    "message": "Exercise  not found with id"
+                });
+            } else {
+                return res.status(500).json({
+                    "message": "Could  not delete Exercise with id"
+                });
+            }
+        });
+    } catch (error) {
+        res.json({
+            "message": "block of code for errors!"
+        });
+    }
+
+};
 
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {

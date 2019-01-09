@@ -48,10 +48,22 @@ function saveExercise(value) {
     return deferred.promise;
 }
 
+function exerciseDeleteById(id) {
+    let deferred = Q.defer();
+    Exercise.findByIdAndRemove(id).then((result) => {
+        deferred.resolve(result);
+    }).catch((error) => {
+       // deferred.reject(error);
+        deferred.reject(error);
+    });
+    return deferred.promise;
+}
+
 module.exports = {
     getExerciseList,
     exerciseReadById,
     exerciseUpdateById,
-    saveExercise
+    saveExercise,
+    exerciseDeleteById
    
 };
