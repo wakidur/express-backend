@@ -1,0 +1,58 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.1",
+        "title": "Workout API",
+        "description": "Workout Application API"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/",
+
+    "paths": {
+        "/exercise/create": {
+            "post": {
+                "tags": ["Exercise"],
+                "description": "Exercise to the system"
+            },
+            "get": {
+                "tags": ["Exercise"],
+                "description": "Login to the system"
+            }
+        },
+        "/exercise/:id": {
+            "get": {
+                "tags": ["Exercise"],
+                "description": "Login to the system"
+            },
+            "put": {
+                "tags": ["Exercise"],
+                "description": "Login to the system"
+            },
+            "delete": {
+                "tags": ["Exercise"],
+                "description": "Login to the system"
+            }
+        },
+        "/exerciseplan/create": {
+            "post": {
+                "tags": ["Exercise Plan"],
+                "description": "Exercise Plan to the system"
+            },
+            "get": {
+                "tags": ["Exercise Plan"],
+                "description": "Exercise Plan to the system"
+            }
+        },
+        "/workoutplan/create": {
+            "post": {
+                "tags": ["Workout Plan"],
+                "description": "Workout Plan to the system"
+            },
+            "get": {
+                "tags": ["Workout Plan"],
+                "description": "Workout Plan to the system"
+            }
+        }
+    }
+   
+}

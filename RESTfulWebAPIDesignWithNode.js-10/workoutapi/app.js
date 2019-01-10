@@ -5,6 +5,10 @@
  const path = require('path');
  const cookieParser = require('cookie-parser');
  const bodyParser = require('body-parser');
+
+ const swaggerUi = require('swagger-ui-express');
+ const swaggerDocument = require('./config/swagger.json');
+
  //Import the mongoose module
  const mongoose = require('mongoose');
 
@@ -47,28 +51,11 @@
  app.use(methodOverride());
 
 
- //  // error handler
- //  app.use((err, req, res, next) => {
- //      // customize Joi validation errors
- //      if (err.isJoi) {
- //          err.message = err.details.map(e => e.message).join("; ");
- //          err.status = 400;
- //      } else if (err.name === 'ValidationError') {
- //          var valErrors = [];
- //          Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
- //          res.status(422).send(valErrors);
- //      } else {
- //          res.status(500)
- //              .json({
- //                  status: err.status,
- //                  message: err.message
- //              });
- //      }
- //  });
 
- app.use('/api/users', users);
- app.use('/api', trainerRoutes);
 
+app.use('/api/users', users);
+app.use('/api', trainerRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); 
 
  // catch 404 and forward to error handler
  app.use((req, res, next) => {
