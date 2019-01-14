@@ -3,6 +3,8 @@
 
 # Ada Library Information
 
+
+
 apps/node_modules
 apps/package-lock.json
 
@@ -16,9 +18,8 @@ simple-knowledgebase-app/package-lock.json
 
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/node_modules/
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/package-lock.json
-MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/client-side/node_modules/webdriver-js-extender/built/built/built/built/built/built/built/built/built/built/built/built/built/built/built/built/spec/command_tests/totally_real_apk.apk
-MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/client-side/node_modules/webdriver-js-extender/built/built/built/built/built/built/built/built/built/built/built/built/built/built/built/spec/command_tests/totally_real_apk.apk
-
+MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/client-side/node_modules/
+MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/client-side/node_modules/
 hackathon-starter/
 hackathon-starter
 hackathon-starter-master/node_modules
@@ -54,7 +55,7 @@ RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionOne/node_modules/
 RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionOne/package-lock.json
 RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionTwo/node_modules/
 RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionTwo/package-lock.json
-
 RESTfulWebAPIDesignWithNode.js-10/workoutapi/node_modules/
+RESTfulWebAPIDesignWithNode.js-10/workoutapi/node_modules
 RESTfulWebAPIDesignWithNode.js-10/workoutapi/package-lock.json
 
