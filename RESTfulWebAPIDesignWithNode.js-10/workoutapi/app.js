@@ -9,6 +9,7 @@
  const swaggerUi = require('swagger-ui-express');
  const swaggerDocument = require('./config/swagger.json');
 
+ const passport = require('./config/passportConfig')
  //Import the mongoose module
  const mongoose = require('mongoose');
 
@@ -49,7 +50,7 @@
  }));
  app.use(cookieParser());
  app.use(methodOverride());
-
+ app.use(passport.initialize());
 
 
 

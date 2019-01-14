@@ -33,7 +33,7 @@ exports.postSignup = (req, res, next) => {
             fullname: Joi.string().required(),
             email: Joi.string().email(),
             password: Joi.string().required(),
-        })
+        });
         Joi.validate(req.body, userSchema, (err, value) => {
             if (err) {
                 next(err);
@@ -93,7 +93,45 @@ exports.getLogin = (req, res) => {
  * Sign in using email and password.
  */
 exports.postLogin = (req, res, next) => {
-    // call for
+    try {
+        if (!req.body) {
+            return res.status(400).json({
+                "message": "Email is not valid and Password cannot be blank"
+            });
+        } else {
+            const userSchema = Joi.object({
+                email: Joi.string().email(),
+                password: Joi.string().required(),
+            });
+            Joi.validate(req.body, userSchema, (err, value) => {
+                if (err) {
+                    return res.status(404).json(err);
+                } else {
+                    // call for passport authentication
+                    passport.authenticate('local', (err, user, info) => {
+                        // error from passport middleware
+                        if (err) {
+                            return res.status(400).json(err);
+                        } else if (user) {
+                            // registered user
+                            return res.status(200).json({
+                                "token": user.generateJwt()
+                            });
+                        } else {
+                            // unknown user or wrong password
+                            return res.status(404).json(info);
+                        }
+                    })(req, res);
+                }
+
+            });
+        }
+
+    } catch (error) {
+        res.json({
+            "message": "block of code for errors!"
+        });
+    }
 
 };
 
@@ -108,8 +146,15 @@ exports.getAllAccount = (req, res) => {
  * GET /account/profile
  * Profile page.
  */
-exports.getUserProfile = (req, res) => {
-
+exports.getUserProfile = (req, res, next) => {
+    User.findOne({ _id: req._id },
+        (err, user) => {
+            if (!user)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json({ status: true, user : _.pick(user,['fullName','email']) });
+        }
+    );
 };
 
 /**

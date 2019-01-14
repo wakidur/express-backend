@@ -19,7 +19,7 @@ router
 
 // post request for creating a authenticate.
 router
-    .route('/authenticate')
+    .route('/login')
     .get(userCtrl.getLogin)
     .post(userCtrl.postLogin);
 

@@ -50,11 +50,12 @@ UserSchema.pre('save', function(next)  {
 });
 
 // Methods
-UserSchema.methods.verifyPassword  = (password) => {
+UserSchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-UserSchema.methods.generateJwt = () => {
+
+UserSchema.methods.generateJwt = function ()  {
     return jwt.sign({_id: this._id}, config.jwtSecret, {expiresIn: config.jwtEXP});
 };
 
