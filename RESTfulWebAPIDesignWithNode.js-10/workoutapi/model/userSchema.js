@@ -54,10 +54,42 @@ UserSchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
 
+/*
+Another way to generate a token like this with this library is:
+jwt.sign({
+  data: 'foobar'
+}, 'secret', { expiresIn: 60 * 60 });
 
-UserSchema.methods.generateJwt = function ()  {
-    return jwt.sign({_id: this._id}, config.jwtSecret, {expiresIn: config.jwtEXP});
-};
+//or even better:
+
+jwt.sign(
+  {
+  data: 'foobar'
+}, 'secret', 
+{ expiresIn: '1h' }
+);
+*/
+
+UserSchema.methods.generateJwt = function () {
+
+    const expiry = new Date();
+    expiry.setDate(expiry.getDate() + 7);
+  
+    return jwt.sign({
+        _id: this._id,
+        email: this.email,
+        name: this.fullName,
+        role: this.role,
+      },
+      config.jwtSecret, {
+        // expiresIn: process.env.JWT_EXP
+        expiresIn: parseInt(expiry.getTime() / 1000)
+      }
+    );
+  };
+// UserSchema.methods.generateJwt = function ()  {
+//     return jwt.sign({_id: this._id}, config.jwtSecret, {expiresIn: config.jwtEXP});
+// };
 
 
 //Export function to create "SomeModel" model class

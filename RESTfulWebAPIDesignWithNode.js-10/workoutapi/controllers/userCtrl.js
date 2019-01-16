@@ -123,7 +123,6 @@ exports.postLogin = (req, res, next) => {
                         }
                     })(req, res);
                 }
-
             });
         }
 
@@ -139,13 +138,16 @@ exports.postLogin = (req, res, next) => {
  * GET /account
  * get All Account.
  */
-exports.getAllAccount = (req, res) => {
+exports.getAllAccount = (req, res) => { };
 
-};
+
+
 /**
  * GET /account/profile
  * Profile page.
  */
+
+
 exports.getUserProfile = (req, res, next) => {
     User.findOne({ _id: req._id },
         (err, user) => {
