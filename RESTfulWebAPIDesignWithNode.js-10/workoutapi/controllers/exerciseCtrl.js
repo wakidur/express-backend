@@ -6,18 +6,21 @@ const ExercisePlan = require('../model/exercisePlanSchema');
 const exerciseDS = require('../service/exerciseDataService');
 
 // Retrieve all Exercise from the database.
-exports.getAllExercise = (req, res, next) => {
+
+exports.getAllExercise =  async function getAllExercise(req, res, next) {
     try {
-        exerciseDS.getExerciseList().then((result) => {
-            res.status(200).json(result);
-        }).catch((err) => {
-            handleError(res, err.message, "Something wrong while retrieving exercise.");
-        });
+        const userInfo = await exerciseDS.getExerciseListPromise();
+        if (userInfo) {
+            res.status(200).json(userInfo);
+        } else {
+            res.status(4040).json({message: "There have nothing "});
+        }
+
     } catch (error) {
         res.json(error);
     }
 
-};
+}
 
 //Create new Exercise
 exports.createExercise = (req, res, next) => {

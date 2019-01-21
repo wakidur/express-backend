@@ -16,6 +16,14 @@ function getExerciseList() {
     }); 
     return deferred.promise;
 }
+async  function getExerciseListPromise(userInfo) {
+    return new Promise((resolve, reject) => {
+        Exercise.find({})
+            .then((result) => resolve(result))
+            .catch(reject)
+    });
+ }
+
 function exerciseReadById(id) {
     let deferred = Q.defer();
     Exercise.findById(id).then((result) => {
@@ -64,6 +72,7 @@ module.exports = {
     exerciseReadById,
     exerciseUpdateById,
     saveExercise,
-    exerciseDeleteById
+    exerciseDeleteById,
+    getExerciseListPromise
    
 };

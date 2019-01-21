@@ -5,6 +5,7 @@
  *    POST: creates a new Exercise
  */
 const asyncHandler = require('express-async-handler');
+
 const express = require('express');
 const router = express.Router();
 
@@ -18,8 +19,8 @@ let workoutPlanController = require('../controllers/workoutPlanCtrl');
 // GET request for creating a exercise.
 router
     .route('/exercise/create')
-    .get(exerciseController.getAllExercise)
-    .post(exerciseController.createExercise);
+    .get(asyncHandler(exerciseController.getAllExercise))
+    .post(asyncHandler(exerciseController.createExercise));
 
 router
     .route('/exercise/:id')
