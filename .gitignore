@@ -1,33 +1,36 @@
-# Object file
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 
-# Ada Library Information
+# apps
+/apps/node_modules
+/apps/package-lock.json
 
-
-
-apps/node_modules
-apps/package-lock.json
-
+# express-locallibrary
 express-locallibrary/node_modules
 express-locallibrary/package-lock.json
 
+# simple-knowledgebase-app
 simple-knowledgebase-app/node_modules
 simple-knowledgebase-app/package-lock.json
 
 
-
+# MEAN-Stack-User-Registration-Login
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/node_modules/
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/package-lock.json
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/client-side/node_modules/
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/client-side/node_modules/
-hackathon-starter/
-hackathon-starter
-hackathon-starter-master/node_modules
-hackathon-starter-master/package-lock.json
 
+
+# nodekb-master
 nodekb-master/node_modules
 nodekb-master/package-lock.json
 
+# nipfs
 nipfs/server
 nipfs/obj
 nipfs/Properties
@@ -35,11 +38,11 @@ nipfs/node_modules
 
 MEAN
 
-hackathon-starter/node_modules
+# hackathon-starter
 hackathon-starter-master-Old/node_modules 
+hackathon-starter-master-Old/package-lock.json
 
-hackathon-starter-29-08-2018
-
+# local-restaurants
 local-restaurants/node_modules
 local-restaurants/package-lock.json
 local-restaurants/practiceNote
@@ -47,10 +50,11 @@ local-restaurants/practiceNote
 express-locallibray-two/node_modules
 express-locallibray-two/package-lock.json
 
-
+# MEAN-Stack-User-Registration-Login
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/server-side/node_modules/
 MEAN-Stack-User-Registration-Login/MEAN-JWT-Authentication/server-side/package-lock.json
 
+# RESTfulWebAPIDesignWithNode.js-10
 RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionOne/node_modules/
 RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionOne/package-lock.json
 RESTfulWebAPIDesignWithNode.js-10/RESTfulVersionTwo/node_modules/
