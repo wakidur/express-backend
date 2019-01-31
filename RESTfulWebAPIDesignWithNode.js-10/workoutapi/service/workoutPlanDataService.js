@@ -7,7 +7,7 @@ const ExercisePlan = require('../model/exercisePlanSchema');
 const WorkoutPlan = require('../model/workoutPlanSchema');
 
 // Get Book List
-async function getWorkoutPlanList() {
+function getWorkoutPlanList() {
     var deferred = Q.defer();
     WorkoutPlan.find({}).populate({
         path: 'exercises',

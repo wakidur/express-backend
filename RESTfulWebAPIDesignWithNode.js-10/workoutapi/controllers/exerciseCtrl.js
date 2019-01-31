@@ -7,13 +7,15 @@ const exerciseDS = require('../service/exerciseDataService');
 
 // Retrieve all Exercise from the database.
 
-exports.getAllExercise =  async function getAllExercise(req, res, next) {
+exports.getAllExercise = async function getAllExercise(req, res, next) {
     try {
         const userInfo = await exerciseDS.getExerciseListPromise();
         if (userInfo) {
             res.status(200).json(userInfo);
         } else {
-            res.status(4040).json({message: "There have nothing "});
+            res.status(4040).json({
+                message: "There have nothing "
+            });
         }
 
     } catch (error) {
@@ -84,6 +86,50 @@ exports.exerciseReadById = (req, res) => {
                         "message": "Exercise not found"
                     });
                 }
+                res.status(500).json({
+                    "message": "Something wrong retrieving product with id "
+                });
+            });
+        } else {
+            res.status(404).json({
+                "message": "No Exercise id in request"
+            });
+        }
+    } catch (error) {
+        res.json({
+            "message": "block of code for errors!"
+        });
+        // res.json(error);
+    }
+};
+
+// find each exercise with a name matching 'Ghost', selecting the `name` and `occupation` fields
+exports.exerciseReadByName = (req, res) => {
+    /**
+     * The try statement lets you test a block of code for errors.
+     * The catch statement lets you handle the error.
+     * The throw statement lets you create custom errors.
+     */
+    try {
+        if (req.params && req.params.id) {
+            const queryName = req.params.id;
+            
+            // Exercise.find({name:queryName}).then((doc) => {
+            //         console.log(doc);
+            //     })
+            //     .catch((err) => {
+            //         console.log(err);
+            //     });
+            Exercise.findOne({name: queryName }).then((result) => {
+                if (!result) {
+                    res.status(404).json({
+                        "message": "Exercise id not found"
+                    });
+                    return;
+                } else {
+                    res.status(200).json(result);
+                }
+            }).catch((err) => {
                 res.status(500).json({
                     "message": "Something wrong retrieving product with id "
                 });

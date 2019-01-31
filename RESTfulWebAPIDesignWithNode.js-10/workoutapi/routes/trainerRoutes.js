@@ -24,7 +24,7 @@ router
 
 router
     .route('/exercise/:id')
-    .get(exerciseController.exerciseReadById)
+    .get(exerciseController.exerciseReadByName)
     .put(exerciseController.exerciseUpdateById)
     .delete(exerciseController.exerciseDeleteById);
 
@@ -34,6 +34,7 @@ router
     .route('/exerciseplan/create')
     .get(exercisePlanController.getExercisePlanCreate)
     .post(exercisePlanController.postExercisePlanCreate);
+    
 // GET request for creating a WorkoutPlan.
 router
     .route('/workoutplan/create')
