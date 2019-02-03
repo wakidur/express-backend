@@ -9,19 +9,28 @@ const WorkoutPlan = require('../model/workoutPlanSchema');
 // Get Book List
 function getWorkoutPlanList() {
     var deferred = Q.defer();
-    WorkoutPlan.find({}).populate({
-        path: 'exercises',
-        populate: {
-            path: 'exercise',
-            model: 'Exercise'
-        }
-    }).then((result) => {
+    WorkoutPlan.find({}).populate('exercises.exercise').then((result) => {
         deferred.resolve(result);
     }).catch((err) => {
         deferred.reject(err);
     });
     return deferred.promise;
 }
+// function getWorkoutPlanList() {
+//     var deferred = Q.defer();
+//     WorkoutPlan.find({}).populate({
+//         path: 'exercises',
+//         populate: {
+//             path: 'exercise',
+//             model: 'Exercise'
+//         }
+//     }).then((result) => {
+//         deferred.resolve(result);
+//     }).catch((err) => {
+//         deferred.reject(err);
+//     });
+//     return deferred.promise;
+// }
 
 module.exports = {
     getWorkoutPlanList,

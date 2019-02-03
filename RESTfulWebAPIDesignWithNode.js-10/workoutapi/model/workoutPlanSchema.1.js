@@ -15,13 +15,9 @@ const WorkoutPlanModelSchema = new Schema({
         required: true
     },
     exercises: [{
-        exercise: {
-            type: Schema.Types.ObjectId,
-            ref: 'Exercise',
-            required: true,
-        },
-        duration: Number,
-        name: String,
+        type: Schema.ObjectId,
+        ref: 'ExercisePlan',
+        required: true
     }],
     description: {
         type: String,
