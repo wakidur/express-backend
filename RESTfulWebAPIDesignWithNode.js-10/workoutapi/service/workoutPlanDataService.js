@@ -16,6 +16,21 @@ function getWorkoutPlanList() {
     });
     return deferred.promise;
 }
+
+function getWorkoutPlanById(id) {
+    return new Promise((resolve, reject) => {
+        WorkoutPlan.findById(id)
+            .then((result) => resolve(result))
+            .catch(reject)
+    });
+}
+
+
+async function getWorkoutPlanByName(name) {
+    return await new Promise((resolve, reject) => {
+        WorkoutPlan.findOne({name: name}).then((result) => resolve(result)).catch(reject)
+    });
+}
 // function getWorkoutPlanList() {
 //     var deferred = Q.defer();
 //     WorkoutPlan.find({}).populate({
@@ -34,5 +49,7 @@ function getWorkoutPlanList() {
 
 module.exports = {
     getWorkoutPlanList,
+    getWorkoutPlanById,
+    getWorkoutPlanByName
 
 };

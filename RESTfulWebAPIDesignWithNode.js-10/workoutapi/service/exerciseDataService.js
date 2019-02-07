@@ -16,6 +16,15 @@ function getExerciseList() {
     }); 
     return deferred.promise;
 }
+
+async function getExerciseForkJoin() {
+    return await new Promise((resolve, reject)=> {
+        Exercise.find({})
+            .then((result) => resolve(result))
+            .catch(reject)
+    }).catch(()=> { console.log('bam errored'); throw 'bam'; });
+}
+
 async  function getExerciseListPromise(userInfo) {
     return new Promise((resolve, reject) => {
         Exercise.find({})
@@ -73,6 +82,6 @@ module.exports = {
     exerciseUpdateById,
     saveExercise,
     exerciseDeleteById,
-    getExerciseListPromise
-   
+    getExerciseListPromise,
+    getExerciseForkJoin
 };
