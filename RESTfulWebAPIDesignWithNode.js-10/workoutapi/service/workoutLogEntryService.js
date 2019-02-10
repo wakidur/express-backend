@@ -7,19 +7,52 @@ async function getAllWorkoutLogEntryPromise(userInfo) {
             .then((result) => resolve(result))
             .catch(reject);
     });
- }
+}
 
- async function saveWorkoutLogEntryPromise(userInfo) {
-    const workoutLogEntry = new WorkoutLogEntry(userInfo);
+async function saveWorkoutLogEntryPromise(userInfo) {
+    const workoutLogEntry = new WorkoutLogEntry({
+        startedOn: userInfo.startedOn,
+        endedOn: userInfo.endedOn,
+        completed: userInfo.completed,
+        exercisesDone: userInfo.exercisesDone,
+        lastExercise: userInfo.lastExercise,
+    });
     return new Promise((resolve, reject) => {
         workoutLogEntry.save()
             .then((result) => resolve(result))
             .catch(reject)
     });
- }
+}
 
+
+async function workoutLogEntryReadById(id) {
+    return new Promise((resolve, reject) => {
+        WorkoutLogEntry.findById(id)
+            .then((result) => resolve(result))
+            .catch(reject)
+    });
+}
+
+async function workoutLogEntryUpdateById(id) {
+    return new Promise((resolve, reject) => {
+        WorkoutLogEntry.findById(id)
+            .then((result) => resolve(result))
+            .catch(reject)
+    });
+}
+
+async function workoutLogEntryDeleteById(id) {
+    return new Promise((resolve, reject) => {
+        WorkoutLogEntry.findByIdAndRemove(id)
+            .then((result) => resolve(result))
+            .catch(reject)
+    });
+}
 module.exports = {
     getAllWorkoutLogEntryPromise,
-    saveWorkoutLogEntryPromise
-   
+    saveWorkoutLogEntryPromise,
+    workoutLogEntryReadById,
+    workoutLogEntryUpdateById,
+    workoutLogEntryDeleteById
+
 };

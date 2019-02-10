@@ -13,6 +13,7 @@ let exerciseController = require('../controllers/exerciseCtrl');
 let exercisePlanController = require('../controllers/exercisePlanCtrl');
 let workoutPlanController = require('../controllers/workoutPlanCtrl');
 let durationsController = require('../controllers/durationsCtrl');
+let workoutLogEntryCtrlController = require('../controllers/workoutLogEntryCtrl');
 /**
  * exercise Routes
  */
@@ -59,12 +60,18 @@ router
 
 // workoutLogEntry
 router
-    .route('/duration')
-    .get(durationsController.getAllWorkoutLogEntry);
+    .route('/workoutLogEntry')
+    .get(workoutLogEntryCtrlController.getAllWorkoutLogEntry);
 
 router
-    .route('/duration/create')
-    .post(durationsController.createWorkoutLogEntry);
+    .route('/workoutLogEntry/create')
+    .post(workoutLogEntryCtrlController.createWorkoutLogEntry);
+
+    router
+    .route('/workoutLogEntry/:id')
+    .get(workoutLogEntryCtrlController.workoutLogEntryReadById)
+    .put(workoutLogEntryCtrlController.workoutLogEntryUpdateById)
+    .delete(workoutLogEntryCtrlController.workoutLogEntryDeleteById);
 
 module.exports = router;
 
