@@ -28,14 +28,14 @@ exports.createWorkoutLogEntry = async function createWorkoutLogEntry(req, res, n
             return;
         }
         // Create a Exercise
-        const durationsSchema = Joi.object({
+        const workoutLogEntryJoi = Joi.object({
             startedOn: Joi.date().required(),
             completed: Joi.boolean(),
             exercisesDone: Joi.number().required(),
             lastExercise: Joi.string(),
             endedOn: Joi.date(),
         });
-        Joi.validate(req.body, durationsSchema, (err, value) => {
+        Joi.validate(req.body, workoutLogEntryJoi, (err, value) => {
             if (err) {
                 res.status(201).json(err);
             } else {
@@ -54,7 +54,7 @@ exports.createWorkoutLogEntry = async function createWorkoutLogEntry(req, res, n
 }
 
 // Find a single Exercise with a exercise Id
-exports.workoutLogEntryReadById = async function(req, res, next) {
+exports.workoutLogEntryReadById = async function (req, res, next) {
     /**
      * The try statement lets you test a block of code for errors.
      * The catch statement lets you handle the error.
@@ -62,7 +62,7 @@ exports.workoutLogEntryReadById = async function(req, res, next) {
      */
     try {
         if (req.params && req.params.id) {
-            const workoutLogEntryReadBy = await workoutLogEntryDS.workoutLogEntryReadById(req.params.id); 
+            const workoutLogEntryReadBy = await workoutLogEntryDS.workoutLogEntryReadById(req.params.id);
 
             if (workoutLogEntryReadBy) {
                 if (!workoutLogEntryReadBy) {
@@ -97,29 +97,48 @@ exports.workoutLogEntryReadById = async function(req, res, next) {
 };
 
 // Update a exercise
-exports.workoutLogEntryUpdateById = async function(req, res, next) {
+exports.workoutLogEntryUpdateById = async function (req, res, next) {
     try {
         if (req.params && req.params.id) {
-            const workoutLogEntryUpdate = await workoutLogEntryDS.workoutLogEntryUpdateById(req.params.id);
+            const workoutLogEntryReadBy = await workoutLogEntryDS.workoutLogEntryReadById(req.params.id);
 
-            if (workoutLogEntryUpdate) {
-                if (!workoutLogEntryUpdate) {
-                    res.status(404).json({
-                        "message": "Exercise id not found"
-                    });
-                    return;
-                } else {
-                    res.status(200).json(workoutLogEntryUpdate);
-                }
-            } else {
-                if (err.kind === "ObjectId") {
-                    res.status(404).json({
-                        "message": "Exercise not found"
-                    });
-                }
-                res.status(500).json({
-                    "message": "Something wrong retrieving product with id "
+            if (workoutLogEntryReadBy) {
+                const workoutLogEntryJoi = Joi.object({
+                    startedOn: Joi.date().required(),
+                    completed: Joi.boolean(),
+                    exercisesDone: Joi.number().required(),
+                    lastExercise: Joi.string(),
+                    endedOn: Joi.date(),
                 });
+                Joi.validate(req.body, workoutLogEntryJoi, (err, result) => {
+                    if (err) {
+                        next(err);
+                    } else {
+                        workoutLogEntryDS.workoutLogEntryUpdateById(req.params.id, req.body).then((result) => {
+                            if (!result) {
+                                res.status(404).json({
+                                    "message": "Exercise not found with id"
+                                });
+                            }
+                            res.status(200).json(result);
+                        }).catch((err) => {
+                            if (err.kind === 'ObjectId') {
+                                res.status(404).json({
+                                    "message": "Exercise not found with id"
+                                });
+                                return;
+                            }
+                            res.status(500).json({
+                                "message": "Something wrong updating note with id "
+                            });
+                        });
+                    }
+                });
+            } else {
+                res.status(404).json({
+                    "message": "Exercise id not found"
+                });
+                return;
             }
         } else {
             res.status(404).json({
@@ -136,15 +155,14 @@ exports.workoutLogEntryUpdateById = async function(req, res, next) {
 
 
 // Delete a note with the specified noteId in the request
-exports.workoutLogEntryDeleteById = async function(req, res, next) {
+exports.workoutLogEntryDeleteById = async function (req, res, next) {
     try {
         if (!req.params.id) {
             return res.status(404).json({
                 "message": "Not found, Exercise id is required"
             });
         }
-        const workoutLogEntryDelete = await workoutLogEntryDS.workoutLogEntryDeleteById(req.params.id);
-        workoutLogEntryDelete.then((result) => {
+        workoutLogEntryDS.workoutLogEntryDeleteById(req.params.id).then((result) => {
             if (!result) {
                 return res.status(404).json({
                     "message": "Exercise not found with id"

@@ -33,11 +33,18 @@ async function workoutLogEntryReadById(id) {
     });
 }
 
-async function workoutLogEntryUpdateById(id) {
+async function workoutLogEntryUpdateById(id, object) {
     return new Promise((resolve, reject) => {
-        WorkoutLogEntry.findById(id)
-            .then((result) => resolve(result))
-            .catch(reject)
+        WorkoutLogEntry.findByIdAndUpdate(id, {
+                startedOn: object.startedOn,
+                completed: object.completed,
+                exercisesDone: object.exercisesDone,
+                lastExercise: object.lastExercise,
+                endedOn: object.endedOn,
+            }, {
+                new: true
+            }).then((result) => resolve(result))
+            .catch(reject);
     });
 }
 
