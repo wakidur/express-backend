@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const workoutLogEntryDS = require('../service/workoutLogEntryService');
 
+// get All Workout Log Entry
 exports.getAllWorkoutLogEntry = async function getAllWorkoutLogEntry(req, res, next) {
     try {
         const workoutLogEntryInfo = await workoutLogEntryDS.getAllWorkoutLogEntryPromise();
@@ -18,8 +19,8 @@ exports.getAllWorkoutLogEntry = async function getAllWorkoutLogEntry(req, res, n
 
 }
 
-
-exports.createWorkoutLogEntry = async function createWorkoutLogEntry(req, res, next) {
+// create Workout Log Entry
+exports.createWorkoutLogEntry = (req, res, next) => {
     try {
         if (!req.body) {
             res.status(400).json({
@@ -53,7 +54,7 @@ exports.createWorkoutLogEntry = async function createWorkoutLogEntry(req, res, n
     }
 }
 
-// Find a single Exercise with a exercise Id
+// workout Log Entry Read By Id
 exports.workoutLogEntryReadById = async function (req, res, next) {
     /**
      * The try statement lets you test a block of code for errors.
@@ -94,9 +95,9 @@ exports.workoutLogEntryReadById = async function (req, res, next) {
         });
         // res.json(error);
     }
-};
+}
 
-// Update a exercise
+// workout Log Entry Update By Id
 exports.workoutLogEntryUpdateById = async function (req, res, next) {
     try {
         if (req.params && req.params.id) {
@@ -153,8 +154,7 @@ exports.workoutLogEntryUpdateById = async function (req, res, next) {
     }
 }
 
-
-// Delete a note with the specified noteId in the request
+// workout Log Entry Delete By Id
 exports.workoutLogEntryDeleteById = async function (req, res, next) {
     try {
         if (!req.params.id) {

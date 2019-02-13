@@ -66,7 +66,7 @@ router
 router
     .route('/workoutLogEntry/create')
     .post(workoutLogEntryCtrlController.createWorkoutLogEntry);
-
+    
     router
     .route('/workoutLogEntry/:id')
     .get(workoutLogEntryCtrlController.workoutLogEntryReadById)
