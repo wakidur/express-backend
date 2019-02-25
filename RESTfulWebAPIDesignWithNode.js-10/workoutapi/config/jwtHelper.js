@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const config = require('./config');
 
 module.exports.verifyJwtToken = (req, res, next) => {
-    
+    var token;
     if ('authorization' in req.headers)
         token = req.headers['authorization'].split(' ')[1];
 

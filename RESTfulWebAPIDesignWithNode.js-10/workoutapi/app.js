@@ -5,11 +5,11 @@
  const path = require('path');
  const cookieParser = require('cookie-parser');
  const bodyParser = require('body-parser');
-
+ const morgan = require('morgan');
  const swaggerUi = require('swagger-ui-express');
  const swaggerDocument = require('./config/swagger.json');
 
- const passport = require('./config/passportConfig')
+ const passport = require('./config/passportConfig');
  //Import the mongoose module
  const mongoose = require('mongoose');
 
@@ -44,19 +44,20 @@
  // It is Node.js body parser middleware. It parse the incoming request bodies in a middleware before your handlers, 
  // available under the req.body property.
 
+//  app.use('/uploads', express.static('uploads'));
+ app.use(express.static(__dirname));
  app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({
      extended: true
  }));
+ app.use(morgan('dev'));
  app.use(cookieParser());
  app.use(methodOverride());
  app.use(passport.initialize());
 
-
-
-app.use('/api/users', users);
-app.use('/api', trainerRoutes);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); 
+ app.use('/api/users', users);
+ app.use('/api', trainerRoutes);
+ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
  // catch 404 and forward to error handler
  app.use((req, res, next) => {

@@ -29,17 +29,30 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    roles: [{
+    userImage: {
         type: String,
-    }]
+        required: false
+    },
+    roles: {
+        type: String,
+        required: true,
+        enum: ['root', 'admin', 'guest', 'private'],
+        default: 'guest'
+    }
 
 }, {
     timestamps: true,
     versionKey: false
 });
 
+// Custom validation for email
+// UserSchema.path('email').validate((val) => {
+//     emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//     return emailRegex.test(val);
+// }, 'Invalid e-mail.');
+
 // Events
-UserSchema.pre('save', function(next)  {
+UserSchema.pre('save', function (next) {
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(this.password, salt, (err, hash) => {
             this.password = hash;
@@ -74,19 +87,19 @@ UserSchema.methods.generateJwt = function () {
 
     const expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
-  
+
     return jwt.sign({
-        _id: this._id,
-        email: this.email,
-        name: this.fullName,
-        role: this.role,
-      },
-      config.jwtSecret, {
-        // expiresIn: process.env.JWT_EXP
-        expiresIn: parseInt(expiry.getTime() / 1000)
-      }
+            _id: this._id,
+            email: this.email,
+            name: this.fullName,
+            role: this.role,
+        },
+        config.jwtSecret, {
+            // expiresIn: process.env.JWT_EXP
+            expiresIn: parseInt(expiry.getTime() / 1000)
+        }
     );
-  };
+};
 // UserSchema.methods.generateJwt = function ()  {
 //     return jwt.sign({_id: this._id}, config.jwtSecret, {expiresIn: config.jwtEXP});
 // };
