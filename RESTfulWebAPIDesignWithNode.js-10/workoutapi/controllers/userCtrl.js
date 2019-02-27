@@ -1,10 +1,23 @@
+/**
+ * npm middleware list
+ */
 const mongoose = require('mongoose');
 const passport = require('passport');
 const _ = require('lodash');
 const Joi = require('joi');
 const path = require('path');
 const multer = require('multer');
+
+/**
+ * Schema require list
+ */
 const User = require('../model/userSchema');
+const ListOfRoles = require('../model/listOfRolesSchema');
+const ListOfResourceOrAction = require('../model/listOfResourceOrActionSchema');
+const UserRoles = require('../model/userRolesSchema');
+const RoleWiseResourcePermission = require('../model/roleWiseResourcePermissionSchema');
+
+
 
 
 const storage = multer.diskStorage({
@@ -238,4 +251,139 @@ exports.getUserProfile = (req, res, next) => {
  * Update profile information.
  */
 
-exports.postUserUpdateProfile = (req, res, next) => {}
+exports.postUserUpdateProfile = (req, res, next) => {};
+
+
+exports.getListOfRoles = (req, res, next) => {
+    ListOfRoles.find({}).exec((err, data) => {
+        if (err) {
+            res.status(201).json(err);
+        } else {
+            res.status(200).json(data);
+        }
+    });
+};
+exports.postListOfRoles = (req, res, next) => {
+    try {
+        if (!req.body) {
+            return res.status(400).json({
+                "message": "Role field is empty"
+            });
+        } else {
+            const roleName = new ListOfRoles({
+                name: req.body.name,
+            });
+            roleName.save().then((result) => {
+                res.status(200).json(result);
+            }).catch((err) => {
+                res.status(201).json(err);
+            });
+
+        }
+    } catch (error) {
+        return res.json({
+            "message": "block of code for errors!"
+        });
+    }
+};
+exports.getListOfResourceOrAction = (req, res, next) => {
+    ListOfResourceOrAction.find({}).exec((err, data) => {
+        if (err) {
+            res.status(201).json(err);
+        } else {
+            res.status(200).json(data);
+        }
+    });
+};
+exports.postListOfResourceOrAction = (req, res, next) => {
+    try {
+        if (!req.body) {
+            return res.status(400).json({
+                "message": "Role field is empty"
+            });
+        } else {
+            const resourceName = new ListOfResourceOrAction({
+                name: req.body.name,
+            });
+            resourceName.save().then((result) => {
+                res.status(200).json(result);
+            }).catch((err) => {
+                res.status(201).json(err);
+            });
+
+        }
+    } catch (error) {
+        return res.json({
+            "message": "block of code for errors!"
+        });
+    }
+};
+exports.getUserRoles = (req, res, next) => {
+    UserRoles.find({}).populate('user_id').populate('ListOfRoles').exec((err, data) => {
+        if (err) {
+            res.status(201).json(err);
+        } else {
+            res.status(200).json(data);
+        }
+    });
+};
+
+exports.postUserRoles = (req, res, next) => {
+    try {
+        if (!req.body) {
+            return res.status(400).json({
+                "message": "Role field is empty"
+            });
+        } else {
+            const userRole = new UserRoles({
+                user_id: req.body.user_id,
+                role_id: req.body.role_id,
+            });
+            userRole.save().then((result) => {
+                res.status(200).json(result);
+            }).catch((err) => {
+                res.status(201).json(err);
+            });
+
+        }
+    } catch (error) {
+        return res.json({
+            "message": "block of code for errors!"
+        });
+    }
+};
+exports.getRoleWiseResourcePermission = (req, res, next) => {
+    RoleWiseResourcePermission.find({}).exec((err, data) => {
+        if (err) {
+            res.status(201).join(err);
+        } else {
+            res.status(200).join(data);
+        }
+    });
+};
+exports.postRoleWiseResourcePermission = (req, res, next) => {
+    try {
+        if (!req.body) {
+            return res.status(400).json({
+                "message": "Role field is empty"
+            });
+        } else {
+            const roleWiseResource = new RoleWiseResourcePermission({
+                user_id: req.body.user_id,
+                role_id: req.body.role_id,
+                resource_id: req.body.resource_id,
+            });
+            roleWiseResource.save().then((result) => {
+                res.status(200).json(result);
+            }).catch((err) => {
+                res.status(201).json(err);
+            });
+
+        }
+    } catch (error) {
+        return res.json({
+            "message": "block of code for errors!"
+        });
+    }
+};
+

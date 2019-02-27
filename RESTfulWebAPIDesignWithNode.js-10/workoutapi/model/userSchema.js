@@ -33,10 +33,9 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    roles: {
+    role: {
         type: String,
         required: true,
-        enum: ['root', 'admin', 'guest', 'private'],
         default: 'guest'
     }
 
@@ -87,14 +86,14 @@ UserSchema.methods.generateJwt = function () {
 
     const expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
-
-    return jwt.sign({
+    return jwt.sign(
+        {
             _id: this._id,
             email: this.email,
             name: this.fullName,
-            role: this.role,
         },
-        config.jwtSecret, {
+        config.jwtSecret, 
+        {
             // expiresIn: process.env.JWT_EXP
             expiresIn: parseInt(expiry.getTime() / 1000)
         }

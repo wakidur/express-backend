@@ -33,4 +33,30 @@ router
   .get(jwtHelper.verifyJwtToken, userCtrl.getUserProfile)
   .post(jwtHelper.verifyJwtToken, userCtrl.postUserUpdateProfile);
 
+
+/*****************/
+// List Of Roles
+router
+  .route('/list-of-roles')
+  .get(userCtrl.getListOfRoles)
+  .post(userCtrl.postListOfRoles);
+
+// List Of Resource Or Action
+router
+  .route('/list-of-resources')
+  .get(userCtrl.getListOfResourceOrAction)
+  .post(userCtrl.postListOfResourceOrAction);
+
+// User Roles
+router
+  .route('/user-roles')
+  .get(userCtrl.getUserRoles)
+  .post(userCtrl.postUserRoles);
+
+// role Wise Resource Permission
+router
+  .route('/role-wise-resource-permission')
+  .get(userCtrl.getRoleWiseResourcePermission)
+  .post(userCtrl.postRoleWiseResourcePermission);
+
 module.exports = router;
