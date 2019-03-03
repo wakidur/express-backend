@@ -33,11 +33,11 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    role: {
-        type: String,
-        required: true,
-        default: 'guest'
-    }
+    // role: {
+    //     type: String,
+    //     required: true,
+    //     default: 'guest'
+    // }
 
 }, {
     timestamps: true,

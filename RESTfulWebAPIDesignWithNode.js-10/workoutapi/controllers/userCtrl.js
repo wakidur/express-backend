@@ -253,7 +253,9 @@ exports.getUserProfile = (req, res, next) => {
 
 exports.postUserUpdateProfile = (req, res, next) => {};
 
-
+/**
+ * List Of Roles
+ */
 exports.getListOfRoles = (req, res, next) => {
     ListOfRoles.find({}).exec((err, data) => {
         if (err) {
@@ -286,6 +288,9 @@ exports.postListOfRoles = (req, res, next) => {
         });
     }
 };
+/**
+ * List Of Resource Or Action
+ */
 exports.getListOfResourceOrAction = (req, res, next) => {
     ListOfResourceOrAction.find({}).exec((err, data) => {
         if (err) {
@@ -318,14 +323,25 @@ exports.postListOfResourceOrAction = (req, res, next) => {
         });
     }
 };
+
+/**
+ * User Roles
+ */
+
 exports.getUserRoles = (req, res, next) => {
-    UserRoles.find({}).populate('user_id').populate('ListOfRoles').exec((err, data) => {
-        if (err) {
-            res.status(201).json(err);
-        } else {
-            res.status(200).json(data);
-        }
-    });
+    // UserRoles.find({}).populate('user_id', 'fullname').populate('role_id', 'name').exec((err, data) => {
+    UserRoles.find()
+        .populate({
+            path: 'user_id',
+            select: ['fullname', 'email', 'userImage']
+        })
+        .populate('role_id', 'name').exec((err, data) => {
+            if (err) {
+                res.status(201).json(err);
+            } else {
+                res.status(200).json(data);
+            }
+        });
 };
 
 exports.postUserRoles = (req, res, next) => {
@@ -352,6 +368,104 @@ exports.postUserRoles = (req, res, next) => {
         });
     }
 };
+
+exports.getUserRoleById = (req, res, next) => {
+    const requstId = req.params.id;
+    UserRoles.find({
+        user_id: requstId
+    }).populate('role_id', 'name').exec((err, data) => {
+        if (err) {
+            res.status(201).json(err);
+        } else {
+            if (data.length != 0) {
+                res.status(200).json(data);
+            } else {
+                res.status(200).json({
+                    message: "No data"
+                });
+            }
+
+        }
+    });
+}
+
+exports.getUserRoleByName = (req, res, next) => {
+    const requstId = req.params.id;
+    UserRoles.find({
+            fullname: requstId
+        })
+        .populate('role_id', 'name').exec((err, data) => {
+            if (err) {
+                res.status(201).json(err);
+            } else {
+                res.status(200).json(data);
+            }
+        });
+}
+
+exports.userRoleUpdateById = async function (req, res, next) {
+
+    try {
+        let id = mongoose.mongo.ObjectID(req.params.id)
+        let member = mongoose.mongo.ObjectID(req.body.role_id)
+        const requstId = req.params.id;
+        const updateId = req.body.role_id;
+        const isUser = await UserRoles.find({
+            user_id: requstId
+        });
+        // const isUpdate = await UserRoles.find({role_id: updateId});
+
+        if (isUser) {
+            console.log(isUser[0].id)
+            let id = mongoose.mongo.ObjectID(isUser[0].id)
+            UserRoles.findByIdAndUpdate(
+                isUser[0].id, {
+                    $set: {
+                        role_id: updateId
+                    }
+                }, {
+                    new: true
+                }).then((result) => {
+                res.status(200).json(result);
+            }).catch((err) => {
+                res.status(200).json(err);
+            });
+        } else {
+            console.log("error")
+        }
+
+
+
+
+        // UserRoles.find({user_id: requstId})
+        // // .findByIdAndUpdate(req.params.id, {
+        // //     name: req.body.name,
+        // //     title: req.body.title,
+        // //     description: req.body.description,
+        // //     image: req.body.image,
+        // //     nameSound: req.body.nameSound,
+        // //     procedure: req.body.procedure,
+        // //     videos: req.body.videos,
+        // // }, {
+        // //     new: true
+        // // })
+        // .populate('role_id').exec((err, data) => {
+        //     if (err) {
+        //         res.status(201).json(err);
+        //     } else {
+        //         res.status(200).json(data);
+        //     }
+        // });
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+exports.userRoleDeleteById = (req, res, next) => {}
+
+/**
+ * Role Wise Resource Permission
+ */
 exports.getRoleWiseResourcePermission = (req, res, next) => {
     RoleWiseResourcePermission.find({}).exec((err, data) => {
         if (err) {
@@ -386,4 +500,3 @@ exports.postRoleWiseResourcePermission = (req, res, next) => {
         });
     }
 };
-

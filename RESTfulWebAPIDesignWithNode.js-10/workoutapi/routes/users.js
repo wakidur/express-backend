@@ -52,7 +52,11 @@ router
   .route('/user-roles')
   .get(userCtrl.getUserRoles)
   .post(userCtrl.postUserRoles);
-
+  router
+  .route('/user-roles/:id')
+  .get(userCtrl.getUserRoleById)
+  .put(userCtrl.userRoleUpdateById)
+  .delete(userCtrl.userRoleDeleteById);
 // role Wise Resource Permission
 router
   .route('/role-wise-resource-permission')
