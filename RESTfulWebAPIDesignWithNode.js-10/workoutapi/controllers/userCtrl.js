@@ -369,6 +369,14 @@ exports.postUserRoles = (req, res, next) => {
     }
 };
 
+exports.updateListOfRoles = async function (req, res, next) {
+    UserRoles.findByIdAndUpdate(req.body._id, {name: req.body.name}, ).then((result) => {
+        res.status(200).json(result);
+    }).catch((err) => {
+        res.status(201).json(err);
+    });
+}
+
 exports.getUserRoleById = (req, res, next) => {
     const requstId = req.params.id;
     UserRoles.find({
@@ -384,24 +392,12 @@ exports.getUserRoleById = (req, res, next) => {
                     message: "No data"
                 });
             }
-
         }
-    });
+    }
 }
 
-exports.getUserRoleByName = (req, res, next) => {
-    const requstId = req.params.id;
-    UserRoles.find({
-            fullname: requstId
-        })
-        .populate('role_id', 'name').exec((err, data) => {
-            if (err) {
-                res.status(201).json(err);
-            } else {
-                res.status(200).json(data);
-            }
-        });
-}
+       
+
 
 exports.userRoleUpdateById = async function (req, res, next) {
 
@@ -497,4 +493,4 @@ exports.postRoleWiseResourcePermission = (req, res, next) => {
             "message": "block of code for errors!"
         });
     }
-};
+}

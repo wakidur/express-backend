@@ -50,7 +50,8 @@ router
 router
   .route('/list-of-roles')
   .get(userCtrl.getListOfRoles)
-  .post(userCtrl.postListOfRoles);
+  .post(userCtrl.postListOfRoles)
+  .put(userCtrl.updateListOfRoles);
 
 // List Of Resource Or Action
 router
