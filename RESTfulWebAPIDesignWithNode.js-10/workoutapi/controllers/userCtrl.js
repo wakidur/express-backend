@@ -19,7 +19,7 @@ const RoleWiseResourcePermission = require('../model/roleWiseResourcePermissionS
 
 
 
-
+// Image upload configur
 const storage = multer.diskStorage({
     destination: function (req, file, next) {
         next(null, path.join(__dirname, '../uploads/'));
@@ -51,18 +51,6 @@ const upload = multer({
 //     fileFilter: fileFilter
 //   }).single('userImage');
 
-/**
- * GET /signup
- * Signup page.
- */
-exports.getSignup = (req, res) => {
-    if (req.user) {
-        return res.redirect('/');
-    }
-    res.status(200).json({
-        title: 'Create Account'
-    });
-};
 
 /**
  * POST /signup
@@ -155,19 +143,6 @@ exports.postSignup = (req, res, next) => {
 
 
 /**
- * GET /login
- * Login page.
- */
-exports.getLogin = (req, res) => {
-    if (req.user) {
-        return res.redirect('/');
-    }
-    res.status(200).json({
-        title: 'Login'
-    });
-};
-
-/**
  * POST /login
  * Sign in using email and password.
  */
@@ -217,16 +192,20 @@ exports.postLogin = (req, res, next) => {
  * GET /account
  * get All Account.
  */
+
 exports.getAllAccount = (req, res) => {};
 
+/**
+ * POST /forgot
+ * Create a random token, then the send user an email with a reset link.
+*/
 
+exports.postForgot = (req, res, next) => {};
 
 /**
  * GET /account/profile
  * Profile page.
  */
-
-
 exports.getUserProfile = (req, res, next) => {
     User.findOne({
             _id: req._id
@@ -251,7 +230,28 @@ exports.getUserProfile = (req, res, next) => {
  * Update profile information.
  */
 
-exports.postUserUpdateProfile = (req, res, next) => {};
+exports.postUpdateProfile = (req, res, next) => {};
+
+/**
+ * POST /account/password
+ * Update current password.
+ */
+
+exports.postUpdatePassword = (req, res, next) => {};
+
+/**
+ * POST /account/delete
+ * Delete user account.
+ */
+
+exports.postDeleteAccount = (req, res, next) => {};
+
+
+
+
+
+/******* Account Management **********/
+
 
 /**
  * List Of Roles
@@ -406,8 +406,6 @@ exports.getUserRoleByName = (req, res, next) => {
 exports.userRoleUpdateById = async function (req, res, next) {
 
     try {
-        let id = mongoose.mongo.ObjectID(req.params.id)
-        let member = mongoose.mongo.ObjectID(req.body.role_id)
         const requstId = req.params.id;
         const updateId = req.body.role_id;
         const isUser = await UserRoles.find({

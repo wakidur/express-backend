@@ -13,17 +13,20 @@ const jwtHelper = require('../config/jwtHelper');
 // post request for creating a user.
 router
   .route('/signup')
-  .get(userCtrl.getSignup)
   .post(userCtrl.postSignup);
 
 
 // post request for creating a authenticate.
 router
   .route('/login')
-  .get(userCtrl.getLogin)
   .post(userCtrl.postLogin);
 
-// post request for creating a authenticate.
+router
+  .route('/forgot')
+  .post(userCtrl.postForgot);
+
+
+// Get all user account.
 router
   .route('/account')
   .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount);
@@ -31,10 +34,18 @@ router
 router
   .route('/account/profile')
   .get(jwtHelper.verifyJwtToken, userCtrl.getUserProfile)
-  .post(jwtHelper.verifyJwtToken, userCtrl.postUserUpdateProfile);
+  .post(jwtHelper.verifyJwtToken, userCtrl.postUpdateProfile);
+
+router
+  .route('/account/password')
+  .post(jwtHelper.verifyJwtToken, userCtrl.postUpdatePassword);
+
+router
+  .route('/account/delete')
+  .post( jwtHelper.verifyJwtToken, userCtrl.postDeleteAccount);
 
 
-/*****************/
+/******* Account Management **********/
 // List Of Roles
 router
   .route('/list-of-roles')
@@ -52,11 +63,13 @@ router
   .route('/user-roles')
   .get(userCtrl.getUserRoles)
   .post(userCtrl.postUserRoles);
-  router
+
+router
   .route('/user-roles/:id')
   .get(userCtrl.getUserRoleById)
   .put(userCtrl.userRoleUpdateById)
   .delete(userCtrl.userRoleDeleteById);
+
 // role Wise Resource Permission
 router
   .route('/role-wise-resource-permission')
