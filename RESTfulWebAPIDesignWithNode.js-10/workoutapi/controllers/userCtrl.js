@@ -379,9 +379,7 @@ exports.updateListOfRoles = async function (req, res, next) {
 
 exports.getUserRoleById = (req, res, next) => {
     const requstId = req.params.id;
-    UserRoles.find({
-        user_id: requstId
-    }).populate('role_id', 'name').exec((err, data) => {
+    UserRoles.find({user_id: requstId}).populate('role_id', 'name').exec((err, data) => {
         if (err) {
             res.status(201).json(err);
         } else {
@@ -393,7 +391,7 @@ exports.getUserRoleById = (req, res, next) => {
                 });
             }
         }
-    }
+    })
 }
 
        
