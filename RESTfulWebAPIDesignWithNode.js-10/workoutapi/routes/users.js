@@ -53,6 +53,10 @@ router
   .post(userCtrl.postListOfRoles)
   .put(userCtrl.updateListOfRoles);
 
+  router
+  .route('/list-of-roles/:name')
+  .get(userCtrl.getListOfRoleByName)
+  .delete(userCtrl.deleteListOfRoles);
 // List Of Resource Or Action
 router
   .route('/list-of-resources')

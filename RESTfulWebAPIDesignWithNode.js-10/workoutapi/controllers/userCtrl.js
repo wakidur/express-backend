@@ -198,7 +198,7 @@ exports.getAllAccount = (req, res) => {};
 /**
  * POST /forgot
  * Create a random token, then the send user an email with a reset link.
-*/
+ */
 
 exports.postForgot = (req, res, next) => {};
 
@@ -265,6 +265,7 @@ exports.getListOfRoles = (req, res, next) => {
         }
     });
 };
+
 exports.postListOfRoles = (req, res, next) => {
     try {
         if (!req.body) {
@@ -288,6 +289,76 @@ exports.postListOfRoles = (req, res, next) => {
         });
     }
 };
+
+
+exports.updateListOfRoles = async function (req, res, next) {
+    try {
+        ListOfRoles.findByIdAndUpdate(req.body._id, {
+            name: req.body.name
+        }).then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            res.status(201).json(err);
+        });
+    } catch (error) {
+        return res.json({
+            "message": "block of code for errors!"
+        });
+    }
+
+}
+
+exports.deleteListOfRoles = async function (req, res, next) {
+
+    try {
+        const deleteListOfRole = await new Promise((resolve, reject) => {
+            ListOfRoles.findByIdAndDelete(req.params.name).then((result) => {
+                resolve(result);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+        if (deleteListOfRole) {
+            res.status(200).json({
+                message: "Success"
+            });
+        } else {
+            res.status(200).json({
+                message: "There are some problem"
+            });
+        }
+    } catch (error) {
+        return res.json({
+            "message": "block of code for errors!"
+        });
+    }
+}
+
+exports.getListOfRoleByName = async function (req, res, next) {
+    try {
+        const queryName = await new Promise((resolve, reject) => {
+            ListOfRoles.findOne({
+                name: req.params.name
+            }).then((result) => resolve(result)).catch(reject)
+        });
+        if (queryName) {
+            res.status(200).json({
+                name: queryName.name
+            });
+        } else {
+            res.status(200).json({
+                name: "not found"
+            });
+        }
+    } catch (error) {
+        return res.json({
+            "message": "block of code for errors!"
+        });
+    }
+
+}
+
+
 /**
  * List Of Resource Or Action
  */
@@ -300,6 +371,7 @@ exports.getListOfResourceOrAction = (req, res, next) => {
         }
     });
 };
+
 exports.postListOfResourceOrAction = (req, res, next) => {
     try {
         if (!req.body) {
@@ -369,17 +441,13 @@ exports.postUserRoles = (req, res, next) => {
     }
 };
 
-exports.updateListOfRoles = async function (req, res, next) {
-    UserRoles.findByIdAndUpdate(req.body._id, {name: req.body.name}, ).then((result) => {
-        res.status(200).json(result);
-    }).catch((err) => {
-        res.status(201).json(err);
-    });
-}
+
 
 exports.getUserRoleById = (req, res, next) => {
     const requstId = req.params.id;
-    UserRoles.find({user_id: requstId}).populate('role_id', 'name').exec((err, data) => {
+    UserRoles.find({
+        user_id: requstId
+    }).populate('role_id', 'name').exec((err, data) => {
         if (err) {
             res.status(201).json(err);
         } else {
@@ -394,7 +462,7 @@ exports.getUserRoleById = (req, res, next) => {
     })
 }
 
-       
+
 
 
 exports.userRoleUpdateById = async function (req, res, next) {
