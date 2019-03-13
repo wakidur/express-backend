@@ -370,22 +370,27 @@ exports.searchByListOfRoleName = async function (req, res, next) {
       }
     }
     const incomingvalue = req.body.name.split('');
-    ListOfRoles.find({}).exec((err, data) => {
+    
+    ListOfRoles.find({
+      "name": {
+        $regex: req.body.name
+      }
+    }).exec((err, data) => {
       if (data.length === 0) {
         res.status(200).json({
           name: "not found"
         });
       } else if (data) {
-        const searchResult = [];
+        // const searchResult = [];
        
-         _.find(data, (o) => {
-            const splitvalue =  o.name.split("");
-            const presents = _.intersectionWith(splitvalue, incomingvalue, _.isEqual);
-            if(presents.length){
-              searchResult.push(o);
-            }
-        })
-        console.log(searchResult)
+        //  _.find(data, (o) => {
+        //     const splitvalue =  o.name.split("");
+        //     const presents = _.intersectionWith(splitvalue, incomingvalue, _.isEqual);
+        //     if(presents.length){
+        //       searchResult.push(o);
+        //     }
+        // })
+        // console.log(searchResult)
         res.status(200).json(data);
       } else {
         res.status(500).json({
