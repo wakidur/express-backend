@@ -27,9 +27,12 @@ router
 
 
 // Get all user account.
+// router
+//   .route('/account')
+//   .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount);
 router
   .route('/account')
-  .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount);
+  .get(userCtrl.getAllAccount);
 
 router
   .route('/account/profile')
@@ -51,12 +54,13 @@ router
   .route('/list-of-roles')
   .get(userCtrl.getListOfRoles)
   .post(userCtrl.postListOfRoles)
-  .put(userCtrl.updateListOfRoles);
+  .put(userCtrl.updateListOfRoles)
+  .delete(userCtrl.deleteListOfRole);
 
 router
   .route('/list-of-roles/:name')
   .get(userCtrl.getListOfRoleByName)
-  .delete(userCtrl.deleteListOfRoles);
+  .delete(userCtrl.deleteListOfRoleByID);
 
 router
   .route('/list-of-roles/search')
@@ -66,7 +70,18 @@ router
 router
   .route('/list-of-resources')
   .get(userCtrl.getListOfResourceOrAction)
-  .post(userCtrl.postListOfResourceOrAction);
+  .post(userCtrl.postListOfResourceOrAction) 
+  .put(userCtrl.updateListOfResourceOrAction)
+  .delete(userCtrl.deleteListOfResourceOrAction);
+
+router
+  .route('/list-of-resources/:name')
+  .get(userCtrl.getListOfResourceOrActionByName)
+  .delete(userCtrl.deleteListOfResourceOrActionByID);
+
+router
+  .route('/list-of-resources/search')
+  .post(userCtrl.searchByListOfResourceOrActionName);
 
 // User Roles
 router

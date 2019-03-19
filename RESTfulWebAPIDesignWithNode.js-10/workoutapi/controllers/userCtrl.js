@@ -193,7 +193,15 @@ exports.postLogin = (req, res, next) => {
  * get All Account.
  */
 
-exports.getAllAccount = (req, res) => {};
+exports.getAllAccount = (req, res) => {
+  User.find({}).exec((err, data) => {
+    if (err) {
+      res.status(201).json(err);
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
 
 /**
  * POST /forgot
@@ -253,9 +261,8 @@ exports.postDeleteAccount = (req, res, next) => {};
 /******* Account Management **********/
 
 
-/**
- * List Of Roles
- */
+/** ************************** List Of Roles *********************/
+// getListOfRoles
 exports.getListOfRoles = (req, res, next) => {
   ListOfRoles.find({}).exec((err, data) => {
     if (err) {
@@ -265,7 +272,7 @@ exports.getListOfRoles = (req, res, next) => {
     }
   });
 };
-
+// postListOfRoles
 exports.postListOfRoles = (req, res, next) => {
   try {
     if (!req.body) {
@@ -290,7 +297,7 @@ exports.postListOfRoles = (req, res, next) => {
   }
 };
 
-
+// updateListOfRoles
 exports.updateListOfRoles = async function (req, res, next) {
   try {
     ListOfRoles.findByIdAndUpdate(req.body._id, {
@@ -307,8 +314,34 @@ exports.updateListOfRoles = async function (req, res, next) {
   }
 
 }
+// deleteListOfRole
+exports.deleteListOfRole = async function (req, res, next) {
+  try {
+    ListOfRoles.findByIdAndDelete({
+      _id: req.body._id
+    }).exec((err, data) => {
+      if (!data) {
+        res.status(200).json({
+          name: "not found"
+        });
+      } else if (data) {
+        res.status(200).json(data);
+      } else {
+        res.status(500).json({
+          error: err
+        });
+      }
+    });
 
-exports.deleteListOfRoles = async function (req, res, next) {
+  } catch (error) {
+    res.json({
+      "message": "block of code for errors!"
+    });
+  }
+}
+
+// deleteListOfRoleByID
+exports.deleteListOfRoleByID = async function (req, res, next) {
 
   try {
     const deleteListOfRole = await new Promise((resolve, reject) => {
@@ -336,6 +369,7 @@ exports.deleteListOfRoles = async function (req, res, next) {
   }
 }
 
+// getListOfRoleByName
 exports.getListOfRoleByName = async function (req, res, next) {
   try {
     const queryName = await new Promise((resolve, reject) => {
@@ -360,17 +394,18 @@ exports.getListOfRoleByName = async function (req, res, next) {
 
 }
 
+// searchByListOfRoleName
 exports.searchByListOfRoleName = async function (req, res, next) {
   try {
 
-    const pattern  = `/.*${req.body.name}.*/`;
+    const pattern = `/.*${req.body.name}.*/`;
     const valll = {
       "name": {
         $regex: req.body.name
       }
     }
     const incomingvalue = req.body.name.split('');
-    
+
     ListOfRoles.find({
       "name": {
         $regex: req.body.name
@@ -382,7 +417,7 @@ exports.searchByListOfRoleName = async function (req, res, next) {
         });
       } else if (data) {
         // const searchResult = [];
-       
+
         //  _.find(data, (o) => {
         //     const splitvalue =  o.name.split("");
         //     const presents = _.intersectionWith(splitvalue, incomingvalue, _.isEqual);
@@ -398,7 +433,6 @@ exports.searchByListOfRoleName = async function (req, res, next) {
         });
       }
     })
-    // ListOfRoles.find({name: req.p})
   } catch (error) {
     return res.json({
       "message": "block of code for errors!"
@@ -407,9 +441,8 @@ exports.searchByListOfRoleName = async function (req, res, next) {
 }
 
 
-/**
- * List Of Resource Or Action
- */
+/** ********************************* List Of Resource Or Action ****************************** */
+// getListOfResourceOrAction
 exports.getListOfResourceOrAction = (req, res, next) => {
   ListOfResourceOrAction.find({}).exec((err, data) => {
     if (err) {
@@ -420,6 +453,7 @@ exports.getListOfResourceOrAction = (req, res, next) => {
   });
 };
 
+// postListOfResourceOrAction
 exports.postListOfResourceOrAction = (req, res, next) => {
   try {
     if (!req.body) {
@@ -444,9 +478,150 @@ exports.postListOfResourceOrAction = (req, res, next) => {
   }
 };
 
-/**
- * User Roles
- */
+// updateListOfResourceOrAction
+exports.updateListOfResourceOrAction = async function (req, res, next) {
+  try {
+    ListOfResourceOrAction.findByIdAndUpdate(req.body._id, {
+      name: req.body.name
+    }).then((result) => {
+      res.status(200).json(result);
+    }).catch((err) => {
+      res.status(201).json(err);
+    });
+  } catch (error) {
+    return res.json({
+      "message": "block of code for errors!"
+    });
+  }
+
+}
+// deleteListOfResourceOrAction
+exports.deleteListOfResourceOrAction = async function (req, res, next) {
+  try {
+    ListOfResourceOrAction.findByIdAndDelete({
+      _id: req.body._id
+    }).exec((err, data) => {
+      if (!data) {
+        res.status(200).json({
+          name: "not found"
+        });
+      } else if (data) {
+        res.status(200).json(data);
+      } else {
+        res.status(500).json({
+          error: err
+        });
+      }
+    });
+
+  } catch (error) {
+    res.json({
+      "message": "block of code for errors!"
+    });
+  }
+}
+
+// deleteListOfResourceOrActionByID
+exports.deleteListOfResourceOrActionByID = async function (req, res, next) {
+
+  try {
+    const deleteListOfRole = await new Promise((resolve, reject) => {
+      ListOfResourceOrAction.findByIdAndDelete(req.params.name).then((result) => {
+        resolve(result);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+    if (deleteListOfRole) {
+      res.status(200).json({
+        message: "Success"
+      });
+    } else {
+      res.status(500).json({
+        message: "There are some problem"
+      });
+
+
+    }
+  } catch (error) {
+    return res.json({
+      "message": "block of code for errors!"
+    });
+  }
+}
+
+// getListOfRoleByName
+exports.getListOfResourceOrActionByName = async function (req, res, next) {
+  try {
+    const queryName = await new Promise((resolve, reject) => {
+      ListOfResourceOrAction.findOne({
+        name: req.params.name
+      }).then((result) => resolve(result)).catch(reject)
+    });
+    if (queryName) {
+      res.status(200).json({
+        name: queryName.name
+      });
+    } else {
+      res.status(200).json({
+        name: "not found"
+      });
+    }
+  } catch (error) {
+    return res.json({
+      "message": "block of code for errors!"
+    });
+  }
+
+}
+
+// searchByListOfRoleName
+exports.searchByListOfResourceOrActionName = async function (req, res, next) {
+  try {
+
+    const pattern = `/.*${req.body.name}.*/`;
+    const valll = {
+      "name": {
+        $regex: req.body.name
+      }
+    }
+    const incomingvalue = req.body.name.split('');
+
+    ListOfResourceOrAction.find({
+      "name": {
+        $regex: req.body.name
+      }
+    }).exec((err, data) => {
+      if (data.length === 0) {
+        res.status(200).json({
+          name: "not found"
+        });
+      } else if (data) {
+        // const searchResult = [];
+
+        //  _.find(data, (o) => {
+        //     const splitvalue =  o.name.split("");
+        //     const presents = _.intersectionWith(splitvalue, incomingvalue, _.isEqual);
+        //     if(presents.length){
+        //       searchResult.push(o);
+        //     }
+        // })
+        // console.log(searchResult)
+        res.status(200).json(data);
+      } else {
+        res.status(500).json({
+          error: err
+        });
+      }
+    })
+  } catch (error) {
+    return res.json({
+      "message": "block of code for errors!"
+    });
+  }
+}
+
+/** ******************************* User Roles ********************************** */
 
 exports.getUserRoles = (req, res, next) => {
   // UserRoles.find({}).populate('user_id', 'fullname').populate('role_id', 'name').exec((err, data) => {
