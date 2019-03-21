@@ -62,7 +62,6 @@ exports.postSignup = (req, res, next) => {
     upload(req, res, function (err) {
       if (err instanceof multer.MulterError) {
         // A Multer error occurred when uploading.
-        console.log(err);
         res.status(201).json({
           message: "A Multer error occurred when uploading.",
           error: err
@@ -94,7 +93,7 @@ exports.postSignup = (req, res, next) => {
               email: value.email
             }).then((result) => {
               if (result) {
-                return res.status(200).json({
+                res.status(200).json({
                   message: 'Account with that email address already exists.'
                 });
               } else {
@@ -186,7 +185,7 @@ exports.postLogin = (req, res, next) => {
     });
   }
 
-};
+}
 
 /**
  * GET /account
@@ -202,6 +201,37 @@ exports.getAllAccount = (req, res) => {
     }
   });
 };
+
+exports.postUserAccount = async function (req, res, next) {
+  
+}
+exports.updateUserAccount = async function (req, res, next) {
+  
+}
+exports.deleteUserAccount = async function (req, res, next) {
+  try {
+    User.findByIdAndDelete({
+      _id: req.body._id
+    }).exec((err, data) => {
+      if (!data) {
+        res.status(200).json({
+          name: "not found"
+        });
+      } else if (data) {
+        res.status(200).json(data);
+      } else {
+        res.status(500).json({
+          error: err
+        });
+      }
+    });
+
+  } catch (error) {
+    res.json({
+      "message": "block of code for errors!"
+    });
+  }
+}
 
 /**
  * POST /forgot

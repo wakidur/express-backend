@@ -32,7 +32,10 @@ router
 //   .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount);
 router
   .route('/account')
-  .get(userCtrl.getAllAccount);
+  .get(userCtrl.getAllAccount)
+  .post(userCtrl.postUserAccount)
+  .put(userCtrl.updateUserAccount)
+  .delete(userCtrl.deleteUserAccount);
 
 router
   .route('/account/profile')
