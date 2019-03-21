@@ -6,11 +6,13 @@ const Schema = mongoose.Schema;
 const userRolesSchema = new Schema({
     user_id: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: [true, "User name is required!"],
     },
     role_id: [{
         type: Schema.Types.ObjectId,
-        ref: 'ListOfRoles'
+        ref: 'ListOfRoles',
+        required: [true, "User role is required at list guest role must be choose!"],
     }],
 
 });

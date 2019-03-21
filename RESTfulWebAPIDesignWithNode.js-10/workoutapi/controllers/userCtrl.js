@@ -194,7 +194,7 @@ exports.postLogin = (req, res, next) => {
  */
 
 exports.getAllAccount = (req, res) => {
-  User.find({}).exec((err, data) => {
+  User.find({}, 'fullname email userImage').exec((err, data) => {
     if (err) {
       res.status(201).json(err);
     } else {
@@ -664,8 +664,6 @@ exports.postUserRoles = (req, res, next) => {
   }
 };
 
-
-
 exports.getUserRoleById = (req, res, next) => {
   const requstId = req.params.id;
   UserRoles.find({
@@ -678,7 +676,7 @@ exports.getUserRoleById = (req, res, next) => {
         res.status(200).json(data);
       } else {
         res.status(200).json({
-          message: "No data"
+          message: "Not found"
         });
       }
     }
