@@ -1,6 +1,7 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const User = require('../model/userSchema');
+const userDS = require('../service/userDataService');
 
 passport.use(
     new localStrategy({
@@ -24,8 +25,26 @@ passport.use(
                             message: 'Wrong password.'
                         });
                     // authentication succeeded
-                    else
+                    else {
                         return done(null, user);
+                        // userDS.getUserRoleById(user.id).then((result) => {
+                        //     if (result) {
+                        //         if (result.role_id) {
+                        //             result.rold_id.forEach(element => {
+                        //                 console.log(element);
+                                        
+                        //             });
+                        //         }
+                               
+                        //     } else {
+                                
+                        //     }
+                        // }).catch((err) => {
+                            
+                        // });
+                        
+                    }
+                        
                 });
         })
 );

@@ -79,7 +79,7 @@ exports.postSignup = (req, res, next) => {
           });
           return;
         }
-        // Create a Exercise
+        // Create a User
         const userSchema = Joi.object({
           fullname: Joi.string().required(),
           email: Joi.string().email(),
@@ -185,7 +185,7 @@ exports.postLogin = (req, res, next) => {
     });
   }
 
-}
+};
 
 /**
  * GET /account
@@ -698,7 +698,7 @@ exports.getUserRoleById = (req, res, next) => {
   const requstId = req.params.id;
   UserRoles.find({
     user_id: requstId
-  }).populate('resource_id', 'name').exec((err, data) => {
+  }).populate('role_id', 'name').exec((err, data) => {
     if (err) {
       res.status(201).json(err);
     } else {
@@ -782,14 +782,20 @@ exports.userRoleDeleteById = (req, res, next) => {}
  * Role Wise Resource Permission
  */
 exports.getRoleWiseResourcePermission = (req, res, next) => {
-  RoleWiseResourcePermission.find({}).exec((err, data) => {
-    if (err) {
-      res.status(201).join(err);
-    } else {
-      res.status(200).join(data);
-    }
-  });
+  RoleWiseResourcePermission.find()
+    .populate({
+      path: 'role_id',
+      select: ['name']
+    })
+    .populate('resource_id', 'name').exec((err, data) => {
+      if (err) {
+        res.status(201).json(err);
+      } else {
+        res.status(200).json(data);
+      }
+    });
 };
+
 exports.postRoleWiseResourcePermission = (req, res, next) => {
   try {
     if (!req.body) {
@@ -820,7 +826,7 @@ exports.getRoleWiseResourcePermissionById = (req, res, next) => {
   const requstId = req.params.id;
   RoleWiseResourcePermission.find({
     role_id: requstId
-  }).populate('role_id', 'name').exec((err, data) => {
+  }).populate('resource_id', 'name').exec((err, data) => {
     if (err) {
       res.status(201).json(err);
     } else {
