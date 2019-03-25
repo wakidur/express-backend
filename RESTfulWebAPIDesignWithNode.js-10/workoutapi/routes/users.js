@@ -104,4 +104,8 @@ router
   .get(userCtrl.getRoleWiseResourcePermission)
   .post(userCtrl.postRoleWiseResourcePermission);
 
+  router
+  .route('/role-wise-resource-permission/:id')
+  .get(userCtrl.getRoleWiseResourcePermissionById);
+
 module.exports = router;

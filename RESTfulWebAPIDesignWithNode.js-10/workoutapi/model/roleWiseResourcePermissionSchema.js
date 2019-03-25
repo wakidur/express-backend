@@ -7,10 +7,10 @@ const roleWiseResourcePermissionSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    role_id: [{
+    role_id: {
         type: Schema.Types.ObjectId,
         ref: 'ListOfRoles'
-    }],
+    },
     resource_id: [{
         type: Schema.Types.ObjectId,
         ref: 'ListOfResource'

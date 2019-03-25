@@ -698,7 +698,7 @@ exports.getUserRoleById = (req, res, next) => {
   const requstId = req.params.id;
   UserRoles.find({
     user_id: requstId
-  }).populate('role_id', 'name').exec((err, data) => {
+  }).populate('resource_id', 'name').exec((err, data) => {
     if (err) {
       res.status(201).json(err);
     } else {
@@ -772,7 +772,11 @@ exports.userRoleUpdateById = async function (req, res, next) {
   }
 
 }
+
 exports.userRoleDeleteById = (req, res, next) => {}
+
+
+/** ******************************* Role Wise Resource Permission ********************************** */
 
 /**
  * Role Wise Resource Permission
@@ -810,4 +814,23 @@ exports.postRoleWiseResourcePermission = (req, res, next) => {
       "message": "block of code for errors!"
     });
   }
+}
+
+exports.getRoleWiseResourcePermissionById = (req, res, next) => {
+  const requstId = req.params.id;
+  RoleWiseResourcePermission.find({
+    role_id: requstId
+  }).populate('role_id', 'name').exec((err, data) => {
+    if (err) {
+      res.status(201).json(err);
+    } else {
+      if (data.length != 0) {
+        res.status(200).json(data);
+      } else {
+        res.status(200).json({
+          message: "Not found"
+        });
+      }
+    }
+  })
 }
