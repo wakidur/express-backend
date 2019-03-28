@@ -17,7 +17,10 @@ const ListOfResourceOrAction = require('../model/listOfResourceOrActionSchema');
 const UserRoles = require('../model/userRolesSchema');
 const RoleWiseResourcePermission = require('../model/roleWiseResourcePermissionSchema');
 
-
+/**
+ * Service list
+ */
+const userDS = require('../service/userDataService');
 
 // Image upload configur
 const storage = multer.diskStorage({
@@ -203,10 +206,10 @@ exports.getAllAccount = (req, res) => {
 };
 
 exports.postUserAccount = async function (req, res, next) {
-  
+
 }
 exports.updateUserAccount = async function (req, res, next) {
-  
+
 }
 exports.deleteUserAccount = async function (req, res, next) {
   try {
@@ -245,20 +248,44 @@ exports.postForgot = (req, res, next) => {};
  * Profile page.
  */
 exports.getUserProfile = (req, res, next) => {
+  const currentUser = req.user;
+  const id = parseInt(req.params.id);
+
   User.findOne({
       _id: req._id
     },
     (err, user) => {
-      if (!user)
-        return res.status(404).json({
+      if (!user) {
+        res.status(404).json({
           status: false,
           message: 'User record not found.'
         });
-      else
-        return res.status(200).json({
-          status: true,
-          user: _.pick(user, ['fullname', 'email'])
+      } else {
+        userDS.getUserRoleById(user.id).then((result) => {
+          const userrole = [];
+          if (result) {
+            if (result[0].role_id) {
+              for (const iterator of result[0].role_id) {
+                userrole.push(iterator.name);
+              }
+              user.role = userrole;
+            }
+            res.status(200).json({
+              status: true,
+              user: _.pick(user, ['fullname', 'email', 'role'])
+            });
+
+
+          } else {
+            res.status(200).json({
+              status: true,
+              user: _.pick(user, ['fullname', 'email', 'role'])
+            });
+          }
+        }).catch((err) => {
+          res.status(404).json(err);
         });
+      }
     }
   );
 };

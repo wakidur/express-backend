@@ -26,25 +26,28 @@ passport.use(
                         });
                     // authentication succeeded
                     else {
-                        return done(null, user);
-                        // userDS.getUserRoleById(user.id).then((result) => {
-                        //     if (result) {
-                        //         if (result.role_id) {
-                        //             result.rold_id.forEach(element => {
-                        //                 console.log(element);
-                                        
-                        //             });
-                        //         }
-                               
-                        //     } else {
-                                
-                        //     }
-                        // }).catch((err) => {
-                            
-                        // });
-                        
+                        userDS.getUserRoleById(user.id).then((result) => {
+                            const userrole = [];
+                            if (result) {
+                                if (result[0].role_id) {
+                                    for (const iterator of result[0].role_id) {
+                                        userrole.push(iterator.name);
+                                    }
+                                    user.role = userrole;
+                                }
+                                return done(null, user);
+
+                            } else {
+                                return done(null, user);
+                            }
+                        }).catch((err) => {
+                            return done(null, false, {
+                                message: err
+                            });
+
+                        });
                     }
-                        
+
                 });
         })
 );
