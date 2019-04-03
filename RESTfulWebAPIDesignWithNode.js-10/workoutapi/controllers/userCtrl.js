@@ -175,7 +175,9 @@ exports.postLogin = (req, res, next) => {
               });
             } else {
               // unknown user or wrong password
-              return res.status(404).json(info);
+              return res.status(404).json({
+                message: info.message
+              });
             }
           })(req, res);
         }
@@ -241,7 +243,7 @@ exports.deleteUserAccount = async function (req, res, next) {
  * Create a random token, then the send user an email with a reset link.
  */
 
-exports.postForgot = (req, res, next) => {};
+exports.postForgot = (req, res, next) => {}
 
 /**
  * GET /account/profile
@@ -262,40 +264,95 @@ exports.getUserProfile = (req, res, next) => {
         });
       } else {
         userDS.getUserRoleById(user.id).then((result) => {
-          const userrole = [];
-          if (result) {
-            if (result[0].role_id) {
-              for (const iterator of result[0].role_id) {
-                userrole.push(iterator.name);
-              }
-              user.role = userrole;
-            }
+
+          if (result.length === 0) {
             res.status(200).json({
               status: true,
-              user: _.pick(user, ['fullname', 'email', 'role'])
+              user: _.pick(user, ['fullname', 'email'])
             });
-
-
           } else {
-            res.status(200).json({
-              status: true,
-              user: _.pick(user, ['fullname', 'email', 'role'])
-            });
+            const userrole = [];
+            if (result.length > 0) {
+              if (result[0].role_id) {
+                for (const iterator of result[0].role_id) {
+                  userrole.push(iterator.name);
+                }
+                user.role = userrole;
+              }
+              res.status(200).json({
+                status: true,
+                user: _.pick(user, ['fullname', 'email', 'role'])
+              });
+
+            } else {
+              res.status(200).json({
+                status: true,
+                user: _.pick(user, ['fullname', 'email', 'role'])
+              });
+            }
           }
+
         }).catch((err) => {
           res.status(404).json(err);
         });
       }
     }
   );
-};
+}
 
 /**
  * POST /account/profile
  * Update profile information.
  */
 
-exports.postUpdateProfile = (req, res, next) => {};
+exports.postUpdateProfile = (req, res, next) => {
+  if (!req.body) {
+    res.status(400).json({
+      "message": "Email is not valid and Password cannot be blank"
+    });
+  } else {
+    const userSchema = Joi.object({
+      fullname: Joi.string().email(),
+      email: Joi.string().required(),
+    });
+    Joi.validate(req.body, userSchema, (err, value) => {
+      if (err) {
+        res.status(404).json(err);
+      } else {
+        User.findById(req.user.id, (err, user) => {
+          if (err) {
+            res.status(404).json(err);
+          }
+          user.fullname = req.body.fullname || '';
+          user.email = req.body.email || '';
+          user.designation = req.body.designation || '';
+          user.address = req.body.address || '';
+          user.country = req.body.country || '';
+          user.city = req.body.city || '';
+          user.mobile = req.body.mobile || '';
+          user.phone = req.body.phone || '';
+          user.birthofdate = req.body.birthofdate || '';
+          user.zip = req.body.zip || '';
+          user.userImage = req.body.userImage || '';
+          user.save((err) => {
+            if (err) {
+              if (err.code === 11000) {
+                res.status(404).json({
+                  message: 'The email address you have entered is already associated with an account.'
+                })
+              }
+              res.status(404).json(err)
+            }
+            res.status(200).json({
+              "success": "Profile information has been updated."
+            });
+          });
+        });
+      }
+    });
+  }
+
+}
 
 /**
  * POST /account/password

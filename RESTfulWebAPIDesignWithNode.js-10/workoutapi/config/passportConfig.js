@@ -27,18 +27,22 @@ passport.use(
                     // authentication succeeded
                     else {
                         userDS.getUserRoleById(user.id).then((result) => {
-                            const userrole = [];
-                            if (result) {
-                                if (result[0].role_id) {
-                                    for (const iterator of result[0].role_id) {
-                                        userrole.push(iterator.name);
-                                    }
-                                    user.role = userrole;
-                                }
+                            if (result.length === 0) {
                                 return done(null, user);
-
                             } else {
-                                return done(null, user);
+                                const userrole = [];
+                                if (result) {
+                                    if (result[0].role_id) {
+                                        for (const iterator of result[0].role_id) {
+                                            userrole.push(iterator.name);
+                                        }
+                                        user.role = userrole;
+                                    }
+                                    return done(null, user);
+
+                                } else {
+                                    return done(null, user);
+                                }
                             }
                         }).catch((err) => {
                             return done(null, false, {

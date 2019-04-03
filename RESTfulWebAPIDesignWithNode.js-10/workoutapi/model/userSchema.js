@@ -33,11 +33,14 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    // role: {
-    //     type: String,
-    //     required: true,
-    //     default: 'guest'
-    // }
+    designation: String,
+    address: String,
+    country: String,
+    city: String,
+    mobile: String,
+    phone: String,
+    birthofdate: Date,
+    zip: String,
 
 }, {
     timestamps: true,
