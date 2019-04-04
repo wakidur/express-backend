@@ -250,9 +250,6 @@ exports.postForgot = (req, res, next) => {}
  * Profile page.
  */
 exports.getUserProfile = (req, res, next) => {
-  const currentUser = req.user;
-  const id = parseInt(req.params.id);
-
   User.findOne({
       _id: req._id
     },
@@ -264,11 +261,10 @@ exports.getUserProfile = (req, res, next) => {
         });
       } else {
         userDS.getUserRoleById(user.id).then((result) => {
-
           if (result.length === 0) {
             res.status(200).json({
               status: true,
-              user: _.pick(user, ['fullname', 'email'])
+              user: _.pick(user, ['fullname',  'email', 'address', 'birthofdate', 'city', 'country', 'zip', 'designation', 'mobile', 'phone','userImage'])
             });
           } else {
             const userrole = [];
@@ -281,14 +277,9 @@ exports.getUserProfile = (req, res, next) => {
               }
               res.status(200).json({
                 status: true,
-                user: _.pick(user, ['fullname', 'email', 'role'])
+                user: _.pick(user, ['fullname',  'email', 'address', 'birthofdate', 'city', 'country', 'zip', 'designation', 'mobile', 'phone','userImage', 'role',])
               });
 
-            } else {
-              res.status(200).json({
-                status: true,
-                user: _.pick(user, ['fullname', 'email', 'role'])
-              });
             }
           }
 
@@ -312,14 +303,23 @@ exports.postUpdateProfile = (req, res, next) => {
     });
   } else {
     const userSchema = Joi.object({
-      fullname: Joi.string().email(),
-      email: Joi.string().required(),
+      fullname: Joi.string().required(),
+      email: Joi.string().email(),
+      designation: Joi.string().optional(),
+      address: Joi.string().optional(),
+      country: Joi.string().optional(),
+      city: Joi.string().optional(),
+      mobile: Joi.string().optional(),
+      phone: Joi.string().optional(),
+      zip: Joi.string().optional(),
+      birthofdate: Joi.string().optional(),
+      userImage: Joi.string().optional(),
     });
     Joi.validate(req.body, userSchema, (err, value) => {
       if (err) {
         res.status(404).json(err);
       } else {
-        User.findById(req.user.id, (err, user) => {
+        User.findById(req._id, (err, user) => {
           if (err) {
             res.status(404).json(err);
           }

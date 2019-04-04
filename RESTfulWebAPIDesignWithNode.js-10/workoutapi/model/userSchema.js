@@ -24,7 +24,10 @@ const UserSchema = mongoose.Schema({
         required: "Password can\'t be empty",
         minlength: [4, "Password must be atleast 4 character long"]
     },
-    saltSecret: String,
+    saltSecret: {
+        type: String,
+        required: false
+    },
     hashedPassword: {
         type: String,
         required: false
@@ -33,14 +36,38 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    designation: String,
-    address: String,
-    country: String,
-    city: String,
-    mobile: String,
-    phone: String,
-    birthofdate: Date,
-    zip: String,
+    designation: {
+        type: String,
+        required: false
+    },
+    address: {
+        type: String,
+        required: false
+    },
+    country: {
+        type: String,
+        required: false
+    },
+    city: {
+        type: String,
+        required: false
+    },
+    mobile: {
+        type: String,
+        required: false
+    },
+    phone: {
+        type: String,
+        required: false
+    },
+    birthofdate: {
+        type: Date,
+        required: false
+    },
+    zip: {
+        type: String,
+        required: false
+    },
 
 }, {
     timestamps: true,
@@ -55,7 +82,14 @@ const UserSchema = mongoose.Schema({
 
 // Events
 UserSchema.pre('save', function (next) {
+    const user = this;
+    if (!user.isModified('password')) {
+        return next();
+    }
     bcrypt.genSalt(10, (err, salt) => {
+        if (err) {
+            return next(err);
+        }
         bcrypt.hash(this.password, salt, (err, hash) => {
             this.password = hash;
             this.saltSecret = salt;
@@ -64,7 +98,9 @@ UserSchema.pre('save', function (next) {
     });
 });
 
-// Methods
+/**
+ * Helper method for validating user's password.
+ */
 UserSchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
@@ -89,15 +125,13 @@ UserSchema.methods.generateJwt = function () {
 
     const expiry = new Date();
     expiry.setDate(expiry.getDate() + 1);
-    return jwt.sign(
-        {
+    return jwt.sign({
             _id: this._id,
             email: this.email,
             name: this.fullName,
             roles: this.role
         },
-        config.jwtSecret, 
-        {
+        config.jwtSecret, {
             // expiresIn: process.env.JWT_EXP
             expiresIn: parseInt(expiry.getTime() / 1000)
         }
