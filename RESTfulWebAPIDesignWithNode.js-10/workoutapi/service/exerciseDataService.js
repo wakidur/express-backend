@@ -3,6 +3,7 @@ const Q = require('q');
 
 // Schema
 const Exercise = require('../model/exerciseSchema');
+const UserWiseExercise = require('../model/userWiseExerciseSchema');
 const ExercisePlan = require('../model/exercisePlanSchema');
 const WorkoutPlan = require('../model/workoutPlanSchema');
 
@@ -76,6 +77,33 @@ function exerciseDeleteById(id) {
     return deferred.promise;
 }
 
+function getUserWiseExercise(userid) {
+    return new Promise((resolve, reject) => {
+        UserWiseExercise.find().populate({
+            path: 'user_id',
+            select: ['fullname', 'email', 'userImage']
+        }).populate('exercise_id').then((result) => {
+            resolve(result);
+        }).catch((err) => {
+            reject(err);
+        });
+    });
+}
+
+function postUserWiseExercise(userid, exerciseid) {
+    return new Promise((resolve, reject) => {
+        const userWiseExercise  =  new UserWiseExercise({
+            user_id: userid,
+            exercise_id: exerciseid
+        });
+        userWiseExercise.save().then((result) => {
+            resolve(result);
+        }).catch((err) => {
+            reject(err);
+        });
+    });
+}
+
 module.exports = {
     getExerciseList,
     exerciseReadById,
@@ -83,5 +111,7 @@ module.exports = {
     saveExercise,
     exerciseDeleteById,
     getExerciseListPromise,
-    getExerciseForkJoin
+    getExerciseForkJoin,
+    getUserWiseExercise,
+    postUserWiseExercise
 };

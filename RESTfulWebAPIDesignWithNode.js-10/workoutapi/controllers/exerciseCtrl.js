@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const Exercise = require('../model/exerciseSchema');
+const UserWiseExercise = require('../model/userWiseExerciseSchema');
 
 const ExercisePlan = require('../model/exercisePlanSchema');
 
@@ -25,7 +26,7 @@ exports.getAllExercise = async function getAllExercise(req, res, next) {
 }
 
 //Create new Exercise
-exports.createExercise = (req, res, next) => {
+exports.createExercise =  (req, res, next) => {
     try {
         if (!req.body) {
             res.status(400).json({
@@ -48,6 +49,11 @@ exports.createExercise = (req, res, next) => {
                 res.status(201).json(err);
             } else {
                 exerciseDS.saveExercise(value).then((result) => {
+                    exerciseDS.postUserWiseExercise(req.id, result._id).then((result) => {
+                        console.log(result)
+                    }).catch((err) => {
+                        next(err);
+                    });
                     res.status(201).json(result);
                 }).catch((err) => {
                     next(err);
@@ -256,6 +262,16 @@ exports.exerciseDeleteById = (req, res, next) => {
     }
 
 };
+
+
+exports.getUserWiseExercise =  async function (req, res, next) {
+    try {
+        const getuserwideExercise = await exerciseDS.getUserWiseExercise(req.id);
+        console.log(getuserwideExercise) ;
+    } catch (error) {
+        
+    }
+}
 
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {

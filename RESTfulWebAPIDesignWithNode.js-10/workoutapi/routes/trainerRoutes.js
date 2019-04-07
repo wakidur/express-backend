@@ -9,6 +9,7 @@ const asyncHandler = require('express-async-handler');
 const express = require('express');
 const router = express.Router();
 
+const jwtHelper = require('../config/jwtHelper');
 let exerciseController = require('../controllers/exerciseCtrl');
 let exercisePlanController = require('../controllers/exercisePlanCtrl');
 let workoutPlanController = require('../controllers/workoutPlanCtrl');
@@ -22,14 +23,18 @@ let workoutLogEntryCtrlController = require('../controllers/workoutLogEntryCtrl'
 router
     .route('/exercise/create')
     .get(asyncHandler(exerciseController.getAllExercise))
-    .post(asyncHandler(exerciseController.createExercise));
+    .post(jwtHelper.verifyJwtToken, exerciseController.createExercise);
 
 router
     .route('/exercise/:id')
     .get(exerciseController.exerciseReadByName)
     .put(exerciseController.exerciseUpdateById)
     .delete(exerciseController.exerciseDeleteById);
-
+// get and create user wise exercise 
+router
+    .route('/user-wise-exercise')
+    .get(exerciseController.getUserWiseExercise)
+    .post(exerciseController.getUserWiseExercise)
 
 // GET request for creating a exercise.
 router
