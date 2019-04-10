@@ -22,7 +22,7 @@ let workoutLogEntryCtrlController = require('../controllers/workoutLogEntryCtrl'
 // GET request for creating a exercise.
 router
     .route('/exercise/create')
-    .get(asyncHandler(exerciseController.getAllExercise))
+    .get(jwtHelper.verifyJwtToken, exerciseController.getAllExercise)
     .post(jwtHelper.verifyJwtToken, exerciseController.createExercise);
 
 router
@@ -45,8 +45,8 @@ router
 // GET request for creating a WorkoutPlan.
 router
     .route('/workoutplan/create')
-    .get(workoutPlanController.getWorkoutPlanCreate)
-    .post(workoutPlanController.postWorkoutPlanCreate);
+    .get(jwtHelper.verifyJwtToken, workoutPlanController.getWorkoutPlanCreate)
+    .post(jwtHelper.verifyJwtToken, workoutPlanController.postWorkoutPlanCreate);
 
 router
     .route('/workoutplan/:id')

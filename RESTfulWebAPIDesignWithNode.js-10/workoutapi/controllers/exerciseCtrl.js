@@ -26,7 +26,7 @@ exports.getAllExercise = async function getAllExercise(req, res, next) {
 }
 
 //Create new Exercise
-exports.createExercise =  (req, res, next) => {
+exports.createExercise = async function createExercise(req, res, next) {
     try {
         if (!req.body) {
             res.status(400).json({
@@ -42,22 +42,37 @@ exports.createExercise =  (req, res, next) => {
             image: Joi.string().required(),
             nameSound: Joi.string().required(),
             procedure: Joi.string().required(),
-            videos: Joi.string().required(),
+            videos: Joi.array().items(Joi.string()),
         });
         Joi.validate(req.body, exerciseSchema, (err, value) => {
             if (err) {
                 res.status(201).json(err);
             } else {
                 exerciseDS.saveExercise(value).then((result) => {
-                    exerciseDS.postUserWiseExercise(req.id, result._id).then((result) => {
-                        console.log(result)
+                    exerciseDS.getUserIdFromUserWiseExercise(req._id).then((userid) => {
+                        if (userid.length !== 0) {
+                            exerciseDS.updateUserWiseExerciseById(userid[0].id, result.id).then((updateResult) => {
+                                res.status(200).json({
+                                    message: "success"
+                                });
+                            }).catch((err) => {
+                                next(err);
+                            });
+                        } else if (userid.length == 0) {
+                            exerciseDS.postUserWiseExercise(req._id, result.id).then((postResult) => {
+                                res.status(200).json({
+                                    message: "success"
+                                });
+                            }).catch((err) => {
+                                next(err);
+                            });
+                        }
                     }).catch((err) => {
                         next(err);
                     });
-                    res.status(201).json(result);
+
                 }).catch((err) => {
                     next(err);
-                    handleError(res, err.message, "Something wrong while creating the Exercise.");
                 });
             }
         });
@@ -66,7 +81,7 @@ exports.createExercise =  (req, res, next) => {
             "message": "block of code for errors!"
         });
     }
-};
+}
 
 // Find a single Exercise with a exercise Id
 exports.exerciseReadById = (req, res) => {
@@ -119,14 +134,16 @@ exports.exerciseReadByName = (req, res) => {
     try {
         if (req.params && req.params.id) {
             const queryName = req.params.id;
-            
+
             // Exercise.find({name:queryName}).then((doc) => {
             //         console.log(doc);
             //     })
             //     .catch((err) => {
             //         console.log(err);
             //     });
-            Exercise.findOne({name: queryName }).then((result) => {
+            Exercise.findOne({
+                name: queryName
+            }).then((result) => {
                 if (!result) {
                     res.status(404).json({
                         "message": "Exercise id not found"
@@ -264,12 +281,12 @@ exports.exerciseDeleteById = (req, res, next) => {
 };
 
 
-exports.getUserWiseExercise =  async function (req, res, next) {
+exports.getUserWiseExercise = async function (req, res, next) {
     try {
         const getuserwideExercise = await exerciseDS.getUserWiseExercise(req.id);
-        console.log(getuserwideExercise) ;
+        console.log(getuserwideExercise);
     } catch (error) {
-        
+
     }
 }
 

@@ -14,42 +14,46 @@ function getExerciseList() {
         deferred.resolve(result);
     }).catch((err) => {
         deferred.reject(err);
-    }); 
+    });
     return deferred.promise;
 }
 
 async function getExerciseForkJoin() {
-    return await new Promise((resolve, reject)=> {
+    return await new Promise((resolve, reject) => {
         Exercise.find({})
             .then((result) => resolve(result))
             .catch(reject)
-    }).catch(()=> { console.log('bam errored'); throw 'bam'; });
+    }).catch(() => {
+        console.log('bam errored');
+        throw 'bam';
+    });
 }
 
-async  function getExerciseListPromise(userInfo) {
+async function getExerciseListPromise(userInfo) {
     return new Promise((resolve, reject) => {
         Exercise.find({})
             .then((result) => resolve(result))
             .catch(reject)
     });
- }
+}
 
 function exerciseReadById(id) {
     let deferred = Q.defer();
     Exercise.findById(id).then((result) => {
         deferred.resolve(result);
     }).catch((error) => {
-       // deferred.reject(error);
+        // deferred.reject(error);
         deferred.reject(new Error(error));
     });
     return deferred.promise;
 }
+
 function exerciseUpdateById(id) {
     let deferred = Q.defer();
     Exercise.findById(id).then((result) => {
         deferred.resolve(result);
     }).catch((error) => {
-       // deferred.reject(error);
+        // deferred.reject(error);
         deferred.reject(error);
     });
     return deferred.promise;
@@ -62,7 +66,7 @@ function saveExercise(value) {
         deferred.resolve(result);
     }).catch((err) => {
         deferred.reject(err);
-    }); 
+    });
     return deferred.promise;
 }
 
@@ -71,7 +75,7 @@ function exerciseDeleteById(id) {
     Exercise.findByIdAndRemove(id).then((result) => {
         deferred.resolve(result);
     }).catch((error) => {
-       // deferred.reject(error);
+        // deferred.reject(error);
         deferred.reject(error);
     });
     return deferred.promise;
@@ -92,11 +96,40 @@ function getUserWiseExercise(userid) {
 
 function postUserWiseExercise(userid, exerciseid) {
     return new Promise((resolve, reject) => {
-        const userWiseExercise  =  new UserWiseExercise({
+        const userWiseExercise = new UserWiseExercise({
             user_id: userid,
             exercise_id: exerciseid
         });
         userWiseExercise.save().then((result) => {
+            resolve(result);
+        }).catch((err) => {
+            reject(err);
+        });
+    });
+}
+
+function getUserIdFromUserWiseExercise(id) {
+    return new Promise((resolve, reject) => {
+        UserWiseExercise.find({
+            user_id: id
+        }).then((result) => {
+            resolve(result);
+        }).catch((err) => {
+            reject(err);
+        });
+    });
+}
+
+function updateUserWiseExerciseById(userWiseExerciseId, updateId) {
+    return new Promise((resolve, reject) => {
+        UserWiseExercise.findByIdAndUpdate(
+            userWiseExerciseId, {
+                $push: {
+                    exercise_id: updateId
+                }
+            }, {
+                new: true
+            }).then((result) => {
             resolve(result);
         }).catch((err) => {
             reject(err);
@@ -113,5 +146,7 @@ module.exports = {
     getExerciseListPromise,
     getExerciseForkJoin,
     getUserWiseExercise,
-    postUserWiseExercise
+    postUserWiseExercise,
+    getUserIdFromUserWiseExercise,
+    updateUserWiseExerciseById
 };
