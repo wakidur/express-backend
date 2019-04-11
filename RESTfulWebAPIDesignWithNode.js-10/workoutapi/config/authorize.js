@@ -1,5 +1,7 @@
 const expressJwt = require('express-jwt');
 const config = require('../config/config');
+const  _ = require('lodash');;
+
 
 module.exports = authorize;
 
@@ -19,13 +21,12 @@ function authorize(roles = []) {
 
         // authorize based on user role
         (req, res, next) => {
-            if (roles.length && !roles.includes(req.user.role)) {
+            // if (roles.length && !roles.includes(req.user.roles)) {
+            if (roles.length && !(_.isEqual(_.intersection(req.user.roles,roles), roles))) {
+            // if (roles.length && !(_.isEqual(roles.sort(), req.user.roles.sort()))) {
                 // user's role is not authorized
-                return res.status(401).json({
-                    message: 'Unauthorized'
-                });
+                return res.status(401).json({ message: 'Unauthorized'});
             }
-
             // authentication and authorization successful
             next();
         }

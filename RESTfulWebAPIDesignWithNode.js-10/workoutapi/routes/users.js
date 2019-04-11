@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const userCtrl = require('../controllers/userCtrl');
 const jwtHelper = require('../config/jwtHelper');
+const authorize = require('../config/authorize');
+const Role = require('../config/role');
 
 /**
  * GET /signup
@@ -32,7 +34,8 @@ router
 //   .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount);
 router
   .route('/account')
-  .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount)
+  .get(jwtHelper.verifyJwtToken, authorize([Role.admin, Role.guest]), userCtrl.getAllAccount)
+  // .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount)
   .post(jwtHelper.verifyJwtToken, userCtrl.postUserAccount)
   .put(jwtHelper.verifyJwtToken, userCtrl.updateUserAccount)
   .delete(jwtHelper.verifyJwtToken, userCtrl.deleteUserAccount);
