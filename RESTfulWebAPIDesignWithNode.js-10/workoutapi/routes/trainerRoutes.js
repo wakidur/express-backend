@@ -22,7 +22,7 @@ let workoutLogEntryCtrlController = require('../controllers/workoutLogEntryCtrl'
 // GET request for creating a exercise.
 router
     .route('/exercise/create')
-    .get(jwtHelper.verifyJwtToken, exerciseController.getAllExercise)
+    .get(exerciseController.getAllExercise)
     .post(jwtHelper.verifyJwtToken, exerciseController.createExercise);
 
 router

@@ -1,6 +1,6 @@
 const expressJwt = require('express-jwt');
 const config = require('../config/config');
-const  _ = require('lodash');;
+const _ = require('lodash');
 
 
 module.exports = authorize;
@@ -22,13 +22,29 @@ function authorize(roles = []) {
         // authorize based on user role
         (req, res, next) => {
             // if (roles.length && !roles.includes(req.user.roles)) {
-            if (roles.length && !(_.isEqual(_.intersection(req.user.roles,roles), roles))) {
-            // if (roles.length && !(_.isEqual(roles.sort(), req.user.roles.sort()))) {
+            if (roles.length && !isMatchingTwoArraysValue(roles, req.user.roles)) {
+                // if (roles.length && !(_.isEqual(_.intersection(req.user.roles,roles), roles))) {
+                // if (roles.length && !(_.isEqual(roles.sort(), req.user.roles.sort()))) {
                 // user's role is not authorized
-                return res.status(401).json({ message: 'Unauthorized'});
+                return res.status(401).json({
+                    message: 'Unauthorized'
+                });
             }
             // authentication and authorization successful
             next();
         }
     ];
+}
+
+function isMatchingTwoArraysValue(first, second) {
+    if (first.length > 0 && second.length > 0) {
+        const intersection = _.filter(first, (element) => second.includes(element));
+        if (intersection.length > 0) {
+            return true;
+        } else if (intersection <= 0) {
+            return false;
+        }
+    } else {
+        return false;
+    }
 }
