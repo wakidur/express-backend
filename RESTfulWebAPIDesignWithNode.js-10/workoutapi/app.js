@@ -23,9 +23,11 @@
   * Connect to MongoDB.
   */
  //Set up default mongoose connection
- const mongoUri = config.mongo.host;
- const mongoUrimlab = config.mongo.hostserver;
- mongoose.connect(mongoUri, {
+ const mongoDBLocalHostUri = config.mongo.host;
+ const mongoDBmLabUri = config.mongo.hostserver;
+ const mongoDBAtlasClusterUri= config.mongo.hostcluster;
+
+ mongoose.connect(mongoDBLocalHostUri, {
      useNewUrlParser: true,
      keepAlive: 1
  });

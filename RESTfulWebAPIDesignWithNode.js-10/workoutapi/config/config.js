@@ -15,8 +15,9 @@ const envVarsSchema = Joi.object({
         }),
         JWT_SECRET: Joi.string().required().description('JWT Secret required to sign'),
         JWT_EXP: Joi.string().required().description('JWT Secret required to sign'),
-        MONGO_HOST: Joi.string().required().description('Mongo DB host url'),
-        MONGO_HOST_SERVER: Joi.string().required().description('Mongo DB host url'),
+        MONGO_HOST: Joi.string().required().description('Mongo DB Local host url'),
+        MONGO_HOST_SERVER: Joi.string().required().description('Mongo DB mLab host url'),
+        MONGODB_CLUTSER_CONNECT: Joi.string().required().description('Mongo DB Cluster host url'),
         MONGO_PORT: Joi.number().default(27017)
     }).unknown()
     .required();
@@ -38,6 +39,7 @@ const config = {
     mongo: {
         host: envVars.MONGO_HOST,
         hostserver: envVars.MONGO_HOST_SERVER,
+        hostcluster: envVars.MONGODB_CLUTSER_CONNECT,
         port: envVars.MONGO_PORT
     }
 };
