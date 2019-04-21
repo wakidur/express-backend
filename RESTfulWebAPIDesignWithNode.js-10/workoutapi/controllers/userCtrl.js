@@ -87,6 +87,7 @@ exports.postSignup = (req, res, next) => {
           fullname: Joi.string().required(),
           email: Joi.string().email(),
           password: Joi.string().required(),
+          userImage: Joi.any()
         });
         Joi.validate(req.body, userSchema, (err, value) => {
           if (err) {
