@@ -34,12 +34,14 @@ router
 //   .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount);
 router
   .route('/account')
-  .get(jwtHelper.verifyJwtToken, authorize([Role.admin, Role.guest]), userCtrl.getAllAccount)
+  .get(jwtHelper.verifyJwtToken, authorize([Role.admin, Role.guest]), userCtrl.getAllUserAccounts)
   // .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount)
   .post(jwtHelper.verifyJwtToken, userCtrl.postUserAccount)
   .put(jwtHelper.verifyJwtToken, userCtrl.updateUserAccount)
   .delete(jwtHelper.verifyJwtToken, userCtrl.deleteUserAccount);
-
+  router
+  .route('/account/:id')
+  .get(jwtHelper.verifyJwtToken,  userCtrl.getUserAccountById);
 router
   .route('/account/profile')
   .get(jwtHelper.verifyJwtToken, userCtrl.getUserProfile)

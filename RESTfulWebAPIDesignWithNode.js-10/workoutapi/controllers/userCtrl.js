@@ -68,7 +68,7 @@ exports.postSignup = (req, res, next) => {
         res.status(201).json({
           message: "A Multer error occurred when uploading.",
           error: err
-        });
+        }); 
       } else if (err) {
         // An unknown error occurred when uploading.
         res.status(201).json({
@@ -198,15 +198,31 @@ exports.postLogin = (req, res, next) => {
  * get All Account.
  */
 
-exports.getAllAccount = (req, res) => {
-  User.find({}, 'fullname email userImage').exec((err, data) => {
-    if (err) {
-      res.status(201).json(err);
+// exports.getAllAccount = (req, res) => {
+//   User.find({}, 'fullname email userImage').exec((err, data) => {
+//     if (err) {
+//       res.status(201).json(err);
+//     } else {
+//       res.status(200).json(data);
+//     }
+//   });
+// };
+
+exports.getAllUserAccounts = async function (req, res) {
+  try {
+    let response = await userDS.getAllUserAccounts();
+    if (response.length > 0) {
+      res.status(200).json(response);
     } else {
-      res.status(200).json(data);
+      res.status(200).json(response);
     }
-  });
-};
+    console.log(response);
+  } catch(err) {
+    res.status(201).json(err);
+  }
+}
+
+
 
 exports.postUserAccount = async function (req, res, next) {
 
@@ -238,6 +254,20 @@ exports.deleteUserAccount = async function (req, res, next) {
     });
   }
 }
+
+exports.getUserAccountById = async function (req, res, next) {
+  try {
+    let response = await userDS.getUserAccountById(req.params.id);
+    if (response.length > 0) {
+      res.status(200).json(response);
+    } else {
+      res.status(200).json(response);
+    }
+    
+  } catch (error) {
+    res.status(201).json(error);
+  }
+};
 
 /**
  * POST /forgot
