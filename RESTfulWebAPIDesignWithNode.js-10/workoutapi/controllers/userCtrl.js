@@ -267,7 +267,7 @@ exports.getUserAccountById = async function (req, res, next) {
   } catch (error) {
     res.status(201).json(error);
   }
-};
+}
 
 /**
  * POST /forgot

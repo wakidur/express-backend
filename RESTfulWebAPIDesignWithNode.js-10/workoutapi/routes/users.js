@@ -33,6 +33,10 @@ router
 //   .route('/account')
 //   .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount);
 router
+  .route('/account/profile')
+  .get(jwtHelper.verifyJwtToken, userCtrl.getUserProfile)
+  .post(jwtHelper.verifyJwtToken, userCtrl.postUpdateProfile);
+router
   .route('/account')
   .get(jwtHelper.verifyJwtToken, authorize([Role.admin, Role.guest]), userCtrl.getAllUserAccounts)
   // .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount)
@@ -42,10 +46,7 @@ router
   router
   .route('/account/:id')
   .get(jwtHelper.verifyJwtToken,  userCtrl.getUserAccountById);
-router
-  .route('/account/profile')
-  .get(jwtHelper.verifyJwtToken, userCtrl.getUserProfile)
-  .post(jwtHelper.verifyJwtToken, userCtrl.postUpdateProfile);
+
 
 router
   .route('/account/password')
