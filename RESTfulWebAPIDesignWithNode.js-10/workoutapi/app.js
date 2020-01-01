@@ -25,11 +25,14 @@
  //Set up default mongoose connection
  const mongoDBLocalHostUri = config.mongo.host;
  const mongoDBmLabUri = config.mongo.hostserver;
- const mongoDBAtlasClusterUri= config.mongo.hostcluster;
+ const mongoDBAtlasClusterUri = config.mongo.hostcluster;
 
  mongoose.connect(mongoDBLocalHostUri, {
      useNewUrlParser: true,
-     keepAlive: 1
+     useCreateIndex: true,
+     useFindAndModify: false,
+     useUnifiedTopology: true,
+     keepAlive: 1,
  });
  // Get Mongoose to use the global promise library
  mongoose.Promise = global.Promise;
@@ -46,7 +49,7 @@
  // It is Node.js body parser middleware. It parse the incoming request bodies in a middleware before your handlers, 
  // available under the req.body property.
 
-//  app.use('/uploads', express.static('uploads'));
+ //  app.use('/uploads', express.static('uploads'));
  app.use(express.static(__dirname));
  app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({

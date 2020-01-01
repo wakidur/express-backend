@@ -38,8 +38,8 @@ router
   .post(jwtHelper.verifyJwtToken, userCtrl.postUpdateProfile);
 router
   .route('/account')
-  .get(jwtHelper.verifyJwtToken, authorize([Role.admin, Role.guest]), userCtrl.getAllUserAccounts)
-  // .get(jwtHelper.verifyJwtToken, userCtrl.getAllAccount)
+  // .get(jwtHelper.verifyJwtToken, authorize([Role.admin, Role.guest]), userCtrl.getAllUserAccounts)
+  .get(userCtrl.getAllUserAccounts)
   .post(jwtHelper.verifyJwtToken, userCtrl.postUserAccount)
   .put(jwtHelper.verifyJwtToken, userCtrl.updateUserAccount)
   .delete(jwtHelper.verifyJwtToken, userCtrl.deleteUserAccount);

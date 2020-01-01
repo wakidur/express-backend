@@ -216,7 +216,6 @@ exports.getAllUserAccounts = async function (req, res) {
     } else {
       res.status(200).json(response);
     }
-    console.log(response);
   } catch(err) {
     res.status(201).json(err);
   }
